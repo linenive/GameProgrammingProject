@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일\Manager">
+      <UniqueIdentifier>{78d4aad0-7bd3-4eac-bd89-5624d947cbad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository">
+      <UniqueIdentifier>{77421059-24a6-4e93-b3cc-7945d4bd6ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository\GameTime">
+      <UniqueIdentifier>{6e0d7fb6-b498-4ee5-95b2-2d2aaa14123e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Settings">
+      <UniqueIdentifier>{bfdf4941-9496-409c-93cc-fec84e80e877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager">
+      <UniqueIdentifier>{85b5a375-e93e-46fe-b881-b1c95e9db7ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository">
+      <UniqueIdentifier>{520b2c8d-db81-4ec6-bcae-e65c46af6a33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\GameTime">
+      <UniqueIdentifier>{5014afd6-5d21-4199-b6b9-ca42c75e137e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Library">
+      <UniqueIdentifier>{8e7af990-e5d5-46f0-b2d3-f439de484604}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="testProperty.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>소스 파일\Repository\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="DateSystem.cpp">
+      <Filter>소스 파일\Repository\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeSystem.cpp">
+      <Filter>소스 파일\Repository\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeRepository.cpp">
+      <Filter>소스 파일\Repository\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="NativeLib.cpp">
+      <Filter>소스 파일\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorld.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TestManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="testProperty.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>헤더 파일\Repository\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="DateSystem.h">
+      <Filter>헤더 파일\Repository\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRule.h">
+      <Filter>헤더 파일\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSystem.h">
+      <Filter>헤더 파일\Repository\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeRepository.h">
+      <Filter>헤더 파일\Repository\GameTime</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
