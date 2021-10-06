@@ -149,6 +149,7 @@
     <ClCompile Include="testProperty.cpp" />
     <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="testProperty.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
