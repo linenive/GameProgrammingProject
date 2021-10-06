@@ -1,3 +1,4 @@
+#include "Common.h"
 #include "TestManager.h"
 
 void TestManager::_register_methods(){

@@ -11,7 +11,6 @@ private:
 
 	void NewGame();
 	void LoadGame();
-	int test_attr;
 
 public:
 	static void _register_methods();
@@ -19,4 +18,6 @@ public:
 	void _ready();
 	void _process(float delta);
 	void _physics_process(float delta);
+
+	GameWorld* GetGameWorld() { return &game_world; }
 };

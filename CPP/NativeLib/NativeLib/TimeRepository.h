@@ -11,4 +11,5 @@ public:
 	void LoadTime(const Year& year, const Month& month,
 		const Day& day, const Time& time, const Minute& minute);
 	GameTime GetGameTime() { return now_game_time; }
+	void TimeGo(float delta);
 };

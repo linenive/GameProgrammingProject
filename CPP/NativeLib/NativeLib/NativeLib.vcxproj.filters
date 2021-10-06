@@ -104,5 +104,14 @@
     <ClInclude Include="UIManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="GameWorldForUI.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForAI.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePath.h">
+      <Filter>헤더 파일\Settings</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
