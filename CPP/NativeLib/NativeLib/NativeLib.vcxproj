@@ -79,7 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\..\godot-cpp\include\gen;..\..\..\godot-cpp\include\core;..\..\..\godot-cpp\godot-headers;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\godot-cpp\godot-headers;..\..\..\godot-cpp\include\core;..\..\..\godot-cpp\include\gen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="DateSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -150,37 +152,19 @@
     <ClCompile Include="testProperty.cpp" />
     <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
-    <ClCompile Include="UIManager.cpp" />
-    <ClCompile Include="WorldManager.cpp" />
-    <ClCompile Include="TileRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Character.h" />
-    <ClInclude Include="CharacterFactory.h" />
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="DateSystem.h" />
-    <ClInclude Include="ObjectRepository.h" />
-    <ClInclude Include="Task.h" />
-    <ClInclude Include="TileFactory.h" />
-    <ClInclude Include="WorldObjectFactory.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameRule.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameWorld.h" />
-    <ClInclude Include="GameWorldForAI.h" />
-    <ClInclude Include="GameWorldForWorld.h" />
-    <ClInclude Include="GodotScenePath.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="testProperty.h" />
-    <ClInclude Include="Tile.h" />
-    <ClInclude Include="Timer.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
-    <ClInclude Include="UIManager.h" />
-    <ClInclude Include="GameWorldForUI.h" />
-    <ClInclude Include="WorldManager.h" />
-    <ClInclude Include="WorldObject.h" />
-    <ClInclude Include="TileRepository.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
