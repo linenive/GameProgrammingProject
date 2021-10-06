@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "TestManager.h"
 #include "GameManager.h"
+#include "UIManager.h"
 #include "secondTest.h"
 
 extern "C" void GDN_EXPORT godot_gdnative_init(godot_gdnative_init_options * o) {
@@ -17,4 +18,5 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle) {
 	godot::register_class<TestManager>();
 	godot::register_class<GameManager>();
 	godot::register_class<secondTest>();
+	godot::register_class<UIManager>();
 }
