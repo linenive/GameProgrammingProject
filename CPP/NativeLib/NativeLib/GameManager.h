@@ -1,19 +1,19 @@
 #pragma once
 #include "Common.h"
 #include "GameWorld.h"
-#include <CanvasLayer.hpp>
+#include <Node.hpp>
 
-class GameManager : public CanvasLayer{
-	GODOT_CLASS(GameManager, CanvasLayer);
+class GameManager : public Node {
+	GODOT_CLASS(GameManager, Node);
 
 private:
 	GameWorld game_world;
 
 	void NewGame();
 	void LoadGame();
+	int test_attr;
 
 public:
-	int test_attr;
 	static void _register_methods();
 	void _init();
 	void _ready();

@@ -10,7 +10,7 @@ void GameManager::_register_methods() {
 	register_method("_process", &GameManager::_process);
 	register_method("_physics_process", &GameManager::_physics_process);
 
-	register_property<GameManager, int>("test_attr", &GameManager::test_attr, 10);
+	register_property<GameManager, int>("testAttr", &GameManager::test_attr, 10);
 }
 
 void GameManager::_init(){
