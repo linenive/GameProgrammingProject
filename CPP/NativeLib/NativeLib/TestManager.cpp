@@ -20,11 +20,11 @@ void TestManager::_init(){
 
 void TestManager::_ready(){
 	skill = Skill(5, "µµº®");
-	skill.SetData(123, true);
+	skill.SetData(456, true);
 }
 
 void TestManager::_process(float delta){
-	skill.SetData(123, true);
+	skill.SetData(789, true);
 }
 
 void TestManager::_physics_process(float delta){

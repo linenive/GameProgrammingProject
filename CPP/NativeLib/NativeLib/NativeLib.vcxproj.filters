@@ -66,6 +66,9 @@
     <ClCompile Include="GameWorld.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="TimeRepository.h">
       <Filter>헤더 파일\Repository\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
