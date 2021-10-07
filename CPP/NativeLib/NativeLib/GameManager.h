@@ -1,10 +1,10 @@
 #pragma once
 #include "Common.h"
 #include "GameWorld.h"
-#include <CanvasLayer.hpp>
+#include <Node.hpp>
 
-class GameManager : public CanvasLayer{
-	GODOT_CLASS(GameManager, CanvasLayer);
+class GameManager : public Node {
+	GODOT_CLASS(GameManager, Node);
 
 private:
 	GameWorld game_world;
@@ -18,4 +18,6 @@ public:
 	void _ready();
 	void _process(float delta);
 	void _physics_process(float delta);
+
+	GameWorld* GetGameWorld() { return &game_world; }
 };
