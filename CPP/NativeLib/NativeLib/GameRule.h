@@ -1,5 +1,11 @@
 #pragma once
 
+// 맵 관련
+const int DEFAULT_TILE_X = 128;
+const int DEFAULT_TILE_Y = 128;
+const int MAX_TILE_X = 512;
+const int MAX_TILE_Y = 512;
+
 // 시간 관련
 const int MINUTE_PER_HOUR = 26;
 const int HOUR_PER_DAY = 23;

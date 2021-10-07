@@ -147,9 +147,12 @@
     <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="testProperty.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="WorldObject.cpp" />
+    <ClCompile Include="WorldRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -162,11 +165,14 @@
     <ClInclude Include="ScenePath.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="testProperty.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="GameWorldForUI.h" />
+    <ClInclude Include="WorldObject.h" />
+    <ClInclude Include="WorldRepository.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,20 +1,17 @@
 #pragma once
 #include "GameRule.h"
 
-struct Hour
-{
+struct Hour{
 	explicit Hour(int h) : val(h) {}
 	int val;
 };
 
-struct Minute
-{
+struct Minute{
 	explicit Minute(int m) : val(m) {}
 	int val;
 };
 
-class Time
-{
+class Time{
 private:
 	Hour hour;
 	Minute minute;

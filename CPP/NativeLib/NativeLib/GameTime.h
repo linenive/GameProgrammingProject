@@ -2,8 +2,7 @@
 #include "DateSystem.h"
 #include "TimeSystem.h"
 
-class GameTime
-{
+class GameTime{
 private:
 	Date game_date;
 	Time game_time;
