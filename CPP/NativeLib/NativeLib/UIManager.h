@@ -12,8 +12,8 @@ private:
 
 public:
 	static void _register_methods();
-	void _init() {};
-	void _process(float delta);
+	void _init() { GetGameWorld(); };
+	void _process(float delta) {};
 
 	int GetYear();
 	int GetMonth();

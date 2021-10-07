@@ -1,6 +1,7 @@
 #include "GameManager.h"
 
 void GameManager::NewGame() {
+	game_world = GameWorld();
 }
 
 void GameManager::_register_methods() {
@@ -11,6 +12,7 @@ void GameManager::_register_methods() {
 }
 
 void GameManager::_init(){
+	NewGame();
 }
 
 void GameManager::_ready(){

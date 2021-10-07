@@ -21,10 +21,6 @@ void UIManager::GetGameWorld() {
 	}
 }
 
-void UIManager::_process(float delta) {
-	GetGameWorld();
-}
-
 int UIManager::GetYear() {
 	return game_world->getGameTime().GetYear().val;
 }

@@ -3,8 +3,7 @@ class Tile{
 
 private:
 	
-	bool isPassable;
 public:
-	Tile()
+	Tile(){}
 };
 

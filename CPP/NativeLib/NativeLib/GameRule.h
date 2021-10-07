@@ -1,5 +1,8 @@
 #pragma once
 
+// 문자 최대 길이
+const int MAX_GAMEOBJECT_NAME_SIZE = 32;
+
 // 맵 관련
 const int DEFAULT_TILE_X = 128;
 const int DEFAULT_TILE_Y = 128;
