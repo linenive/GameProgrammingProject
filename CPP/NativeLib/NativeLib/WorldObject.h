@@ -2,7 +2,7 @@
 #include "Common.h"
 #include "GameRule.h"
 
-enum ObjectHeightLevel {
+enum eObjectHeightLevel {
 
 };
 
