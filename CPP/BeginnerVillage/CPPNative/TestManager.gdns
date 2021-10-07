@@ -1,6 +1,6 @@
 [gd_resource type="NativeScript" load_steps=2 format=2]
 
-[ext_resource path="res://CPPNative/new_gdnativelibrary.tres" type="GDNativeLibrary" id=1]
+[ext_resource path="res://CPPNative/NativeLib.tres" type="GDNativeLibrary" id=1]
 
 [resource]
 class_name = "TestManager"
