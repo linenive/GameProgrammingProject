@@ -12,9 +12,13 @@ private:
 
 public:
 	static void _register_methods();
-	void _init() { GetGameWorld(); };
-	void _process(float delta) {};
+	void _init();
+	void _ready();
+	void _process(float delta);
 
+	Transform2D TestFunc() {
+		return Transform2D(real_t(.0), Vector2(real_t(500.0), real_t(500.0)));
+	}
 	int GetYear();
 	int GetMonth();
 	int GetDay();

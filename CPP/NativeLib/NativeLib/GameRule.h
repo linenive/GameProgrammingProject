@@ -4,10 +4,10 @@
 const int MAX_GAMEOBJECT_NAME_SIZE = 32;
 
 // 맵 관련
-const int DEFAULT_TILE_X = 128;
-const int DEFAULT_TILE_Y = 128;
-const int MAX_TILE_X = 512;
-const int MAX_TILE_Y = 512;
+const int DEFAULT_TILE_X = 54;
+const int DEFAULT_TILE_Y = 54;
+const int MAX_TILE_X = 128;
+const int MAX_TILE_Y = 128;
 
 // 시간 관련
 const int MINUTE_PER_HOUR = 26;
