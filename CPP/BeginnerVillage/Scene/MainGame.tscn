@@ -9,7 +9,7 @@
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
 
-[node name="GameManager" type="Node"]
+[node name="Main" type="Node"]
 script = ExtResource( 3 )
 
 [node name="HUD" parent="." instance=ExtResource( 1 )]

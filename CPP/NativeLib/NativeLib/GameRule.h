@@ -14,3 +14,6 @@ const int DEFAULT_START_MONTH = 1;
 const int DEFAULT_START_DAY = 1;
 const int DEFAULT_START_HOUR = 0;
 const int DEFAULT_START_MINUTE = 0;
+
+// Update аж╠Б
+const float UPDATE_INTERVAL_TIME = .5;

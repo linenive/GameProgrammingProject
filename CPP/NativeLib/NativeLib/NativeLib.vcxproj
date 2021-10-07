@@ -162,6 +162,7 @@
     <ClInclude Include="ScenePath.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="testProperty.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="UIManager.h" />
