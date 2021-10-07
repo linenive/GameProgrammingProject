@@ -1,5 +1,4 @@
 #pragma once
-#include "GameRule.h"
 #include "DateSystem.h"
 #include "TimeSystem.h"
 
@@ -11,7 +10,11 @@ private:
 	void NewDayCheckAndPassDay();
 
 public:
-	GameTime() : game_date(Date(Year(1), Month(1), Day(1))), game_time(Time(Hour(0), Minute(0))){}
+	GameTime() : game_date(Date(
+		Year(DEFAULT_START_YEAR),
+		Month(DEFAULT_START_MONTH),
+		Day(DEFAULT_START_DAY))),
+		game_time(Time(Hour(DEFAULT_START_HOUR), Minute(DEFAULT_START_MINUTE))){}
 	GameTime(Date date, Time time) : game_date(date), game_time(time) {}
 	void PassOneTick();
 	Year GetYear() { return game_date.GetYear(); }
