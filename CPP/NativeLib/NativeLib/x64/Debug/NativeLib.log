@@ -1,0 +1,21 @@
+﻿  DateSystem.cpp
+  GameManager.cpp
+X:\Documents\GodotProjects\CPP\NativeLib\NativeLib\Common.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Godot.hpp': No such file or directory
+  GameTime.cpp
+  GameWorld.cpp
+  TestManager.cpp
+X:\Documents\GodotProjects\CPP\NativeLib\NativeLib\Common.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Godot.hpp': No such file or directory
+  NativeLib.cpp
+X:\Documents\GodotProjects\CPP\NativeLib\NativeLib\Common.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Godot.hpp': No such file or directory
+  testProperty.cpp
+X:\Documents\GodotProjects\CPP\NativeLib\NativeLib\Common.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Godot.hpp': No such file or directory
+  Tile.cpp
+X:\Documents\GodotProjects\CPP\NativeLib\NativeLib\Tile.h(9,1): error C2143: 구문 오류: ';'이(가) '}' 앞에 없습니다.
+  TimeRepository.cpp
+  TimeSystem.cpp
+  UIManager.cpp
+X:\Documents\GodotProjects\CPP\NativeLib\NativeLib\Common.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Godot.hpp': No such file or directory
+  WorldObject.cpp
+X:\Documents\GodotProjects\CPP\NativeLib\NativeLib\Common.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Godot.hpp': No such file or directory
+  WorldRepository.cpp
+  코드를 생성하고 있습니다...
