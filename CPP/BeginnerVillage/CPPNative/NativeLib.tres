@@ -1,7 +1,5 @@
 [gd_resource type="GDNativeLibrary" format=2]
 
 [resource]
-entry/OSX.64 = "res://bin/osx/libgdexample.dylib"
 entry/Windows.64 = "res://bin/win64/libgdexample.dll"
-dependency/OSX.64 = [  ]
 dependency/Windows.64 = [  ]
