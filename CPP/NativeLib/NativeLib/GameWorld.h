@@ -1,9 +1,10 @@
 #pragma once
 #include "GameWorldForUI.h"
 #include "GameWorldForAI.h"
-#include "WorldRepository.h"
+#include "GameWorldForWorld.h"
 
-class GameWorld : public GameWorldForUI, public GameWorldForAI{
+class GameWorld :
+	public GameWorldForUI, public GameWorldForAI, public GameWorldForWorld {
 
 private:
 	TimeRepository time_repo;
@@ -12,5 +13,6 @@ private:
 public:
 	GameWorld();
 	virtual GameTime GetGameTime() { return time_repo.GetGameTime(); }
+	virtual TileMap GetTileMap() { return world_repo.GetTileMap(); }
 	void update(float delta);
 };

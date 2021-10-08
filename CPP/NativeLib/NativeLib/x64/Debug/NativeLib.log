@@ -1,0 +1,25 @@
+﻿  DateSystem.cpp
+  GameManager.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  GameTime.cpp
+  GameWorld.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  TestManager.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  NativeLib.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  testProperty.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  Tile.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  TimeRepository.cpp
+  TimeSystem.cpp
+  UIManager.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  WorldManager.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  WorldObject.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  WorldRepository.cpp
+X:\Documents\GodotProjects\godot-cpp\include\gen\Reference.hpp(8,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'core/CoreTypes.hpp': No such file or directory
+  코드를 생성하고 있습니다...

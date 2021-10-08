@@ -1,5 +1,5 @@
 #include "UIManager.h"
-#include "ScenePath.h"
+#include "GodotScenePath.h"
 
 void UIManager::_register_methods() {
 	register_method("_init", &UIManager::_init);
@@ -27,7 +27,7 @@ void UIManager::_process(float delta)
 }
 
 void UIManager::GetGameWorld() {
-	Node* node = get_node(NodePath(SCENEPATH_GAMEMANAGER));
+	Node* node = get_node(NodePath(String(SCENEPATH_GAMEMANAGER.c_str())));
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);

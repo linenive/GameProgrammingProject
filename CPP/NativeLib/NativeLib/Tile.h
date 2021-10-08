@@ -11,5 +11,6 @@ private:
 	eTileType tileType;
 public:
 	Tile() : tileType(TILE_NONE){}
+	eTileType GetTileType() { return tileType; }
 };
 

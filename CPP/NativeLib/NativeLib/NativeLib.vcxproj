@@ -149,9 +149,11 @@
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="testProperty.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="WorldManager.cpp" />
     <ClCompile Include="WorldObject.cpp" />
     <ClCompile Include="WorldRepository.cpp" />
   </ItemGroup>
@@ -163,15 +165,18 @@
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="GameWorldForAI.h" />
-    <ClInclude Include="ScenePath.h" />
+    <ClInclude Include="GameWorldForWorld.h" />
+    <ClInclude Include="GodotScenePath.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="testProperty.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileMap.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="GameWorldForUI.h" />
+    <ClInclude Include="WorldManager.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="WorldRepository.h" />
   </ItemGroup>
