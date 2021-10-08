@@ -8,7 +8,7 @@ class UIManager : public Node {
 
 private:
 	GameWorldForUI* game_world;
-	void GetGameWorld();
+	void LoadGameWorld();
 
 public:
 	static void _register_methods();
