@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://test/CameraTest/NpcInfoUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test/CameraTest/UIManager.gd" type="Script" id=2]
+
+[node name="UIManager" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="NpcInfoUI" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 810.584, 2.99661 )
+
+[node name="NpcInfoUI2" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 815.079, 148.332 )
