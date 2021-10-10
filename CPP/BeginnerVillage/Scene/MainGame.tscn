@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://GDScript/TestTileCreater.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
 [node name="Main" type="Node"]
@@ -24,6 +27,10 @@ script = ExtResource( 8 )
 
 [node name="TestScriptJan" type="Node" parent="."]
 script = ExtResource( 9 )
+
+[node name="Tile" type="Node" parent="TestScriptJan"]
+
+[node name="Character" type="Node" parent="TestScriptJan"]
 
 [node name="TestLabel" type="Label" parent="."]
 margin_left = 547.0
@@ -47,3 +54,36 @@ text = "test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+margin_left = 42.7447
+margin_top = 81.3074
+margin_right = 158.745
+margin_bottom = 124.307
+custom_fonts/font = SubResource( 2 )
+text = "캐릭터 만들기"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x" type="TextEdit" parent="."]
+margin_left = 10.0092
+margin_top = 144.032
+margin_right = 169.009
+margin_bottom = 178.032
+rect_pivot_offset = Vector2( 79.5, 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="y" type="TextEdit" parent="."]
+margin_left = 177.697
+margin_top = 143.0
+margin_right = 336.697
+margin_bottom = 177.0
+rect_pivot_offset = Vector2( 79.5, 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="TestScriptJan" method="_on_Button_pressed"]

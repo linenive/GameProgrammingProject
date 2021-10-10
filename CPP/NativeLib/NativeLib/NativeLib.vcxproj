@@ -141,7 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Character.cpp" />
     <ClCompile Include="DateSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -149,12 +148,10 @@
     <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="testProperty.cpp" />
-    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="WorldManager.cpp" />
-    <ClCompile Include="WorldObject.cpp" />
     <ClCompile Include="TileRepository.cpp" />
   </ItemGroup>
   <ItemGroup>

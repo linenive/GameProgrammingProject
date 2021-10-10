@@ -29,9 +29,6 @@ public:
 	int GetCharacterNumber() {
 		return game_world->GetObjectRepository()->GetCharacterNumber();
 	}
-	void SetNumber() {
-		game_world->GetObjectRepository()->SetNumber();
-	}
 	Transform2D GetCharacterTransform(int i) {
 		return game_world->GetObjectRepository()->GetCharacterTransform(i);
 	}

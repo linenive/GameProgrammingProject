@@ -87,17 +87,8 @@
     <ClCompile Include="TileRepository.cpp">
       <Filter>소스 파일\Repository\World</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>소스 파일\Repository\World</Filter>
-    </ClCompile>
     <ClCompile Include="WorldManager.cpp">
       <Filter>소스 파일\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldObject.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

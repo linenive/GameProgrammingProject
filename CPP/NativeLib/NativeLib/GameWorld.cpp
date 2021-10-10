@@ -9,4 +9,6 @@ GameWorld::GameWorld(){
 void GameWorld::update(float delta)
 {
 	time_repo.TimeGo(delta);
+
+	//object_repo.PlushNumber();
 }

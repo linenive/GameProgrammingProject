@@ -10,7 +10,6 @@ void WorldManager::_register_methods() {
 	register_method("GetTileType", &WorldManager::GetTileType);
 	register_method("TestNewCharacter", &WorldManager::TestNewCharacter);
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
-	register_method("SetNumber", &WorldManager::SetNumber);
 	register_method("GetCharacterTransform", &WorldManager::GetCharacterTransform);
 }
 
