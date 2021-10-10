@@ -3,5 +3,5 @@
 
 class GameWorldForUI {
 public:
-	virtual GameTime getGameTime() = 0;
+	virtual GameTime GetGameTime() = 0;
 };

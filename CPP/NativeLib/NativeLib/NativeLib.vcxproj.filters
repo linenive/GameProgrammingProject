@@ -37,6 +37,12 @@
     <Filter Include="소스 파일\Library">
       <UniqueIdentifier>{8e7af990-e5d5-46f0-b2d3-f439de484604}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Repository\World">
+      <UniqueIdentifier>{9b3cd0cb-8e88-4f3e-833d-3260fd7b67d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\World">
+      <UniqueIdentifier>{1439e26a-afbe-4439-818b-6062823e8772}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -68,6 +74,21 @@
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>소스 파일\Repository\World</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldRepository.cpp">
+      <Filter>소스 파일\Repository\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>소스 파일\Repository\World</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>소스 파일\Repository\World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,11 +131,29 @@
     <ClInclude Include="GameWorldForAI.h">
       <Filter>헤더 파일\Repository</Filter>
     </ClInclude>
-    <ClInclude Include="ScenePath.h">
+    <ClInclude Include="GodotScenePath.h">
       <Filter>헤더 파일\Settings</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldRepository.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObject.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForWorld.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
