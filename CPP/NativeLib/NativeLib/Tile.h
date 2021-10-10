@@ -8,9 +8,8 @@ enum eTileType {
 class Tile : public WorldObject{
 
 private:
-	eTileType tileType;
+	eTileType tile_type;
 public:
-	Tile() : tileType(TILE_NONE){}
-	eTileType GetTileType() { return tileType; }
+	Tile() : tile_type(TILE_NONE){}
+	eTileType GetTileType() { return tile_type; }
 };
-
