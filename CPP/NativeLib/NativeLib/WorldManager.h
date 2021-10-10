@@ -8,7 +8,7 @@ class WorldManager : public Node {
 
 private:
 	GameWorldForWorld* game_world;
-	void GetGameWorld();
+	void LoadGameWorld();
 
 public:
 	static void _register_methods();

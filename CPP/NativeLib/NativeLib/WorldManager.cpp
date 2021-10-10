@@ -14,7 +14,7 @@ void WorldManager::_init() {
 }
 
 void WorldManager::_ready() {
-	GetGameWorld();
+	LoadGameWorld();
 }
 
 void WorldManager::_process(float delta)
@@ -22,12 +22,10 @@ void WorldManager::_process(float delta)
 
 }
 
-void WorldManager::GetGameWorld() {
+void WorldManager::LoadGameWorld() {
 	Node* node = get_node(NodePath(SCENEPATH_GAMEMANAGER.c_str()));
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
-	if (node != NULL) {
-		game_world = child->GetGameWorld();
-	}
+	game_world = child->GetGameWorld();
 }

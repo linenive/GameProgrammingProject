@@ -18,7 +18,7 @@ void UIManager::_init(){
 }
 
 void UIManager::_ready() {
-	GetGameWorld();
+	LoadGameWorld();
 }
 
 void UIManager::_process(float delta)
@@ -26,14 +26,12 @@ void UIManager::_process(float delta)
 	
 }
 
-void UIManager::GetGameWorld() {
+void UIManager::LoadGameWorld() {
 	Node* node = get_node(NodePath(String(SCENEPATH_GAMEMANAGER.c_str())));
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
-	if (node != NULL) {
-		game_world = child->GetGameWorld();
-	}
+	game_world = child->GetGameWorld();
 }
 
 int UIManager::GetYear() {
