@@ -13,8 +13,8 @@ void TileMap::CreateTileMapTemp() {
 			Tile new_tile = Tile();
 
 			float pos_x, pos_y;
-			pos_x = MAP_START_POS_X + i * TILE_WIDTH;
-			pos_y = MAP_START_POS_Y + j * TILE_HEIGHT;
+			pos_x = MAP_START_POS_X + i * TILE_WIDTH + TILE_WIDTH/2;
+			pos_y = MAP_START_POS_Y + j * TILE_HEIGHT + TILE_HEIGHT/2;
 
 			new_tile.SetTransform(createTransform2D(pos_x, pos_y));
 			tile_map[i+tile_size_x*j] = new_tile;
