@@ -19,11 +19,17 @@ script = ExtResource( 3 )
 [node name="UIManager" type="Node" parent="."]
 script = ExtResource( 2 )
 
+[node name="WorldManager" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="TestScriptJan" type="Node" parent="."]
+script = ExtResource( 9 )
+
 [node name="TestLabel" type="Label" parent="."]
-margin_left = 249.184
-margin_top = 148.388
-margin_right = 434.184
-margin_bottom = 164.388
+margin_left = 547.0
+margin_top = 106.0
+margin_right = 958.0
+margin_bottom = 122.0
 custom_fonts/font = SubResource( 1 )
 text = "test"
 script = ExtResource( 5 )
@@ -31,8 +37,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldManager" type="Node" parent="."]
-script = ExtResource( 8 )
-
-[node name="TestTileCreater" type="Node" parent="."]
-script = ExtResource( 9 )
+[node name="HeyTest" type="Label" parent="."]
+margin_left = 584.883
+margin_top = 167.424
+margin_right = 769.883
+margin_bottom = 183.424
+custom_fonts/font = SubResource( 1 )
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}

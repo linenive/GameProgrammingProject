@@ -43,6 +43,15 @@
     <Filter Include="소스 파일\Repository\World">
       <UniqueIdentifier>{1439e26a-afbe-4439-818b-6062823e8772}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Factory">
+      <UniqueIdentifier>{bd1542e1-27b3-4b1a-906f-af92618fbc32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository\World\WorldObject">
+      <UniqueIdentifier>{66738e3e-65f7-465b-8915-5366c792fd0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject">
+      <UniqueIdentifier>{a025f874-5fd0-44c5-a6cd-c75761e121f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -75,10 +84,7 @@
     <ClCompile Include="UIManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="WorldObject.cpp">
-      <Filter>소스 파일\Repository\World</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldRepository.cpp">
+    <ClCompile Include="TileRepository.cpp">
       <Filter>소스 파일\Repository\World</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
@@ -87,8 +93,11 @@
     <ClCompile Include="WorldManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>소스 파일\Repository\World</Filter>
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,13 +146,7 @@
     <ClInclude Include="Timer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="WorldRepository.h">
-      <Filter>헤더 파일\Repository\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>헤더 파일\Repository\World</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldObject.h">
+    <ClInclude Include="TileRepository.h">
       <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
     <ClInclude Include="WorldManager.h">
@@ -152,7 +155,28 @@
     <ClInclude Include="GameWorldForWorld.h">
       <Filter>헤더 파일\Repository</Filter>
     </ClInclude>
-    <ClInclude Include="TileMap.h">
+    <ClInclude Include="WorldObjectFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObject.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TileFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectRepository.h">
       <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
   </ItemGroup>

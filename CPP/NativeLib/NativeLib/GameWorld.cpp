@@ -2,7 +2,8 @@
 
 GameWorld::GameWorld(){
 	time_repo = TimeRepository();
-	world_repo = WorldRepository();
+	tile_repo = TileRepository();
+	object_repo = ObjectRepository();
 }
 
 void GameWorld::update(float delta)

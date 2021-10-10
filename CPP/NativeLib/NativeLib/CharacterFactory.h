@@ -7,8 +7,8 @@ class CharacterFactory : public WorldObjectFactory {
 protected:
 
 public:
-	WorldObject createObject() {
-		Character new_character = Character();
+	WorldObject createObject(Transform2D transform) {
+		Character new_character = Character(transform);
 
 		return new_character;
 	}
