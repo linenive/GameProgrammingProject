@@ -17,4 +17,5 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle) {
 	godot::register_class<TestManager>();
 	godot::register_class<GameManager>();
 	godot::register_class<UIManager>();
+	godot::register_class<PopupUI>();
 }

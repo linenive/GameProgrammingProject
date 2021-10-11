@@ -37,6 +37,12 @@
     <Filter Include="소스 파일\Library">
       <UniqueIdentifier>{8e7af990-e5d5-46f0-b2d3-f439de484604}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\UI">
+      <UniqueIdentifier>{a6128671-4061-4271-9985-509884c5b38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\UI">
+      <UniqueIdentifier>{6b001b4c-9a65-4ec7-901f-ca036445e0d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -68,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PopupUI.cpp">
+      <Filter>소스 파일\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PopupUI.h">
+      <Filter>헤더 파일\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

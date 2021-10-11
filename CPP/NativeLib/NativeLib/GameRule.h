@@ -17,3 +17,6 @@ const int DEFAULT_START_MINUTE = 0;
 
 // Update 주기
 const float UPDATE_INTERVAL_TIME = .5;
+
+// UI 관련
+const int MAXIMUM_UI_COUNT = 10;

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://CPPNative/PopupUI.gdns" type="Script" id=1]
+
+[node name="PopupUI" type="WindowDialog"]
+margin_left = 280.0
+margin_top = 100.0
+margin_right = 680.0
+margin_bottom = 500.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_PopupUI_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_PopupUI_mouse_exited"]

@@ -145,6 +145,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="PopupUI.cpp" />
     <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="testProperty.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="GameWorldForAI.h" />
+    <ClInclude Include="PopupUI.h" />
     <ClInclude Include="ScenePath.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="testProperty.h" />
