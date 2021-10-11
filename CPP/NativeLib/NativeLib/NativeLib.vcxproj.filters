@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -22,9 +22,6 @@
     <Filter Include="헤더 파일\Repository\GameTime">
       <UniqueIdentifier>{6e0d7fb6-b498-4ee5-95b2-2d2aaa14123e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Settings">
-      <UniqueIdentifier>{bfdf4941-9496-409c-93cc-fec84e80e877}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Manager">
       <UniqueIdentifier>{85b5a375-e93e-46fe-b881-b1c95e9db7ad}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,24 @@
     </Filter>
     <Filter Include="소스 파일\Library">
       <UniqueIdentifier>{8e7af990-e5d5-46f0-b2d3-f439de484604}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository\World">
+      <UniqueIdentifier>{9b3cd0cb-8e88-4f3e-833d-3260fd7b67d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\World">
+      <UniqueIdentifier>{1439e26a-afbe-4439-818b-6062823e8772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Factory">
+      <UniqueIdentifier>{bd1542e1-27b3-4b1a-906f-af92618fbc32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository\World\WorldObject">
+      <UniqueIdentifier>{66738e3e-65f7-465b-8915-5366c792fd0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject">
+      <UniqueIdentifier>{a025f874-5fd0-44c5-a6cd-c75761e121f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Library">
+      <UniqueIdentifier>{bfdf4941-9496-409c-93cc-fec84e80e877}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,8 +81,23 @@
     <ClCompile Include="GameWorld.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CameraManager.cpp">
+    <ClCompile Include="InputManager.cpp">
       <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskReserveInfo.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TileRepository.cpp">
+      <Filter>소스 파일\Repository\World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +123,7 @@
       <Filter>헤더 파일\Repository\GameTime</Filter>
     </ClInclude>
     <ClInclude Include="GameRule.h">
-      <Filter>헤더 파일\Settings</Filter>
+      <Filter>헤더 파일\Library</Filter>
     </ClInclude>
     <ClInclude Include="TimeSystem.h">
       <Filter>헤더 파일\Repository\GameTime</Filter>
@@ -101,11 +131,68 @@
     <ClInclude Include="TimeRepository.h">
       <Filter>헤더 파일\Repository\GameTime</Filter>
     </ClInclude>
+    <ClInclude Include="WorldObjectFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TileFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectRepository.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForInput.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="NativeLib.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForAI.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForUI.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForWorld.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="GodotScenePath.h">
+      <Filter>헤더 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>헤더 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="TileRepository.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObject.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskReserveInfo.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
