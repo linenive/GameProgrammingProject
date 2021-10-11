@@ -2,12 +2,17 @@ extends Node2D
 
 export var g_speed=3
 export var g_velocity=Vector2()
+export (Vector2)var g_camera_mouse_detect_size
 
 var g_screen_size
 var g_camera_mouse_detect_interval=20
-export (Vector2)var g_camera_mouse_detect_size
-
 var g_canmovecamera=true
+
+var g_limit_left
+var g_limit_right
+var g_limit_up
+var g_limit_down
+
 func _ready():
 	g_screen_size = get_viewport_rect().size	
 	g_camera_mouse_detect_size = g_screen_size - Vector2(g_camera_mouse_detect_interval, g_camera_mouse_detect_interval)
@@ -53,6 +58,7 @@ func ChangePosition(newposition):
 	position = DetectBoundary(newposition)
 	
 func DetectBoundary(nowposition):
+	
 	return nowposition
 	
 func ActiveCanMoveCamera():
