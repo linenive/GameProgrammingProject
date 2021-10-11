@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://test/CameraTest/Camera.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://test/CameraTest/test/UIManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://test/CameraTest/test/CameraTest.gd" type="Script" id=6]
+[ext_resource path="res://test/CameraTest/test/UIWindowManager.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -34,17 +35,19 @@ g_distance = 100
 position = Vector2( 315.742, 222.309 )
 g_distance = 100
 
-[node name="UIManager" parent="." instance=ExtResource( 4 )]
+[node name="UIManager" type="Node2D" parent="."]
+script = ExtResource( 7 )
 
-[node name="StopFollowing" type="Button" parent="UIManager"]
-margin_right = 12.0
-margin_bottom = 20.0
+[node name="UILayer" parent="UIManager" instance=ExtResource( 4 )]
+script = null
+
+[node name="StopFollowing" type="Button" parent="UIManager/UILayer"]
+margin_right = 240.0
+margin_bottom = 46.0
 custom_fonts/font = SubResource( 1 )
 text = "그만 따라가기"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="traceStart" from="AutoMoveObj" to="." method="_on_AutoMoveObj_traceStart"]
-[connection signal="traceStart" from="AutoMoveObj2" to="." method="_on_AutoMoveObj2_traceStart"]
-[connection signal="pressed" from="UIManager/StopFollowing" to="." method="_on_StopFollowing_pressed"]
+[connection signal="pressed" from="UIManager/UILayer/StopFollowing" to="." method="_on_StopFollowing_pressed"]
