@@ -2,9 +2,11 @@
 #include "GameWorldForUI.h"
 #include "GameWorldForAI.h"
 #include "GameWorldForWorld.h"
+#include "GameWorldForInput.h"
 
 class GameWorld :
-	public GameWorldForUI, public GameWorldForAI, public GameWorldForWorld {
+	public GameWorldForUI, public GameWorldForAI,
+	public GameWorldForWorld, public GameWorldForInput {
 
 private:
 	TimeRepository time_repo;
