@@ -67,3 +67,4 @@ func Zoom(zoomfactor):
 	$Camera2D.zoom.y=zoomfactor
 
 	
+
