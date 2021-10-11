@@ -10,6 +10,10 @@ void InputManager::EndDrag(Vector2 end_pos) {
 	is_dragging = false;
 }
 
+void InputManager::HoverTile(Vector2 position) {
+
+}
+
 void InputManager::MouseClick(Vector2 position) {
 	Godot::print("[InputManager]Mouse Click: " + position);
 
@@ -25,6 +29,8 @@ void InputManager::MouseRelease(Vector2 position) {
 
 void InputManager::MouseHover(Vector2 position) {
 	now_mouse_point = position;
+
+	HoverTile(position);
 }
 
 bool InputManager::IsDragging()
