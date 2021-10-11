@@ -161,6 +161,7 @@
     <ClInclude Include="GameRule.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="NativeLib.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="testProperty.h" />
     <ClInclude Include="TimeRepository.h" />

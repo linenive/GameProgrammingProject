@@ -1,14 +1,14 @@
 #pragma once
 #include "Common.h"
-#include <Camera2D.hpp>
+#include <CanvasLayer.hpp>
 
 namespace godot {
-	class CameraManager : public Camera2D
+	class CameraManager : public CanvasLayer
 	{
-		GODOT_CLASS(CameraManager, Camera2D);
+		GODOT_CLASS(CameraManager, CanvasLayer);
 
 	private:
-		Vector2 nowAddVector;
+
 		float screenBounds_left;
 		float screenBounds_right;
 		float screenBounds_up;
@@ -16,12 +16,10 @@ namespace godot {
 		void DetectScreenBounds(Vector2 newScreenSize);
 	public:
 		static void _register_methods();
+		void _init();
 
-		Vector2 GetAddVector() { return nowAddVector; }
 		void SetScreenSize(Vector2 nowScreenSize);
-		void CameraMove_Left();
-		void CameraMove_Right();
-		void CameraMove_Up();
-		void CameraMove_Down();
+		void SetTarget(Vector2 pos);
+		void ReleaseTarget(Vector2 pos);
 	};
 }
