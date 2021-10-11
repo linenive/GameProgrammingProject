@@ -2,7 +2,6 @@ extends Node2D
 
 
 func _on_AutoMoveObj_traceStart(path, name):
-	print(path)
 	TraceStart(path, name)
 
 func _on_StopFollowing_pressed():
