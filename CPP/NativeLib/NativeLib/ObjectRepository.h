@@ -6,12 +6,15 @@
 class ObjectRepository{
 private:
 	CharacterFactory factory = CharacterFactory();
-	int test;
 
 	vector<WorldObject*> stuffs;
 	vector<WorldObject*> characters;
+	int character_size;
 
 public:
+	ObjectRepository() {
+		character_size = 0;
+	}
 	~ObjectRepository() {
 		for (auto e : stuffs)
 			delete(e);
@@ -21,10 +24,11 @@ public:
 	void TestNewCharacter(Transform2D transform) {
 		WorldObject* new_character = factory.createObject(transform);
 		characters.push_back(new_character);
+		character_size++;
 		Godot::print(characters[0]->GetTransform());
 	}
 	int GetCharacterNumber() {
-		return characters.size();
+		return character_size;
 	}
 	Transform2D GetCharacterTransform(int i) {
 		return characters[i]->GetTransform();
