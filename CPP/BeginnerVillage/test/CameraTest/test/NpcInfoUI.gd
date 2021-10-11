@@ -14,7 +14,6 @@ func CloseNpcInfoUIButtons():
 func ActiveNpcInfoUIButtons():
 	ActiveFollowingButton()
 	ActiveCloseButton()
-	#ActiveNameLabel()
 	
 func ActiveNameLabel():
 	g_namelabel.disabled=false
