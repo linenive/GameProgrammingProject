@@ -1,8 +1,10 @@
 extends Node2D
 
 enum eCameraState {DEFAULT, TRACE}
+
 export (eCameraState)var g_nowcamerastate
-var targetNode : Node2D
+
+var g_targetNode : Node2D
 var g_nowtarget_path
 var g_screen_size
 
@@ -17,7 +19,7 @@ func _ready():
 	InitCameraSetting()
 	
 func _process(_delta):
-	$Camera2D.position = targetNode.position
+	$Camera2D.position = g_targetNode.position
 	DetectZoomScrollKey()
 	
 func SetLimit():
@@ -34,14 +36,14 @@ func InitCameraSetting():
 func SetCameraSetting_Default():
 	g_nowcamerastate = eCameraState.DEFAULT
 	g_nowtarget_path = "EmptyCamera"
-	targetNode = get_node(g_nowtarget_path)
+	g_targetNode = get_node(g_nowtarget_path)
 	$EmptyCamera.ActiveCanMoveCamera()
 	Zoom(kzoom_default)
 	
 func SetCameraSetting_Trace(newtracing_path):
 	g_nowcamerastate = eCameraState.TRACE
 	g_nowtarget_path =newtracing_path
-	targetNode = get_node(g_nowtarget_path)
+	g_targetNode = get_node(g_nowtarget_path)
 	$EmptyCamera.DeactiveCanMoveCamera()
 	Zoom(kzoom_in)
 
@@ -69,5 +71,6 @@ func Zoom(zoomfactor):
 	$Camera2D.zoom.x = zoomfactor
 	$Camera2D.zoom.y = zoomfactor
 
-	
-
+# test와 연관된 부분, 그만 따라가기 버튼을 누르면 카메라가 줌아웃되는 것
+func _on_StopFollowing_pressed():
+	SetCameraSetting_Default()
