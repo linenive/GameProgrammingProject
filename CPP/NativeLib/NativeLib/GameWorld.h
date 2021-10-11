@@ -8,11 +8,13 @@ class GameWorld :
 
 private:
 	TimeRepository time_repo;
-	WorldRepository world_repo;
+	TileRepository tile_repo;
+	ObjectRepository object_repo;
 
 public:
 	GameWorld();
 	virtual GameTime GetGameTime() { return time_repo.GetGameTime(); }
-	virtual TileMap GetTileMap() { return world_repo.GetTileMap(); }
+	virtual TileRepository* GetTileMap() { return &tile_repo; }
+	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }
 	void update(float delta);
 };

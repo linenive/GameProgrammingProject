@@ -16,11 +16,20 @@ public:
 	void _ready();
 	void _process(float delta);
 
-	int GetTileSize() { return game_world->GetTileMap().GetTileSize(); }
+	int GetTileNumber() { return game_world->GetTileMap()->GetTileSize(); }
 	Transform2D GetTileTransform(int tile_num){
-		return game_world->GetTileMap().GetTile(tile_num).GetTransform();
+		return game_world->GetTileMap()->GetTile(tile_num).GetTransform();
 	}
 	int GetTileType(int tile_num) {
-		return game_world->GetTileMap().GetTile(tile_num).GetTileType();
+		return game_world->GetTileMap()->GetTile(tile_num).GetTileType();
+	}
+	void TestNewCharacter(Transform2D transform) {
+		game_world->GetObjectRepository()->TestNewCharacter(transform);
+	}
+	int GetCharacterNumber() {
+		return game_world->GetObjectRepository()->GetCharacterNumber();
+	}
+	Transform2D GetCharacterTransform(int i) {
+		return game_world->GetObjectRepository()->GetCharacterTransform(i);
 	}
 };

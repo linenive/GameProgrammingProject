@@ -2,14 +2,14 @@
 #include "WorldObjectFactory.h"
 #include "Tile.h"
 
-class CharacterFactory :WorldObjectFactory {
+class CharacterFactory : public WorldObjectFactory {
 
 protected:
 
 
 public:
-	WorldObject createObject() {
-		Tile new_tile = Tile();
+	WorldObject createObject(Transform2D transform) {
+		Tile new_tile = Tile(TILE_NONE, transform);
 
 		return new_tile;
 	}

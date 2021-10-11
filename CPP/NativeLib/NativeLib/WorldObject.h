@@ -4,17 +4,20 @@
 #include "GameRule.h"
 #include "TaskReserveInfo.h"
 
-class WorldObject{
+class WorldObject {
 
-private:
+protected:
 	Transform2D transform;
 	bool isPassThrough;
-	char name[MAX_GAMEOBJECT_NAME_SIZE];
+	string name;
 	TaskReserveInfo reserveInfo;
 
 public:
-	char* GetName() { return name; }
-	void SetName(char name[]) { strcpy(this->name, name); }
+	string GetName() { return name; }
+	void SetName(string name) { this->name = name; }
 	Transform2D GetTransform() { return transform; }
 	void SetTransform(Transform2D new_transform) { transform = new_transform; }
+
+	WorldObject(string name, Transform2D new_transform) :
+		name(name), transform(new_transform) {}
 };

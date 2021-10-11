@@ -5,11 +5,16 @@ enum eTileType {
 	TILE_NONE, TILE_EARTH, TILE_ROCK, TILE_WATER
 };
 
-class Tile : public WorldObject{
+class Tile : public WorldObject {
 
 private:
 	eTileType tile_type;
+	string TileNameFromType(eTileType tile_type) {
+		return "NoNameTile";
+	}
 public:
-	Tile() : tile_type(TILE_NONE){}
+	Tile(eTileType tile_type, Transform2D transform) : WorldObject(TileNameFromType(tile_type),
+		transform), tile_type(tile_type) {}
+
 	eTileType GetTileType() { return tile_type; }
 };

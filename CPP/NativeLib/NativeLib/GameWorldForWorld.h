@@ -1,7 +1,9 @@
 #pragma once
-#include "WorldRepository.h"
+#include "TileRepository.h"
+#include "ObjectRepository.h"
 
 class GameWorldForWorld {
 public:
-	virtual TileMap GetTileMap() = 0;
+	virtual TileRepository* GetTileMap() = 0;
+	virtual ObjectRepository* GetObjectRepository() = 0;
 };
