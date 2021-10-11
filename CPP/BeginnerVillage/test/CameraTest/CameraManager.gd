@@ -1,7 +1,8 @@
 extends Node2D
 
-enum eCameraState {kDefault, kTrace}
+enum eCameraState {DEFAULT, TRACE}
 export (eCameraState)var g_nowcamerastate
+var targetNode : Node2D
 var g_nowtarget_path
 var g_screen_size
 
@@ -16,7 +17,7 @@ func _ready():
 	InitCameraSetting()
 	
 func _process(_delta):
-	$Camera2D.position = get_node(g_nowtarget_path).position
+	$Camera2D.position = targetNode.position
 	DetectZoomScrollKey()
 	
 func SetLimit():
@@ -31,19 +32,21 @@ func InitCameraSetting():
 	SetCameraSetting_Default()
 
 func SetCameraSetting_Default():
-	g_nowcamerastate = eCameraState.kDefault
-	g_nowtarget_path ="EmptyCamera"
+	g_nowcamerastate = eCameraState.DEFAULT
+	g_nowtarget_path = "EmptyCamera"
+	targetNode = get_node(g_nowtarget_path)
 	$EmptyCamera.ActiveCanMoveCamera()
 	Zoom(kzoom_default)
 	
 func SetCameraSetting_Trace(newtracing_path):
-	g_nowcamerastate = eCameraState.kTrace
+	g_nowcamerastate = eCameraState.TRACE
 	g_nowtarget_path =newtracing_path
+	targetNode = get_node(g_nowtarget_path)
 	$EmptyCamera.DeactiveCanMoveCamera()
 	Zoom(kzoom_in)
 
 func DetectZoomScrollKey():
-	if g_nowcamerastate == eCameraState.kDefault:
+	if g_nowcamerastate == eCameraState.DEFAULT:
 		ZoomScroll()
 		
 func ZoomScroll():
@@ -53,18 +56,18 @@ func ZoomScroll():
 		ZoomIn()	
 		
 func ZoomOut():
-	var next_scrollfactor=$Camera2D.zoom.x+kzoom_scrollfactor
-	if next_scrollfactor<kzoom_max:
+	var next_scrollfactor = $Camera2D.zoom.x + kzoom_scrollfactor
+	if next_scrollfactor < kzoom_max:
 		Zoom(next_scrollfactor)
 		
 func ZoomIn():
-	var next_scrollfactor=$Camera2D.zoom.x-kzoom_scrollfactor
-	if next_scrollfactor>kzoom_min:
+	var next_scrollfactor = $Camera2D.zoom.x - kzoom_scrollfactor
+	if next_scrollfactor > kzoom_min:
 		Zoom(next_scrollfactor)
 
 func Zoom(zoomfactor):
-	$Camera2D.zoom.x=zoomfactor
-	$Camera2D.zoom.y=zoomfactor
+	$Camera2D.zoom.x = zoomfactor
+	$Camera2D.zoom.y = zoomfactor
 
 	
 
