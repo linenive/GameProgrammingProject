@@ -10,6 +10,7 @@ signal traceStart(path,name)
 func _ready():
 	g_direction=1
 	g_target=position.x+g_distance*g_direction
+	print(get_node("/root/CameraTest/UIManager").get_child_count())
 	
 func _process(_delta):
 	if(position.x==g_target):

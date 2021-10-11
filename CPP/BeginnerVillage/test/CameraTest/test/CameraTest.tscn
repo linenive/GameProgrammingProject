@@ -30,6 +30,10 @@ texture = ExtResource( 1 )
 position = Vector2( 341.904, -65.4792 )
 g_distance = 100
 
+[node name="AutoMoveObj2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 315.742, 222.309 )
+g_distance = 100
+
 [node name="UIManager" parent="." instance=ExtResource( 4 )]
 
 [node name="StopFollowing" type="Button" parent="UIManager"]
@@ -42,4 +46,5 @@ __meta__ = {
 }
 
 [connection signal="traceStart" from="AutoMoveObj" to="." method="_on_AutoMoveObj_traceStart"]
+[connection signal="traceStart" from="AutoMoveObj2" to="." method="_on_AutoMoveObj2_traceStart"]
 [connection signal="pressed" from="UIManager/StopFollowing" to="." method="_on_StopFollowing_pressed"]
