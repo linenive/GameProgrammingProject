@@ -1,8 +1,12 @@
 extends Control
 var input_manager
+var tile_info_label
+var world_manager
 
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
+	world_manager = get_node("/root/Main/WorldManager")
+	tile_info_label = get_node("/root/Main/JanTestGDScript/TileInfoTest")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -13,10 +17,18 @@ func _input(event):
 				input_manager.MouseRelease(event.position)
 	if event is InputEventMouseMotion:
 		input_manager.MouseHover(event.position)
+		update_tile_info(event.position)
 
-func _process(delta):
+func update_tile_info(mouse_vector):
+	# print("O: "+String(mouse_vector.x))
+	if world_manager.CheckTileInVector2(mouse_vector):
+		var tile_id = world_manager.GetTileIdByVector2(mouse_vector)
+		tile_info_label.text = world_manager.GetTileName(tile_id)
+
+func _process(_delta):
+	print(world_manager.GetWorldSize())
 	update()
-				
+		
 func _draw():
 	if input_manager.IsDragging():
 		draw_drag_box(input_manager.GetDragRect())

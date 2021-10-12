@@ -5,9 +5,6 @@
 #include "WorldManager.h"
 #include "InputManager.h"
 #include "CameraManager.h"
-#include "UIManager.h"
-#include "WorldManager.h"
-#include "InputManager.h"
 
 extern "C" void GDN_EXPORT godot_gdnative_init(godot_gdnative_init_options * o) {
 	godot::Godot::gdnative_init(o);
@@ -26,7 +23,4 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle) {
 	godot::register_class<WorldManager>();
 	godot::register_class<InputManager>();
 	godot::register_class<CameraManager>();
-	godot::register_class<UIManager>();
-	godot::register_class<WorldManager>();
-	godot::register_class<InputManager>();
 }
