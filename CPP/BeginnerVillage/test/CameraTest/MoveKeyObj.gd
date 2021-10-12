@@ -16,12 +16,15 @@ var g_limit_down
 func _ready():
 	g_screen_size = get_viewport_rect().size	
 	g_camera_mouse_detect_size = g_screen_size - Vector2(g_camera_mouse_detect_interval, g_camera_mouse_detect_interval)
-
+	position = g_screen_size/2
 func _process(_delta):
 	if(g_canmovecamera):
 		CameraMovewithKey()
 		CameraMovewithMouse()	
 
+func SetSpeed(speed):
+	g_speed=speed
+	
 func CameraMovewithKey():
 	DetectKeyPress()
 	if g_velocity.length()>0:
@@ -52,7 +55,8 @@ func CameraMovewithMouse():
 	elif (nowmousevector.y > g_camera_mouse_detect_size.y):
 		addPos.y=1
 
-	ChangePosition(position + addPos * g_speed)
+	position +=addPos * g_speed
+	#ChangePosition(position + addPos * g_speed)
 
 func ChangePosition(newposition):
 	position = DetectBoundary(newposition)

@@ -4,40 +4,43 @@ enum eCameraState {CAMERA_DEFAULT, CAMERA_TRACE}
 
 export (eCameraState)var g_nowcamerastate
 
+onready var g_wolrd_manager = get_node("/root/Main/WorldManager")
+
 var g_targetNode : Node2D
 var g_nowtarget_path
-var g_screen_size # 현재 스크린 사이즈
+#var g_screen_size # 현재 스크린 사이즈
 var g_screen_boundary_lefttop : Vector2 # 현재 필드의 바운더리
 var g_screen_boundary_rightbottom : Vector2 # 현재 필드의 바운더리
+var g_camera_speed=3
 
 var kzoom_in = 0.5
 var kzoom_default = 1
 var kzoom_scrollfactor = 0.2
-var kzoom_max = 1.5
-var kzoom_min = 0.5
+var kzoom_max = 3
+var kzoom_min = 0.2
 
 func _ready():	
-	#SetLimit()
+	SetLimit()
 	InitCameraSetting()
+	get_node("EmptyCamera").SetSpeed(g_camera_speed)
 	
 func _process(_delta):
-	#UpdateNowCameraSide()
 	$Camera2D.position = g_targetNode.position
 	DetectZoomScrollKey()
 	
 func SetLimit():
-	g_screen_size = get_viewport_rect().size
-	
-	GetScreenBoundary()
+	CalcMapBoundary()
 	$Camera2D.limit_left = g_screen_boundary_lefttop.x
 	$Camera2D.limit_right = g_screen_boundary_rightbottom.x
 	$Camera2D.limit_top = g_screen_boundary_lefttop.y
 	$Camera2D.limit_bottom = g_screen_boundary_rightbottom.y
 
-# 필드의 바운더리를 받아오는 함수. 현재는 좌측과 위쪽으로 화면 크기만큼 한번씩 확장한 사이즈이다.
-func GetScreenBoundary():
-	g_screen_boundary_lefttop = Vector2(-g_screen_size.x , -g_screen_size.y)
-	g_screen_boundary_rightbottom=Vector2(g_screen_size.x , g_screen_size.y)
+func CalcMapBoundary():
+	GetScreenBoundary(Vector2(0,0), Vector2(1728,1728))
+	
+func GetScreenBoundary(lefttop, rightbottom):
+	g_screen_boundary_lefttop = lefttop
+	g_screen_boundary_rightbottom = rightbottom
 	
 func InitCameraSetting():
 	SetCameraSetting_Default()

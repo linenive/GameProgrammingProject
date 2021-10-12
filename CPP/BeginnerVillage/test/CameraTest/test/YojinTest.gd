@@ -1,58 +1,151 @@
-extends Navigation2D
+extends Node2D
 
-# Member variables
-const SPEED = 20.0
+onready var astar_node = AStar.new()
+export(Vector2) var map_size = Vector2(4, 4)
 
-var begin = Vector2()
-var end = Vector2()
-var path = []
+var path_start_position = Vector2() setget _set_path_start_position
+var path_end_position = Vector2() setget _set_path_end_position
 
-func _process(delta):
-	if (path.size() > 1):
-		var to_walk = delta*SPEED
-		while(to_walk > 0 and path.size() >= 2):
-			var pfrom = path[path.size() - 1]
-			var pto = path[path.size() - 2]
-			var d = pfrom.distance_to(pto)
-			if (d <= to_walk):
-				path.remove(path.size() - 1)
-				to_walk -= d
-			else:
-				path[path.size() - 1] = pfrom.linear_interpolate(pto, to_walk/d)
-				to_walk = 0
+var _point_path = []
 
-		var atpos = path[path.size() - 1]
-		get_node("player").move_and_slide(atpos)
+const BASE_LINE_WIDTH = 3.0
+const DRAW_COLOR = Color('#fff')
 
-		if (path.size() < 2):
-			path = []
-			set_process(false)
-	else:
-		set_process(false)
-	
-func update_path():
-	var col_polygon = get_node("obstacle").get_node("Collider").polygon
-	var navi_polygon = get_node("NavigationPolygonInstance").get_navigation_polygon()
-	var polygon = NavigationPolygonInstance.new()
-	#polygon.navpoly.add_outline(get_node("obstacle").get_node("Collider").polygon)
-	#polygon.navpoly.make_polygons_from_outlines()
-	polygon.navpoly.set_vertices(get_node("obstacle").get_node("Collider").polygon)
-	navi_polygon.navpoly = polygon
-	
-	var p = get_simple_path(begin, end, true)
-	path = Array(p) 
-	path.invert()
-
-	set_process(true)
-
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.is_pressed():
-			begin = get_node("player").position
-			# Mouse to local navigation coordinates
-			end = get_viewport().get_mouse_position() - position
-			update_path()
+onready var obstacles = [Vector2(1,1),Vector2(2,1),Vector2(3,1)]
+onready var _half_cell_size = 5
 
 func _ready():
-	set_process_input(true)
-	#update_path()
+	var walkable_cells_list = astar_add_walkable_cells(obstacles)
+	astar_connect_walkable_cells(walkable_cells_list)
+
+func astar_add_walkable_cells(obstacles = []):
+	var points_array = []
+	for y in range(map_size.y):
+		for x in range(map_size.x):
+			var point = Vector2(x, y)
+			if point in obstacles:
+				continue
+
+			points_array.append(point)
+			var point_index = calculate_point_index(point)
+			#가로로 펼친 index를 넣는다
+			astar_node.add_point(point_index, Vector3(point.x, point.y, 0.0))
+	return points_array
+
+func astar_connect_walkable_cells(points_array):
+	for point in points_array:
+		var point_index = calculate_point_index(point)
+		var points_relative = PoolVector2Array([
+			Vector2(point.x + 1, point.y),
+			Vector2(point.x - 1, point.y),
+			Vector2(point.x, point.y + 1),
+			Vector2(point.x, point.y - 1)])
+		for point_relative in points_relative:
+			var point_relative_index = calculate_point_index(point_relative)
+
+			if is_outside_map_bounds(point_relative):
+				continue
+			if not astar_node.has_point(point_relative_index):
+				continue
+			astar_node.connect_points(point_index, point_relative_index, false)
+
+func astar_connect_walkable_cells_diagonal(points_array):
+	for point in points_array:
+		var point_index = calculate_point_index(point)
+		for local_y in range(3):
+			for local_x in range(3):
+				var point_relative = Vector2(point.x + local_x - 1, point.y + local_y - 1)
+				var point_relative_index = calculate_point_index(point_relative)
+
+				if point_relative == point or is_outside_map_bounds(point_relative):
+					continue
+				if not astar_node.has_point(point_relative_index):
+					continue
+				astar_node.connect_points(point_index, point_relative_index, true)
+
+
+func is_outside_map_bounds(point):
+	return point.x < 0 or point.y < 0 or point.x >= map_size.x or point.y >= map_size.y
+
+
+func calculate_point_index(point):
+	return point.x + map_size.x * point.y
+
+
+func find_path(world_start, world_end):
+	var path_start_position = world_to_map(world_start)
+	var path_end_position = world_to_map(world_end)
+	_recalculate_path()
+	var path_world = []
+	for point in _point_path:
+		var point_world = map_to_world(Vector2(point.x, point.y)) + _half_cell_size
+		path_world.append(point_world)
+	return path_world
+
+# 월드 좌표를 타일 (좌측 상단) 좌표로 변환
+func world_to_map(pos):
+	var tilepos = Vector2()
+	return tilepos
+# 타일 행렬 인덱스를 월드 좌표 (타일 좌측 상단의 좌표)로 변환
+func map_to_world(pos):
+	var tilepos = Vector2()
+	return tilepos
+# 해당 좌표의 셀을 특정 state의 셀로 바꾸는 기능
+func set_cell(x,y,state):
+	pass
+
+func _recalculate_path():
+	clear_previous_path_drawing()
+	var start_point_index = calculate_point_index(path_start_position)
+	var end_point_index = calculate_point_index(path_end_position)
+	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
+	update()
+
+func clear_previous_path_drawing():
+	if not _point_path:
+		return
+	var point_start = _point_path[0]
+	var point_end = _point_path[len(_point_path) - 1]
+	set_cell(point_start.x, point_start.y, -1)
+	set_cell(point_end.x, point_end.y, -1)
+
+func _draw():
+	if not _point_path:
+		return
+	var point_start = _point_path[0]
+	var point_end = _point_path[len(_point_path) - 1]
+
+	set_cell(point_start.x, point_start.y, 1)
+	set_cell(point_end.x, point_end.y, 2)
+
+	var last_point = map_to_world(Vector2(point_start.x, point_start.y)) + _half_cell_size
+	for index in range(1, len(_point_path)):
+		var current_point = map_to_world(Vector2(_point_path[index].x, _point_path[index].y)) + _half_cell_size
+		draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true)
+		draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
+		last_point = current_point
+
+func _set_path_start_position(value):
+	if value in obstacles:
+		return
+	if is_outside_map_bounds(value):
+		return
+
+	set_cell(path_start_position.x, path_start_position.y, -1)
+	set_cell(value.x, value.y, 1)
+	path_start_position = value
+	if path_end_position and path_end_position != path_start_position:
+		_recalculate_path()
+
+
+func _set_path_end_position(value):
+	if value in obstacles:
+		return
+	if is_outside_map_bounds(value):
+		return
+
+	set_cell(path_start_position.x, path_start_position.y, -1)
+	set_cell(value.x, value.y, 2)
+	path_end_position = value
+	if path_start_position != value:
+		_recalculate_path()

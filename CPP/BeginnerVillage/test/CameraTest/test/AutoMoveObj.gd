@@ -3,8 +3,8 @@ extends Area2D
 export var g_distance=200
 export var g_target=0
 
-onready var g_uiwindowmanager = get_tree().get_current_scene().get_node("UIWindowManager")
-onready var g_cameramanager = get_tree().get_current_scene().get_node("CameraManager")
+onready var g_uiwindow_manager = get_tree().get_current_scene().get_node("UIWindowManager")
+onready var g_camera_manager = get_tree().get_current_scene().get_node("CameraManager")
 onready var g_direction=1
 onready var g_mypath = get_path()
 
@@ -22,5 +22,5 @@ func _process(_delta):
 func _on_AutoMoveObj_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.is_pressed():
-			g_uiwindowmanager.StartNPCTrace(name)
-			g_cameramanager.SetCameraSetting_Trace(g_mypath)
+			g_uiwindow_manager.StartNPCTrace(name)
+			g_camera_manager.SetCameraSetting_Trace(g_mypath)
