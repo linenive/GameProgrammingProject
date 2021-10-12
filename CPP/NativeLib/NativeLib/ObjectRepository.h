@@ -8,7 +8,7 @@ private:
 	CharacterFactory factory = CharacterFactory();
 
 	vector<WorldObject*> stuffs;
-	vector<WorldObject*> characters;
+	vector<Character*> characters;
 	int character_size;
 
 public:
@@ -22,16 +22,16 @@ public:
 			delete(e);
 	}
 	void TestNewCharacter(Transform2D transform) {
-		WorldObject* new_character = factory.createObject(transform);
-		characters.push_back(new_character);
+		WorldObject* new_character = factory.createObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
+		characters.push_back((Character*)new_character);
 		character_size++;
 		Godot::print(characters[0]->GetTransform());
 	}
 	int GetCharacterNumber() {
 		return character_size;
 	}
-	Transform2D GetCharacterTransform(int i) {
-		return characters[i]->GetTransform();
+	Character GetCharacter(int character_id) {
+		return *characters[character_id];
 	}
 };
 

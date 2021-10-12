@@ -32,8 +32,8 @@ class Tile : public WorldObject {
 private:
 	TileType tile_type;
 public:
-	Tile(TileType tile_type, Transform2D transform) : WorldObject(tile_type.GetName(),
-		transform), tile_type(tile_type) {}
+	Tile(TileType tile_type, Transform2D transform, Vector2 new_scale) : WorldObject(tile_type.GetName(),
+		transform, new_scale), tile_type(tile_type) {}
 
 	void SetTileType(TileType type) {
 		tile_type = type;

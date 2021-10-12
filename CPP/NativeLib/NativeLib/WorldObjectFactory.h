@@ -5,8 +5,8 @@ class WorldObjectFactory {
 
 protected:
 public:
-	WorldObject createObject(Transform2D transform) {
-		WorldObject new_character = WorldObject("NoName", transform);
+	WorldObject createObject(Transform2D transform, Vector2 scale) {
+		WorldObject new_character = WorldObject("NoName", transform, scale);
 
 		return new_character;
 	}
