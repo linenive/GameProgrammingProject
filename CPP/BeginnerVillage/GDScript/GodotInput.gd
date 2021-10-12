@@ -20,13 +20,12 @@ func _input(event):
 		update_tile_info(event.position)
 
 func update_tile_info(mouse_vector):
-	# print("O: "+String(mouse_vector.x))
 	if world_manager.CheckTileInVector2(mouse_vector):
 		var tile_id = world_manager.GetTileIdByVector2(mouse_vector)
-		tile_info_label.text = world_manager.GetTileName(tile_id)
+		tile_info_label.text \
+			= String(tile_id)+": "+world_manager.GetTileName(tile_id)
 
 func _process(_delta):
-	print(world_manager.GetWorldSize())
 	update()
 		
 func _draw():

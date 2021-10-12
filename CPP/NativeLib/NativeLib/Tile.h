@@ -35,5 +35,10 @@ public:
 	Tile(TileType tile_type, Transform2D transform) : WorldObject(tile_type.GetName(),
 		transform), tile_type(tile_type) {}
 
+	void SetTileType(TileType type) {
+		tile_type = type;
+		name = type.GetName();
+	}
+
 	TileType GetTileType() { return tile_type; }
 };

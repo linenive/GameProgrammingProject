@@ -16,10 +16,22 @@ func tile_map_create():
 	
 	for i in tile_size:
 		var node = tile_scene.instance()
-		
 		var transform =	world_manager.GetTileTransform(i)
 		node.transform = transform
+		node.texture = tile_image_changer(world_manager.GetTileType(i))
 		$Tile.add_child(node)
+
+func tile_image_changer(tile_type_id):
+	var texture;
+	if tile_type_id==1:
+		texture = load("res://Image/tile_earth.png")
+	elif tile_type_id==3:
+		texture = load("res://Image/tile_river.png")
+	elif tile_type_id==4:
+		texture = load("res://Image/tile_ocean.png")
+	else:
+		texture = load("res://Image/tile_default.png")
+	return texture;
 
 func new_character(x, y):
 	var character_instance = character_scene.instance()
