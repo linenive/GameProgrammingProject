@@ -30,14 +30,6 @@ script = ExtResource( 8 )
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource( 6 )
 
-[node name="GodotInput" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="JanTestGDScript" type="Node" parent="."]
 
 [node name="TestTileCreater" type="Node" parent="JanTestGDScript"]
@@ -112,6 +104,14 @@ margin_right = 90.2793
 margin_bottom = -5.108
 custom_fonts/font = SubResource( 1 )
 text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GodotInput" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
