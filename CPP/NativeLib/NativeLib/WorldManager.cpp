@@ -8,12 +8,14 @@ void WorldManager::_register_methods() {
 
 	register_method("GetTileNumber", &WorldManager::GetTileNumber);
 	register_method("GetTileTransform", &WorldManager::GetTileTransform);
+	register_method("GetTileScale", &WorldManager::GetTileScale);
 	register_method("GetTileType", &WorldManager::GetTileType);
 	register_method("GetTileName", &WorldManager::GetTileName);
 
 	register_method("TestNewCharacter", &WorldManager::TestNewCharacter);
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
 	register_method("GetCharacterTransform", &WorldManager::GetCharacterTransform);
+	register_method("GetCharacterScale", &WorldManager::GetCharacterScale);
 
 	register_method("CheckTileInVector2", &WorldManager::CheckTileInVector2);
 	register_method("GetTileIdByVector2", &WorldManager::GetTileIdByVector2);

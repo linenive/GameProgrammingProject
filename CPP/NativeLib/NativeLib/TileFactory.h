@@ -8,8 +8,8 @@ protected:
 
 
 public:
-	WorldObject createObject(Transform2D transform) {
-		Tile new_tile = Tile(TILE_NONE, transform);
+	WorldObject createObject(Transform2D transform, Vector2 scale) {
+		Tile new_tile = Tile(TILE_NONE, transform, scale);
 
 		return new_tile;
 	}

@@ -84,15 +84,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CameraManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="TaskReserveInfo.cpp">
       <Filter>소스 파일\Repository\World\WorldObject</Filter>
     </ClCompile>
@@ -102,11 +93,17 @@
     <ClCompile Include="CoordinatesSystem.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="TestManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -152,9 +149,6 @@
     <ClInclude Include="CameraManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="NativeLib.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
@@ -198,6 +192,9 @@
       <Filter>헤더 파일\Repository</Filter>
     </ClInclude>
     <ClInclude Include="CoordinatesSystem.h">
+      <Filter>헤더 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
       <Filter>헤더 파일\Library</Filter>
     </ClInclude>
   </ItemGroup>

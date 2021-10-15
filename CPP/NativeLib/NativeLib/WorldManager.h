@@ -23,6 +23,9 @@ public:
 	Transform2D GetTileTransform(int tile_id){
 		return game_world->GetTileMap()->GetTile(tile_id).GetTransform();
 	}
+	Vector2 GetTileScale(int tile_id) {
+		return game_world->GetTileMap()->GetTile(tile_id).GetScale();
+	}
 	int GetTileType(int tile_id) {
 		return (int) game_world->GetTileMap()->GetTile(tile_id).GetTileType().type;
 	}
@@ -35,8 +38,11 @@ public:
 	int GetCharacterNumber() {
 		return game_world->GetObjectRepository()->GetCharacterNumber();
 	}
-	Transform2D GetCharacterTransform(int i) {
-		return game_world->GetObjectRepository()->GetCharacterTransform(i);
+	Transform2D GetCharacterTransform(int character_id) {
+		return game_world->GetObjectRepository()->GetCharacter(character_id).GetTransform();
+	}
+	Vector2 GetCharacterScale(int character_id) {
+		return game_world->GetObjectRepository()->GetCharacter(character_id).GetScale();
 	}
 	bool CheckTileInVector2(Vector2 vector);
 	int GetTileIdByVector2(Vector2 vector);
