@@ -27,67 +27,6 @@ script = ExtResource( 2 )
 [node name="WorldManager" type="Node" parent="."]
 script = ExtResource( 8 )
 
-[node name="TestScriptJan" type="Node" parent="."]
-script = ExtResource( 9 )
-
-[node name="Tile" type="Node" parent="TestScriptJan"]
-
-[node name="Character" type="Node" parent="TestScriptJan"]
-
-[node name="TestLabel" type="Label" parent="."]
-margin_left = 547.0
-margin_top = 106.0
-margin_right = 958.0
-margin_bottom = 122.0
-custom_fonts/font = SubResource( 1 )
-text = "test"
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HeyTest" type="Label" parent="."]
-margin_left = 584.883
-margin_top = 167.424
-margin_right = 769.883
-margin_bottom = 183.424
-custom_fonts/font = SubResource( 1 )
-text = "test"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="."]
-margin_left = 42.7447
-margin_top = 81.3074
-margin_right = 158.745
-margin_bottom = 124.307
-custom_fonts/font = SubResource( 2 )
-text = "캐릭터 만들기"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="x" type="TextEdit" parent="."]
-margin_left = 10.0092
-margin_top = 144.032
-margin_right = 169.009
-margin_bottom = 178.032
-rect_pivot_offset = Vector2( 79.5, 34 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="y" type="TextEdit" parent="."]
-margin_left = 177.697
-margin_top = 143.0
-margin_right = 336.697
-margin_bottom = 177.0
-rect_pivot_offset = Vector2( 79.5, 34 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource( 6 )
 
@@ -99,4 +38,82 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Button" to="TestScriptJan" method="_on_Button_pressed"]
+[node name="JanTestGDScript" type="Node" parent="."]
+
+[node name="TestTileCreater" type="Node" parent="JanTestGDScript"]
+script = ExtResource( 9 )
+
+[node name="Tile" type="Node" parent="JanTestGDScript/TestTileCreater"]
+
+[node name="Character" type="Node" parent="JanTestGDScript/TestTileCreater"]
+
+[node name="TestLabel" type="Label" parent="JanTestGDScript"]
+margin_left = 547.0
+margin_top = 106.0
+margin_right = 958.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 1 )
+text = "test"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeyTest" type="Label" parent="JanTestGDScript"]
+margin_left = 584.883
+margin_top = 167.424
+margin_right = 769.883
+margin_bottom = 183.424
+custom_fonts/font = SubResource( 1 )
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="JanTestGDScript"]
+margin_left = 42.7447
+margin_top = 81.3074
+margin_right = 158.745
+margin_bottom = 124.307
+custom_fonts/font = SubResource( 2 )
+text = "캐릭터 만들기"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x" type="TextEdit" parent="JanTestGDScript"]
+margin_left = 10.0092
+margin_top = 144.032
+margin_right = 169.009
+margin_bottom = 178.032
+rect_pivot_offset = Vector2( 79.5, 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="y" type="TextEdit" parent="JanTestGDScript"]
+margin_left = 177.697
+margin_top = 143.0
+margin_right = 336.697
+margin_bottom = 177.0
+rect_pivot_offset = Vector2( 79.5, 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileInfoTest" type="Label" parent="JanTestGDScript"]
+anchor_left = 0.712
+anchor_top = 0.709
+anchor_right = 0.807
+anchor_bottom = 0.752
+margin_left = 2.55933
+margin_top = 4.69199
+margin_right = 90.2793
+margin_bottom = -5.108
+custom_fonts/font = SubResource( 1 )
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]

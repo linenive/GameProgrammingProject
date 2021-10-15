@@ -10,6 +10,7 @@ void InputManager::EndDrag(Vector2 end_pos) {
 	is_dragging = false;
 }
 
+
 void InputManager::MouseClick(Vector2 position) {
 	Godot::print("[InputManager]Mouse Click: " + position);
 

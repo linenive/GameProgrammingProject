@@ -35,6 +35,6 @@ func _process(delta):
 		$Character.get_child(i).transform = transform3
 
 func _on_Button_pressed():
-	var x = get_node("/root/Main/x").get_line(0)
-	var y = get_node("/root/Main/y").get_line(0)
+	var x = get_node("/root/Main/JanTestGDScript/x").get_line(0)
+	var y = get_node("/root/Main/JanTestGDScript/y").get_line(0)
 	new_character(float(x), float(y))

@@ -12,17 +12,12 @@ private:
 	bool is_dragging;
 	Vector2 drag_start_point;
 	Vector2 now_mouse_point;
-	Tile* hoveredTile;
 
 	void LoadGameWorld();
 	void StartDrag(Vector2 start_pos);
 	void EndDrag(Vector2 end_pos);
-	void HoverTile(Vector2 position);
 
 public:
-	InputManager() {
-		hoveredTile = NULL;
-	}
 	static void _register_methods();
 	void _init();
 	void _ready();
@@ -32,4 +27,5 @@ public:
 
 	bool IsDragging();
 	Rect2 GetDragRect();
+
 };
