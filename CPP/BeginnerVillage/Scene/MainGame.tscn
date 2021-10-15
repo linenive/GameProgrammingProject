@@ -33,19 +33,14 @@ script = ExtResource( 2 )
 [node name="WorldManager" type="Node" parent="."]
 script = ExtResource( 8 )
 
-[node name="InputManager" type="Node" parent="."]
-script = ExtResource( 6 )
-
-[node name="JanTestGDScript" type="Node" parent="."]
-
-[node name="TestTileCreater" type="Node" parent="JanTestGDScript"]
+[node name="TestScriptJan" type="Node" parent="."]
 script = ExtResource( 9 )
 
-[node name="Tile" type="Node" parent="JanTestGDScript/TestTileCreater"]
+[node name="Tile" type="Node" parent="TestScriptJan"]
 
-[node name="Character" type="Node" parent="JanTestGDScript/TestTileCreater"]
+[node name="Character" type="Node" parent="TestScriptJan"]
 
-[node name="TestLabel" type="Label" parent="JanTestGDScript"]
+[node name="TestLabel" type="Label" parent="."]
 margin_left = 547.0
 margin_top = 106.0
 margin_right = 958.0
@@ -57,7 +52,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeyTest" type="Label" parent="JanTestGDScript"]
+[node name="HeyTest" type="Label" parent="."]
 margin_left = 584.883
 margin_top = 167.424
 margin_right = 769.883
@@ -68,7 +63,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="JanTestGDScript"]
+[node name="Button" type="Button" parent="."]
 margin_left = 42.7447
 margin_top = 81.3074
 margin_right = 158.745
@@ -79,7 +74,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="x" type="TextEdit" parent="JanTestGDScript"]
+[node name="x" type="TextEdit" parent="."]
 margin_left = 10.0092
 margin_top = 144.032
 margin_right = 169.009
@@ -89,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="y" type="TextEdit" parent="JanTestGDScript"]
+[node name="y" type="TextEdit" parent="."]
 margin_left = 177.697
 margin_top = 143.0
 margin_right = 336.697
@@ -101,7 +96,8 @@ __meta__ = {
 
 [node name="CameraManager" parent="." instance=ExtResource( 6 )]
 g_nowcamerastate = 0
-[node name="TileInfoTest" type="Label" parent="JanTestGDScript"]
+
+TileInfoTest" type="Label" parent="JanTestGDScript"]
 anchor_left = 0.712
 anchor_top = 0.709
 anchor_right = 0.807
@@ -149,7 +145,6 @@ script = ExtResource( 7 )
 [node name="PopupUI9" parent="UIControl/Popups" instance=ExtResource( 11 )]
 
 [node name="PopupUI10" parent="UIControl/Popups" instance=ExtResource( 11 )]
-
 
 
 [connection signal="pressed" from="Button" to="TestScriptJan" method="_on_Button_pressed"]
