@@ -4,36 +4,28 @@ export var g_speed=3
 export var g_velocity=Vector2()
 
 var g_screen_size
-<<<<<<< Updated upstream
 var g_unmoving_interval=20
 export (Vector2)var g_unmoving_size
-=======
 var g_camera_mouse_detect_interval=20
+var g_camera_mouse_detect_size
 var g_canmovecamera=true
 
 var g_screen_boundary_lefttop : Vector2 # 현재 필드의 바운더리
 var g_screen_boundary_rightbottom : Vector2 # 현재 필드의 바운더리
 var now_zoom_scale
->>>>>>> Stashed changes
 
-var g_canmovecamera=true
 func _ready():
 	g_screen_size = get_viewport_rect().size	
-<<<<<<< Updated upstream
 	g_unmoving_size = g_screen_size-Vector2(g_unmoving_interval,g_unmoving_interval)
 
-=======
 	g_camera_mouse_detect_size = g_screen_size - Vector2(g_camera_mouse_detect_interval, g_camera_mouse_detect_interval)
 	position = g_screen_size/2
 	
->>>>>>> Stashed changes
 func _process(_delta):
 	if(g_canmovecamera):
 		CameraMovewithKey()
 		CameraMovewithMouse()	
 
-<<<<<<< Updated upstream
-=======
 func SetMoveKeyBoundary(lefttop, rightbottom):
 	g_screen_boundary_lefttop = lefttop
 	g_screen_boundary_rightbottom = rightbottom
@@ -43,7 +35,6 @@ func SetSpeed(speed):
 func SetZoomScale(zoom):
 	now_zoom_scale = zoom
 	
->>>>>>> Stashed changes
 func CameraMovewithKey():
 	DetectKeyPress()
 	if g_velocity.length()>0:
@@ -65,7 +56,6 @@ func DetectKeyPress():
 func CameraMovewithMouse():
 	var nowmousevector = get_viewport().get_mouse_position()
 
-<<<<<<< Updated upstream
 	var addPos = Vector2(0,0)
 	if (nowmousevector.x<g_unmoving_interval):
 		addPos.x=-1
@@ -78,7 +68,6 @@ func CameraMovewithMouse():
 
 	position += addPos*g_speed
 
-=======
 	var add_pos = Vector2(0,0)
 	if (nowmousevector.x < g_camera_mouse_detect_interval):
 		add_pos.x=-1
@@ -102,8 +91,7 @@ func DetectBoundary(new_position):
 	
 	position = new_position
 	
-	
->>>>>>> Stashed changes
+
 func ActiveCanMoveCamera():
 	g_canmovecamera = true
 func DeactiveCanMoveCamera():
