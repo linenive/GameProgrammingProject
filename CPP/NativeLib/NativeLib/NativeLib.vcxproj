@@ -206,6 +206,12 @@
     <ClInclude Include="StaticUnit.h" />
     <ClInclude Include="StaticUnitService.h" />
     <ClInclude Include="StructureFactory.h" />
+    <ClInclude Include="TaskForMove.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="SkillRepository.h" />
+    <ClInclude Include="Stat.h" />
+    <ClInclude Include="StatField.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tile.h" />
