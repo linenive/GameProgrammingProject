@@ -9,6 +9,9 @@ var g_screen_boundary_lefttop
 var g_screen_boundary_rightbottom
 
 
+var g_screen_boundary_lefttop
+var g_screen_boundary_rightbottom
+
 var kzoom_in = 0.5
 var kzoom_default = 1
 var kzoom_scrollfactor = 0.2
