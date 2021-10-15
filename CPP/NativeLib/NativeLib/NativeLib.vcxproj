@@ -190,6 +190,11 @@
     <ClInclude Include="RepeatitionRandomOcccurrence.h" />
     <ClCompile Include="Structure.h" />
     <ClInclude Include="StructureFactory.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="SkillRepository.h" />
+    <ClInclude Include="Stat.h" />
+    <ClInclude Include="StatField.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileFactory.h" />

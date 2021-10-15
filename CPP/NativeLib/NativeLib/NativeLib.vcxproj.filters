@@ -51,9 +51,11 @@
     </Filter>
     <Filter Include="헤더 파일\Library">
       <UniqueIdentifier>{bfdf4941-9496-409c-93cc-fec84e80e877}</UniqueIdentifier>
-    </Filter>
+    </Filter>D
     <Filter Include="헤더 파일\Manager\Event">
       <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
+    <Filter Include="헤더 파일\Repository\World\WorldObject\Status">
+      <UniqueIdentifier>{ac832d6a-7a79-4a23-beae-73c7d2f4cb62}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +222,17 @@
     </ClInclude>
     <ClInclude Include="Task.h">
       <Filter>헤더 파일\Manager</Filter>
+    <ClInclude Include="StatField.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillRepository.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>헤더 파일</Filter>
