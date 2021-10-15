@@ -6,13 +6,16 @@
 
 [node name="CameraManager" type="Node2D"]
 script = ExtResource( 1 )
+g_nowcamerastate = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 585.484, 195.162 )
 current = true
 
 [node name="EmptyCamera" type="Node2D" parent="."]
 script = ExtResource( 2 )
+g_speed = null
+g_velocity = null
+g_camera_mouse_detect_size = null
 
 [node name="Sprite" type="Sprite" parent="EmptyCamera"]
 scale = Vector2( 0.3, 0.3 )
