@@ -7,23 +7,24 @@ var target_object_id
 func _ready():
 	uicontrol = get_node("/root/Main/UIControl")
 
-func init_popup(oid, position:Vector2, panel_title, title, content):
+func show_popup(oid, position:Vector2, window_title, info_title, info_content):
 	target_object_id = oid
 	
 	set_position(position)	
-	set_title(panel_title)
-	$title.text = str(title)
-	$content.text = str(content)
+	set_title(window_title)
+	$title.text = str(info_title)
+	$content.text = str(info_content)
 	
 	var btn = get_close_button()
 	btn.connect("pressed", self, "close_button_pressed")
 	
 	show()
 
+func init_popup():
+	target_object_id = 0
 
 func close_button_pressed():
-	print("awefaef")
-	target_object_id = 0
+	init_popup()
 	uicontrol.close_info_popup(self)
 
 func get_target_object_id():

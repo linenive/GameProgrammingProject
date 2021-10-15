@@ -7,73 +7,80 @@ var world_manager
 var input_manager
 
 var MAXIMUM_POPUP_COUNT = 10
-var center_pos = Vector2(340, 100)
-var instantiate_padding = Vector2(20, 20)
+var screen_center_pos = Vector2(362, 100)
+var next_ui_pos_offset = Vector2(20, 20)
 
 func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
 	
-	for popup in get_node("Popups").get_children():
+	for popup in get_node("ObjectInfoUI").get_children():
 		available_popups.append(popup)
 
 func show_info_popup(object_id, type, title, content):
 	if is_already_shown(object_id):
+		set_ui_top(get_popup_by_object_id(object_id))
 		return
 	
-	var popup
-	var instantiate_pos : Vector2
-	var popup_title = convert_popup_title(type)
+	var instantiate_pos = get_instantiate_pos()
+	var popup_window_title = convert_type_to_window_title(type)
+	var popup = get_available_popup()
 	
-	if used_popups.size() == 0:
-		instantiate_pos = center_pos
-	else:
-		instantiate_pos = get_top_ui_pos() + instantiate_padding
+	popup.show_popup(object_id, instantiate_pos, popup_window_title, title, content)
+
+func get_available_popup():
+	if available_popups.empty():
+		set_oldest_used_popup_available()
 	
-	if available_popups.size() == 0:
-		popup = used_popups.front()
-		used_popups.pop_front()
-		available_popups.push_back(popup)	
-		
-		popup.set_visible(false)
-	
-	popup = available_popups.pop_front()
+	var popup = available_popups.pop_front()
 	set_ui_top(popup)
 	
-	popup.init_popup(object_id, instantiate_pos, popup_title, title, content)
+	return popup
 
-func close_info_popup(popup):
-	var index = used_popups.find(popup)
-	used_popups.remove(index)
+func set_oldest_used_popup_available():
+	var popup = used_popups.front()
+	used_popups.pop_front()
 	available_popups.push_back(popup)
 
-func convert_popup_title(type):
-	var info
+func get_instantiate_pos():
+	if used_popups.empty():
+		return screen_center_pos
+	else:
+		return get_top_ui_pos() + next_ui_pos_offset
+
+func close_info_popup(popup):
+	used_popups.erase(popup)
+	available_popups.push_back(popup)
+
+func convert_type_to_window_title(type):
+	var window_title = "Info Title"
 	
 	if type == "Character":
-		info = "Character Info"
+		window_title = "Character Info"
 	elif type == "Tile":
-		info = "Tile Info"
+		window_title = "Tile Info"
 		
-	return info
+	return window_title
 
 func get_top_ui_pos():
 	var popup = used_popups.back()
 	return popup.get_position()
 
 func set_ui_top(popup):
-	var index = used_popups.find(popup)
-	used_popups.remove(index)
-	
+	used_popups.erase(popup)
 	used_popups.push_back(popup)
-	get_child(0).move_child(popup, MAXIMUM_POPUP_COUNT-1)
+	popup.get_parent().move_child(popup, 9)
 
-func is_already_shown(object_id):
+func get_popup_by_object_id(object_id):
 	for popup in used_popups:
 		if popup.get_target_object_id() == object_id:
-			print("already shown! : ", object_id)
-			set_ui_top(popup)
-			return true
+			return popup
+	
+	return null
+
+func is_already_shown(object_id):
+	if get_popup_by_object_id(object_id) != null:
+		return true
 	
 	return false
 

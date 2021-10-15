@@ -12,11 +12,13 @@ private:
 	TimeRepository time_repo;
 	TileRepository tile_repo;
 	ObjectRepository object_repo;
+	VillageRepository village_repo;
 
 public:
 	GameWorld();
 	virtual GameTime GetGameTime() { return time_repo.GetGameTime(); }
 	virtual TileRepository* GetTileMap() { return &tile_repo; }
 	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }
+	virtual VillageRepository* GetVillageRepository() { return &village_repo; }
 	void update(float delta);
 };

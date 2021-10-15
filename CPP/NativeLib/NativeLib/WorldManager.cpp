@@ -20,6 +20,11 @@ void WorldManager::_register_methods() {
 	register_method("CheckTileInVector2", &WorldManager::CheckTileInVector2);
 	register_method("GetTileIdByVector2", &WorldManager::GetTileIdByVector2);
 	register_method("GetWorldSize", &WorldManager::GetWorldSize);
+
+	register_method("GetVillageName", &WorldManager::GetVillageName);
+	register_method("SetVillageName", &WorldManager::SetVillageName);
+	register_method("GetMoney", &WorldManager::GetMoney);
+
 }
 
 void WorldManager::_init() {

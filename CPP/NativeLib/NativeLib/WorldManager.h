@@ -48,4 +48,17 @@ public:
 	int GetTileIdByVector2(Vector2 vector);
 
 	Vector2 GetWorldSize();
+
+	String GetVillageName() {
+		return String(game_world->GetVillageRepository()->GetVillage()->GetVillageName().c_str());
+	}
+
+	void SetVillageName(String new_name) {
+		game_world->GetVillageRepository()->GetVillage()->SetVillageName(new_name.utf8().get_data());
+	}
+
+	int GetMoney() {
+		return game_world->GetVillageRepository()->GetVillage()->GetMoney();
+	}
+
 };

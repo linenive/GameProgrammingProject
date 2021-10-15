@@ -1,16 +1,17 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
 [ext_resource path="res://CPPNative/GameManager.gdns" type="Script" id=3]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://GDScript/TestLabel.gd" type="Script" id=5]
 [ext_resource path="res://CPPNative/InputManager.gdns" type="Script" id=6]
 [ext_resource path="res://GDScript/UIControl.gd" type="Script" id=7]
 [ext_resource path="res://CPPNative/WorldManager.gdns" type="Script" id=8]
 [ext_resource path="res://GDScript/TestTileCreater.gd" type="Script" id=9]
 [ext_resource path="res://GDScript/GodotInput.gd" type="Script" id=10]
 [ext_resource path="res://Scene/PopupUI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scene/ConfirmationDialog.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scene/VillageHUD.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -20,8 +21,6 @@ font_data = ExtResource( 4 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
-
-[node name="HUD" parent="." instance=ExtResource( 1 )]
 
 [node name="UIManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -40,18 +39,6 @@ script = ExtResource( 9 )
 [node name="Tile" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
 [node name="Character" type="Node" parent="JanTestGDScript/TestTileCreater"]
-
-[node name="TestLabel" type="Label" parent="JanTestGDScript"]
-margin_left = 547.0
-margin_top = 106.0
-margin_right = 958.0
-margin_bottom = 122.0
-custom_fonts/font = SubResource( 1 )
-text = "test"
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HeyTest" type="Label" parent="JanTestGDScript"]
 margin_left = 584.883
@@ -118,30 +105,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [node name="UIControl" type="Node" parent="."]
 script = ExtResource( 7 )
 
-[node name="Popups" type="Node" parent="UIControl"]
+[node name="ConfirmationDialog" parent="UIControl" instance=ExtResource( 12 )]
 
-[node name="PopupUI1" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="HUD" parent="UIControl" instance=ExtResource( 1 )]
+script = null
 
-[node name="PopupUI2" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="VillageInfoUI" parent="UIControl/HUD" instance=ExtResource( 13 )]
+margin_bottom = -56.2
 
-[node name="PopupUI3" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="ObjectInfoUI" type="Node" parent="UIControl"]
 
-[node name="PopupUI4" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="PopupUI1" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[node name="PopupUI5" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="PopupUI2" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[node name="PopupUI6" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="PopupUI3" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[node name="PopupUI7" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="PopupUI4" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[node name="PopupUI8" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="PopupUI5" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[node name="PopupUI9" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="PopupUI6" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[node name="PopupUI10" parent="UIControl/Popups" instance=ExtResource( 11 )]
+[node name="PopupUI7" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[connection signal="pressed" from="Button" to="TestScriptJan" method="_on_Button_pressed"]
+[node name="PopupUI8" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
+
+[node name="PopupUI9" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
+
+[node name="PopupUI10" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
+
+[connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]

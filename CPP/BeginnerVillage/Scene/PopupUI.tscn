@@ -12,10 +12,14 @@ size = 20
 font_data = ExtResource( 2 )
 
 [node name="PopupUI" type="WindowDialog"]
-margin_left = 340.0
-margin_top = 100.0
-margin_right = 640.0
-margin_bottom = 500.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -200.0
+margin_right = 150.0
+margin_bottom = 200.0
 mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {

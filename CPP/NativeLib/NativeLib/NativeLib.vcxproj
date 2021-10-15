@@ -180,6 +180,8 @@
     <ClInclude Include="TileRepository.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="Village.h" />
+    <ClInclude Include="VillageRepository.h" />
     <ClInclude Include="WorldManager.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="WorldObjectFactory.h" />
