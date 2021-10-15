@@ -95,7 +95,6 @@ __meta__ = {
 }
 
 [node name="CameraManager" parent="." instance=ExtResource( 6 )]
-g_nowcamerastate = 0
 
 TileInfoTest" type="Label" parent="JanTestGDScript"]
 anchor_left = 0.712
