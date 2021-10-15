@@ -94,7 +94,7 @@ __meta__ = {
 }
 
 [node name="CameraManager" parent="." instance=ExtResource( 6 )]
-g_nowcamerastate = null
+g_nowcamerastate = 0
 
 [connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [node name="UIControl" type="Node" parent="."]

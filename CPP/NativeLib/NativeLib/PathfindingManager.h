@@ -1,11 +1,11 @@
 #pragma once
 #include "testProperty.h"
 #include "Base.h"
-#include <Node.hpp>
+#include <Node2D.hpp>
 
-class PathfindingManager : public Node {
+class PathfindingManager : public Node2D {
 
-	GODOT_CLASS(PathfindingManager, Node);
+	GODOT_CLASS(PathfindingManager, Node2D);
 
 private:
 	shared_ptr <JPSCollision> spCollision = std::make_shared<JPSCollision>();
