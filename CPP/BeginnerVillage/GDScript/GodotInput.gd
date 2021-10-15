@@ -2,11 +2,13 @@ extends Control
 var input_manager
 var tile_info_label
 var world_manager
+var uicontrol
 
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
 	world_manager = get_node("/root/Main/WorldManager")
 	tile_info_label = get_node("/root/Main/JanTestGDScript/TileInfoTest")
+	uicontrol = get_node("/root/Main/UIControl")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -18,6 +20,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		input_manager.MouseHover(event.position)
 		update_tile_info(event.position)
+		#uicontrol.show_tile_info(event.position)
 
 func update_tile_info(mouse_vector):
 	if world_manager.CheckTileInVector2(mouse_vector):

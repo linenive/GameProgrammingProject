@@ -11,6 +11,14 @@ func _ready():
 	
 	tile_map_create()
 	
+	#temporary
+	var x = [100, 200, 300]
+	var y = [100, 200, 300, 400, 500]
+	
+	for i in x:
+		for j in y:
+			new_character(float(i), float(j))
+	
 func tile_map_create():
 	var tile_size = world_manager.GetTileNumber()
 	
