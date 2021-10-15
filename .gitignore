@@ -1,5 +1,6 @@
 .vs/
 CPP/BeginnerVillage/.mono/
+CPP/BeginnerVillage/bin/win64/libgdexample.dll
 CPP/.sconsign.dblite
 CPP/NativeLib/NativeLib/x64/Debug/NativeLib.log
 *.obj
