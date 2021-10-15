@@ -5,6 +5,9 @@ export (eCameraState)var g_nowcamerastate
 var targetNode : Node2D
 var g_nowtarget_path
 var g_screen_size
+var g_screen_boundary_lefttop
+var g_screen_boundary_rightbottom
+
 
 var kzoom_in = 0.5
 var kzoom_default = 1
@@ -21,9 +24,8 @@ func _process(_delta):
 	DetectZoomScrollKey()
 	
 func SetLimit():
-<<<<<<< Updated upstream
 	g_screen_size = get_viewport_rect().size
-=======
+
 	CalcMapBoundary()
 	$EmptyCamera.SetMoveKeyBoundary(g_screen_boundary_lefttop,g_screen_boundary_rightbottom)
 	
@@ -38,7 +40,6 @@ func CalcMapBoundary():
 func GetScreenBoundary(lefttop, rightbottom):
 	g_screen_boundary_lefttop = lefttop
 	g_screen_boundary_rightbottom = rightbottom
->>>>>>> Stashed changes
 	
 	$Camera2D.limit_left = -g_screen_size.x
 	$Camera2D.limit_right = g_screen_size.x
@@ -85,14 +86,12 @@ func ZoomIn():
 func Zoom(zoomfactor):
 	$Camera2D.zoom.x = zoomfactor
 	$Camera2D.zoom.y = zoomfactor
-<<<<<<< Updated upstream
 
-=======
 	$EmptyCamera.SetZoomScale($Camera2D.zoom.x)
 	
 # test와 연관된 부분, 그만 따라가기 버튼을 누르면 카메라가 줌아웃되는 것
 func _on_StopFollowing_pressed():
 	SetCameraSetting_Default()
->>>>>>> Stashed changes
+
 	
 
