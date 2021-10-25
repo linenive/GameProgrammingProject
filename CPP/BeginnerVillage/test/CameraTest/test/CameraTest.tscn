@@ -24,7 +24,6 @@ scale = Vector2( 10.142, 12.186 )
 texture = ExtResource( 1 )
 
 [node name="CameraManager" parent="." instance=ExtResource( 2 )]
-g_nowcamerastate = 0
 
 [node name="AutoMoveObj" parent="." instance=ExtResource( 3 )]
 position = Vector2( -191.493, -155.378 )

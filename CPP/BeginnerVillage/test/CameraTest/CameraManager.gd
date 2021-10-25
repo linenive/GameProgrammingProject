@@ -82,16 +82,14 @@ func InitCameraSetting():
 
 func SetCameraSetting_Default():
 	g_nowcamerastate = eCameraState.DEFAULT
-	g_nowtarget_path = "EmptyCamera"
-	targetNode = get_node(g_nowtarget_path)
-	#$EmptyCamera.ActiveCanMoveCamera()
+	g_nowtarget_path = ""
+	targetNode = null
 	Zoom(kzoom_default)
 	
 func SetCameraSetting_Trace(newtracing_path):
 	g_nowcamerastate = eCameraState.TRACE
 	g_nowtarget_path =newtracing_path
 	targetNode = get_node(g_nowtarget_path)
-	#$EmptyCamera.DeactiveCanMoveCamera()
 	Zoom(kzoom_in)
 
 # ZOOM ====
@@ -118,8 +116,6 @@ func ZoomIn():
 func Zoom(zoomfactor):
 	$Camera2D.zoom.x = zoomfactor
 	$Camera2D.zoom.y = zoomfactor
-
-	$EmptyCamera.SetZoomScale($Camera2D.zoom.x)
 	
 # test와 연관된 부분, 그만 따라가기 버튼을 누르면 카메라가 줌아웃되는 것
 func _on_StopFollowing_pressed():
