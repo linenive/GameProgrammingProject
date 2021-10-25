@@ -23,7 +23,6 @@ func _input(event):
 		if event.button_index == BUTTON_LEFT and event.is_pressed():
 			print(get_tree().get_current_scene())
 			
-			get_node("/root/CameraTest/UIManager").StartNPCTrace(name)
-			get_node("/root/CameraTest/CameraManager").SetCameraSetting_Trace(g_mypath)
-			#emit_signal("traceStart",get_path(),name)
-		#get_node("/root/UIManager").StartNPCTrace(get_path(),name)
+			get_node("/root/YojinTest/UIWindowManager").StartNPCTrace(name)
+			get_node("/root/YojinTest/CameraManager").SetCameraSetting_Trace(g_mypath)
+
