@@ -2,6 +2,11 @@ extends Node2D
 
 enum eCameraState {DEFAULT, TRACE}
 export (eCameraState)var g_nowcamerastate
+export var g_velocity=Vector2()
+export var g_speed=3
+export (Vector2)var g_unmoving_size
+var g_unmoving_interval=100
+
 var targetNode : Node2D
 var g_nowtarget_path
 var g_screen_size
@@ -19,32 +24,59 @@ func _ready():
 	InitCameraSetting()
 	
 func _process(_delta):
-	$Camera2D.position = targetNode.position
+	DetectCameraMoveObj()
 	DetectZoomScrollKey()
 	
 func SetLimit():
 	g_screen_size = get_viewport_rect().size
-
-	CalcMapBoundary()
-	$EmptyCamera.SetMoveKeyBoundary(g_screen_boundary_lefttop,g_screen_boundary_rightbottom)
-	
-	$Camera2D.limit_left = g_screen_boundary_lefttop.x
-	$Camera2D.limit_right = g_screen_boundary_rightbottom.x
-	$Camera2D.limit_top = g_screen_boundary_lefttop.y
-	$Camera2D.limit_bottom = g_screen_boundary_rightbottom.y
-
-func CalcMapBoundary():
-	GetScreenBoundary(Vector2(0,0), Vector2(1728,1728))
-	
-func GetScreenBoundary(lefttop, rightbottom):
-	g_screen_boundary_lefttop = lefttop
-	g_screen_boundary_rightbottom = rightbottom
+	g_unmoving_size = g_screen_size-Vector2(g_unmoving_interval,g_unmoving_interval)
 	
 	$Camera2D.limit_left = -g_screen_size.x
 	$Camera2D.limit_right = g_screen_size.x
 	$Camera2D.limit_top = -g_screen_size.y
 	$Camera2D.limit_bottom = g_screen_size.y
 
+func DetectCameraMoveObj():
+	if g_nowcamerastate == eCameraState.DEFAULT:
+		MoveCamera()
+	else:
+		$Camera2D.position = targetNode.position
+		
+func MoveCamera():
+	CameraMovewithKey()
+	CameraMovewithMouse()
+	
+func CameraMovewithKey():
+	DetectKeyPress()
+	if g_velocity.length()>0:
+		g_velocity = g_velocity.normalized()*g_speed
+		$Camera2D.position+=g_velocity
+		
+func DetectKeyPress():
+	g_velocity = Vector2(0,0)
+	if Input.is_action_pressed("ui_left"):
+		g_velocity.x-=1
+	if Input.is_action_pressed("ui_right"):
+		g_velocity.x+=1
+	if Input.is_action_pressed("ui_up"):
+		g_velocity.y-=1
+	if Input.is_action_pressed("ui_down"):
+		g_velocity.y+=1
+
+func CameraMovewithMouse():
+	var nowmousevector = get_viewport().get_mouse_position()
+	var addPos = Vector2(0,0)
+	if (nowmousevector.x<g_unmoving_interval):
+		addPos.x=-g_speed
+	elif (nowmousevector.x>g_unmoving_size.x):
+		addPos.x=g_speed	
+	if (nowmousevector.y<g_unmoving_interval):
+		addPos.y=-g_speed
+	elif (nowmousevector.y>g_unmoving_size.y):
+		addPos.y=g_speed
+	$Camera2D.position += addPos	
+	
+# Camera Set ====	
 func InitCameraSetting():
 	SetCameraSetting_Default()
 
@@ -52,16 +84,17 @@ func SetCameraSetting_Default():
 	g_nowcamerastate = eCameraState.DEFAULT
 	g_nowtarget_path = "EmptyCamera"
 	targetNode = get_node(g_nowtarget_path)
-	$EmptyCamera.ActiveCanMoveCamera()
+	#$EmptyCamera.ActiveCanMoveCamera()
 	Zoom(kzoom_default)
 	
 func SetCameraSetting_Trace(newtracing_path):
 	g_nowcamerastate = eCameraState.TRACE
 	g_nowtarget_path =newtracing_path
 	targetNode = get_node(g_nowtarget_path)
-	$EmptyCamera.DeactiveCanMoveCamera()
+	#$EmptyCamera.DeactiveCanMoveCamera()
 	Zoom(kzoom_in)
 
+# ZOOM ====
 func DetectZoomScrollKey():
 	if g_nowcamerastate == eCameraState.DEFAULT:
 		ZoomScroll()
