@@ -1,7 +1,11 @@
 
 
 
-[gd_scene load_steps=15 format=2]
+
+
+
+[gd_scene load_steps=14 format=2]
+
 
 
 
@@ -10,13 +14,12 @@
 [ext_resource path="res://CPPNative/GameManager.gdns" type="Script" id=3]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://GDScript/TestLabel.gd" type="Script" id=5]
-[ext_resource path="res://test/CameraTest/Camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://CPPNative/InputManager.gdns" type="Script" id=6]
 [ext_resource path="res://GDScript/UIControl.gd" type="Script" id=7]
 [ext_resource path="res://CPPNative/WorldManager.gdns" type="Script" id=8]
 [ext_resource path="res://GDScript/TestTileCreater.gd" type="Script" id=9]
 [ext_resource path="res://GDScript/GodotInput.gd" type="Script" id=10]
 [ext_resource path="res://Scene/PopupUI.tscn" type="PackedScene" id=11]
-[ext_resource path="res://CPPNative/InputManager.gdns" type="Script" id=12]
 
 
 [sub_resource type="DynamicFont" id=1]
@@ -35,7 +38,7 @@ script = ExtResource( 2 )
 script = ExtResource( 8 )
 
 [node name="InputManager" type="Node" parent="."]
-script = ExtResource( 12 )
+script = ExtResource( 6 )
 
 [node name="JanTestGDScript" type="Node" parent="."]
 
@@ -153,8 +156,6 @@ margin_bottom = -56.2
 
 [node name="PopupUI8" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-
-[node name="CameraManager" parent="." instance=ExtResource( 6 )]
 
 [connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 
