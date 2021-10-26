@@ -197,5 +197,11 @@
     <ClInclude Include="Common.h">
       <Filter>헤더 파일\Library</Filter>
     </ClInclude>
+    <ClInclude Include="Village.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="VillageRepository.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
