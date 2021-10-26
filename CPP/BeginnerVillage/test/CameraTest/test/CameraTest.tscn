@@ -49,5 +49,5 @@ __meta__ = {
 
 [node name="PathfindingTest" parent="." instance=ExtResource( 4 )]
 
-[connection signal="pressed" from="UIWindowManager/UILayer/StopFollowing" to="CameraManager" method="_on_StopFollowing_pressed"]
 [connection signal="pressed" from="UIWindowManager/UILayer/StopFollowing" to="UIWindowManager" method="_on_StopFollowing_pressed"]
+[connection signal="pressed" from="UIWindowManager/UILayer/StopFollowing" to="CameraManager" method="_on_StopFollowing_pressed"]

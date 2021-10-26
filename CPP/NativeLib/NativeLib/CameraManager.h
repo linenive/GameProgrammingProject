@@ -2,49 +2,45 @@
 #include "Common.h"
 #include <Node2D.hpp>
 
-enum eCameraState { DEFAULT, TRACE };
 namespace godot {
 	class CameraManager : public Node2D
 	{
 		GODOT_CLASS(CameraManager, Node2D);
 
 	private:
-		Vector2 g_screen_size;
-		Vector2 g_unmoving_size;
-		Vector2 g_screen_boundary_lefttop;
-		Vector2 g_screen_boundary_rightbottom;
+		Vector2 g_mouse_moving_bound;
+		Vector2 g_now_position;
 
-		Vector2 g_velocity = Vector2();
+		float g_now_zoom=1;
 
-		float g_speed = 3;
-		float g_unmoving_interval = 100;
-
-		float kzoom_in = 0.5;
-		float kzoom_default = 1;
 		float kzoom_scrollfactor = 0.2;
-		float kzoom_max = 1.5;
-		float kzoom_min = 0.5;
+		float g_zoom_max = 1.5;
+		float g_zoom_min = 0.5;
 
-
-		void CameraMovewithKey();
-		void CameraMovewithMouse(Vector2 nowmousevector);
-		void InitCameraSetting();
-
-		void ZoomOut(float now_zoom);
-		void ZoomIn(float now_zoom);
-		void Zoom(float zoomfactor);
+		void CameraMovewithKey(Vector2 velocity);
+		void CameraMovewithMouse(Vector2 now_mouse_vector);
 	public:
+		float g_speed = 3;
+		float g_mouse_moving_interval = 100;
+
 		static void _register_methods();
 		void _init();
 
-		void SetLimit();
-		void SetCameraSetting_Default();
-		void SetCameraSetting_Trace(NodePath newtracing_path);
+		void SetMouseMovingBound();
 
-		eCameraState g_nowcamerastate;
-		Node2D g_targetNode;
-		NodePath g_nowtarget_path;
-		Vector2 g_now_position;
-		float g_now_scrollfactor;
+		Vector2 GetNowCameraPosition() { return g_now_position; }
+		void SetNowCameraPosition(Vector2 new_position) { g_now_position = new_position; }
+
+		void ZoomOut();
+		void ZoomIn();
+
+		float GetNowZoom() { return g_now_zoom; }
+		void SetNowZoom(float new_zoom);
+
+		float GetNowZoomMax() { return g_zoom_max; }
+		void SetNowZoomMax(float new_zoom_max) { g_zoom_max = new_zoom_max; }
+
+		float GetNowZoomMin() { return g_zoom_min; }
+		void SetNowZoomMin(float new_zoom_min) { g_zoom_min = new_zoom_min; }
 	};
 }
