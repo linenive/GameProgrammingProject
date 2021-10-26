@@ -25,13 +25,16 @@ public:
 		WorldObject* new_character = factory.createObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
 		characters.push_back((Character*)new_character);
 		character_size++;
-		Godot::print(characters[0]->GetTransform());
+		Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetTransform());
 	}
 	int GetCharacterNumber() {
 		return character_size;
 	}
 	Character GetCharacter(int character_id) {
 		return *characters[character_id];
+	}
+	vector<Character*>* GetCharacters() {
+		return &characters;
 	}
 };
 
