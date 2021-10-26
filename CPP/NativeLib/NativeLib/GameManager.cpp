@@ -12,11 +12,11 @@ void GameManager::_register_methods() {
 }
 
 void GameManager::_init(){
-	
 }
 
 void GameManager::_ready(){
 	NewGame();
+	ai_manager.SetGameWorld(&game_world);
 }
 
 void GameManager::_process(float delta){

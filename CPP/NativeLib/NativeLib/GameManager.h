@@ -1,6 +1,7 @@
 #pragma once
 #include "Common.h"
 #include "GameWorld.h"
+#include "AIManager.h"
 #include <Node.hpp>
 
 class GameManager : public Node {
@@ -8,6 +9,7 @@ class GameManager : public Node {
 
 private:
 	GameWorld game_world;
+	AIManager ai_manager;
 
 	void NewGame();
 	void LoadGame();

@@ -118,7 +118,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [node name="UIControl" type="Node" parent="."]
 script = ExtResource( 7 )
 
@@ -144,4 +143,4 @@ script = ExtResource( 7 )
 
 [node name="PopupUI10" parent="UIControl/Popups" instance=ExtResource( 11 )]
 
-[connection signal="pressed" from="Button" to="TestScriptJan" method="_on_Button_pressed"]
+[connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
