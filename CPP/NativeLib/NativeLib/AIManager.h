@@ -2,19 +2,31 @@
 #include "Character.h"
 #include "TaskReserveInfo.h"
 #include "GameWorldForAI.h"
+#include "AIExecuter.h"
+#include "Task.h"
 
 class AIManager {
 
 private:
 	GameWorldForAI* game_world;
 	vector<Character*>* characters;
+	AIExecuter* ai_executer;
 
-	void FindNewTask(Character performer);
-	void AssignTaskToWholeCharacter();
+	void FindNewTask(Character* performer) {
+		// 임시로 600, 300 까지 이동하는 task 넣음
+		Task* new_task = new Task(Vector2(600.0, 300.0));
+		performer->SetTask(new_task);
+	};
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
+	void AssignTaskToWholeCharacter() {
+		for (Character* c : *characters) {
+			if (!c->HasTask())
+				FindNewTask(c);
+		}
+	};
 	void ExecuteCharactersTask() {
 		for (Character* c : *characters) {
-
+			ai_executer->ExecuteCharacterTask(c);
 		}
 	}
 
@@ -23,15 +35,10 @@ public:
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
 	}
-	void update(float delta) {
-		// 리스트 잘 받아졌는지 테스트용
-		if (characters->size() > 0) {
-			Transform2D transform = (*characters)[0]->GetTransform();
-			Vector2 vec = transform.get_origin();
-			vec.x++;
-			transform.set_origin(vec);
-			(*characters)[0]->SetTransform(transform);
-		}
-		
+	void Update(float delta) {
+		// To-do: 아래는 가끔씩만 업데이트해 주어도 괜찮음
+		AssignTaskToWholeCharacter();
+		ExecuteCharactersTask();
 	};
+	
 };

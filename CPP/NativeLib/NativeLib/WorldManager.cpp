@@ -39,7 +39,7 @@ void WorldManager::_process(float delta)
 bool WorldManager::CheckTileInVector2(Vector2 vector){
 	float x = vector.x;
 	float y = vector.y;
-	Coordinates hovered_tile = VectorToCoordinates(Vector2(x, y));
+	Coordinates hovered_tile = ApsolutePositionToCoordinates(Vector2(x, y));
 	
 	return CheckCoordinatesInTileMap(hovered_tile);
 }
@@ -47,7 +47,7 @@ bool WorldManager::CheckTileInVector2(Vector2 vector){
 int WorldManager::GetTileIdByVector2(Vector2 vector) {
 	float x = vector.x;
 	float y = vector.y;
-	Coordinates hovered_tile = VectorToCoordinates(Vector2(x, y));
+	Coordinates hovered_tile = ApsolutePositionToCoordinates(Vector2(x, y));
 	// printf("[WorldManager]GetTile: %d\n", CalculateTileNumberByCoordinates(hovered_tile));
 	return CalculateTileNumberByCoordinates(hovered_tile);
 }
