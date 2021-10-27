@@ -15,6 +15,8 @@ func _ready():
 	var x = [100, 200, 300]
 	var y = [100, 200, 300, 400, 500]
 	
+	# 주의: ready에서 new_character 하면 character 목록에 제대로 들어가지 않을 수 있음
+	# world_manager의 ready 에서 character 목록을 초기화하기 때문인 듯
 	for i in x:
 		for j in y:
 			new_character(float(i), float(j))

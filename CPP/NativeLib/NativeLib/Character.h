@@ -8,5 +8,8 @@ private:
 	Task* currentTask;
 
 public:
-	Character(Transform2D transform, Vector2 scale) : WorldObject("Noname", transform, scale), currentTask(NULL){}
+	Character(Transform2D transform, Vector2 scale) : WorldObject("Noname", transform, scale), currentTask(nullptr){}
+	Task* GetTask() { return currentTask; }
+	void SetTask(Task* new_task) { currentTask = new_task; }
+	bool HasTask() { return currentTask != nullptr; }
 };

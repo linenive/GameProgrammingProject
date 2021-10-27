@@ -30,3 +30,6 @@ const int DEFAULT_START_MINUTE = 0;
 
 // Update 주기
 const float UPDATE_INTERVAL_TIME = .5;
+
+// 캐릭터 최대 속력
+const float CHARACTER_MAX_VELOCITY = 2.0;

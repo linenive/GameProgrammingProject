@@ -102,6 +102,9 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="Task.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestManager.h">
@@ -133,9 +136,6 @@
     </ClInclude>
     <ClInclude Include="WorldObjectFactory.h">
       <Filter>헤더 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="TileFactory.h">
       <Filter>헤더 파일\Factory</Filter>
@@ -202,6 +202,18 @@
     </ClInclude>
     <ClInclude Include="VillageRepository.h">
       <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="AIManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="AIExecuter.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
