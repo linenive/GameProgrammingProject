@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Scene/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://test/CameraTest/Camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://test/CameraTest/test/AutoMoveObj.tscn" type="PackedScene" id=3]
 [ext_resource path="res://test/CameraTest/test/pathfindingtest.tscn" type="PackedScene" id=4]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=5]

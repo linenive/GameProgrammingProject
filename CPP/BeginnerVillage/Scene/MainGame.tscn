@@ -17,7 +17,7 @@
 [ext_resource path="res://GDScript/TestTileCreater.gd" type="Script" id=9]
 [ext_resource path="res://GDScript/GodotInput.gd" type="Script" id=10]
 [ext_resource path="res://Scene/PopupUI.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scene/Camera.tscn" type="PackedScene" id=12]
+[ext_resource path="res://test/CameraTest/Camera.tscn" type="PackedScene" id=12]
 
 
 [sub_resource type="DynamicFont" id=1]
