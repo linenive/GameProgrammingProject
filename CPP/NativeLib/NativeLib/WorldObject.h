@@ -3,11 +3,12 @@
 #include "Common.h"
 #include "GameRule.h"
 #include "TaskReserveInfo.h"
+#include "Physics.h"
 
 class WorldObject {
 
 protected:
-	Transform2D transform;
+	Physics physics;
 	Vector2 scale;
 	bool isPassThrough;
 	string name;
@@ -16,10 +17,10 @@ protected:
 public:
 	string GetName() { return name; }
 	void SetName(string name) { this->name = name; }
-	Transform2D GetTransform() { return transform; }
+	Physics GetPhysics() { return physics; }
+	void SetPhysics(Physics physics) { this->physics = physics; }
 	Vector2 GetScale() { return scale; }
-	void SetTransform(Transform2D new_transform) { transform = new_transform; }
 
 	WorldObject(string name, Transform2D new_transform, Vector2 new_scale) :
-		name(name), transform(new_transform), scale(new_scale){}
+		name(name), physics(new_transform), scale(new_scale){}
 };

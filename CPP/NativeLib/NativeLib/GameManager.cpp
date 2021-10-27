@@ -21,7 +21,7 @@ void GameManager::_ready(){
 
 void GameManager::_process(float delta){
 	game_world.update(delta);
-	ai_manager.update(delta);
+	ai_manager.Update(delta);
 }
 
 void GameManager::_physics_process(float delta){
