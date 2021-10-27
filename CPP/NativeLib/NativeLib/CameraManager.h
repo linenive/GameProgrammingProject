@@ -17,8 +17,8 @@ namespace godot {
 		float g_zoom_max = 1.5;
 		float g_zoom_min = 0.5;
 
-		void CameraMovewithKey(Vector2 velocity);
-		void CameraMovewithMouse(Vector2 now_mouse_vector);
+		void CameraMoveWithKey(Vector2 velocity);
+		void CameraMoveWithMouse(Vector2 now_mouse_vector);
 	public:
 		float g_speed = 3;
 		float g_mouse_moving_interval = 100;

@@ -8,8 +8,8 @@ void CameraManager::_register_methods() {
 	register_method("SetNowCameraPosition", &CameraManager::SetNowCameraPosition);
 	register_method("GetNowCameraPosition", &CameraManager::GetNowCameraPosition);
 
-	register_method("CameraMovewithKey", &CameraManager::CameraMovewithKey);
-	register_method("CameraMovewithMouse", &CameraManager::CameraMovewithMouse);
+	register_method("CameraMoveWithKey", &CameraManager::CameraMoveWithKey);
+	register_method("CameraMoveWithMouse", &CameraManager::CameraMoveWithMouse);
 
 	register_method("ZoomOut", &CameraManager::ZoomOut);
 	register_method("ZoomIn", &CameraManager::ZoomIn);
@@ -36,14 +36,14 @@ void godot::CameraManager::SetMouseMovingBound(){
 	g_mouse_moving_bound = get_viewport_rect().size - Vector2(interval, interval);
 }
 
-void godot::CameraManager::CameraMovewithKey(Vector2 velocity){
+void godot::CameraManager::CameraMoveWithKey(Vector2 velocity){
 	if (velocity.length() > 0) {
 		velocity = velocity.normalized() * g_speed;
 		g_now_position += velocity;
 	}
 }
 
-void godot::CameraManager::CameraMovewithMouse(Vector2 now_mouse_vector){
+void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector){
 	Vector2 addPos = Vector2(0, 0);
 	if (now_mouse_vector.x < g_mouse_moving_interval) {
 		addPos.x = -g_speed;
