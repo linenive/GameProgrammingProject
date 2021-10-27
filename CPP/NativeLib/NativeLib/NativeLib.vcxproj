@@ -175,6 +175,9 @@
     <ClInclude Include="GameWorldForWorld.h" />
     <ClInclude Include="GodotScenePath.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="ObjectRepository.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="TaskReserveInfo.h" />

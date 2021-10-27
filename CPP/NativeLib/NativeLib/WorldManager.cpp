@@ -16,6 +16,9 @@ void WorldManager::_register_methods() {
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
 	register_method("GetCharacterTransform", &WorldManager::GetCharacterTransform);
 	register_method("GetCharacterScale", &WorldManager::GetCharacterScale);
+	register_method("GetCharacterName", &WorldManager::GetCharacterName);
+	register_method("GetCharacterItem", &WorldManager::GetCharacterItem);
+	register_method("GetCharacterInventorySize", &WorldManager::GetCharacterInventorySize);
 
 	register_method("CheckTileInVector2", &WorldManager::CheckTileInVector2);
 	register_method("GetTileIdByVector2", &WorldManager::GetTileIdByVector2);
@@ -85,4 +88,14 @@ bool WorldManager::CheckCoordinatesInTileMap(Coordinates coord)
 		coord.x > -1 && coord.x < game_world->GetTileMap()->GetTileSizeX() &&
 		coord.y > -1 && coord.y < game_world->GetTileMap()->GetTileSizeY()
 	);
+}
+
+Array WorldManager::GetCharacterItem(int character_id, int item_id) {
+	Array result = Array();
+	Item item = game_world->GetObjectRepository()->GetCharacter(character_id).GetInventory()->GetItem(item_id);
+
+	result.push_back(item.GetName().c_str());
+	result.push_back(item.GetType().c_str());
+	
+	return result;
 }

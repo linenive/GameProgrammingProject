@@ -20,7 +20,7 @@ func _ready():
 	for i in x:
 		for j in y:
 			new_character(float(i), float(j))
-	
+
 func tile_map_create():
 	var tile_size = world_manager.GetTileNumber()
 	
@@ -49,6 +49,8 @@ func new_character(x, y):
 	world_manager.TestNewCharacter(transform2)
 	character_instance.transform = transform2
 	$Character.add_child(character_instance)
+	
+	character_instance.init_character(world_manager.GetCharacterNumber()-1)
 
 func _process(delta):
 	var character_num = world_manager.GetCharacterNumber()

@@ -33,3 +33,8 @@ const float UPDATE_INTERVAL_TIME = .5;
 
 // 캐릭터 최대 속력
 const float CHARACTER_MAX_VELOCITY = 2.0;
+
+// 인벤토리 관련
+const int INVENTORY_X = 1;
+const int INVENTORY_Y = 1;
+const int ITEM_STACK_MAX = 10;
