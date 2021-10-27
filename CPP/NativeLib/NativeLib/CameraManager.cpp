@@ -44,20 +44,20 @@ void godot::CameraManager::CameraMoveWithKey(Vector2 velocity){
 }
 
 void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector){
-	Vector2 addPos = Vector2(0, 0);
+	Vector2 add_pos = Vector2(0, 0);
 	if (now_mouse_vector.x < g_mouse_moving_interval) {
-		addPos.x = -g_speed;
+		add_pos.x = -g_speed;
 	}
 	else if (now_mouse_vector.x > g_mouse_moving_bound.x) {
-		addPos.x = g_speed;
+		add_pos.x = g_speed;
 	}
 	if (now_mouse_vector.y < g_mouse_moving_interval) {
-		addPos.y = -g_speed;
+		add_pos.y = -g_speed;
 	}
 	else if (now_mouse_vector.y > g_mouse_moving_bound.y) {
-		addPos.y = g_speed;
+		add_pos.y = g_speed;
 	}
-	g_now_position += addPos;
+	g_now_position += add_pos;
 }
 
 void godot::CameraManager::ZoomOut(){
