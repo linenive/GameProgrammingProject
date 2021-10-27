@@ -202,6 +202,7 @@
     </ClInclude>
     <ClInclude Include="VillageRepository.h">
       <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
     <ClInclude Include="AIManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
