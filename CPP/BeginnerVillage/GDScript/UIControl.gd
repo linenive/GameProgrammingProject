@@ -3,6 +3,8 @@ extends Node
 export var available_popups : Array
 export var used_popups : Array
 
+var clicked_position_label : Label
+
 var world_manager
 var input_manager
 
@@ -13,6 +15,8 @@ var next_ui_pos_offset = Vector2(20, 20)
 func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
+	
+	clicked_position_label = $HUD/CharacterMove/ClickPositionLabel
 	
 	for popup in get_node("ObjectInfoUI").get_children():
 		available_popups.append(popup)
@@ -66,7 +70,6 @@ func get_popup_by_object_id(object_id):
 	for popup in used_popups:
 		if popup.get_target_object_id() == object_id:
 			return popup
-	
 	return null
 
 func is_already_shown(object_id):
@@ -81,3 +84,8 @@ func show_tile_info(mouse_pos):
 	#print(tile_type)
 	pass
 
+func MouseRightClickLabelUpdate(new_click_position):
+	clicked_position_label.text = str(new_click_position)
+	
+func _on_CharacterMove_pressed():
+	var game_manager = get_node("/root/Main").AIClickUpdate(input_manager.GetNowMouseRightClickPoint())
