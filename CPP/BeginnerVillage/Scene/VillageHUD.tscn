@@ -9,7 +9,7 @@ font_data = ExtResource( 1 )
 [node name="VillageHUD" type="PanelContainer"]
 anchor_right = 0.195
 anchor_bottom = 0.207
-margin_right = 3.32001
+margin_right = 53.32
 margin_bottom = -22.2
 script = ExtResource( 2 )
 __meta__ = {
@@ -20,7 +20,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 246.0
-margin_bottom = 95.0
+margin_bottom = 99.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 239.0
@@ -90,25 +90,89 @@ margin_top = 58.0
 margin_right = 239.0
 margin_bottom = 88.0
 
-[node name="TimeTitle" type="Label" parent="VBoxContainer/HBoxContainer3"]
+[node name="TimeHBox" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 232.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 1 )
-text = "시간 : "
+custom_constants/separation = 0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="Label" parent="VBoxContainer/HBoxContainer3"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 232.0
-margin_bottom = 23.0
+[node name="Year" type="Label" parent="VBoxContainer/HBoxContainer3/TimeHBox"]
+margin_left = 26.0
+margin_right = 80.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 54, 0 )
 custom_fonts/font = SubResource( 1 )
-text = "yyyy:hh:mm"
-align = 2
+text = "9999년"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Month" type="Label" parent="VBoxContainer/HBoxContainer3/TimeHBox"]
+margin_left = 80.0
+margin_right = 110.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "12월"
+align = 1
+valign = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Day" type="Label" parent="VBoxContainer/HBoxContainer3/TimeHBox"]
+margin_left = 110.0
+margin_right = 140.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "31일"
+align = 1
+valign = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hour" type="Label" parent="VBoxContainer/HBoxContainer3/TimeHBox"]
+margin_left = 140.0
+margin_right = 167.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 27, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "24"
+align = 1
+valign = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="colon" type="Label" parent="VBoxContainer/HBoxContainer3/TimeHBox"]
+margin_left = 167.0
+margin_right = 171.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+text = ":"
+align = 1
+valign = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Minute" type="Label" parent="VBoxContainer/HBoxContainer3/TimeHBox"]
+margin_left = 171.0
+margin_right = 198.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 27, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "59"
+align = 1
 valign = 3
 __meta__ = {
 "_edit_use_anchors_": false

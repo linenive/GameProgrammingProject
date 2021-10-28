@@ -12,7 +12,7 @@ const int MAX_TILE_NUMBER_X = 128;
 const int MAX_TILE_NUMBER_Y = 128;
 const float TILE_WIDTH = 32;
 const float TILE_HEIGHT = 32;
-
+ 
 // 시간 관련
 const int MINUTE_PER_HOUR = 26;
 const int HOUR_PER_DAY = 23;
