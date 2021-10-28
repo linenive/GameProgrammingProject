@@ -27,7 +27,12 @@ func input_process_for_game_world(event):
 			if event.pressed:
 				left_mouse_button_pressed(mouse_pos)
 			else:
-				left_mouse_button_released(mouse_pos)ion)
+				left_mouse_button_released(mouse_pos)
+		elif event.button_index ==BUTTON_RIGHT:
+			if event.pressed:
+				right_mouse_button_pressed(mouse_pos)
+				uicontrol.MouseRightClickLabelUpdate(mouse_pos)
+				
 	if event is InputEventMouseMotion:
 		var mouse_pos = convert_position_by_camera(event.position)
 		mouse_motion(mouse_pos)
@@ -45,7 +50,10 @@ func left_mouse_button_pressed(position):
 
 func left_mouse_button_released(position):
 	input_manager.MouseRelease(position)
-
+	
+func right_mouse_button_pressed(position):
+	input_manager.MouseRightClick(position)
+	
 func mouse_motion(position):
 	input_manager.MouseHover(position)
 	#update_tile_info(position)

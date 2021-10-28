@@ -26,5 +26,8 @@ void Task::ExecuteTask(WorldObject* performer){
 
 	performer_physics.velocity = Truncate(performer_physics.velocity + steering, CHARACTER_MAX_VELOCITY);
 	
-	performer->SetPhysics(UpdatePosition(performer_physics));
+	Vector2 now_distance = target - performer_physics.getPosition();
+	float distance = now_distance.length();
+	if (distance > CHARACTER_SLOWING_RADIUS)
+		performer->SetPhysics(UpdatePosition(performer_physics));
 }
