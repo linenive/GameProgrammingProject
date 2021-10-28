@@ -13,14 +13,12 @@ void InputManager::MouseHover(Vector2 position) {
 	now_mouse_point = position;
 }
 
-
 bool InputManager::IsDragging() {
 	return control_context->GetInputStatus().is_dragging;
 }
 void InputManager::MouseRightClick(Vector2 position) {
-	now_mouse_right_click_point = position;
+	now_mouse_right_click_point = position;}
 }
-
 
 void InputManager::TestStructureButton() {
 	control_context->SwitchToBulidState();

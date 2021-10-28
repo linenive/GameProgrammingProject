@@ -189,6 +189,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CharacterMove" type="Button" parent="UIControl/HUD"]
+margin_left = 411.072
+margin_top = 4.23784
+margin_right = 423.072
+margin_bottom = 24.2378
+custom_fonts/font = SubResource( 3 )
+text = "이동"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickPositionLabel" type="Label" parent="UIControl/HUD/CharacterMove"]
+margin_left = -27.7187
+margin_top = 24.6878
+margin_right = 48.2813
+margin_bottom = 40.6878
+custom_fonts/font = SubResource( 4 )
+text = "asdfasdf"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ObjectInfoUI" type="Node" parent="UIControl"]
 
 [node name="PopupUI1" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
@@ -1041,5 +1063,5 @@ __meta__ = {
 
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
 
-[connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]
+[connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"
 

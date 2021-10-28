@@ -16,9 +16,11 @@ func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
 	
-	clicked_position_label = $HUD/ClickPositionLabel
+	clicked_position_label = $HUD/CharacterMove/ClickPositionLabel
 	
-	available_popups.append(popup)
+	for popup in get_node("ObjectInfoUI").get_children():
+		available_popups.append(popup)
+
 
 func show_info_popup(node, type):
 	var object_id = node.get_instance_id()
