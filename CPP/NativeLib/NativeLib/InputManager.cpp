@@ -10,7 +10,6 @@ void InputManager::EndDrag(Vector2 end_pos) {
 	is_dragging = false;
 }
 
-
 void InputManager::MouseClick(Vector2 position) {
 	Godot::print("[InputManager]Mouse Click: " + position);
 
@@ -21,11 +20,15 @@ void InputManager::MouseRelease(Vector2 position) {
 	Godot::print("[InputManager]Mouse Release: " + position);
 
 	EndDrag(position);
-
 }
 
 void InputManager::MouseHover(Vector2 position) {
 	now_mouse_point = position;
+}
+
+void InputManager::MouseRightClick(Vector2 position) {
+	now_mouse_right_click_point = position;
+
 }
 
 bool InputManager::IsDragging()
@@ -65,6 +68,9 @@ void InputManager::_register_methods() {
 	register_method("MouseHover", &InputManager::MouseHover);
 	register_method("IsDragging", &InputManager::IsDragging);
 	register_method("GetDragRect", &InputManager::GetDragRect);
+
+	register_method("MouseRightClick", &InputManager::MouseRightClick);
+	register_method("GetNowMouseRightClickPoint", &InputManager::GetNowMouseRightClickPoint);
 }
 
 void InputManager::_init() {

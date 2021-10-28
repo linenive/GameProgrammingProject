@@ -43,3 +43,11 @@ const int ITEM_STACK_MAX = 10;
 const float CAMERA_MOVING_SPEED = 4.0;
 const float CAMERA_MOVING_MOUSE_BOUNDARY = 2.0;
 const float CAMERA_DEFAULT_ZOOM_DEGREE = 1.0;
+
+// ĳ������ �̵� Ÿ�� �����, �ӵ��� �����ϱ� ���� �� �����ӿ� �ִ�� ���� �� �ִ� ��
+// ũ�Ⱑ �������� ȸ���� ���� �Ѵ�
+const float CHARACTER_MAX_FORCE = 0.4;
+
+// ĳ���Ͱ� Ÿ������ �̵��� ��, �������� ���ߴ� �ּ� �Ÿ�
+const float CHARACTER_MIN_DISTANCE = 3;
+

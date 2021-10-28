@@ -27,7 +27,7 @@ func input_process_for_game_world(event):
 			if event.pressed:
 				left_mouse_button_pressed(mouse_pos)
 			else:
-				left_mouse_button_released(mouse_pos)
+				left_mouse_button_released(mouse_pos)ion)
 	if event is InputEventMouseMotion:
 		var mouse_pos = convert_position_by_camera(event.position)
 		mouse_motion(mouse_pos)

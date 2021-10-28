@@ -12,6 +12,7 @@ public:
 	Physics(Transform2D transform){
 		this->transform = transform;
 		velocity = Vector2(0, 0);
+		mass = 10;
 		max_velocity = Vector2(CHARACTER_MAX_VELOCITY, CHARACTER_MAX_VELOCITY);
 	}
 
