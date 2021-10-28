@@ -56,8 +56,8 @@ func DetectCameraMoveObj():
 		
 func MoveCameraDefault():
 	DetectKeyPress()
-	$CameraCPP.CameraMovewithKey(g_velocity)
-	$CameraCPP.CameraMovewithMouse(get_viewport().get_mouse_position())
+	$CameraCPP.CameraMoveWithKey(g_velocity)
+	$CameraCPP.CameraMoveWithMouse(get_viewport().get_mouse_position())
 	
 	$Camera2D.position = $CameraCPP.GetNowCameraPosition()
 	
