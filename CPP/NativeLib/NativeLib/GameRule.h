@@ -48,5 +48,6 @@ const int EVENT_LOG_STACK_MAX = 1000;
 
 const float CHARACTER_MAX_FORCE = 0.4;
 
-const float CHARACTER_MIN_DISTANCE = 3;
+const float CHARACTER_SLOWING_RADIUS = 3;
+
 
