@@ -3,6 +3,8 @@ extends CanvasLayer
 export var available_popups : Array
 export var used_popups : Array
 
+var clicked_position_label : Label
+
 var world_manager
 var input_manager
 
@@ -14,8 +16,9 @@ func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
 	
-	for popup in get_node("/root/Main/UIControl/ObjectInfoUI").get_children():
-		available_popups.append(popup)
+	clicked_position_label = $HUD/CharacterMove/ClickPositionLabel
+	
+	available_popups.append(popup)
 
 func show_info_popup(node, type):
 	var object_id = node.get_instance_id()
@@ -66,7 +69,6 @@ func get_popup_by_object_id(object_id):
 	for popup in used_popups:
 		if popup.get_target_object_id() == object_id:
 			return popup
-	
 	return null
 
 func is_already_shown(object_id):
@@ -81,3 +83,8 @@ func show_tile_info(mouse_pos):
 	#print(tile_type)
 	pass
 
+func MouseRightClickLabelUpdate(new_click_position):
+	clicked_position_label.text = str(new_click_position)
+	
+func _on_CharacterMove_pressed():
+	var game_manager = get_node("/root/Main").AIClickUpdate(input_manager.GetNowMouseRightClickPoint())

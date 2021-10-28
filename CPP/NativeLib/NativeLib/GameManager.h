@@ -23,5 +23,6 @@ public:
 	void _process(float delta);
 	void _physics_process(float delta);
 
+	void AIClickUpdate(Vector2 new_target);
 	GameWorld* GetGameWorld() { return &game_world; }
 };

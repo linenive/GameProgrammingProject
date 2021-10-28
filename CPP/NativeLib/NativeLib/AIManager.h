@@ -17,6 +17,10 @@ private:
 		Task* new_task = new Task(Vector2(600.0, 300.0));
 		performer->SetTask(new_task);
 	};
+	void ChangeTaskTarget(Character* performer, Vector2 target) {
+		// 이후 이동 task만 Get 하는것을 추가해야할듯
+		performer->GetTask()->SetTarget(target);
+	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
@@ -40,5 +44,11 @@ public:
 		AssignTaskToWholeCharacter();
 		ExecuteCharactersTask();
 	};
-	
+
+	void ChangeTaskTargetWholeCharacter(Vector2 target) {
+		for (Character* c : *characters) {
+			if (c->HasTask())
+				ChangeTaskTarget(c, target);
+		}
+	}
 };
