@@ -17,16 +17,17 @@ func _ready():
 	for popup in get_node("ObjectInfoUI").get_children():
 		available_popups.append(popup)
 
-func show_info_popup(object_id, type, title, content):
+func show_info_popup(node, type):
+	var object_id = node.get_instance_id()
+	
 	if is_already_shown(object_id):
 		set_ui_top(get_popup_by_object_id(object_id))
 		return
 	
 	var instantiate_pos = get_instantiate_pos()
-	var popup_window_title = convert_type_to_window_title(type)
 	var popup = get_available_popup()
 	
-	popup.show_popup(object_id, instantiate_pos, popup_window_title, title, content)
+	popup.show_popup(node, type, instantiate_pos)
 
 func get_available_popup():
 	if available_popups.empty():
@@ -51,16 +52,6 @@ func get_instantiate_pos():
 func close_info_popup(popup):
 	used_popups.erase(popup)
 	available_popups.push_back(popup)
-
-func convert_type_to_window_title(type):
-	var window_title = "Info Title"
-	
-	if type == "Character":
-		window_title = "Character Info"
-	elif type == "Tile":
-		window_title = "Tile Info"
-		
-	return window_title
 
 func get_top_ui_pos():
 	var popup = used_popups.back()

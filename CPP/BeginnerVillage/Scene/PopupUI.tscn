@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GDScript/PopupUI.gd" type="Script" id=1]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Image/DefaultCharacter.png" type="Texture" id=3]
+[ext_resource path="res://Image/tile_earth.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 30
+size = 25
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 20
+size = 15
 font_data = ExtResource( 2 )
 
 [node name="PopupUI" type="WindowDialog"]
@@ -39,11 +41,60 @@ __meta__ = {
 
 [node name="content" type="Label" parent="."]
 margin_left = 10.0
-margin_top = 57.0
+margin_top = 42.1675
 margin_right = 162.0
-margin_bottom = 103.0
+margin_bottom = 88.1675
 custom_fonts/font = SubResource( 2 )
 text = "Info_context"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterSprite" type="Sprite" parent="."]
+position = Vector2( 267.25, 44.875 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 3 )
+
+[node name="InventoryTitle" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 97.5
+margin_right = 162.0
+margin_bottom = 143.5
+custom_fonts/font = SubResource( 2 )
+text = "Inventory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 9.5
+margin_top = 124.5
+margin_right = 49.5
+margin_bottom = 164.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemSprite" type="Sprite" parent="Panel"]
+position = Vector2( 20, 20 )
+texture = ExtResource( 4 )
+
+[node name="ItemName" type="Label" parent="."]
+margin_left = 56.6812
+margin_top = 127.136
+margin_right = 126.681
+margin_bottom = 141.136
+text = "item name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemType" type="Label" parent="."]
+margin_left = 56.6812
+margin_top = 146.736
+margin_right = 126.681
+margin_bottom = 160.736
+text = "item name"
 __meta__ = {
 "_edit_use_anchors_": false
 }

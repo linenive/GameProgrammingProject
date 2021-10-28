@@ -44,6 +44,17 @@ public:
 	Vector2 GetCharacterScale(int character_id) {
 		return game_world->GetObjectRepository()->GetCharacter(character_id).GetScale();
 	}
+	String GetCharacterName(int character_id) {
+		return String(game_world->GetObjectRepository()->GetCharacter(character_id).GetName().c_str());
+	}
+	Dictionary GetCharacterInfo(int character_id);
+
+	Array GetCharacterItem(int character_id, int item_id);
+
+	int GetCharacterInventorySize(int character_id) {
+		return game_world->GetObjectRepository()->GetCharacter(character_id).GetInventory()->GetSize();
+	}
+
 	bool CheckTileInVector2(Vector2 vector);
 	int GetTileIdByVector2(Vector2 vector);
 
@@ -60,5 +71,4 @@ public:
 	int GetMoney() {
 		return game_world->GetVillageRepository()->GetVillage()->GetMoney();
 	}
-
 };

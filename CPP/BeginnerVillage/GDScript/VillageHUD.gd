@@ -32,12 +32,15 @@ func set_village_name(name):
 	show_village_name()
 
 func show_time():
-	var year = get_node("/root/Main/UIManager").GetYear()
-	var month = get_node("/root/Main/UIManager").GetMonth()
-	var day = get_node("/root/Main/UIManager").GetDay()
-	var hour = get_node("/root/Main/UIManager").GetHour()
-	var minute = get_node("/root/Main/UIManager").GetMinute()
+	var year = str(get_node("/root/Main/UIManager").GetYear())+"년"
+	var month = str(get_node("/root/Main/UIManager").GetMonth())+"월"
+	var day = str(get_node("/root/Main/UIManager").GetDay())+"일"
+	var hour = "%02d" %[get_node("/root/Main/UIManager").GetHour()]
+	#var hour_str = "%02d" %[hour]
+	var minute = "%02d" %[get_node("/root/Main/UIManager").GetMinute()]
 	
-	var date_str = "%d년 %02d월 %02d일 %02d:%02d" % [year, month, day, hour, minute]
-		
-	$VBoxContainer/HBoxContainer3/Time.text = date_str
+	$VBoxContainer/HBoxContainer3/TimeHBox/Year.text = year
+	$VBoxContainer/HBoxContainer3/TimeHBox/Month.text = month
+	$VBoxContainer/HBoxContainer3/TimeHBox/Day.text = day
+	$VBoxContainer/HBoxContainer3/TimeHBox/Hour.text = hour
+	$VBoxContainer/HBoxContainer3/TimeHBox/Minute.text = minute

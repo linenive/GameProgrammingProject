@@ -12,7 +12,7 @@ const int MAX_TILE_NUMBER_X = 128;
 const int MAX_TILE_NUMBER_Y = 128;
 const float TILE_WIDTH = 32;
 const float TILE_HEIGHT = 32;
-
+ 
 // 시간 관련
 const int MINUTE_PER_HOUR = 26;
 const int HOUR_PER_DAY = 23;
@@ -33,3 +33,8 @@ const float UPDATE_INTERVAL_TIME = .5;
 
 // 캐릭터 최대 속력
 const float CHARACTER_MAX_VELOCITY = 2.0;
+
+// 인벤토리 관련
+const int INVENTORY_X = 1;
+const int INVENTORY_Y = 1;
+const int ITEM_STACK_MAX = 10;

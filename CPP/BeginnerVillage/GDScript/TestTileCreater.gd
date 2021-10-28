@@ -10,17 +10,7 @@ func _ready():
 	character_scene = load("res://Scene/Character.tscn")
 	
 	tile_map_create()
-	
-	#temporary
-	var x = [100, 200, 300]
-	var y = [100, 200, 300, 400, 500]
-	
-	# 주의: ready에서 new_character 하면 character 목록에 제대로 들어가지 않을 수 있음
-	# world_manager의 ready 에서 character 목록을 초기화하기 때문인 듯
-	for i in x:
-		for j in y:
-			new_character(float(i), float(j))
-	
+
 func tile_map_create():
 	var tile_size = world_manager.GetTileNumber()
 	
@@ -49,6 +39,8 @@ func new_character(x, y):
 	world_manager.TestNewCharacter(transform2)
 	character_instance.transform = transform2
 	$Character.add_child(character_instance)
+	
+	character_instance.init_character(world_manager.GetCharacterNumber()-1)
 
 func _process(delta):
 	var character_num = world_manager.GetCharacterNumber()
