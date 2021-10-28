@@ -1,9 +1,9 @@
 #pragma once
 
-// ¹®ÀÚ ÃÖ´ë ±æÀÌ
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
 const int MAX_GAMEOBJECT_NAME_SIZE = 32;
 
-// ¸Ê °ü·Ã
+// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 const float MAP_START_POS_X = 0;
 const float MAP_START_POS_Y = 0;
 const int DEFAULT_TILE_NUMBER_X = 54;
@@ -13,28 +13,33 @@ const int MAX_TILE_NUMBER_Y = 128;
 const float TILE_WIDTH = 32;
 const float TILE_HEIGHT = 32;
  
-// ½Ã°£ °ü·Ã
+// ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 const int MINUTE_PER_HOUR = 26;
 const int HOUR_PER_DAY = 23;
 const int DAYS_PER_MONTH = 20;
 const int MONTH_PER_YEAR = 8;
 const int YEAR_MAXIMUM = 9999;
 
-// ±âÅ¸ ·ê(ÀÓ½Ã)
-// ±âº» °ÔÀÓ ½ÃÀÛ ½Ã°£
+// ï¿½ï¿½Å¸ ï¿½ï¿½(ï¿½Ó½ï¿½)
+// ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 const int DEFAULT_START_YEAR = 1200;
 const int DEFAULT_START_MONTH = 1;
 const int DEFAULT_START_DAY = 1;
 const int DEFAULT_START_HOUR = 0;
 const int DEFAULT_START_MINUTE = 0;
 
-// Update ÁÖ±â
+// Update ï¿½Ö±ï¿½
 const float UPDATE_INTERVAL_TIME = .5;
 
-// Ä³¸¯ÅÍ ÃÖ´ë ¼Ó·Â
+// Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ó·ï¿½
 const float CHARACTER_MAX_VELOCITY = 2.0;
 
-// ÀÎº¥Åä¸® °ü·Ã
+// ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½
 const int INVENTORY_X = 1;
 const int INVENTORY_Y = 1;
 const int ITEM_STACK_MAX = 10;
+
+// Camera ï¿½ï¿½ï¿½ï¿½
+const float CAMERA_MOVING_SPEED = 4.0;
+const float CAMERA_MOVING_MOUSE_BOUNDARY = 2.0;
+const float CAMERA_DEFAULT_ZOOM_DEGREE = 1.0;

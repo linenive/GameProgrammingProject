@@ -11,7 +11,7 @@ var g_screen_size
 var g_velocity
 
 var kcamera_speed=4
-var kmouse_moving_interval=200
+var kmouse_moving_interval=10
 
 var kzoom_default=1.0
 var kzoom_in=0.5
@@ -20,7 +20,7 @@ var kzoom_min = 0.5
 
 func _ready():	
 	SetScreenLimit()
-	SetCameraLimit()
+	# SetCameraLimit()
 	InitCameraSetting()
 	
 func _process(_delta):
@@ -30,7 +30,6 @@ func _process(_delta):
 func SetScreenLimit():
 	g_world_size = get_node("/root/Main/WorldManager").GetWorldSize()
 	g_screen_size = get_viewport_rect().size
-	$CameraCPP.SetMouseMovingBound(g_screen_size)
 	
 func SetCameraLimit():
 	$Camera2D.limit_left = 0
@@ -59,7 +58,7 @@ func MoveCameraDefault():
 	$CameraCPP.CameraMoveWithKey(g_velocity)
 	$CameraCPP.CameraMoveWithMouse(get_viewport().get_mouse_position())
 	
-	$Camera2D.position = $CameraCPP.GetNowCameraPosition()
+	$Camera2D.position = $CameraCPP.GetCurrentCameraPosition()
 	
 func DetectKeyPress():
 	g_velocity = Vector2(0,0)
@@ -92,17 +91,17 @@ func DetectZoomScrollKey():
 func ZoomScroll():
 	if Input.is_action_just_released("wheel_down"):
 		$CameraCPP.ZoomOut()
-		ZoomCamera($CameraCPP.GetNowZoom())
+		ZoomCamera($CameraCPP.GetCurrentZoom())
 	if Input.is_action_just_released("wheel_up"):
 		$CameraCPP.ZoomIn()	
-		ZoomCamera($CameraCPP.GetNowZoom())
+		ZoomCamera($CameraCPP.GetCurrentZoom())
 		
 func ZoomCamera(new_zoom):
 	$Camera2D.zoom.x = new_zoom
 	$Camera2D.zoom.y = new_zoom	
 
 func Zoom(new_zoom):
-	$CameraCPP.SetNowZoom(new_zoom)
+	$CameraCPP.SetCurrentZoom(new_zoom)
 	ZoomCamera(new_zoom)
 	
 # test와 연관된 부분, 그만 따라가기 버튼을 누르면 카메라가 줌아웃되고 다시 플레이어가 움직일 수 있게 되는 것
