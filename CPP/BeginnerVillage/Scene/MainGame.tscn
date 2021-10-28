@@ -32,6 +32,8 @@ script = ExtResource( 8 )
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource( 6 )
 
+[node name="CameraManager" parent="." instance=ExtResource( 5 )]
+
 [node name="JanTestGDScript" type="Node" parent="."]
 
 [node name="TestTileCreater" type="Node" parent="JanTestGDScript"]
@@ -139,7 +141,5 @@ margin_bottom = -56.2
 [node name="PopupUI9" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
 [node name="PopupUI10" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
-
-[node name="CameraManager" parent="." instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="JanTestGDScript/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
