@@ -2,6 +2,7 @@ extends Sprite
 
 var uicontrol
 var godot_input
+
 var character_id : int
 var character_path
 
