@@ -48,6 +48,5 @@ const float CAMERA_DEFAULT_ZOOM_DEGREE = 1.0;
 // ũ�Ⱑ �������� ȸ���� ���� �Ѵ�
 const float CHARACTER_MAX_FORCE = 0.4;
 
-// ĳ���Ͱ� Ÿ������ �̵��� ��, �������� ���ߴ� �ּ� �Ÿ�
-const float CHARACTER_MIN_DISTANCE = 3;
+const float CHARACTER_SLOWING_RADIUS = 3;
 
