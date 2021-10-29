@@ -50,6 +50,7 @@ script = ExtResource( 9 )
 [node name="Character" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
 [node name="HeyTest" type="Label" parent="JanTestGDScript"]
+visible = false
 margin_left = 584.883
 margin_top = 167.424
 margin_right = 769.883
@@ -143,7 +144,6 @@ margin_top = 24.6878
 margin_right = 48.2813
 margin_bottom = 40.6878
 custom_fonts/font = SubResource( 4 )
-text = "asdfasdf"
 __meta__ = {
 "_edit_use_anchors_": false
 }
