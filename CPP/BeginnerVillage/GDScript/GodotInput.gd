@@ -30,8 +30,8 @@ func input_process_for_game_world(event):
 				left_mouse_button_released(mouse_pos)
 		elif event.button_index ==BUTTON_RIGHT:
 			if event.pressed:
-				right_mouse_button_pressed(mouse_pos)
-				uicontrol.MouseRightClickLabelUpdate(mouse_pos)
+				right_mouse_button_pressed(event.position)
+				uicontrol.MouseRightClickLabelUpdate(event.position)
 				
 	if event is InputEventMouseMotion:
 		var mouse_pos = convert_position_by_camera(event.position)

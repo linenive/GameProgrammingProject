@@ -20,7 +20,7 @@ var kzoom_min = 0.5
 
 func _ready():	
 	SetScreenLimit()
-	# SetCameraLimit()
+	SetCameraLimit()
 	InitCameraSetting()
 	
 func _process(_delta):
