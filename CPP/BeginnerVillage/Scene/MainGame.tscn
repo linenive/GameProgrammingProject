@@ -89,6 +89,7 @@ script = ExtResource( 9 )
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 10 )
+
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -206,7 +207,6 @@ margin_top = 24.6878
 margin_right = 48.2813
 margin_bottom = 40.6878
 custom_fonts/font = SubResource( 4 )
-text = "asdfasdf"
 __meta__ = {
 "_edit_use_anchors_": false
 }
