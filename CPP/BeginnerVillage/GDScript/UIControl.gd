@@ -16,7 +16,7 @@ func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
 	
-	clicked_position_label = $HUD/CharacterMove/ClickPositionLabel
+	clicked_position_label = $HUD/ClickPositionLabel
 	
 	available_popups.append(popup)
 
