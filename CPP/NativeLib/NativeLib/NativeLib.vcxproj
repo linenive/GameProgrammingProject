@@ -169,6 +169,8 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="CoordinatesSystem.h" />
     <ClInclude Include="DateSystem.h" />
+    <ClInclude Include="EventLog.h" />
+    <ClInclude Include="EventLogRepository.h" />
     <ClInclude Include="GameWorldForAI.h" />
     <ClInclude Include="GameWorldForInput.h" />
     <ClInclude Include="GameWorldForUI.h" />
@@ -184,6 +186,9 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileFactory.h" />
     <ClInclude Include="TileRepository.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventGenerator.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Village.h" />

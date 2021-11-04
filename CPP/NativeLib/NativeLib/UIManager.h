@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "GameManager.h"
 #include <Node.hpp>
+#include <Array.hpp>
 
 class UIManager : public Node {
 	GODOT_CLASS(UIManager, Node);
@@ -24,4 +25,13 @@ public:
 	int GetDay();
 	int GetHour();
 	int GetMinute();
+
+	Array GetEventLogNames() {
+		Array log_array = Array();
+		list<EventLog> events = game_world->GetEventLog();
+		for (EventLog log : events) {
+			log_array.append(String(log.GetEventDescription().c_str()));
+		}
+		return log_array;
+	}
 };

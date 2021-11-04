@@ -13,6 +13,7 @@ private:
 	TileRepository tile_repo;
 	ObjectRepository object_repo;
 	VillageRepository village_repo;
+	EventLogRepository event_log_repo;
 
 public:
 	GameWorld();
@@ -20,5 +21,6 @@ public:
 	virtual TileRepository* GetTileMap() { return &tile_repo; }
 	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }
 	virtual VillageRepository* GetVillageRepository() { return &village_repo; }
+	virtual list<EventLog> GetEventLog() { return event_log_repo.GetEventLog(); }
 	void update(float delta);
 };

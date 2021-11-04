@@ -10,6 +10,7 @@ void UIManager::_register_methods() {
 	register_method("GetDay", &UIManager::GetDay);
 	register_method("GetHour", &UIManager::GetHour);
 	register_method("GetMinute", &UIManager::GetMinute);
+	register_method("GetEventLogNames", &UIManager::GetEventLogNames);
 	register_method("TestFunc", &UIManager::TestFunc);
 }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -13,11 +13,12 @@
 [ext_resource path="res://Scene/PopupUI.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scene/ConfirmationDialog.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scene/VillageHUD.tscn" type="PackedScene" id=13]
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 4 )
+[ext_resource path="res://Scene/JanTestGDScript.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
 [node name="Main" type="Node"]
@@ -35,6 +36,7 @@ script = ExtResource( 6 )
 [node name="CameraManager" parent="." instance=ExtResource( 5 )]
 
 [node name="JanTestGDScript" type="Node" parent="."]
+script = ExtResource( 14 )
 
 [node name="TestTileCreater" type="Node" parent="JanTestGDScript"]
 script = ExtResource( 9 )
@@ -65,7 +67,7 @@ margin_left = 5.78651
 margin_top = 109.276
 margin_right = 121.787
 margin_bottom = 152.275
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "캐릭터 만들기"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,7 +105,7 @@ margin_left = 61.7732
 margin_top = 133.576
 margin_right = 149.493
 margin_bottom = 123.776
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "test"
 align = 2
 __meta__ = {
