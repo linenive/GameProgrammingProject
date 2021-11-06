@@ -150,7 +150,7 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="PathFinder.cpp" />
+    <ClCompile Include="Structure.h" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
     <ClCompile Include="TestManager.cpp" />
