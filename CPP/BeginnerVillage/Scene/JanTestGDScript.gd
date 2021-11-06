@@ -1,9 +1,11 @@
 extends Node
 
 var ui_manager
+var input_manager
 
 func _ready():
 	ui_manager = get_node("/root/Main/UIManager")
+	input_manager = get_node("/root/Main/InputManager")
 
 func _process(delta):
 	#GetEventLogExample()
@@ -17,3 +19,7 @@ func GetEventLogExample():
 		print(String(single_log[2])+"년 "+String(single_log[3])+"월 "+\
 			String(single_log[4])+"일 "+ String(single_log[5])+":"+\
 			String(single_log[6]))
+
+
+func _on_Button2_pressed():
+	input_manager.TestStructureButton()
