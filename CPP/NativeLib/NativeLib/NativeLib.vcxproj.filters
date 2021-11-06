@@ -108,6 +108,9 @@
     <ClCompile Include="Task.cpp">
       <Filter>소스 파일\Repository\World\WorldObject</Filter>
     </ClCompile>
+    <ClCompile Include="Structure.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestManager.h">
@@ -241,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="EventLog.h">
       <Filter>헤더 파일\Repository\GameTime\TimeEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlState.h">
+      <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

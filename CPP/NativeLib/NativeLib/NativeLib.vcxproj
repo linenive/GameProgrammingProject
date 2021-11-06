@@ -149,6 +149,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Structure.h" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
     <ClCompile Include="TestManager.cpp" />
@@ -177,11 +178,13 @@
     <ClInclude Include="GameWorldForWorld.h" />
     <ClInclude Include="GodotScenePath.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="ControlState.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="ObjectRepository.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileFactory.h" />
