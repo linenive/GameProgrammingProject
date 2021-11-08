@@ -45,7 +45,7 @@ public:
 			return CalculateTileNumberByCoordinates(hovered_tile);
 		}
 		else {
-			// To-do: enumÀ¸·Î ¿¡·¯ ÄÚµå °ü¸®ÇÏ±â: InvalidPositionError
+			// To-do: enumï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½: InvalidPositionError
 			return -1;
 		}
 	}

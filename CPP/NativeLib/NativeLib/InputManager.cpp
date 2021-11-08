@@ -74,7 +74,6 @@ void InputManager::_register_methods() {
 	register_method("TestStructureButton", &InputManager::TestStructureButton);
 	register_method("IsTileHighlighting", &InputManager::IsTileHighlighting);
 	register_method("GetTileHighlight", &InputManager::GetTileHighlight);
-
 	register_method("MouseRightClick", &InputManager::MouseRightClick);
 	register_method("GetNowMouseRightClickPoint", &InputManager::GetNowMouseRightClickPoint);
 
