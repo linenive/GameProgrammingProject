@@ -28,5 +28,7 @@ public:
 	bool IsDragging();
 	void TestStructureButton();
 	Rect2 GetDragRect();
+	bool IsTileHighlighting();
+	Rect2 GetTileHighlight();
 
 };

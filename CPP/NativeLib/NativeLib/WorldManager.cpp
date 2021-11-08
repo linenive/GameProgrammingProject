@@ -45,19 +45,11 @@ void WorldManager::_process(float delta)
 
 
 bool WorldManager::CheckTileInVector2(Vector2 vector){
-	float x = vector.x;
-	float y = vector.y;
-	Coordinates hovered_tile = ApsolutePositionToCoordinates(Vector2(x, y));
-	
-	return CheckCoordinatesInTileMap(hovered_tile);
+	return game_world->GetTileMap()->CheckTileInVector2(vector);
 }
 
 int WorldManager::GetTileIdByVector2(Vector2 vector) {
-	float x = vector.x;
-	float y = vector.y;
-	Coordinates hovered_tile = ApsolutePositionToCoordinates(Vector2(x, y));
-	// printf("[WorldManager]GetTile: %d\n", CalculateTileNumberByCoordinates(hovered_tile));
-	return CalculateTileNumberByCoordinates(hovered_tile);
+	return game_world->GetTileMap()->GetTileIdByVector2(vector);
 }
 
 Vector2 WorldManager::GetWorldSize() {
@@ -74,20 +66,6 @@ void WorldManager::LoadGameWorld() {
 	ERR_FAIL_COND(child == nullptr);
 	game_world = child->GetGameWorld();
 
-}
-
-int WorldManager::CalculateTileNumberByCoordinates(Coordinates coord)
-{
-	int tile_size_x = game_world->GetTileMap()->GetTileSizeX();
-	return coord.x + tile_size_x * coord.y;
-}
-
-bool WorldManager::CheckCoordinatesInTileMap(Coordinates coord)
-{
-	return (
-		coord.x > -1 && coord.x < game_world->GetTileMap()->GetTileSizeX() &&
-		coord.y > -1 && coord.y < game_world->GetTileMap()->GetTileSizeY()
-	);
 }
 
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {

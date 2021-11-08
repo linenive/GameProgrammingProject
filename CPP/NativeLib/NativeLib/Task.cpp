@@ -1,12 +1,12 @@
 #include "Task.h"
 
 Vector2 UpdateVelocityBySeek(Physics performer_physics, Vector2 target) {
-	return (target - performer_physics.getPosition()).normalized() * performer_physics.max_velocity;
+	return (target - performer_physics.GetPosition()).normalized() * performer_physics.max_velocity;
 }
 
 Physics UpdatePosition(Physics performer_physics) {
-	Vector2 new_position = performer_physics.getPosition() + performer_physics.velocity;
-	performer_physics.setPosition(new_position);
+	Vector2 new_position = performer_physics.GetPosition() + performer_physics.velocity;
+	performer_physics.SetPosition(new_position);
 	return performer_physics;
 }
 
