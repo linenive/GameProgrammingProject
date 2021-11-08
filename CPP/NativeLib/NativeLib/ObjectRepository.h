@@ -9,11 +9,9 @@ private:
 
 	vector<WorldObject*> stuffs;
 	vector<Character*> characters;
-	int character_size;
 
 public:
 	ObjectRepository() {
-		character_size = 0;
 	}
 	~ObjectRepository() {
 		for (auto e : stuffs)
@@ -24,11 +22,10 @@ public:
 	void TestNewCharacter(Transform2D transform) {
 		WorldObject* new_character = factory.createObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
 		characters.push_back((Character*)new_character);
-		character_size++;
 		Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetPhysics().GetPosition());
 	}
 	int GetCharacterNumber() {
-		return character_size;
+		return characters.size();
 	}
 	Character GetCharacter(int character_id) {
 		return *characters[character_id];

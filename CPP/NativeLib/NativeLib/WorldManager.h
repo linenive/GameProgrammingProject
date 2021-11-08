@@ -52,8 +52,7 @@ public:
 		return game_world->GetObjectRepository()->GetCharacter(character_id).GetInventory()->GetSize();
 	}
 
-	bool CheckTileInVector2(Vector2 vector);
-	int GetTileIdByVector2(Vector2 vector);
+	int GetTileId(Vector2 vector);
 
 	Vector2 GetWorldSize();
 

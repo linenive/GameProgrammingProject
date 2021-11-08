@@ -52,13 +52,15 @@ func mouse_motion(position):
 	#uicontrol.show_tile_info(position)
 
 func update_tile_info(mouse_vector):
-	if world_manager.CheckTileInVector2(mouse_vector):
-		var tile_id = world_manager.GetTileIdByVector2(mouse_vector)
+	var tile_id = world_manager.GetTileId(mouse_vector)
+	if tile_id >= 0:
 		tile_info_label.text \
 			= String(tile_id)+": "+world_manager.GetTileName(tile_id) \
 			+ ", scale: (" \
 			+ String(world_manager.GetTileScale().x) + "," \
 			+ String(world_manager.GetTileScale().y) + ")"
+	else:
+		tile_info_label.text = ""
 
 func _process(_delta):
 	update()

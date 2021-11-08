@@ -20,7 +20,7 @@ bool InputManager::IsDragging() {
 }
 
 void InputManager::TestStructureButton() {
-	control_context.SetState(new BuildState());
+	control_context.SwitchToBulidState();
 }
 
 Rect2 InputManager::GetDragRect() {
@@ -48,11 +48,11 @@ Rect2 InputManager::GetDragRect() {
 }
 
 bool InputManager::IsTileHighlighting() {
-	return control_context.GetInputStatus().is_tile_highlighting;
+	return control_context.GetInputStatus().is_area_highlighted;
 }
 
 Rect2 InputManager::GetTileHighlight() {
-	return control_context.GetInputStatus().tile_highlight;
+	return control_context.GetInputStatus().highlighted_area;
 }
 
 void InputManager::_register_methods() {
@@ -74,7 +74,7 @@ void InputManager::_init() {
 
 void InputManager::_ready() {
 	LoadGameWorld();
-	control_context.SetGameWorld(game_world);
+	control_context = ControlContext(game_world);
 }
 
 void InputManager::LoadGameWorld() {
