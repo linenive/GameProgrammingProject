@@ -74,7 +74,6 @@ bool WorldManager::CheckCoordinatesInTileMap(Coordinates coord){
 		coord.y > -1 && coord.y < game_world->GetTileMap()->GetTileSizeY()
 	);
 }
-
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {
 	Array result = Array();
 	Item item = game_world->GetObjectRepository()->GetCharacter(character_id).GetInventory()->GetItem(item_id);
