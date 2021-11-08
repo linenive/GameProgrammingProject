@@ -18,6 +18,6 @@ public:
 };
 
 // To-do: 카메라 위치 반영하여 계산
-Coordinates ApsolutePositionToCoordinates(Vector2 apsolute_position);
+Coordinates AbsolutePositionToCoordinates(Vector2 apsolute_position);
 
 Vector2 CoordinatesToCenterVector(Coordinates coord);

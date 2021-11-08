@@ -20,8 +20,7 @@ void WorldManager::_register_methods() {
 	register_method("GetCharacterItem", &WorldManager::GetCharacterItem);
 	register_method("GetCharacterInventorySize", &WorldManager::GetCharacterInventorySize);
 
-	register_method("CheckTileInVector2", &WorldManager::CheckTileInVector2);
-	register_method("GetTileIdByVector2", &WorldManager::GetTileIdByVector2);
+	register_method("GetTileId", &WorldManager::GetTileId);
 	register_method("GetWorldSize", &WorldManager::GetWorldSize);
 
 	register_method("GetVillageName", &WorldManager::GetVillageName);
@@ -43,13 +42,8 @@ void WorldManager::_process(float delta)
 
 }
 
-
-bool WorldManager::CheckTileInVector2(Vector2 vector){
-	return game_world->GetTileMap()->CheckTileInVector2(vector);
-}
-
-int WorldManager::GetTileIdByVector2(Vector2 vector) {
-	return game_world->GetTileMap()->GetTileIdByVector2(vector);
+int WorldManager::GetTileId(Vector2 vector) {
+	return game_world->GetTileMap()->GetTileId(vector);
 }
 
 Vector2 WorldManager::GetWorldSize() {
@@ -74,6 +68,6 @@ Array WorldManager::GetCharacterItem(int character_id, int item_id) {
 
 	result.push_back(item.GetName().c_str());
 	result.push_back(item.GetType().c_str());
-	
+
 	return result;
 }

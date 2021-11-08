@@ -5,8 +5,8 @@ public:
 	bool is_dragging;
 	Vector2 drag_start_point;
 	Vector2 now_mouse_point;
-	bool is_tile_highlighting;
-	Rect2 tile_highlight;
+	bool is_area_highlighted;
+	Rect2 highlighted_area;
 
 	void ResetDrag() {
 		is_dragging = false;
@@ -16,37 +16,38 @@ public:
 
 class ControlState {
 protected:
-	InputStatus* input;
+	InputStatus input;
 	GameWorldForInput* world;
 
 	void StartDrag(Vector2 start_pos) {
-		input->drag_start_point = start_pos;
-		input->is_dragging = true;
+		input.drag_start_point = start_pos;
+		input.is_dragging = true;
 	}
 
 	void EndDrag(Vector2 end_pos) {
-		input->is_dragging = false;
+		input.is_dragging = false;
 	}
 
 	int GetTileIDIfMouseHoverTileMap(Vector2 mouse_position) {
-		if (world->GetTileMap()->CheckTileInVector2(mouse_position)) {
-			return world->GetTileMap()->GetTileIdByVector2(mouse_position);
-		}
-		else {
-			return -1;
-		}
+		return world->GetTileMap()->GetTileId(mouse_position);
 	}
 
 public:
+	ControlState(){}
+	ControlState(GameWorldForInput* _world) : world(_world) {}
 	virtual void MouseHover(Vector2 position) = 0;
 	virtual void MouseClick(Vector2 position) = 0;
 	virtual void MouseRelease(Vector2 position) = 0;
 	virtual void Reset() = 0;
-	void SetInputStatus(InputStatus* _input) { input = _input; }
 	void SetGameWorld(GameWorldForInput* _world) { world = _world; }
+	InputStatus GetInputStatus() { return input; }
 };
 
 class NormalState : public ControlState {
+public:
+	NormalState(): ControlState(){}
+	NormalState(GameWorldForInput* _world): ControlState(_world){}
+
 	void MouseHover(Vector2 mouse_position) override {
 	}
 
@@ -60,7 +61,7 @@ class NormalState : public ControlState {
 		EndDrag(mouse_position);
 	}
 	void Reset() {
-		input->ResetDrag();
+		input.ResetDrag();
 	}
 };
 
@@ -70,14 +71,17 @@ private:
 		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
 		if (hovered_tile_id >= 0) {
 			Tile hoverd_tile = world->GetTileMap()->GetTile(hovered_tile_id);
-			input->is_tile_highlighting = true;
-			input->tile_highlight = hoverd_tile.GetPhysics().GetRect();
+			input.is_area_highlighted = true;
+			input.highlighted_area = hoverd_tile.GetPhysics().GetRect();
 		}
 		else {
-			input->is_tile_highlighting = false;
+			input.is_area_highlighted = false;
 		}
 	}
 public:
+	BuildState():ControlState(){}
+	BuildState(GameWorldForInput* _world) : ControlState(_world) {}
+
 	void MouseHover(Vector2 mouse_position) override {
 		HighlightHoverdTile(mouse_position);
 	}
@@ -91,49 +95,49 @@ public:
 	}
 
 	void Reset() {
-		input->is_tile_highlighting = false;
+		input.is_area_highlighted = false;
 	}
 };
 
 class ControlContext {
 private:
-	ControlState* state;
-	InputStatus input;
-	GameWorldForInput* world;
+	ControlState* current_state;
+	NormalState* normal_state;
+	BuildState* build_state;
+
 public:
-	ControlContext()
-		: state(new NormalState()){
-		state->SetInputStatus(&input);
+	ControlContext(){}
+	ControlContext(GameWorldForInput* world){
+		normal_state = new NormalState(world);
+		build_state = new BuildState(world);
+		SwitchToNormalState();
 	}
-	~ControlContext() { if (state) delete state; }
-
-	void SetGameWorld(GameWorldForInput* _world) {
-		world = _world;
+	~ControlContext() {
+		delete normal_state;
+		delete build_state;
 	}
 
-	void SetState(ControlState* new_state) {
-		if (state) {
-			state->Reset();
-			delete state;
-		}
-		state = new_state;
-		state->SetInputStatus(&input);
-		state->SetGameWorld(world);
+	void SwitchToNormalState() {
+		current_state = normal_state;
+	}
+
+	void SwitchToBulidState() {
+		current_state = build_state;
 	}
 
 	void MouseHover(Vector2 mouse_position) {
-		state->MouseHover(mouse_position);
+		current_state->MouseHover(mouse_position);
 	}
 
 	void MouseClick(Vector2 mouse_position) {
-		state->MouseClick(mouse_position);
+		current_state->MouseClick(mouse_position);
 	}
 
 	void MouseRelease(Vector2 mouse_position) {
-		state->MouseRelease(mouse_position);
+		current_state->MouseRelease(mouse_position);
 	}
 
 	InputStatus GetInputStatus() {
-		return input;
+		return current_state->GetInputStatus();
 	}
 };

@@ -23,6 +23,11 @@ private:
 		return coord.x + tile_size_x * coord.y;
 	}
 
+	bool IsInWorld(Vector2 vector) {
+		Coordinates hovered_tile = AbsolutePositionToCoordinates(vector);
+		return CheckCoordinatesInTileMap(hovered_tile);
+	}
+
 public:
 	TileRepository() :tile_size_x(DEFAULT_TILE_NUMBER_X), tile_size_y(DEFAULT_TILE_NUMBER_Y) {
 
@@ -34,14 +39,15 @@ public:
 	int GetTileSizeY() { return tile_size_y; }
 	Tile GetTile(int tile_num) { return *tile_map[tile_num]; }
 
-	bool CheckTileInVector2(Vector2 vector) {
-		Coordinates hovered_tile = ApsolutePositionToCoordinates(vector);
-		return CheckCoordinatesInTileMap(hovered_tile);
-	}
-
-	int GetTileIdByVector2(Vector2 vector) {
-		Coordinates hovered_tile = ApsolutePositionToCoordinates(vector);
-		return CalculateTileNumberByCoordinates(hovered_tile);
+	int GetTileId(Vector2 vector) {
+		if (IsInWorld(vector)) {
+			Coordinates hovered_tile = AbsolutePositionToCoordinates(vector);
+			return CalculateTileNumberByCoordinates(hovered_tile);
+		}
+		else {
+			// To-do: enum으로 에러 코드 관리하기: InvalidPositionError
+			return -1;
+		}
 	}
 };
 
