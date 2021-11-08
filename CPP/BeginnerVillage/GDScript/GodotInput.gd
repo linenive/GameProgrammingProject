@@ -59,19 +59,4 @@ func update_tile_info(mouse_vector):
 			+ ", scale: (" \
 			+ String(world_manager.GetTileScale().x) + "," \
 			+ String(world_manager.GetTileScale().y) + ")"
-
-func _process(_delta):
-	update()
-		
-func _draw():
-	draw_rect(Rect2(100, 100, 100, 100), Color.yellow, false, 2.0, false)
-	if input_manager.IsDragging():
-		draw_drag_box(input_manager.GetDragRect())
-	if input_manager.IsTileHighlighting():
-		draw_highlight_box(input_manager.GetTileHighlight())
-	
-func draw_drag_box(rect):
-	draw_rect(rect, Color.white, false, 1.0, false)
-
-func draw_highlight_box(rect):
-	draw_rect(rect, Color.darkgray, false, 1.0, false)
+			
