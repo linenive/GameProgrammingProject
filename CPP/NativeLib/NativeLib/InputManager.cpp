@@ -3,30 +3,30 @@
 
 
 void InputManager::MouseClick(Vector2 position) {
-	control_context.MouseClick(position);
+	control_context->MouseClick(position);
 }
 
 void InputManager::MouseRelease(Vector2 position) {
-	control_context.MouseRelease(position);
+	control_context->MouseRelease(position);
 }
 
 void InputManager::MouseHover(Vector2 position) {
-	control_context.MouseHover(position);
+	control_context->MouseHover(position);
 	now_mouse_point = position;
 }
 
 bool InputManager::IsDragging() {
-	return control_context.GetInputStatus().is_dragging;
+	return control_context->GetInputStatus().is_dragging;
 }
 
 void InputManager::TestStructureButton() {
-	control_context.SwitchToBulidState();
+	control_context->SwitchToBulidState();
 }
 
 Rect2 InputManager::GetDragRect() {
 	Vector2 drag_left_top = Vector2();
 	Vector2 drag_size = Vector2();
-	Vector2 drag_start_point = control_context.GetInputStatus().drag_start_point;
+	Vector2 drag_start_point = control_context->GetInputStatus().drag_start_point;
 
 	if (drag_start_point.x > now_mouse_point.x) {
 		drag_left_top.x = now_mouse_point.x;
@@ -48,11 +48,11 @@ Rect2 InputManager::GetDragRect() {
 }
 
 bool InputManager::IsTileHighlighting() {
-	return control_context.GetInputStatus().is_area_highlighted;
+	return control_context->GetInputStatus().is_area_highlighted;
 }
 
 Rect2 InputManager::GetTileHighlight() {
-	return control_context.GetInputStatus().highlighted_area;
+	return control_context->GetInputStatus().highlighted_area;
 }
 
 void InputManager::_register_methods() {
@@ -74,7 +74,7 @@ void InputManager::_init() {
 
 void InputManager::_ready() {
 	LoadGameWorld();
-	control_context = ControlContext(game_world);
+	control_context = new ControlContext(game_world);
 }
 
 void InputManager::LoadGameWorld() {

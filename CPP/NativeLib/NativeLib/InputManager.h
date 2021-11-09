@@ -9,13 +9,16 @@ class InputManager : public Node {
 	GODOT_CLASS(InputManager, Node);
 
 private:
-	ControlContext control_context;
+	ControlContext* control_context;
 	GameWorldForInput* game_world;
 	Vector2 now_mouse_point;
 
 	void LoadGameWorld();
 
 public:
+	~InputManager() {
+		delete control_context;
+	}
 	
 	static void _register_methods();
 	void _init();
