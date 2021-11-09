@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
@@ -22,6 +23,7 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 17
+
 font_data = ExtResource( 4 )
 
 [node name="Main" type="Node"]
@@ -50,6 +52,7 @@ script = ExtResource( 9 )
 [node name="GodotInput" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -131,6 +134,27 @@ margin_top = 34.0
 margin_right = 441.0
 margin_bottom = 48.0
 custom_fonts/font = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterMove" type="Button" parent="UIControl/HUD"]
+margin_left = 411.072
+margin_top = 4.23784
+margin_right = 423.072
+margin_bottom = 24.2378
+custom_fonts/font = SubResource( 3 )
+text = "이동"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickPositionLabel" type="Label" parent="UIControl/HUD/CharacterMove"]
+margin_left = -27.7187
+margin_top = 24.6878
+margin_right = 48.2813
+margin_bottom = 40.6878
+custom_fonts/font = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
