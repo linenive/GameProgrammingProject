@@ -49,9 +49,6 @@ func draw_highlight_box(rect):
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 4 )
-
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
@@ -60,6 +57,8 @@ font_data = ExtResource( 4 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=1]
 
 font_data = ExtResource( 4 )
 
@@ -153,7 +152,9 @@ margin_left = 61.7732
 margin_top = 133.576
 margin_right = 149.493
 margin_bottom = 123.776
+
 custom_fonts/font = SubResource( 3 )
+
 text = "test"
 align = 2
 __meta__ = {
