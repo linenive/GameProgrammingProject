@@ -164,6 +164,8 @@
   <ItemGroup>
     <ClInclude Include="AIExecuter.h" />
     <ClInclude Include="AIManager.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="StaticObject.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterFactory.h" />
@@ -186,6 +188,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="TaskReserveInfo.h" />
+    <ClInclude Include="Surface.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileFactory.h" />
     <ClInclude Include="TileRepository.h" />

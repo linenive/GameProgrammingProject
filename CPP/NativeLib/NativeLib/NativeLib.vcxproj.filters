@@ -176,12 +176,6 @@
     <ClInclude Include="Timer.h">
       <Filter>헤더 파일\Library</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>헤더 파일\Repository\World</Filter>
-    </ClInclude>
-    <ClInclude Include="TileRepository.h">
-      <Filter>헤더 파일\Repository\World</Filter>
-    </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
@@ -250,6 +244,21 @@
     </ClInclude>
     <ClInclude Include="ControlState.h">
       <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TileRepository.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

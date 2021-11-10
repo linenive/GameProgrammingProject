@@ -14,19 +14,19 @@ void TileRepository::CreateTileMapTemp() {
 			float pos_y = MAP_START_POS_Y + j * TILE_HEIGHT + TILE_HEIGHT / 2;
 
 			tile_map[i + tile_size_x * j] = new Tile(
-				TILE_EARTH, createTransform2D(pos_x, pos_y), Vector2(TILE_WIDTH, TILE_HEIGHT)
+				Surface(SURFACE_EARTH, createTransform2D(pos_x, pos_y), Vector2(TILE_WIDTH, TILE_HEIGHT))
 			);
 		}
 	}
 
 	for (i = 227; i < 232; i++) {
-		tile_map[i]->SetTileType(TileType(TILE_RIVER));
+		tile_map[i]->GetSurface().SetSurfaceType(SurfaceType(SURFACE_RIVER));
 	}
 
-	tile_map[613]->SetTileType(TileType(TILE_RIVER));
-	tile_map[766]->SetTileType(TileType(TILE_RIVER));
+	tile_map[613]->GetSurface().SetSurfaceType(SurfaceType(SURFACE_RIVER));
+	tile_map[766]->GetSurface().SetSurfaceType(SurfaceType(SURFACE_RIVER));
 
 	for (i = 900; i < 1004; i++) {
-		tile_map[i]->SetTileType(TileType(TILE_OCEAN));
+		tile_map[i]->GetSurface().SetSurfaceType(SurfaceType(SURFACE_OCEAN));
 	}
 }

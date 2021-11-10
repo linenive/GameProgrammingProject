@@ -3,7 +3,6 @@
 #include "CoordinatesSystem.h"
 #include "GameRule.h"
 
-// world object를 vector로 구현하였으나 이후 quad-tree 자료구조를 고려해본다.
 class TileRepository{
 private:
 	int tile_size_x;
@@ -38,6 +37,7 @@ public:
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
 	Tile GetTile(int tile_num) { return *tile_map[tile_num]; }
+	Surface GetSurface(int tile_num) { return (*tile_map[tile_num]).GetSurface(); }
 
 	int GetTileId(Vector2 vector) {
 		if (IsInWorld(vector)) {

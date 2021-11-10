@@ -1,44 +1,29 @@
 #pragma once
+#include "Surface.h"
 #include "WorldObject.h"
 
-enum eTileType {
-	TILE_NONE, TILE_EARTH, TILE_ROCK, TILE_RIVER, TILE_OCEAN
-};
-
-class TileType {
+class Tile {
 private:
-	string name;
+	WorldObject* layer[MAX_TILE_LAYER];
+	Surface surface;
+
 public:
-	TileType(eTileType tile_type) {
-		type = tile_type;
-		// To-do: 엑셀 문서를 읽는것으로 바꾸기
-		if (type == TILE_NONE)
-			name = "empty";
-		else if (type == TILE_EARTH)
-			name = "earth";
-		else if (type == TILE_ROCK)
-			name = "rock";
-		else if (type == TILE_RIVER)
-			name = "river";
-		else if (type == TILE_OCEAN)
-			name = "ocean";
-	}
-	eTileType type;
-	string GetName() { return name; }
-};
-
-class Tile : public WorldObject {
-
-private:
-	TileType tile_type;
-public:
-	Tile(TileType tile_type, Transform2D transform, Vector2 new_scale) : WorldObject(tile_type.GetName(),
-		transform, new_scale), tile_type(tile_type) {}
-
-	void SetTileType(TileType type) {
-		tile_type = type;
-		name = type.GetName();
+	Tile(Surface _surface):surface(_surface){}
+	WorldObject* GetTopWorldObject() {
+		int i;
+		for (i = MAX_TILE_LAYER - 1; i >= 0 ; i--) {
+			if (layer[i] != nullptr) {
+				return layer[i];
+			}
+		}
+		return &surface;
 	}
 
-	TileType GetTileType() { return tile_type; }
+	float GetPassSpeed() {
+		// To-do
+	}
+
+	Surface GetSurface() {
+		return surface;
+	}
 };
