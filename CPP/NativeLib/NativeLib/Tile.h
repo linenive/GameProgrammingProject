@@ -26,4 +26,8 @@ public:
 	Surface GetSurface() {
 		return surface;
 	}
+
+	void SetSurfaceType(SurfaceType type) {
+		surface.SetSurfaceType(type);
+	}
 };

@@ -1,16 +1,16 @@
 #pragma once
-#include "WorldObject.h"
+#include "StaticObject.h"
 
 // юс╫ц
 enum eStructureType {
 	A, B, C, D
 };
 
-class Structure : public WorldObject{
+class Structure : public StaticObject{
 private:
 	eStructureType type;
 public:
-	Structure(string name, Transform2D transform, Vector2 new_scale, eStructureType type)
-		: WorldObject(name, transform, new_scale), type(type){}
+	Structure(string name, Rect2 _ocupation_area, eStructureType type)
+		: StaticObject(name, _ocupation_area), type(type){}
 
 };
