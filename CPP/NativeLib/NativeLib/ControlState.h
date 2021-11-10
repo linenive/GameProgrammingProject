@@ -77,9 +77,9 @@ private:
 	void HighlightHoverdTile(Vector2 mouse_position) {
 		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
 		if (hovered_tile_id >= 0) {
-			Tile hoverd_tile = world->GetTileMap()->GetTile(hovered_tile_id);
+			Surface hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_id);
 			input.is_area_highlighted = true;
-			input.highlighted_area = hoverd_tile.GetPhysics().GetRect();
+			input.highlighted_area = hoverd_surface.GetPhysics().GetRect();
 		}
 		else {
 			input.is_area_highlighted = false;

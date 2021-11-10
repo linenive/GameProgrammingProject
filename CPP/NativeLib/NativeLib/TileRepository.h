@@ -38,6 +38,7 @@ public:
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
 	Tile GetTile(int tile_num) { return *tile_map[tile_num]; }
+	Surface GetSurface(int tile_num) { return (*tile_map[tile_num]).GetSurface(); }
 
 	int GetTileId(Vector2 vector) {
 		if (IsInWorld(vector)) {
