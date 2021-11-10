@@ -21,6 +21,6 @@ public:
 	virtual TileRepository* GetTileMap() { return &tile_repo; }
 	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }
 	virtual VillageRepository* GetVillageRepository() { return &village_repo; }
-	virtual list<EventLog> GetEventLog() { return event_log_repo.GetEventLog(); }
+	virtual EventLogRepository* GetEventLogRepository() { return &event_log_repo; }
 	void update(float delta);
 };

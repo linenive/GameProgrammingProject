@@ -26,12 +26,7 @@ public:
 	int GetHour();
 	int GetMinute();
 
-	Array GetEventLogNames() {
-		Array log_array = Array();
-		list<EventLog> events = game_world->GetEventLog();
-		for (EventLog log : events) {
-			log_array.append(String(log.GetEventDescription().c_str()));
-		}
-		return log_array;
+	Array GetEventLogs() {
+		return game_world->GetEventLogRepository()->GetSerialized_event_log();
 	}
 };

@@ -5,5 +5,5 @@
 class GameWorldForUI {
 public:
 	virtual GameTime GetGameTime() = 0;
-	virtual list<EventLog> GetEventLog() = 0;
+	virtual EventLogRepository* GetEventLogRepository() = 0;
 };
