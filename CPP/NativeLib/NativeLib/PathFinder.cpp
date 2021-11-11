@@ -1,3 +1,4 @@
+#pragma once
 #include "GodotScenePath.h"
 #include "PathFinder.h"
 
