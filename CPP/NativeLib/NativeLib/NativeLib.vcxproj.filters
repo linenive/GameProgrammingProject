@@ -105,9 +105,6 @@
     <ClCompile Include="Task.cpp">
       <Filter>소스 파일\Repository\World\WorldObject</Filter>
     </ClCompile>
-    <ClCompile Include="PathFinder.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestManager.h">
@@ -217,18 +214,6 @@
     </ClInclude>
     <ClInclude Include="Task.h">
       <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="PathFinder.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
