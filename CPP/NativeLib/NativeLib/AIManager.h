@@ -20,10 +20,7 @@ private:
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 		// ÀÌÈÄ ÀÌµ¿ task¸¸ Get ÇÏ´Â°ÍÀ» Ãß°¡ÇØ¾ßÇÒµí
 		performer->GetTask()->SetTarget(target);
-<<<<<<< HEAD
 		//path_finder->PathFinding(performer->GetPhysics().getPosition(), target);
-=======
->>>>>>> parent of 808e53e (yojin-6/#7 Pathfinder ì‘ì„±ì¤‘ CoordinatesSystemì˜¤ë¥˜ í™•ì¸)
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
