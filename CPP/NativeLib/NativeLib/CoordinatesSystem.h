@@ -1,3 +1,4 @@
+#pragma once
 #include "GameRule.h"
 #include "Common.h"
 
