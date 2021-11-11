@@ -1,6 +1,6 @@
 #pragma once
 
-// ½Ã°£ °ü·Ã
+// ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 const string SCENEPATH_GAMEMANAGER = "/root/Main";
 
 //const string SCENEPATH_WORLDMANAGER = "/root/Main/WorldManager";

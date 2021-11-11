@@ -13,14 +13,15 @@ private:
 	AIExecuter* ai_executer;
 
 	void FindNewTask(Character* performer) {
-		// ÀÓ½Ã·Î 600, 300 ±îÁö ÀÌµ¿ÇÏ´Â task ³ÖÀ½
+		// ï¿½Ó½Ã·ï¿½ 600, 300 ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ task ï¿½ï¿½ï¿½ï¿½
 		Task* new_task = new Task(Vector2(600.0, 300.0));
 		performer->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
-		// ÀÌÈÄ ÀÌµ¿ task¸¸ Get ÇÏ´Â°ÍÀ» Ãß°¡ÇØ¾ßÇÒµí
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ taskï¿½ï¿½ Get ï¿½Ï´Â°ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ø¾ï¿½ï¿½Òµï¿½
 		performer->GetTask()->SetTarget(target);
 		//path_finder->PathFinding(performer->GetPhysics().getPosition(), target);
+
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
@@ -41,7 +42,7 @@ public:
 		characters = world->GetObjectRepository()->GetCharacters();
 	}
 	void Update(float delta) {
-		// To-do: ¾Æ·¡´Â °¡²û¾¿¸¸ ¾÷µ¥ÀÌÆ®ÇØ ÁÖ¾îµµ ±¦ÂúÀ½
+		// To-do: ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö¾îµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		AssignTaskToWholeCharacter();
 		ExecuteCharactersTask();
 	};
