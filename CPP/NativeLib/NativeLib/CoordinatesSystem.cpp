@@ -10,6 +10,7 @@ Coordinates AbsolutePositionToCoordinates(Vector2 apsolute_position) {
 	return Coordinates(x, y);
 }
 
+
 Vector2 CoordinatesToCenterVector(Coordinates coord){
 	float x = coord.x * TILE_WIDTH + TILE_WIDTH / 2;
 	float y = coord.y * TILE_HEIGHT + TILE_HEIGHT / 2;

@@ -110,6 +110,8 @@
     </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>소스 파일\Library</Filter>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="ControlState.h">
       <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

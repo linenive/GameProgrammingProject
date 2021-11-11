@@ -9,6 +9,7 @@ class WorldManager : public Node {
 private:
 	GameWorldForWorld* game_world;
 	void LoadGameWorld();
+	bool CheckCoordinatesInTileMap(Coordinates coord);
 
 public:
 	static void _register_methods();
@@ -53,6 +54,10 @@ public:
 	}
 
 	int GetTileId(Vector2 vector);
+
+	bool CheckTileInVector2(Vector2 vector);
+	int GetTileIdByVector2(Vector2 vector);
+	int CalculateTileNumberByCoordinates(Coordinates coord);
 
 	Vector2 GetWorldSize();
 

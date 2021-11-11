@@ -49,6 +49,9 @@ func draw_highlight_box(rect):
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
@@ -59,6 +62,7 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=4]
 
 [sub_resource type="DynamicFont" id=1]
+
 
 font_data = ExtResource( 4 )
 
@@ -112,7 +116,7 @@ margin_left = 5.78651
 margin_top = 109.276
 margin_right = 121.787
 margin_bottom = 152.275
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "캐릭터 만들기"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -176,18 +180,20 @@ margin_left = 401.0
 margin_top = 5.0
 margin_right = 413.0
 margin_bottom = 25.0
+
 custom_fonts/font = SubResource( 3 )
 text = "이동"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ClickPositionLabel" type="Label" parent="UIControl/HUD"]
-margin_left = 401.0
-margin_top = 34.0
-margin_right = 441.0
-margin_bottom = 48.0
+[node name="ClickPositionLabel" type="Label" parent="UIControl/HUD/CharacterMove"]
+margin_left = 3.0
+margin_top = 35.0
+margin_right = 150.0
+margin_bottom = 73.0
 custom_fonts/font = SubResource( 3 )
+text = "x, y"
 
 __meta__ = {
 "_edit_use_anchors_": false
