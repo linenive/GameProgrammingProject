@@ -185,7 +185,6 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="ObjectRepository.h" />
-    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PickRandom.h" />
     <ClInclude Include="Random.h" />
