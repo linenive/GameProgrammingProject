@@ -39,7 +39,7 @@ public:
 	void SetGameWorld(GameWorldForAI* world) {
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
-		//path_finder->SetWorldManager();
+
 	}
 	void Update(float delta) {
 		// To-do: 아래는 가끔씩만 업데이트해 주어도 괜찮음
