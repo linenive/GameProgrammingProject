@@ -1,7 +1,5 @@
 #pragma once
-#include "Common.h"
 #include "GameManager.h"
-#include <Node.hpp>
 #include "CoordinatesSystem.h"
 
 class WorldManager : public Node {
