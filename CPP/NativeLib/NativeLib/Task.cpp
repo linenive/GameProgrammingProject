@@ -16,6 +16,10 @@ Vector2 Truncate(Vector2 velocity, float max) {
 	return velocity * i;
 }
 
+void Task::SetTarget(Vector2 new_target){
+	target = new_target; 
+}
+
 void Task::ExecuteTask(WorldObject* performer){
 	Physics performer_physics = performer->GetPhysics();
 

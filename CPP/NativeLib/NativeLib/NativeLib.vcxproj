@@ -149,6 +149,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
     <ClCompile Include="TestManager.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="ObjectRepository.h" />
+    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Tile.h" />

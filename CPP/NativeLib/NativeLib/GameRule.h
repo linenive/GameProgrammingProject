@@ -39,13 +39,12 @@ const int INVENTORY_X = 1;
 const int INVENTORY_Y = 1;
 const int ITEM_STACK_MAX = 10;
 
-// Camera ����
 const float CAMERA_MOVING_SPEED = 4.0;
 const float CAMERA_MOVING_MOUSE_BOUNDARY = 2.0;
 const float CAMERA_DEFAULT_ZOOM_DEGREE = 1.0;
 
-// ĳ������ �̵� Ÿ�� �����, �ӵ��� �����ϱ� ���� �� �����ӿ� �ִ�� ���� �� �ִ� ��
-// ũ�Ⱑ �������� ȸ���� ���� �Ѵ�
+// max force that can press to the character
+// bigger - >smoother
 const float CHARACTER_MAX_FORCE = 0.4;
 
 const float CHARACTER_SLOWING_RADIUS = 3;
