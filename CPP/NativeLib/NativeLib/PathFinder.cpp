@@ -1,5 +1,6 @@
 #pragma once
 #include "GodotScenePath.h"
+#include "WorldManager.h"
 #include "PathFinder.h"
 
 void PathFinder::AstarInit(){
@@ -85,13 +86,14 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 }
 
 void PathFinder::SetWorldManager(){
+	/*
 	Node* node;
 	node -> godot::Node::get_node(NodePath(SCENEPATH_WORLDMANAGER.c_str()));
 	ERR_FAIL_COND(node == nullptr);
 	worldManager = node->cast_to<WorldManager>(node);
 	ERR_FAIL_COND(worldManager == nullptr);
 
-	Godot::print("[PathFinder] Get WorldManager Test: " +worldManager->GetWorldSize());
+	Godot::print("[PathFinder] Get WorldManager Test: " +worldManager->GetWorldSize());*/
 }
 
 Coordinates PathFinder::GetCoordinatesByVector(Vector2 pos) {

@@ -1,6 +1,4 @@
 #pragma once
-#include "WorldManager.h"
-#include "CoordinatesSystem.h"
 #include <unordered_map>
 #include <set>
 

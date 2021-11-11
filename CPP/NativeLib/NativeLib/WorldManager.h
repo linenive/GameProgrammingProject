@@ -1,8 +1,6 @@
 #pragma once
-#include "Common.h"
 #include "GameManager.h"
 #include <Node.hpp>
-
 class WorldManager : public Node {
 	GODOT_CLASS(WorldManager, Node);
 
