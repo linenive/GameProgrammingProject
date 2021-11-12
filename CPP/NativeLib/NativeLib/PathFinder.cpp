@@ -3,11 +3,13 @@
 #include "WorldManager.h"
 #include "PathFinder.h"
 
+WorldManager worldManager;
 void PathFinder::AstarInit(){
 	open_list.clear();
 	ans.clear();
 	score_f_list.clear();
 
+	weight_h = 11;
 }
 
 int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile){
@@ -36,9 +38,9 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 	int dx[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 	int dy[8] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 
+	Godot::print("[PathFinder] >>>> Start pos : " + start_pos);
 	AstarInit();
 
-	Godot::print("[PathFinder] >>>> Start pos : " + start_pos);
 	Coordinates start_tile = GetCoordinatesByVector(start_pos);
 	Coordinates end_tile = GetCoordinatesByVector(target_pos);
 
@@ -59,7 +61,7 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 			next_tile.y = y;
 
 			if (x < 0 || y < 0 || x < MAX_TILE_NUMBER_X || y < MAX_TILE_NUMBER_Y) continue;
-			if (worldManager.GetTileType(worldManager.CalculateTileNumberByCoordinates(next_tile)) > 1)
+			if (DetectObstacle(next_tile))
 			{
 				Godot::print("[PathFinder] Obstacle Detect : ( %d, %d )" + (next_tile.x, next_tile.y));
 				continue; // 장애물에 대해선 검사를 하지 않는다.
@@ -86,19 +88,21 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 	return ans;
 }
 
+bool PathFinder::DetectObstacle(Coordinates next_tile) {
+	return worldManager.GetTileType(worldManager.CalculateTileNumberByCoordinates(next_tile)) > 1;
+}
 void PathFinder::SetWorldManager(){
-	/*
+	
+	Godot::print("[PathFinder] Get WorldManager Test Called ");
 	Node* node;
-	node . godot::Node::get_node(NodePath(SCENEPATH_WORLDMANAGER.c_str()));
+	node->godot::Node::get_node(NodePath("/root/Main/WorldManager"));
 	ERR_FAIL_COND(node == nullptr);
-	worldManager = node.cast_to<WorldManager>(node);
-	ERR_FAIL_COND(worldManager == nullptr);
-
-	Godot::print("[PathFinder] Get WorldManager Test: " +worldManager.GetWorldSize());*/
+	worldManager = *(node->cast_to<WorldManager>(node));
+	//ERR_FAIL_COND(worldManager == nullptr);
+	Godot::print("[PathFinder] Get WorldManager Test: " +worldManager.GetWorldSize());
 }
 
 Coordinates PathFinder::GetCoordinatesByVector(Vector2 pos) {
-
 	int now_tile_id = worldManager.GetTileIdByVector2(pos);
 	Godot::print("[PathFinder] Get Coordinate : " + pos + " : "+now_tile_id);
 	return Coordinates(now_tile_id / MAX_TILE_NUMBER_X, now_tile_id % MAX_TILE_NUMBER_X);
