@@ -1,7 +1,9 @@
 #pragma once
+//#include "WorldManager.h"
 #include <unordered_map>
 #include <set>
 
+using namespace std;
 class Comp {
 public:
 	bool operator()(const pair<Coordinates, int>& lhs, const pair<Coordinates, int>& rhs) const {
@@ -17,7 +19,7 @@ struct CoordinatesHash {
 class PathFinder {
 
 private:
-	WorldManager* worldManager;
+	WorldManager worldManager;
 
 	set<pair<Coordinates, int>, Comp> open_list;
 	vector<Coordinates> ans;

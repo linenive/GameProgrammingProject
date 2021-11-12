@@ -13,15 +13,11 @@ private:
 	AIExecuter* ai_executer;
 
 	void FindNewTask(Character* performer) {
-		// �ӽ÷� 600, 300 ���� �̵��ϴ� task ����
 		Task* new_task = new Task(Vector2(600.0, 300.0));
 		performer->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
-		// ���� �̵� task�� Get �ϴ°��� �߰��ؾ��ҵ�
 		performer->GetTask()->SetTarget(target);
-		//path_finder->PathFinding(performer->GetPhysics().getPosition(), target);
-
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {

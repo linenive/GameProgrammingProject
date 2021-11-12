@@ -8,7 +8,6 @@ class WorldManager : public Node {
 private:
 	GameWorldForWorld* game_world;
 	void LoadGameWorld();
-	int CalculateTileNumberByCoordinates(Coordinates coord);
 	bool CheckCoordinatesInTileMap(Coordinates coord);
 
 public:
@@ -55,6 +54,7 @@ public:
 
 	bool CheckTileInVector2(Vector2 vector);
 	int GetTileIdByVector2(Vector2 vector);
+	int CalculateTileNumberByCoordinates(Coordinates coord);
 
 	Vector2 GetWorldSize();
 
