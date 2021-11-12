@@ -1047,4 +1047,5 @@ __meta__ = {
 
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
 
-[connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed
+[connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]
+
