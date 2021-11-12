@@ -10,7 +10,7 @@ public:
 	Task(Vector2 target) : target(target) {}
 	~Task() {
 	}
-	void SetTarget(Vector2 new_target) { target = new_target; }
+	void SetTarget(Vector2 new_target);
 	Vector2 GetTarget() { return target; }
 	void ExecuteTask(WorldObject* performer);
 };

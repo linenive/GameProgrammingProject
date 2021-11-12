@@ -49,6 +49,9 @@ func draw_highlight_box(rect):
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
@@ -112,7 +115,7 @@ margin_left = 5.78651
 margin_top = 109.276
 margin_right = 121.787
 margin_bottom = 152.275
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "캐릭터 만들기"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1048,4 +1051,3 @@ __meta__ = {
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
 
 [connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]
-

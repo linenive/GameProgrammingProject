@@ -3,7 +3,9 @@
 #include "TaskReserveInfo.h"
 #include "GameWorldForAI.h"
 #include "AIExecuter.h"
+
 #include "Task.h"
+#include "PathFinder.h"
 
 class AIManager {
 
@@ -11,6 +13,7 @@ private:
 	GameWorldForAI* game_world;
 	vector<Character*>* characters;
 	AIExecuter* ai_executer;
+	PathFinder path_finder;
 
 	void FindNewTask(Character* performer) {
 		Task* new_task = new Task(Vector2(600.0, 300.0));
@@ -18,6 +21,11 @@ private:
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 		performer->GetTask()->SetTarget(target);
+
+		Godot::print("[AIManager] >>>> change target : " + performer->GetPhysics().getPosition());
+		
+		Godot::print("[AIManager] >>>> check path_finder : " + (path_finder.weight_h));
+		//path_finder.PathFinding(performer->GetPhysics().getPosition(), target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
@@ -36,6 +44,9 @@ public:
 	void SetGameWorld(GameWorldForAI* world) {
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
+		
+		path_finder = PathFinder();
+		//path_finder.SetWorldManager();
 	}
 	void Update(float delta) {
 		// To-do: �Ʒ��� �������� ������Ʈ�� �־ ������
