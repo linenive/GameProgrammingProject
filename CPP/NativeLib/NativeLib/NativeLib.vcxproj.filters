@@ -263,6 +263,11 @@
     </ClInclude>
     <ClInclude Include="RepeatitionRandomOcccurrence.h">
       <Filter>헤더 파일\Manager\Event</Filter>
+    <ClInclude Include="UnlockEvent.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillService.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
     </ClInclude>
     <ClInclude Include="PickRandom.h">
       <Filter>헤더 파일\Library</Filter>

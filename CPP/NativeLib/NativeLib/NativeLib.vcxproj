@@ -192,6 +192,7 @@
     <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillRepository.h" />
+    <ClInclude Include="SkillService.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatField.h" />
     <ClInclude Include="Task.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillageRepository.h" />
+    <ClInclude Include="UnlockEvent.h" />
     <ClInclude Include="WorldManager.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="WorldObjectFactory.h" />
