@@ -5,11 +5,8 @@ GameWorld::GameWorld(){
 	tile_repo = TileRepository();
 	object_repo = ObjectRepository();
 	village_repo = VillageRepository();
+	random_seed = ExtractSeed("banana");
+
+	printf("%u\n", random_seed);
 }
 
-void GameWorld::update(float delta)
-{
-	time_repo.TimeGo(delta);
-
-	//object_repo.PlushNumber();
-}

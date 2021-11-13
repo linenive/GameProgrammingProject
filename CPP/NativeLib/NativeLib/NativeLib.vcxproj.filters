@@ -52,7 +52,7 @@
     <Filter Include="헤더 파일\Library">
       <UniqueIdentifier>{bfdf4941-9496-409c-93cc-fec84e80e877}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Repository\GameTime\TimeEvent">
+    <Filter Include="헤더 파일\Manager\Event">
       <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -228,19 +228,28 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EventGenerator.h">
-      <Filter>헤더 파일\Repository\GameTime\TimeEvent</Filter>
-    </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>헤더 파일\Repository\GameTime\TimeEvent</Filter>
+      <Filter>헤더 파일\Manager\Event</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>헤더 파일\Repository\GameTime\TimeEvent</Filter>
+      <Filter>헤더 파일\Manager\Event</Filter>
     </ClInclude>
     <ClInclude Include="EventLogRepository.h">
-      <Filter>헤더 파일\Repository\GameTime\TimeEvent</Filter>
+      <Filter>헤더 파일\Manager\Event</Filter>
     </ClInclude>
     <ClInclude Include="EventLog.h">
-      <Filter>헤더 파일\Repository\GameTime\TimeEvent</Filter>
+      <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForEvent.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="RepeatitionRandomOcccurrence.h">
+      <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="PickRandom.h">
+      <Filter>헤더 파일\Library</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

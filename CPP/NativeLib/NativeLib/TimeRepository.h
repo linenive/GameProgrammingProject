@@ -15,4 +15,7 @@ public:
 		const Day& day, const Time& time, const Minute& minute);
 	GameTime GetGameTime() { return now_game_time; }
 	void TimeGo(float delta);
+	bool SignalByPassOneTIck() {
+		return time_update_interval.isTimeZero();
+	}
 };
