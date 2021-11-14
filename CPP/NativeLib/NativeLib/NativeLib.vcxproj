@@ -149,6 +149,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
     <ClCompile Include="TestManager.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="ObjectRepository.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PickRandom.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="RepeatitionRandomOcccurrence.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Tile.h" />

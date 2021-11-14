@@ -25,9 +25,9 @@ void Time::PassOneHour() {
 }
 
 bool Time::IsLastMinute() {
-	return minute.val == MINUTE_PER_HOUR;
+	return minute.val == MINUTE_PER_HOUR - 1;
 }
 
 bool Time::IsLastHour() {
-	return hour.val == HOUR_PER_DAY;
+	return hour.val == HOUR_PER_DAY - 1;
 }

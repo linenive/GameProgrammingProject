@@ -1,7 +1,7 @@
 #pragma once
 #include "WorldObject.h"
 
-enum eTileType {
+enum class eTileType {
 	TILE_NONE, TILE_EARTH, TILE_ROCK, TILE_RIVER, TILE_OCEAN
 };
 
@@ -12,15 +12,15 @@ public:
 	TileType(eTileType tile_type) {
 		type = tile_type;
 		// To-do: 엑셀 문서를 읽는것으로 바꾸기
-		if (type == TILE_NONE)
+		if (type == eTileType::TILE_NONE)
 			name = "empty";
-		else if (type == TILE_EARTH)
+		else if (type == eTileType::TILE_EARTH)
 			name = "earth";
-		else if (type == TILE_ROCK)
+		else if (type == eTileType::TILE_ROCK)
 			name = "rock";
-		else if (type == TILE_RIVER)
+		else if (type == eTileType::TILE_RIVER)
 			name = "river";
-		else if (type == TILE_OCEAN)
+		else if (type == eTileType::TILE_OCEAN)
 			name = "ocean";
 	}
 	eTileType type;

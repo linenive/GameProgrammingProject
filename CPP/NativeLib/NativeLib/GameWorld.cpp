@@ -5,8 +5,7 @@ GameWorld::GameWorld(){
 	tile_repo = TileRepository();
 	object_repo = ObjectRepository();
 	village_repo = VillageRepository();
-	random_seed = ExtractSeed("banana");
+	base_random_seed = ExtractSeed("banana");
 
-	printf("%u\n", random_seed);
 }
 

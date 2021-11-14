@@ -18,4 +18,11 @@ public:
 	bool SignalByPassOneTIck() {
 		return time_update_interval.isTimeZero();
 	}
+	unsigned int GetOverallTime() {
+		return now_game_time.GetYear().val * MONTH_PER_YEAR * DAYS_PER_MONTH * HOUR_PER_DAY * MINUTE_PER_HOUR
+			+ now_game_time.GetMonth().val * DAYS_PER_MONTH * HOUR_PER_DAY * MINUTE_PER_HOUR
+			+ now_game_time.GetDay().val * HOUR_PER_DAY * MINUTE_PER_HOUR
+			+ now_game_time.GetHour().val * MINUTE_PER_HOUR
+			+ now_game_time.GetMinute().val;
+	}
 };

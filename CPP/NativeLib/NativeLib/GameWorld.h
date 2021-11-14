@@ -6,6 +6,8 @@
 #include "GameWorldForEvent.h"
 #include <string>
 
+const unsigned int big_prime_number = 154813283;
+
 class GameWorld :
 	public GameWorldForUI, public GameWorldForAI,
 	public GameWorldForWorld, public GameWorldForInput,
@@ -17,7 +19,7 @@ private:
 	ObjectRepository object_repo;
 	VillageRepository village_repo;
 	EventLogRepository event_log_repo;
-	unsigned int random_seed;
+	unsigned int base_random_seed;
 
 	unsigned int ExtractSeed(string value) {
 		unsigned int new_seed = 13;
@@ -34,4 +36,7 @@ public:
 	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }
 	virtual VillageRepository* GetVillageRepository() { return &village_repo; }
 	virtual EventLogRepository* GetEventLogRepository() { return &event_log_repo; }
+	virtual int GetRandomSeedByNowTime() {
+		return big_prime_number * (base_random_seed + time_repo.GetOverallTime());
+	}
 };
