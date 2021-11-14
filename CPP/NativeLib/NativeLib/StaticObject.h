@@ -9,31 +9,20 @@ class StaticObject
 {
 public:
 	string name;
-	vector<Block*> blocks;
 	Rect2 ocupation_area;
+	vector<Block*> blocks;
 
-	StaticObject(string _name, Rect2 _ocupation_area) : name(_name), ocupation_area(_ocupation_area)
-	{
-
-	}
+	StaticObject(string _name, Rect2 _ocupation_area) : name(_name), ocupation_area(_ocupation_area) {}
 
 	void AddBlock(string _name, Transform2D _transform, Vector2 _scale)
 	{
 		blocks.push_back(new Block(_name, _transform, _scale, this));
 	}
 
-	void DeleteBlock()
-	{
-		// TODO tile 위치로 삭제 받기.
-	}
-
 	void DeleteAllBlocks()
 	{
-		while (!blocks.empty())
-		{
-			delete blocks.back();
-			blocks.pop_back();
-		}
+		for (auto block : blocks)
+			delete(block);
 	}
 
 	~StaticObject()
