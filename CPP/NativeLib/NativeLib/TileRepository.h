@@ -4,7 +4,7 @@
 #include "GameRule.h"
 #include "CoordinatesSystem.h"
 
-class TileRepository{
+class TileRepository {
 private:
 	int tile_size_x;
 	int tile_size_y;
@@ -12,20 +12,20 @@ private:
 
 	void CreateTileMapTemp();
 
-	bool CheckCoordinatesInTileMap(Coordinates coord){
+	int CalculateTileNumberByCoordinates(Coordinates coord) {
+		return coord.x + tile_size_x * coord.y;
+	}
+
+	bool IsInWorld(Coordinates coord) {
 		return (
-			coord.x > -1 && coord.x < tile_size_x &&
+			coord.x > -1 && coord.x < tile_size_x&&
 			coord.y > -1 && coord.y < tile_size_y
 			);
 	}
 
-	int CalculateTileNumberByCoordinates(Coordinates coord){
-		return coord.x + tile_size_x * coord.y;
-	}
-
 	bool IsInWorld(Vector2 vector) {
 		Coordinates hovered_tile = AbsolutePositionToCoordinates(vector);
-		return CheckCoordinatesInTileMap(hovered_tile);
+		return IsInWorld(hovered_tile);
 	}
 
 public:
@@ -50,5 +50,17 @@ public:
 			return -1;
 		}
 	}
-};
 
+	// StaticObject ฐüทร
+	void AddBlockOnTile(Block* block, int tile_num, int layer_num)
+	{
+		tile_map[tile_num]->SetBlock(block, layer_num);
+	}
+
+	bool IsEmptySpace(int tile_num, int layer_num)
+	{
+		if (tile_num >= MAX_TILE_NUMBER_Y * MAX_TILE_NUMBER_X)
+			return false;
+		return tile_map[tile_num]->IsEmptyLayer(layer_num);
+	}
+};
