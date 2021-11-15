@@ -10,7 +10,7 @@ var target_type
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	uicontrol = get_node("/root/Main/UIControl")
+	uicontrol = get_node("/root/Main/HUD/UIControl")
 	world_manager = get_node("/root/Main/WorldManager")
 
 func show_popup(node, type, window_position:Vector2):
@@ -18,7 +18,6 @@ func show_popup(node, type, window_position:Vector2):
 		setting_popup(node, type)
 	
 	set_position(window_position)	
-	window_title = convert_type_to_window_title(type)
 	
 	var btn = get_close_button()
 	btn.connect("pressed", self, "close_button_pressed")
@@ -28,8 +27,13 @@ func show_popup(node, type, window_position:Vector2):
 	show()
 
 func show_info_by_type(node, type):
+	$CharacterInfo.visible = false
+	$ItemInfo.visible = false
+	
 	if(type == "Character"):
 		window_setting_character_info(node)
+	#elif():
+		
 
 func _process(delta):
 	if(is_visible_in_tree()):
@@ -59,29 +63,26 @@ func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		uicontrol.set_ui_top(self)
 
-func convert_type_to_window_title(type):
-	var window_title = "Info Title"
+func position_to_string(position):
+	var x = round(position.x)
+	var y = round(position.y)
 	
-	if type == "Character":
-		window_title = "Character Info"
-	elif type == "Tile":
-		window_title = "Tile Info"
-		
-	return window_title
+	return "(" + str(x) + ", " + str(y) + ")"
 
 func window_setting_character_info(node_character):
 	set_title("Character Info")	
+	$CharacterInfo.visible = true	
 	
 	var character = node_character as Sprite
 	var character_info = get_character_info(node_character)
 	
-	$title.text = character_info["name"]
-	$content.text = str(node_character.get_position())
-	$CharacterSprite.texture = character.texture
+	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_name.text = character_info["name"]
+	$CharacterInfo/VBoxContainer/HBoxContainer3/content_character_position.text = position_to_string(node_character.get_position())
+	$CharacterInfo/character_sprite.texture = character.texture
 	
-	$InventoryTitle.text = "Inventory"
-	$ItemName.text = character_info["item1"][0]
-	$itemType.text = character_info["item1"][1]
+	$CharacterInfo/title_inventory.text = "Inventory"
+	$CharacterInfo/InventorySlot/VBoxContainer/content_item_name.text = character_info["item1"][0]
+	$CharacterInfo/InventorySlot/VBoxContainer/content_item_type.text = character_info["item1"][1]
 
 func get_character_info(node):
 	var characters_size = world_manager.GetCharacterNumber();

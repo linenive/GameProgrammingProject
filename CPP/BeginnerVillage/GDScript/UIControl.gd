@@ -14,7 +14,7 @@ func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
 	
-	for popup in get_node("ObjectInfoUI").get_children():
+	for popup in get_node("/root/Main/HUD/ObjectInfoUI").get_children():
 		available_popups.append(popup)
 
 func show_info_popup(node, type):
