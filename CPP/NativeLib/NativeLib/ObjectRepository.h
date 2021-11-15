@@ -27,7 +27,7 @@ public:
 			delete(e);
 	}
 	void TestNewCharacter(Transform2D transform) {
-		WorldObject* new_character = factory.createObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
+		WorldObject* new_character = factory.CreateObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
 		characters.push_back((Character*)new_character);
 
 		guests.push_back((Character*)new_character);

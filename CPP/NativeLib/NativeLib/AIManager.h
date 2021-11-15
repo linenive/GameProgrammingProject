@@ -42,9 +42,9 @@ private:
 	}
 	// To-do: hard coding -> algorithm which use DB
 	void FindNewTaskToGuest(Character* guest) {
-		vector<PurposeOfVisit> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
-		for (PurposeOfVisit p : purposes) {
-			if (p.CanExecute()) {
+		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
+		for (PurposeOfVisit* p : purposes) {
+			if (p->CanExecute()) {
 				// To-do: 목적에 맞는 활동 추가
 				AddTempTask(guest);
 				return;

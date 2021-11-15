@@ -50,10 +50,18 @@ public:
 
 class GuestSchedule : public Schedule {
 private:
-	vector<PurposeOfVisit> purpose_of_visits;
+	vector<PurposeOfVisit*> purpose_of_visits;
 
 public:
-	vector<PurposeOfVisit> GetPurposOfVisit() {
+	~GuestSchedule() {
+		for (PurposeOfVisit* p : purpose_of_visits) {
+			delete p;
+		}
+	}
+	vector<PurposeOfVisit*> GetPurposOfVisit() {
 		return purpose_of_visits;
+	}
+	void AddPurposOfVisit(PurposeOfVisit*  new_purpose_of_visit) {
+		purpose_of_visits.push_back(new_purpose_of_visit);
 	}
 };
