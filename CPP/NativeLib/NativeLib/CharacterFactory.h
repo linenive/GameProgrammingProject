@@ -2,13 +2,24 @@
 #include "WorldObjectFactory.h"
 #include "Character.h"
 
-class CharacterFactory : public WorldObjectFactory {
+class PurposOfVisitFactory {
+	PurposeOfVisit CreatePurposeOfVisit(PurposeOfVisitType type) {
 
+	}
+};
+
+class CharacterFactory : public WorldObjectFactory {
+private:
+	void SettingPurposeOfVisit(Character* character) {
+		Schedule* schedule = character->GetSchedule();
+		schedule->
+	}
 protected:
 
 public:
-	WorldObject* createObject(Transform2D transform, Vector2 scale) {
+	WorldObject* CreateObject(Transform2D transform, Vector2 scale) {
 		Character* new_character = new Character(transform, scale);
+		
 
 		return new_character;
 	}
