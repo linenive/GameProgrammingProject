@@ -16,18 +16,19 @@ private:
 	PathFinder path_finder = PathFinder();
 
 	void FindNewTask(Character* performer) {
-		Task* new_task = new Task(Vector2(600.0, 300.0));
-		performer->SetTask(new_task);
+		// 임시로 600, 300 까지 이동하는 task 넣음
+		Task* new_task = new Task(Vector2(600.0, 600.0));
+		performer->GetSchedule()->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 
-		Task* currentTask = performer->GetTask();
+		Task* currentTask = performer->GetSchedule()->GetTask();
 		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().GetPosition(), target), target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
-			if (!c->HasTask())
+			if (!c->GetSchedule()->HasTask())
 				FindNewTask(c);
 		}
 	};
@@ -53,7 +54,7 @@ public:
 
 	void ChangeTaskTargetWholeCharacter(Vector2 target) {
 		for (Character* c : *characters) {
-			if (c->HasTask())
+			if (c->GetSchedule()->HasTask())
 				ChangeTaskTarget(c, target);
 		}
 	}
