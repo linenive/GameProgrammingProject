@@ -55,6 +55,9 @@
     <Filter Include="헤더 파일\Manager\Event">
       <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Manager\AI">
+      <UniqueIdentifier>{8efc3935-03ff-4787-afd8-395133e6d343}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -212,14 +215,8 @@
     <ClInclude Include="AIManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="AIExecuter.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Physics.h">
       <Filter>헤더 파일\Repository\World\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>헤더 파일</Filter>
@@ -265,6 +262,15 @@
     </ClInclude>
     <ClInclude Include="ControlState.h">
       <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="AIExecuter.h">
+      <Filter>헤더 파일\Manager\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Schedule.h">
+      <Filter>헤더 파일\Manager\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
