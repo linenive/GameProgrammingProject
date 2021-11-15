@@ -85,7 +85,6 @@ public:
 			AssignTaskToWholeCharacter();
 			assign_task_timer.reset();
 		}
-
 		ExecuteCharactersTask();
 	}
 
