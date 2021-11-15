@@ -11,7 +11,6 @@ class AIManager {
 
 private:
 	GameWorldForAI* game_world;
-	GameWorldForWorld* tile_world;
 	vector<Character*>* characters;
 	AIExecuter* ai_executer;
 	PathFinder path_finder = PathFinder();
@@ -46,7 +45,7 @@ public:
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
 		
-		path_finder.SetWorldManager(tile);
+		path_finder.SetTileRepository(tile);
 	}
 	void Update(float delta) {
 		// To-do: �Ʒ��� �������� ������Ʈ�� �־ ������
