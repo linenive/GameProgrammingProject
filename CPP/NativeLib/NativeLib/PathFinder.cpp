@@ -29,13 +29,13 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	ans.push_back(start_tile);
 
 	while (ans.back() != end_tile)
-		//for(int j=0; j<20; j++)
+		//for(int j=0; j<10; j++)
 	{
 		now_tile = (*open_list.begin()).first;
 		closed_list.insert(now_tile);
 		ans.push_back(now_tile);
 
-		open_list.clear();
+		//open_list.clear();
 
 		for (i = 0; i < 8; i++) {
 
@@ -46,8 +46,8 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 			if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
 
-			auto it = closed_list.find(next_tile);
-			if (it != closed_list.end()) continue;
+			//auto it = ;
+			if (closed_list.find(next_tile) != closed_list.end()) continue;
 			//if (closed_list.count(next_tile)) continue;
 			//auto it = find(ans.begin(), ans.end(),next_tile);
 			//if (it != ans.end()) continue;
@@ -57,12 +57,18 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			now_score_h = AstarH(next_tile, end_tile);
 
 			//AstarG
+			if (score_f_list.find(now_tile) == score_f_list.end()) {
+				Godot::print("[PathFinder] has not score f: " + Vector2(now_tile.x, now_tile.y));
+				Godot::print("[PathFinder] has not score f: " + Vector2(now_tile.x, now_tile.y));
+			}
+
 			if (dx[i] == 0 || dy[i] == 0) now_score_g = score_f_list[now_tile] + weight_g_straight;
 			else now_score_g = score_f_list[now_tile] + weight_g_diagonal;
 
 			//AstarF
 			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, (now_score_h + now_score_g)));
 
+			Godot::print("[PathFinder] ADD OPEN LIST: " + Vector2(i, score_f_list[next_tile]));
 			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));
 		}
 	}
@@ -71,6 +77,8 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	if (new_path.size() > 0) {
 		new_path[new_path.size() - 1] = target_pos;
 	}
+
+	Godot::print("[PathFinder] End PathFinder: ");
 	return new_path;
 }
 bool PathFinder::DetectObstacle(Coordinates next_tile) {
