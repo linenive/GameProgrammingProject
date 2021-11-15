@@ -8,7 +8,7 @@ using namespace std;
 class Comp {
 public:
 	bool operator()(const pair<Coordinates, int>& lhs, const pair<Coordinates, int>& rhs) const {
-		return lhs.second <= rhs.second; //오름차순
+		return lhs.second < rhs.second; //오름차순
 	}
 };
 
@@ -42,9 +42,7 @@ private:
 public:
 	void AstarInit();
 	vector<Coordinates> PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
-	void SetWorldManager(TileRepository* tile_map) { 
-		this->tile_map = tile_map; 
-	}
+	void SetTileRepository(TileRepository* tile);
 
 };
 

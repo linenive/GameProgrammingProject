@@ -1,5 +1,5 @@
 #pragma once
-#include "GameWorldForWorld.h"
+#include "TileRepository.h"
 #include "PathFinder.h"
 
 
@@ -23,7 +23,7 @@ int PathFinder::AstarG(Coordinates now_tile, Coordinates next_tile, int weight){
 }
 
 void PathFinder::AstarF(Coordinates next_tile, int score_f, int score_g){
-	score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, score_f + score_g));
+	score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, (score_f + score_g)));
 }
 
 vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos){
@@ -51,6 +51,7 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 		now_tile = (*open_list.begin()).first;
 		Godot::print("[PathFinder] now tile: "+ Vector2(now_tile.x, now_tile.y));
 		ans.push_back(now_tile);
+		open_list.erase(open_list.begin());
 
 		for (i = 0; i < 8; i++) {
 
@@ -59,45 +60,52 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 			next_tile.x = x;
 			next_tile.y = y;
 
-			Godot::print(" >> [PathFinder] next tile: " + Vector2(x,y));
+			if (x < 0 || y < 0 || x > MAX_TILE_NUMBER_X || y > MAX_TILE_NUMBER_Y) continue;
 
-			if (x < 0 || y < 0 || x > MAX_TILE_NUMBER_X || y > MAX_TILE_NUMBER_Y) {
-				Godot::print("[PathFinder] OUT OF BOUNDS //" + Vector2(x, y));
-				continue;
-			}
-			/*
+
 			if (DetectObstacle(next_tile))
 			{
-				Godot::print("[PathFinder] Obstacle Detect : ( %d, %d )" + (next_tile.x, next_tile.y));
+				//Godot::print("[PathFinder] Obstacle Detect : ( %d, %d )" + (next_tile.x, next_tile.y));
 				continue; // 장애물에 대해선 검사를 하지 않는다.
 			}
 			
 			now_score_h = AstarH(next_tile, end_tile);
-
+			
 			if (dx[i] == 0 || dy[i] == 0) now_score_g = AstarG(now_tile, next_tile, weight_g_straight);
 			else now_score_g = AstarG(now_tile, next_tile, weight_g_diagonal);
 
+
 			AstarF(next_tile, now_score_h, now_score_g);
 
-			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));*/
+			//Godot::print(" >> [PathFinder] now score h, g: " + Vector2(now_score_h, now_score_g));
+
+			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));/**/
 			
 		}
 	}
 	String print_string;
 
+	Godot::print("[PathFinder] Get Path : ");
 	for (int i = 0; i < ans.size(); i++) {
-		print_string += "(" + ans[i].x;
-		print_string += "," + ans[i].y;
-		print_string += ") => ";
+		Godot::print(Vector2(ans[i].x, ans[i].y));
+		//print_string += "(" + ans[i].x;
+		//print_string += "," + ans[i].y;
+		//print_string += ") => ";
 	}
-	Godot::print("[PathFinder] Get Path : "+print_string);/**/
+	
 	return ans;
+}
+
+void PathFinder::SetTileRepository(TileRepository* tile){
+	tile_map = tile;
 }
 
 bool PathFinder::DetectObstacle(Coordinates next_tile) {
 	
 	int tile_ind = CalculateTileNumberByCoordinates(next_tile);
-	return  tile_map->GetTile(tile_ind).GetTileType().type > 1;
+	int tile_type = (tile_map->GetTile(tile_ind).GetTileType().type);
+	//Godot::print("[PathFinder] Get Tile Map: " + Vector2(tile_ind, tile_type));
+	return  tile_type > 1;
 }
 
 int PathFinder::CalculateTileNumberByCoordinates(Coordinates coord) {
