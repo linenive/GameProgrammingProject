@@ -27,7 +27,7 @@ private:
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
-			if (!c->HasTask())
+			if (!c->GetSchedule()->HasTask())
 				FindNewTask(c);
 		}
 	};
