@@ -22,9 +22,8 @@ private:
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 
 		Task* currentTask = performer->GetTask();
-		currentTask->ChangeTarget(target);
+		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().getPosition(), target), target);
 
-		path_finder.PathFinding(performer->GetPhysics().getPosition(), target);
 		//Godot::print("[AIManager] >>>> change target : " + performer->GetPhysics().getPosition());
 		//path_finder.PathFinding(performer->GetPhysics().getPosition(), target);
 	}
