@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://GDScript/PopupUI.gd" type="Script" id=1]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=2]
@@ -10,7 +10,25 @@ size = 25
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 15
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 14
 font_data = ExtResource( 2 )
 
 [node name="PopupUI" type="WindowDialog"]
@@ -28,73 +46,280 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title" type="Label" parent="."]
-margin_left = 11.0
-margin_top = 14.0
-margin_right = 163.0
-margin_bottom = 60.0
-custom_fonts/font = SubResource( 1 )
-text = "Info_Title"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="content" type="Label" parent="."]
+[node name="CharacterInfo" type="Control" parent="."]
+visible = false
 margin_left = 10.0
-margin_top = 42.1675
-margin_right = 162.0
-margin_bottom = 88.1675
-custom_fonts/font = SubResource( 2 )
-text = "Info_context"
+margin_top = 10.0
+margin_right = 39.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CharacterSprite" type="Sprite" parent="."]
-position = Vector2( 267.25, 44.875 )
+[node name="title_character_info" type="Label" parent="CharacterInfo"]
+margin_right = 196.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Character Info"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterInfo"]
+margin_left = 5.0
+margin_top = 37.0
+margin_right = 117.0
+margin_bottom = 73.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+margin_right = 124.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_character_name" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer"]
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "Name : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_character_name" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer"]
+margin_left = 60.0
+margin_right = 116.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "noname"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+margin_top = 20.0
+margin_right = 124.0
+margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_character_class" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer2"]
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "Class : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_character_class" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer2"]
+margin_left = 60.0
+margin_right = 117.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "warrior"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+margin_top = 40.0
+margin_right = 124.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_character_position" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer3"]
+margin_right = 80.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "Position : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_character_position" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer3"]
+margin_left = 84.0
+margin_right = 124.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "(x, y)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="character_sprite" type="Sprite" parent="CharacterInfo"]
+position = Vector2( 258.904, 69.8637 )
 scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 3 )
 
-[node name="InventoryTitle" type="Label" parent="."]
-margin_left = 10.0
-margin_top = 97.5
-margin_right = 162.0
-margin_bottom = 143.5
-custom_fonts/font = SubResource( 2 )
+[node name="title_inventory" type="Label" parent="CharacterInfo"]
+margin_top = 114.5
+margin_right = 108.0
+margin_bottom = 134.5
+custom_fonts/font = SubResource( 4 )
 text = "Inventory"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
-margin_left = 9.5
-margin_top = 124.5
-margin_right = 49.5
-margin_bottom = 164.5
+[node name="InventorySlot" type="HBoxContainer" parent="CharacterInfo"]
+margin_top = 146.0
+margin_right = 130.0
+margin_bottom = 186.0
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CharacterInfo/InventorySlot"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemSprite" type="Sprite" parent="Panel"]
+[node name="sprite_inventory_item" type="Sprite" parent="CharacterInfo/InventorySlot/Panel"]
 position = Vector2( 20, 20 )
 texture = ExtResource( 4 )
 
-[node name="ItemName" type="Label" parent="."]
-margin_left = 56.6812
-margin_top = 127.136
-margin_right = 126.681
-margin_bottom = 141.136
+[node name="content_item_count" type="Label" parent="CharacterInfo/InventorySlot/Panel"]
+margin_left = 31.0
+margin_top = 32.0
+margin_right = 39.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 7 )
+text = "10"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterInfo/InventorySlot"]
+margin_left = 50.0
+margin_right = 131.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="content_item_name" type="Label" parent="CharacterInfo/InventorySlot/VBoxContainer"]
+margin_top = 2.0
+margin_right = 81.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 5 )
 text = "item name"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="itemType" type="Label" parent="."]
-margin_left = 56.6812
-margin_top = 146.736
-margin_right = 126.681
-margin_bottom = 160.736
-text = "item name"
+[node name="content_item_type" type="Label" parent="CharacterInfo/InventorySlot/VBoxContainer"]
+margin_top = 22.0
+margin_right = 81.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 6 )
+text = "item type"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="track_btn" type="Button" parent="CharacterInfo"]
+margin_left = 234.912
+margin_top = 1.4158
+margin_right = 279.912
+margin_bottom = 21.4158
+text = "Track"
+
+[node name="ItemInfo" type="Control" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_item_info" type="Label" parent="ItemInfo"]
+margin_right = 196.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Character Info"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemInfo"]
+margin_left = 5.0
+margin_top = 37.0
+margin_right = 117.0
+margin_bottom = 73.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemInfo/VBoxContainer"]
+margin_right = 124.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_item_name" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer"]
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "Name : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_item_name" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer"]
+margin_left = 60.0
+margin_right = 116.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "noname"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ItemInfo/VBoxContainer"]
+margin_top = 20.0
+margin_right = 124.0
+margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_item_type" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer2"]
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "Class : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_item_type" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer2"]
+margin_left = 60.0
+margin_right = 117.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "warrior"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="item_sprite" type="Sprite" parent="ItemInfo"]
+position = Vector2( 258.904, 69.8637 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 3 )
