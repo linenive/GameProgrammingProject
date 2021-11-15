@@ -1,58 +1,39 @@
 #pragma once
-#include "TileRepository.h"
 #include "PathFinder.h"
-
-
-void PathFinder::AstarInit(){
-	open_list.clear();
-	closed_list.clear();
-	ans.clear();
-	score_f_list.clear();
-}
 
 int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile){
 	int x = abs(end_tile.x - start_tile.x);
 	int y = abs(end_tile.y - start_tile.y);
 
-	//score_h.insert(hash_map<Coordinates, int>::value_type(start_tile, (x + y) * weightH));
 	return (x + y) * weight_h;
 }
 
-int PathFinder::AstarG(Coordinates now_tile, Coordinates next_tile, int weight){
-	//scoreG.insert(hash_map<Coordinates, int>::value_type(next_tile, scoreF[now_tile] + weight));
-	return score_f_list[now_tile] + weight;
-}
+vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
-void PathFinder::AstarF(Coordinates next_tile, int score_f, int score_g){
-	score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, (score_f + score_g)));
-}
-
-vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos){
-
-	Godot::print("[PathFinder] >>>> Start pos : " + start_pos);
 	int i, x, y;
 	int now_score_h, now_score_g;
 	Coordinates now_tile, next_tile;
 
-	int dx[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
-	int dy[8] = { 1, 1, 0, -1, -1, -1, 0, 1 };
+	set<pair<Coordinates, int>, CompareWithScore> open_list;
+	set<Coordinates> closed_list;
 
-	AstarInit();
-	
+	unordered_map<Coordinates, int, CoordinatesHash> score_f_list;
+	vector<Coordinates> ans;
+
 	Coordinates start_tile = ApsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = ApsolutePositionToCoordinates(target_pos);
 
-	Godot::print("[PathFinder] Set Coordinates: " +Vector2(end_tile.x, end_tile.y));//.x, start_tile,y, end_tile.x, end_tile.y
+	Godot::print("[PathFinder] End Tile: " + target_pos);// Vector2(end_tile.x, end_tile.y));
 	open_list.insert(make_pair(start_tile, 0));
 	ans.push_back(start_tile);
 
-	while (ans.back() != end_tile) 	
+	while (ans.back() != end_tile)
 	{
 		now_tile = (*open_list.begin()).first;
-		Godot::print("[PathFinder] now tile: "+ Vector2(now_tile.x, now_tile.y) +", weight "+ Vector2(-1, (*open_list.begin()).second));
+		//Godot::print("[PathFinder] now tile: "+ Vector2(now_tile.x, now_tile.y) +", weight "+ Vector2(-1, (*open_list.begin()).second));
 		closed_list.insert(now_tile);
 		ans.push_back(now_tile);
-		
+
 		open_list.clear();
 
 		for (i = 0; i < 8; i++) {
@@ -68,46 +49,61 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 			if (it != closed_list.end()) continue;
 
 			if (DetectObstacle(next_tile)) continue;
-			
-			now_score_h = AstarH(next_tile, end_tile);
-			
-			if (dx[i] == 0 || dy[i] == 0) now_score_g = AstarG(now_tile, next_tile, weight_g_straight);
-			else now_score_g = AstarG(now_tile, next_tile, weight_g_diagonal);
 
-			AstarF(next_tile, now_score_h, now_score_g);
+			now_score_h = AstarH(next_tile, end_tile);
+
+			//AstarG
+			if (dx[i] == 0 || dy[i] == 0) now_score_g = score_f_list[now_tile] + weight_g_straight;
+			else now_score_g = score_f_list[now_tile] + weight_g_diagonal;
+
+			//AstarF
+			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, (now_score_h + now_score_g)));
 
 			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));
 		}
 	}
-	String print_string;
 
-	Godot::print("[PathFinder] Get Path : ");
-	for (int i = 0; i < ans.size(); i++) {
-		Godot::print(Vector2(ans[i].x, ans[i].y));
-		//print_string += "(" + ans[i].x;
-		//print_string += "," + ans[i].y;
-		//print_string += ") => ";
+	vector<Vector2> new_path = GetPathListByCoor(ans);
+
+	Godot::print("[PathFinder] Change before last pos: " + new_path[new_path.size() - 1]);
+	new_path[new_path.size() - 1] = target_pos;
+
+	for (i = 0; i < new_path.size(); i++) {
+		Godot::print("[PathFinder] PATH: " + new_path[i]);
 	}
-	
-	return ans;
+	return new_path;
 }
 
 void PathFinder::SetTileRepository(TileRepository* tile){
 	tile_map = tile;
+
+	//path finding 다시 해줘야 할수도 start, end를 매개변수로 받아서
 }
 
 bool PathFinder::DetectObstacle(Coordinates next_tile) {
 	
 	int tile_ind = CalculateTileNumberByCoordinates(next_tile);
 	int tile_type = (tile_map->GetTile(tile_ind).GetTileType().type);
-	//Godot::print("[PathFinder] Get Tile Map: " + Vector2(tile_ind, tile_type));
 	return  tile_type > 1;
 }
 
+vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
+
+	std::vector<Coordinates>::iterator iter;
+	vector<Vector2> ans_vector;
+	for (iter = ans.begin(); iter != ans.end(); iter++) {
+		ans_vector.push_back(CoordinatesToCenterVector((*iter)));
+	}
+
+	return ans_vector;
+}
+
+// 다른데서 받아와야 함
 int PathFinder::CalculateTileNumberByCoordinates(Coordinates coord) {
 	int tile_size_x = tile_map->GetTileSizeX();
 	return coord.x + tile_size_x * coord.y;
 }
+
 
 
 
