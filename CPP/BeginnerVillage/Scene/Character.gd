@@ -6,7 +6,7 @@ var character_id : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	uicontrol = get_node("/root/Main/HUD/UIControl")
+	uicontrol = get_node("/root/Main/UIControl")
 	godot_input = get_node("/root/Main/GodotInput")
 
 func _input(event):

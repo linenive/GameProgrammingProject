@@ -10,7 +10,7 @@ var target_type
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	uicontrol = get_node("/root/Main/HUD/UIControl")
+	uicontrol = get_node("/root/Main/UIControl")
 	world_manager = get_node("/root/Main/WorldManager")
 
 func show_popup(node, type, window_position:Vector2):
