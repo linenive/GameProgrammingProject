@@ -34,12 +34,6 @@ private:
 		}
 	}
 
-class CharacterFactory : public WorldObjectFactory {
-private:
-	void SettingPurposeOfVisit(Character* character) {
-		Schedule* schedule = character->GetSchedule();
-		schedule->
-	}
 protected:
 
 public:
