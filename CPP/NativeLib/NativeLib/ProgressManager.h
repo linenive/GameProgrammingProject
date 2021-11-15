@@ -12,7 +12,7 @@ private:
 
 	int test_guest_num = 1;
 
-	void createNewTimeEvent() {
+	void CreateNewTimeEvent() {
 
 	}
 public:
