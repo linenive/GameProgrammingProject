@@ -23,9 +23,6 @@ private:
 
 		Task* currentTask = performer->GetTask();
 		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().getPosition(), target), target);
-
-		//Godot::print("[AIManager] >>>> change target : " + performer->GetPhysics().getPosition());
-		//path_finder.PathFinding(performer->GetPhysics().getPosition(), target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {

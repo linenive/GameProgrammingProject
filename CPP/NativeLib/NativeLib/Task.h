@@ -20,7 +20,7 @@ public:
 	}
 	Vector2 GetTarget() { return task_target; }
 
-	void ChangeTarget(vector<Vector2> path_list, Vector2 new_target);//Vector2 new_target);// 
+	void ChangeTarget(vector<Vector2> path_list, Vector2 new_target); 
 	bool CanChangeNextPos();
 
 	void ExecuteTask(WorldObject* performer);

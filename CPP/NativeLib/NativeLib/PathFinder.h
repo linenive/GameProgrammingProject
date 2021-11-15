@@ -20,7 +20,6 @@ struct CoordinatesHash {
 class PathFinder {
 
 private:
-
 	TileRepository* tile_map;
 
 	int dx[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
@@ -34,9 +33,10 @@ private:
 
 	bool DetectObstacle(Coordinates next_tile);
 	int CalculateTileNumberByCoordinates(Coordinates coord);
+
 public:
-	vector<Vector2> PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
 	void SetTileRepository(TileRepository* tile);
+	vector<Vector2> PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
 	vector<Vector2> GetPathListByCoor(vector<Coordinates> ans);
 };
 

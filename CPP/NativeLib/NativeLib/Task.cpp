@@ -16,7 +16,7 @@ Vector2 Truncate(Vector2 velocity, float max) {
 	return velocity * i;
 }
 
-void Task::ChangeTarget(vector<Vector2> new_path_list, Vector2 new_target){//Vector2 new_target){//
+void Task::ChangeTarget(vector<Vector2> new_path_list, Vector2 new_target){
 	now_moving = false;
 
 	task_target = new_target;
@@ -30,6 +30,7 @@ void Task::ChangeTarget(vector<Vector2> new_path_list, Vector2 new_target){//Vec
 bool Task::CanChangeNextPos() {
 	if (++now_path_index < now_path_list_length) {
 		now_target = path_list[now_path_index];
+		Godot::print("[Task] new target: " + now_target);
 		return true;
 	}
 	return false;

@@ -35,7 +35,7 @@ const float CAMERA_MOVING_SPEED = 4.0;
 const float CAMERA_MOVING_MOUSE_BOUNDARY = 2.0;
 const float CAMERA_DEFAULT_ZOOM_DEGREE = 1.0;
 
-const float CHARACTER_MAX_FORCE = 0.4;
+const float CHARACTER_MAX_FORCE = 4;//0.4;
 
 const float CHARACTER_SLOWING_RADIUS = 3;
 

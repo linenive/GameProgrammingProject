@@ -22,15 +22,16 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	Coordinates start_tile = ApsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = ApsolutePositionToCoordinates(target_pos);
+	Coordinates last_tile = start_tile;
 
-	Godot::print("[PathFinder] End Tile: " + target_pos);// Vector2(end_tile.x, end_tile.y));
+	//Godot::print("[PathFinder] End Tile: " + target_pos);
 	open_list.insert(make_pair(start_tile, 0));
 	ans.push_back(start_tile);
 
 	while (ans.back() != end_tile)
+		//for(int j=0; j<20; j++)
 	{
 		now_tile = (*open_list.begin()).first;
-		//Godot::print("[PathFinder] now tile: "+ Vector2(now_tile.x, now_tile.y) +", weight "+ Vector2(-1, (*open_list.begin()).second));
 		closed_list.insert(now_tile);
 		ans.push_back(now_tile);
 
@@ -43,10 +44,13 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			next_tile.x = x;
 			next_tile.y = y;
 
-			if (x < 0 || y < 0 || x > MAX_TILE_NUMBER_X || y > MAX_TILE_NUMBER_Y) continue;
+			if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
 
 			auto it = closed_list.find(next_tile);
 			if (it != closed_list.end()) continue;
+			//if (closed_list.count(next_tile)) continue;
+			//auto it = find(ans.begin(), ans.end(),next_tile);
+			//if (it != ans.end()) continue;
 
 			if (DetectObstacle(next_tile)) continue;
 
@@ -62,24 +66,13 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));
 		}
 	}
-
 	vector<Vector2> new_path = GetPathListByCoor(ans);
 
-	Godot::print("[PathFinder] Change before last pos: " + new_path[new_path.size() - 1]);
-	new_path[new_path.size() - 1] = target_pos;
-
-	for (i = 0; i < new_path.size(); i++) {
-		Godot::print("[PathFinder] PATH: " + new_path[i]);
+	if (new_path.size() > 0) {
+		new_path[new_path.size() - 1] = target_pos;
 	}
 	return new_path;
 }
-
-void PathFinder::SetTileRepository(TileRepository* tile){
-	tile_map = tile;
-
-	//path finding 다시 해줘야 할수도 start, end를 매개변수로 받아서
-}
-
 bool PathFinder::DetectObstacle(Coordinates next_tile) {
 	
 	int tile_ind = CalculateTileNumberByCoordinates(next_tile);
@@ -87,14 +80,18 @@ bool PathFinder::DetectObstacle(Coordinates next_tile) {
 	return  tile_type > 1;
 }
 
+void PathFinder::SetTileRepository(TileRepository* tile) {
+	tile_map = tile;
+	//path finding 다시 해줘야 할수도 start, end를 매개변수로 받아서
+}
+
 vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
 
 	std::vector<Coordinates>::iterator iter;
 	vector<Vector2> ans_vector;
-	for (iter = ans.begin(); iter != ans.end(); iter++) {
+	for (iter = ans.begin()+1; iter != ans.end(); iter++) {
 		ans_vector.push_back(CoordinatesToCenterVector((*iter)));
 	}
-
 	return ans_vector;
 }
 
