@@ -49,3 +49,6 @@ const int EVENT_LOG_STACK_MAX = 1000;
 const float CHARACTER_MAX_FORCE = 6;// 0.4;
 const float CHARACTER_SLOWING_RADIUS = 3;
 
+// AI
+const float ASSIGN_TASK_INTERVAL_TIME = 5.0;
+

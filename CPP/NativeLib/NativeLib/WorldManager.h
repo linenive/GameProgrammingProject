@@ -35,20 +35,20 @@ public:
 		return game_world->GetObjectRepository()->GetCharacterNumber();
 	}
 	Transform2D GetCharacterTransform(int character_id) {
-		return game_world->GetObjectRepository()->GetCharacter(character_id).GetPhysics().GetTransform();
+		return game_world->GetObjectRepository()->GetCharacter(character_id)->GetPhysics().GetTransform();
 	}
 	Vector2 GetCharacterScale(int character_id) {
-		return game_world->GetObjectRepository()->GetCharacter(character_id).GetPhysics().GetScale();
+		return game_world->GetObjectRepository()->GetCharacter(character_id)->GetPhysics().GetScale();
 	}
 	String GetCharacterName(int character_id) {
-		return String(game_world->GetObjectRepository()->GetCharacter(character_id).GetName().c_str());
+		return String(game_world->GetObjectRepository()->GetCharacter(character_id)->GetName().c_str());
 	}
 	Dictionary GetCharacterInfo(int character_id);
 
 	Array GetCharacterItem(int character_id, int item_id);
 
 	int GetCharacterInventorySize(int character_id) {
-		return game_world->GetObjectRepository()->GetCharacter(character_id).GetInventory()->GetSize();
+		return game_world->GetObjectRepository()->GetCharacter(character_id)->GetInventory()->GetSize();
 	}
 
 	int GetTileId(Vector2 vector);

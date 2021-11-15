@@ -24,6 +24,7 @@ func _ready():
 	InitCameraSetting()
 	
 	$CameraCPP.SetCurrentCameraPosition(Vector2(g_world_size.x/2, g_world_size.y/2))
+	$CameraCPP.g_zoom_scroll_factor = 2
 	
 func _process(_delta):
 	DetectCameraMoveObj()
