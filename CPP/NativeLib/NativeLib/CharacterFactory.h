@@ -20,27 +20,32 @@ public:
 class CharacterFactory : public WorldObjectFactory {
 private:
 	PurposeOfVisitFactory purpose_factory;
-	// To-do: game progress¿¡ µû¶ó guestµéÀÌ °¡Áö´Â number of purpose°¡ ´Ã¾î³ª°í,
-	// purpose typeµéµµ UnlockµÉ ¼ö ÀÖµµ·Ï ¸¸µç´Ù.
+	// To-do: game progressï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ guestï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ number of purposeï¿½ï¿½ ï¿½Ã¾î³ªï¿½ï¿½,
+	// purpose typeï¿½éµµ Unlockï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 	void SettingPurposeOfVisit(Character* character) {
-		// To-do: number of purpose¸¦ randomÀ¸·Î Á¤ÇÏµµ·Ï ¹Ù²Û´Ù.
+		// To-do: number of purposeï¿½ï¿½ randomï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ù²Û´ï¿½.
 		int number_of_purpose = 2;
 		for (int i = 0; i < number_of_purpose; i++) {
 			GuestSchedule* schedule = (GuestSchedule*)character->GetSchedule();
-			// To-do: Probability°¡ Æ÷ÇÔµÈ pool¿¡¼­ random typeÀ» pickÇÏµµ·Ï ¹Ù²Û´Ù.
-			// To-do: ÇÑ ¹ø picked µÈ typeÀº delete in pool.
+			// To-do: Probabilityï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ poolï¿½ï¿½ï¿½ï¿½ random typeï¿½ï¿½ pickï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ù²Û´ï¿½.
+			// To-do: ï¿½ï¿½ ï¿½ï¿½ picked ï¿½ï¿½ typeï¿½ï¿½ delete in pool.
 			schedule->AddPurposOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::Lodge));
 		}
 	}
 
+class CharacterFactory : public WorldObjectFactory {
+private:
+	void SettingPurposeOfVisit(Character* character) {
+		Schedule* schedule = character->GetSchedule();
+		schedule->
+	}
 protected:
 
 public:
 	WorldObject* CreateObject(Transform2D transform, Vector2 scale) {
 		Character* new_character = new Character(transform, scale);
 		SettingPurposeOfVisit(new_character);
-
 		return new_character;
 	}
 };
