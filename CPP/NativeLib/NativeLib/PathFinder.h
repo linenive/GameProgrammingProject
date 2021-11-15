@@ -1,5 +1,4 @@
 #pragma once
-//#include "WorldManager.h"
 #include "CoordinatesSystem.h"
 #include <unordered_map>
 #include <set>
@@ -25,9 +24,11 @@ private:
 	set<pair<Coordinates, int>, Comp> open_list;
 	vector<Coordinates> ans;
 	unordered_map<Coordinates, int, CoordinatesHash> score_f_list;
+	TileRepository* tile_map;
 
 	//std::unordered_map<Coordinates, int, std::hash<Coordinates>, std::equal_to<Coordinates>, std::allocator<std::pair<const Coordinates, int>>>
-	
+
+	int weight_h = 10;
 	int weight_g_straight = 10;
 	int weight_g_diagonal = 14;
 
@@ -36,12 +37,14 @@ private:
 	void AstarF(Coordinates now_tile, int score_f, int score_g);
 
 	bool DetectObstacle(Coordinates next_tile);
-	Coordinates GetCoordinatesByVector(godot::Vector2 pos);
+	int CalculateTileNumberByCoordinates(Coordinates coord);
 	//int GetTileWeight(int tile_id);
 public:
 	void AstarInit();
 	vector<Coordinates> PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
-	void SetWorldManager();
-	int weight_h = 10;
+	void SetWorldManager(TileRepository* tile_map) { 
+		this->tile_map = tile_map; 
+	}
+
 };
 
