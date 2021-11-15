@@ -36,6 +36,9 @@ public:
 	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }
 	virtual VillageRepository* GetVillageRepository() { return &village_repo; }
 	virtual EventLogRepository* GetEventLogRepository() { return &event_log_repo; }
+	virtual void AddEventLog(EventLog new_log) {
+		event_log_repo.AddLog(new_log);
+	}
 	virtual int GetRandomSeedByNowTime() {
 		return big_prime_number * (base_random_seed + time_repo.GetOverallTime());
 	}

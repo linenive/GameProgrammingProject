@@ -10,6 +10,8 @@ private:
 	TimeRepository* time_repo;
 	RepeatitionRandomOccurrence guest_visit_event;
 
+	int test_guest_num = 1;
+
 	void createNewTimeEvent() {
 
 	}
@@ -21,7 +23,10 @@ public:
 	void Update(float delta) {
 		time_repo->TimeGo(delta);
 		if (time_repo->SignalByPassOneTIck()) {
-			guest_visit_event.checkOccurrence(game_world->GetRandomSeedByNowTime());
+			if (guest_visit_event.isOccurrence(game_world->GetRandomSeedByNowTime())) {
+				// printf("[ProgressManager]guest visit\n");
+				game_world->AddEventLog(EventLog("Guest Visit", "Visit Guest " + to_string(test_guest_num), time_repo->CaptureGameTime()));
+			}
 		}
 	}
 };

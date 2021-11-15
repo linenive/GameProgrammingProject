@@ -14,6 +14,12 @@ public:
 	void LoadTime(const Year& year, const Month& month,
 		const Day& day, const Time& time, const Minute& minute);
 	GameTime GetGameTime() { return now_game_time; }
+	GameTime CaptureGameTime() {
+		return GameTime(
+			Date(Year(now_game_time.GetYear().val), Month(now_game_time.GetMonth().val), Day(now_game_time.GetDay().val)),
+			Time(Hour(now_game_time.GetHour().val), Minute(now_game_time.GetMinute().val))
+		);
+	}
 	void TimeGo(float delta);
 	bool SignalByPassOneTIck() {
 		return time_update_interval.isTimeZero();
