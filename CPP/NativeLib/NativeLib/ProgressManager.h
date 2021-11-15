@@ -26,6 +26,7 @@ public:
 			if (guest_visit_event.isOccurrence(game_world->GetRandomSeedByNowTime())) {
 				// printf("[ProgressManager]guest visit\n");
 				game_world->AddEventLog(EventLog("Guest Visit", "Visit Guest " + to_string(test_guest_num), time_repo->CaptureGameTime()));
+				test_guest_num++;
 			}
 		}
 	}

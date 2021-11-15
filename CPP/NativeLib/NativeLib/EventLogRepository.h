@@ -14,18 +14,6 @@ private:
 	}
 
 public:
-	EventLogRepository() {
-		// 테스트용 임시 데이타
-		AddLog(EventLog("guest visited", "guest Warrior Jan visited.",
-			GameTime(Date(Year(2021), Month(11), Day(10)), Time(Hour(10), Minute(30))
-			)));
-		AddLog(EventLog("guest visited", "guest Mage Yo visited.",
-			GameTime(Date(Year(2021), Month(11), Day(10)), Time(Hour(10), Minute(33))
-			)));
-		AddLog(EventLog("guest visited", "guest Priest Jun visited.",
-			GameTime(Date(Year(2021), Month(11), Day(10)), Time(Hour(10), Minute(36))
-			)));
-	}
 	void LoadData() {
 		// To-do: 세이브파일에서 데이타 로드
 	}
