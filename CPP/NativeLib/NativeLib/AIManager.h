@@ -19,7 +19,6 @@ private:
 		performer->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
-
 		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetTask());
 		if (currentTask == nullptr) return;
 		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
@@ -28,6 +27,7 @@ private:
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
 			if (!c->GetSchedule()->HasTask())
+				printf("a");
 				FindNewTask(c);
 		}
 	};
@@ -45,8 +45,6 @@ public:
 		now_tile_repo = world->GetTileMap();
 	}
 	void Update(float delta) {
-		// To-do: �Ʒ��� �������� ������Ʈ�� �־ ������
-		AssignTaskToWholeCharacter();
 		ExecuteCharactersTask();
 	};
 
