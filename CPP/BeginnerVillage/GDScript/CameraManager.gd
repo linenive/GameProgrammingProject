@@ -45,7 +45,7 @@ func InitCameraSetting():
 	SetCameraSetting_Default()
 
 func SetCameraPosition(new_position):
-	$CameraCPP.SetNowCameraPosition(new_position)
+	$CameraCPP.SetCurrentCameraPosition(new_position)
 	
 func DetectCameraMoveObj():
 	if g_nowcamerastate == eCameraState.DEFAULT:
