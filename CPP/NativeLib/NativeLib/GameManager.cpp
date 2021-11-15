@@ -18,8 +18,8 @@ void GameManager::_init(){
 
 void GameManager::_ready(){
 	NewGame();
-	ai_manager.SetGameWorld(&game_world);
 	progress_manager.SetGameWorld(&game_world);
+	ai_manager.SetGameWorld(&game_world, game_world.GetTileMap());
 }
 
 void GameManager::_process(float delta){
