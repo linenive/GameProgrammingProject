@@ -28,7 +28,6 @@ private:
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
 			if (!c->GetSchedule()->HasTask())
-				printf("a");
 				FindNewTask(c);
 		}
 	};
@@ -47,6 +46,8 @@ public:
 		path_finder.SetTileRepository(now_tile_repo);
 	}
 	void Update(float delta) {
+		// To-do: 아래는 가끔씩만 업데이트해 주어도 괜찮음
+		AssignTaskToWholeCharacter();
 		ExecuteCharactersTask();
 	};
 
