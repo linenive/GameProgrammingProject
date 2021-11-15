@@ -22,7 +22,6 @@ public:
 
 	void ChangeTarget(vector<Vector2> path_list, Vector2 new_target); 
 	bool CanChangeNextPos();
-
 	void ExecuteTask(WorldObject* performer);
 	bool ArriveCurrentTarget(Vector2 current_position);
 };

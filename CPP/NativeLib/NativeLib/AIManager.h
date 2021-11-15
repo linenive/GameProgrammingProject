@@ -21,7 +21,6 @@ private:
 		performer->GetSchedule()->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
-
 		Task* currentTask = performer->GetSchedule()->GetTask();
 		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().GetPosition(), target), target);
 	}
@@ -29,6 +28,7 @@ private:
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
 			if (!c->GetSchedule()->HasTask())
+				printf("a");
 				FindNewTask(c);
 		}
 	};
@@ -47,8 +47,6 @@ public:
 		path_finder.SetTileRepository(now_tile_repo);
 	}
 	void Update(float delta) {
-		// To-do: �Ʒ��� �������� ������Ʈ�� �־ ������
-		AssignTaskToWholeCharacter();
 		ExecuteCharactersTask();
 	};
 
