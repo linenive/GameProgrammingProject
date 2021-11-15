@@ -12,10 +12,10 @@ private:
 
 public:
 	~Character() {
-		delete schedule;
-		delete inventory;
+		printf("delete character\n");
 	}
 	Character(Transform2D transform, Vector2 scale) : WorldObject("Noname", transform, scale){
+		printf("new character\n");
 		schedule = new Schedule();
 		inventory = new Inventory();
 		inventory->Get(new Material("Wood"));
