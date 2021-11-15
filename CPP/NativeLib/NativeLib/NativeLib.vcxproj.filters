@@ -52,6 +52,9 @@
     <Filter Include="헤더 파일\Library">
       <UniqueIdentifier>{bfdf4941-9496-409c-93cc-fec84e80e877}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Manager\Event">
+      <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Task.cpp">
       <Filter>소스 파일\Repository\World\WorldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>소스 파일\Library</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,42 @@
     </ClInclude>
     <ClInclude Include="Task.h">
       <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EventGenerator.h">
+      <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventLogRepository.h">
+      <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventLog.h">
+      <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForEvent.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="RepeatitionRandomOcccurrence.h">
+      <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="PickRandom.h">
+      <Filter>헤더 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>헤더 파일\Manager\Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

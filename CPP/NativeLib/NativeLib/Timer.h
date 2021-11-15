@@ -18,4 +18,8 @@ public:
 	void reset() {
 		passed_time = .0;
 	}
+
+	bool isTimeZero() {
+		return passed_time == .0;
+	}
 };
