@@ -20,7 +20,7 @@ private:
 	bool is_done = false;
 
 public:
-	// To-do: ╕ё└√ ╝Ў╟р└╠ ░б┤╔╟╤ ┴Ў ╚о└╬
+	// To-do: я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ ╚оя┐╜я┐╜
 	bool CanExecute() {
 		return false && is_done;
 	}
