@@ -1,6 +1,7 @@
 #pragma once
 #include "Tile.h"
 #include "GameRule.h"
+#include "CoordinatesSystem.h"
 
 // world object를 vector로 구현하였으나 이후 quad-tree 자료구조를 고려해본다.
 class TileRepository{
@@ -21,5 +22,6 @@ public:
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
 	Tile GetTile(int tile_num) { return *tile_map[tile_num]; }
+	int GetTileNumber(Coordinates coord);
 };
 

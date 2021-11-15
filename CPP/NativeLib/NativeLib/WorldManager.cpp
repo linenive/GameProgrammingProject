@@ -57,7 +57,7 @@ int WorldManager::GetTileIdByVector2(Vector2 vector) {
 	float y = vector.y;
 	Coordinates hovered_tile = ApsolutePositionToCoordinates(Vector2(x, y));
 	// printf("[WorldManager]GetTile: %d\n", CalculateTileNumberByCoordinates(hovered_tile));
-	return CalculateTileNumberByCoordinates(hovered_tile);
+	return game_world->GetTileMap()->GetTileNumber(hovered_tile);
 }
 
 Vector2 WorldManager::GetWorldSize() {
@@ -76,14 +76,7 @@ void WorldManager::LoadGameWorld() {
 
 }
 
-int WorldManager::CalculateTileNumberByCoordinates(Coordinates coord)
-{
-	int tile_size_x = game_world->GetTileMap()->GetTileSizeX();
-	return coord.x + tile_size_x * coord.y;
-}
-
-bool WorldManager::CheckCoordinatesInTileMap(Coordinates coord)
-{
+bool WorldManager::CheckCoordinatesInTileMap(Coordinates coord){
 	return (
 		coord.x > -1 && coord.x < game_world->GetTileMap()->GetTileSizeX() &&
 		coord.y > -1 && coord.y < game_world->GetTileMap()->GetTileSizeY()

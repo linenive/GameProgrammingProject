@@ -30,3 +30,8 @@ void TileRepository::CreateTileMapTemp() {
 		tile_map[i]->SetTileType(TileType(eTileType::TILE_OCEAN));
 	}
 }
+
+int TileRepository::GetTileNumber(Coordinates coord)
+{
+	return coord.x + tile_size_x * coord.y;
+}
