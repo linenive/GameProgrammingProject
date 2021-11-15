@@ -38,9 +38,9 @@ private:
 	}
 	// To-do: hard coding -> algorithm which use DB
 	void FindNewTaskToGuest(Character* guest) {
-		vector<PurposeOfVisit> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
-		for (PurposeOfVisit p : purposes) {
-			if (p.CanExecute()) {
+		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
+		for (PurposeOfVisit* p : purposes) {
+			if (p->CanExecute()) {
 				// To-do: ������ �´� Ȱ�� �߰�
 				AddTempTask(guest);
 				return;
