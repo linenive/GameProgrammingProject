@@ -4,6 +4,8 @@
 #include "GameWorldForAI.h"
 #include "AIExecuter.h"
 #include "TaskForIdleMove.h"
+#include "PathFinder.h"
+#include "Task.h"
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
@@ -17,17 +19,19 @@ private:
 	vector<Character*>* residents;
 	AIExecuter* ai_executer;
 	TileRepository* now_tile_repo;
+	Timer assign_task_timer;
 
 	void FindNewTask(Character* performer) {
 		TaskForMove* new_task = new TaskForMove(now_tile_repo);
 		//TaskForIdleMove* new_task = new TaskForIdleMove(now_tile_repo, performer);
 		performer->SetTask(new_task);
-	};
+	};	
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetTask());
 		if (currentTask == nullptr) return;
 		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
 	}
+	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AddLeaveVillageTask(Character* character) {
 		Task* new_task = new Task(CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint()));
 		character->GetSchedule()->SetTask(new_task);
