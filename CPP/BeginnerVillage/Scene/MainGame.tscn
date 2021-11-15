@@ -773,4 +773,6 @@ margin_top = 5445.0
 margin_right = 359.0
 margin_bottom = 5496.0
 
+[node name="Node" type="Node" parent="UIControl/LogUI"]
+
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
