@@ -3,9 +3,8 @@
 #include "TaskReserveInfo.h"
 #include "GameWorldForAI.h"
 #include "AIExecuter.h"
-
-#include "Task.h"
 #include "PathFinder.h"
+#include "Task.h"
 
 class AIManager {
 
@@ -13,6 +12,7 @@ private:
 	GameWorldForAI* game_world;
 	vector<Character*>* characters;
 	AIExecuter* ai_executer;
+	TileRepository* now_tile_repo;
 	PathFinder path_finder = PathFinder();
 
 	void FindNewTask(Character* performer) {
@@ -20,12 +20,13 @@ private:
 		performer->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
-		Godot::print("[AIManager] >>>> change target  CALLED: ");
-		performer->GetTask()->SetTarget(target);
 
-		Godot::print("[AIManager] >>>> change target : " + performer->GetPhysics().getPosition());
+		Task* currentTask = performer->GetTask();
+		currentTask->ChangeTarget(target);
+
 		path_finder.PathFinding(performer->GetPhysics().getPosition(), target);
-		
+		//Godot::print("[AIManager] >>>> change target : " + performer->GetPhysics().getPosition());
+		//path_finder.PathFinding(performer->GetPhysics().getPosition(), target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
@@ -45,6 +46,7 @@ public:
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
 		
+		now_tile_repo = tile;
 		path_finder.SetTileRepository(tile);
 	}
 	void Update(float delta) {

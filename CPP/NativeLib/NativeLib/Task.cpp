@@ -16,7 +16,8 @@ Vector2 Truncate(Vector2 velocity, float max) {
 	return velocity * i;
 }
 
-void Task::SetTarget(Vector2 new_target){
+void Task::ChangeTarget(Vector2 new_target){//vector<Vector2> new_path_list){
+	
 	target = new_target;
 }
 
