@@ -3,7 +3,7 @@
 
 class RepeatitionRandomOccurrence {
 private:
-	float probability = 0.2;
+	float probability = 0.2f;
 
 public:
 	bool isOccurrence(unsigned int random_seed) {

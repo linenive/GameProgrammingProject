@@ -12,7 +12,8 @@ private:
 
 public:
 	~Character() {
-		printf("delete character\n");
+		delete schedule;
+		delete inventory;
 	}
 	Character(Transform2D transform, Vector2 scale) : WorldObject("Noname", transform, scale){
 		printf("new character\n");
