@@ -15,6 +15,14 @@ public:
 		x = x_coord;
 		y = y_coord;
 	}
+	bool operator<(const Coordinates& other) const {
+		if (x < other.x) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	bool operator==(const Coordinates& other) const {
 		if (x == other.x && y == other.y) {
 			return true;

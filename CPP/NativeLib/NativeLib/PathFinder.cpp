@@ -5,6 +5,7 @@
 
 void PathFinder::AstarInit(){
 	open_list.clear();
+	closed_list.clear();
 	ans.clear();
 	score_f_list.clear();
 }
@@ -41,17 +42,18 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 	Coordinates start_tile = ApsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = ApsolutePositionToCoordinates(target_pos);
 
-	Godot::print("[PathFinder] Set Coordinates: " +Vector2(start_tile.x, start_tile.y));//.x, start_tile,y, end_tile.x, end_tile.y
+	Godot::print("[PathFinder] Set Coordinates: " +Vector2(end_tile.x, end_tile.y));//.x, start_tile,y, end_tile.x, end_tile.y
 	open_list.insert(make_pair(start_tile, 0));
 	ans.push_back(start_tile);
-	
-	//while (ans.back() != end_tile) 	
-	for(int j=0; j<5; j++)
+
+	while (ans.back() != end_tile) 	
 	{
 		now_tile = (*open_list.begin()).first;
-		Godot::print("[PathFinder] now tile: "+ Vector2(now_tile.x, now_tile.y));
+		Godot::print("[PathFinder] now tile: "+ Vector2(now_tile.x, now_tile.y) +", weight "+ Vector2(-1, (*open_list.begin()).second));
+		closed_list.insert(now_tile);
 		ans.push_back(now_tile);
-		open_list.erase(open_list.begin());
+		
+		open_list.clear();
 
 		for (i = 0; i < 8; i++) {
 
@@ -62,25 +64,19 @@ vector<Coordinates> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_po
 
 			if (x < 0 || y < 0 || x > MAX_TILE_NUMBER_X || y > MAX_TILE_NUMBER_Y) continue;
 
+			auto it = closed_list.find(next_tile);
+			if (it != closed_list.end()) continue;
 
-			if (DetectObstacle(next_tile))
-			{
-				//Godot::print("[PathFinder] Obstacle Detect : ( %d, %d )" + (next_tile.x, next_tile.y));
-				continue; // 장애물에 대해선 검사를 하지 않는다.
-			}
+			if (DetectObstacle(next_tile)) continue;
 			
 			now_score_h = AstarH(next_tile, end_tile);
 			
 			if (dx[i] == 0 || dy[i] == 0) now_score_g = AstarG(now_tile, next_tile, weight_g_straight);
 			else now_score_g = AstarG(now_tile, next_tile, weight_g_diagonal);
 
-
 			AstarF(next_tile, now_score_h, now_score_g);
 
-			//Godot::print(" >> [PathFinder] now score h, g: " + Vector2(now_score_h, now_score_g));
-
-			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));/**/
-			
+			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));
 		}
 	}
 	String print_string;

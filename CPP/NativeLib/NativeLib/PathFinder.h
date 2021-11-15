@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Comp {
+class CompareWithScore {
 public:
 	bool operator()(const pair<Coordinates, int>& lhs, const pair<Coordinates, int>& rhs) const {
 		return lhs.second < rhs.second; //오름차순
@@ -21,7 +21,8 @@ class PathFinder {
 
 private:
 
-	set<pair<Coordinates, int>, Comp> open_list;
+	set<pair<Coordinates, int>, CompareWithScore> open_list;
+	set<Coordinates> closed_list;
 	vector<Coordinates> ans;
 	unordered_map<Coordinates, int, CoordinatesHash> score_f_list;
 	TileRepository* tile_map;
