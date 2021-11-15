@@ -188,6 +188,7 @@
     <ClInclude Include="GameWorldForUI.h" />
     <ClInclude Include="GameWorldForWorld.h" />
     <ClInclude Include="GodotScenePath.h" />
+    <ClInclude Include="Schedule.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="ControlState.h" />
     <ClInclude Include="Inventory.h" />
