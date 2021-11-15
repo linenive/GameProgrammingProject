@@ -6,7 +6,7 @@ func _ready():
 	ui_manager = get_node("/root/Main/UIManager")
 
 func _process(delta):
-	# GetEventLogExample()
+	#GetEventLogExample()
 	pass
 	
 func GetEventLogExample():

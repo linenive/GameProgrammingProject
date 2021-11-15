@@ -5,7 +5,7 @@ var confirmation_dialog
 
 func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
-	confirmation_dialog = get_node("/root/Main/HUD/UIControl/ConfirmationDialog")
+	confirmation_dialog = get_node("/root/Main/UIControl/ConfirmationDialog")
 	
 	$VBoxContainer/HBoxContainer2/VillageNameEditBtn.connect("pressed", self, "edit_village_name")
 	

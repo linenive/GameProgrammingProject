@@ -3,7 +3,7 @@ extends ConfirmationDialog
 var village_Info_UI
 
 func _ready():
-	village_Info_UI = get_node("/root/Main/HUD/VillageInfoUI")
+	village_Info_UI = get_node("/root/Main/UIControl/HUD/VillageInfoUI")
 	
 	get_ok().connect("pressed", self, "ok_btn_pressed")
 	get_cancel().connect("pressed", self, "cancel_btn_pressed")
