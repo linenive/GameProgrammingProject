@@ -10,7 +10,7 @@ func _ready():
 	camera_manager = get_node("/root/Main/CameraManager/CameraCPP")
 	tile_info_label = get_node("/root/Main/UIControl/HUD/TileInfoTest")
 
-func input(event):
+func _input(event):
 	input_process_for_game_world(event)
 	input_process_for_ui(event)
 
