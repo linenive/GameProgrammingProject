@@ -61,7 +61,7 @@ public:
 	// StaticObject ฐüทร
 	void SetBlockOnTile(int x, int y, int layer_index, string _name, StaticUnit* _owner)
 	{
-		tile_map[y][x]->SetBlock(layer_index, _name, _owner);
+		tile_map[y][x]->SetBlock(layer_index, _name, _owner, eBlockType::NONE);
 	}
 
 	bool IsEmptySpace(int x, int y, int layer_index)

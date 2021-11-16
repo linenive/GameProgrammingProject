@@ -74,6 +74,8 @@ script = ExtResource( 9 )
 
 [node name="Tile" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
+[node name="Block" type="Node" parent="JanTestGDScript/TestTileCreater"]
+
 [node name="Character" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
 [node name="GodotInput" type="Control" parent="."]

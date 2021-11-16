@@ -7,10 +7,10 @@ void WorldManager::_register_methods() {
 	register_method("_process", &WorldManager::_process);
 
 	register_method("GetTileNumber", &WorldManager::GetTileNumber);
-	register_method("GetTileTransform", &WorldManager::GetTileTransform);
-	register_method("GetTileScale", &WorldManager::GetTileScale);
-	register_method("GetTileType", &WorldManager::GetTileType);
-	register_method("GetTileName", &WorldManager::GetTileName);
+	register_method("GetTileTransform", &WorldManager::GetSurfaceTransform);
+	register_method("GetTileScale", &WorldManager::GetSurfaceScale);
+	register_method("GetTileType", &WorldManager::GetSurfaceType);
+	register_method("GetTileName", &WorldManager::GetSurfaceName);
 
 	register_method("TestNewCharacter", &WorldManager::TestNewCharacter);
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);

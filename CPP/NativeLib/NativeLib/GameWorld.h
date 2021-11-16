@@ -42,6 +42,7 @@ public:
 	virtual Tile* GetTileByPos(int pos_x, int pos_y) { return tile_repo.GetTile(pos_x, pos_y); };
 	virtual Building* GetBuildingById(int id) { return building_repo.GetBuildingById(id); }
 	virtual void AddBuilding(Building* building) { building_repo.AddBuilding(building); }
+	virtual void DeleteBuildingFromWorld(int id) { building_repo.DeleteBuildingById(id); }
 	void update(float delta);
 	virtual EventLogRepository* GetEventLogRepository() { return &event_log_repo; }
 	virtual void AddEventLog(EventLog new_log) {

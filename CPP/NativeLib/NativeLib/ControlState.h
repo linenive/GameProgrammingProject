@@ -8,6 +8,9 @@ public:
 	bool is_area_highlighted = false;
 	Rect2 highlighted_area;
 
+	int is_building = false;
+	int scheduled_building_type;
+
 	void ResetDrag() {
 		is_dragging = false;
 		drag_start_point = Vector2(0, 0);
@@ -74,6 +77,8 @@ public:
 
 class BuildState : public ControlState {
 private:
+	StaticUnitService* static_unit_service;
+	int scheduled_building_type;
 	void HighlightHoverdTile(Vector2 mouse_position) {
 		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
 		if (hovered_tile_id >= 0) {
@@ -86,7 +91,8 @@ private:
 		}
 	}
 public:
-	BuildState(GameWorldForInput* _world) : ControlState(_world) {}
+	BuildState(GameWorldForInput* _world, StaticUnitService* _static_unit_service)
+		: ControlState(_world), static_unit_service(_static_unit_service) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 		HighlightHoverdTile(mouse_position);
@@ -102,6 +108,10 @@ public:
 
 	void Reset() override {
 		input.is_area_highlighted = false;
+	}
+
+	void SetScheduledBuildingType(int building_type) {
+		scheduled_building_type = building_type;
 	}
 };
 
@@ -145,9 +155,9 @@ private:
 	BuildState* build_state;
 
 public:
-	ControlContext(GameWorldForInput* world) {
+	ControlContext(GameWorldForInput* world, StaticUnitService* static_unit_service) {
 		normal_state = new NormalState(world);
-		build_state = new BuildState(world);
+		build_state = new BuildState(world, static_unit_service);
 		current_state = normal_state;
 	}
 	~ControlContext() {
@@ -161,8 +171,9 @@ public:
 		current_state = normal_state;
 	}
 
-	void SwitchToBulidState() {
+	void SwitchToBulidState(int building_type) {
 		current_state->Reset();
+		build_state->SetScheduledBuildingType(building_type);
 		current_state = build_state;
 	}
 

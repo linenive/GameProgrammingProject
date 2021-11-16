@@ -3,6 +3,7 @@
 #include "Base.h"
 
 enum class eBlockType {
+    NONE,
     WOOD_WALL,
     WOOD_DOOR,
     WOOD_FLOOR

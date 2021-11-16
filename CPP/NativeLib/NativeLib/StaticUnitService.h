@@ -18,14 +18,14 @@ private:
 	int CreateBuilding_(eBuildingType type, Coordinates top_left_coordinates);
 	void RegisterBlocksToWorld(int start_x, int start_y, vector< vector<eBlockType> >& blocks, Building* building);
 	bool IsPlacablePosition_(int start_x, int start_y, vector< vector<eBlockType> >& blocks);
-	void DeleteBuilding(Building* building);
+	void HideBuildingBlocks(Building* building);
 
 public:
 	void SetGameWorld(GameWorldForStaticUnit* world);
 	int CreateBuilding(int type, Vector2 top_left_tile_position);
 	bool IsPlacablePosition(int type, Vector2 top_left_tile_position);
 	void DeleteBuildingById(int id);
-	void GetUpdateTileList(int id) {/*To-do*/ };
+	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);
 
 	StaticUnitService();
 	StaticUnitService(int start_building_id, int start_structur_id);
@@ -90,8 +90,8 @@ void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< 
 			eBlockType& block_type = blocks[i][j];
 
 			tile->SetBlock(
-				BlockType::LevelOf(block_type),
-				BlockType::NameOf(block_type), building
+				BlockType::LevelOf(block_type), BlockType::NameOf(block_type),
+				building, block_type
 			);
 
 			building->RegisterBlockInfo(j, i, BlockType::LevelOf(block_type));
@@ -101,13 +101,22 @@ void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< 
 
 void StaticUnitService::DeleteBuildingById(int id) {
 	Building* building = game_world->GetBuildingById(id);
-	DeleteBuilding(building);
+	HideBuildingBlocks(building);
+	game_world->DeleteBuildingFromWorld(id);
 }
 
-void StaticUnitService::DeleteBuilding(Building* building) {
+void StaticUnitService::HideBuildingBlocks(Building* building) {
 	for (auto block_info : building->blocks) {
 		Tile* tile = game_world->GetTileByPos(block_info.x, block_info.y);
 		tile->GetBlock(block_info.layer_level)->Disappear();
-		//Delete from building repository
 	}
+}
+
+vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) {
+	Building* building = game_world->GetBuildingById(id);
+	vector<Coordinates> result;
+	for (auto block_info : building->blocks) {
+		result.push_back(Coordinates(block_info.x, block_info.y));
+	}
+	return result;
 }

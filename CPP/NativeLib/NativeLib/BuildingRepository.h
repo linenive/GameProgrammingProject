@@ -22,6 +22,7 @@ public:
     void DeleteBuildingById(int id) {
         if (IsExistId(id)) {
             delete(building_map[id]);
+            building_map.erase(id);
         }
         else {
             printf("[BuildingRepository]WARNING: trying to delete not exist building.\n");
