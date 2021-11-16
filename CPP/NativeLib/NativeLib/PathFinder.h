@@ -31,6 +31,7 @@ private:
 
 	int AstarH(Coordinates start_tile, Coordinates end_tile);
 
+	Vector2 CalcObstacleVector(Coordinates now_tile);
 	bool DetectObstacle(Coordinates next_tile);
 	int CalculateTileNumberByCoordinates(Coordinates coord);
 

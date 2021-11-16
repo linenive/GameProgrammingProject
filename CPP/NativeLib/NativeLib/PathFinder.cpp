@@ -18,6 +18,8 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	unordered_map<Coordinates, Coordinates, CoordinatesHash> open_parent_list;
 	unordered_map<Coordinates, Coordinates, CoordinatesHash> closed_parent_list;
 
+	unordered_map<Coordinates, Vector2, CoordinatesHash> obstacle_vector;
+
 	unordered_map<Coordinates, int, CoordinatesHash> score_f_list;
 	vector<Coordinates> ans;
 
@@ -121,7 +123,29 @@ bool PathFinder::DetectObstacle(Coordinates next_tile) {
 
 void PathFinder::SetTileRepository(TileRepository* tile) {
 	tile_map = tile;
-	//path finding 다시 해줘야 할수도 start, end를 매개변수로 받아서
+}
+
+Vector2 PathFinder::CalcObstacleVector(Coordinates now_tile) {
+	int x, y;
+
+	int dx[4] = { -1, 1, 0, 0};
+	int dy[4] = { 0, 0, -1, 1};
+	Vector2 obs_vec= Vector2(0,0);
+
+	for (int i = 0; i < 4; i++) {
+		x = now_tile.x + dx[i];
+		y = now_tile.y + dy[i];
+
+		if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
+		if (DetectObstacle(Coordinates(x, y))) {
+			obs_vec.x += dx[i];
+			obs_vec.y += dy[i];
+		}
+	}
+
+	obs_vec = -obs_vec.normalized();
+	obs_vec = Vector2(obs_vec.x * TILE_WIDTH, obs_vec.y * TILE_HEIGHT);
+	return obs_vec;
 }
 
 vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
@@ -129,7 +153,7 @@ vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
 	std::vector<Coordinates>::iterator iter;
 	vector<Vector2> ans_vector;
 	for (iter = ans.begin()+1; iter != ans.end(); iter++) {
-		ans_vector.push_back(CoordinatesToCenterVector((*iter)));
+		ans_vector.push_back(CoordinatesToCenterVector((*iter)) + CalcObstacleVector((*iter)));
 	}
 	return ans_vector;
 }
