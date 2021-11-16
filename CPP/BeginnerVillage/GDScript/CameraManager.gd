@@ -22,7 +22,7 @@ func _ready():
 	SetScreenLimit()
 	InitCameraSetting()
 	
-	$CameraCPP.SetCurrentCameraPosition(Vector2(g_world_size.x/2, g_world_size.y/2))
+	#$CameraCPP.SetCurrentCameraPosition(Vector2(g_world_size.x/2, g_world_size.y/2))
 	
 func _process(_delta):
 	DetectCameraMoveObj()

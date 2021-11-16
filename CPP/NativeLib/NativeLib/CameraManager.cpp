@@ -60,26 +60,31 @@ void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector){
 
 Vector2 godot::CameraManager::CalcNewPosition(Vector2 new_position){
 	new_position += camera.GetPosition();
+	Vector2 current_viewport_half = get_viewport_rect().size / 2 * camera.GetZoomDegree();
+	float current_width = DEFAULT_TILE_NUMBER_X * TILE_WIDTH;
+	float current_height = DEFAULT_TILE_NUMBER_Y * TILE_HEIGHT;
+	Vector2 current_boundary_size = Vector2(current_width,current_height)- current_viewport_half;
+	if (new_position.x < current_viewport_half.x) {
+		new_position.x = current_viewport_half.x;
+	}
+	else if (new_position.x > current_boundary_size.x) {
+		new_position.x = current_boundary_size.x;
+	}
 
-	if (new_position.x < 0) {
-		new_position.x = 0;
+	if (new_position.y < current_viewport_half.y) {
+		new_position.y = current_viewport_half.y;
 	}
-	else if (new_position.x > get_viewport_rect().size.x) {
-		new_position.x = get_viewport_rect().size.x;
-	}
-
-	if (new_position.y < 0) {
-		new_position.y = 0;
-	}
-	else if (new_position.y > get_viewport_rect().size.y) {
-		new_position.y = get_viewport_rect().size.y;
+	else if (new_position.y > current_boundary_size.y) {
+		new_position.y = current_boundary_size.y;
 	}
 	return new_position;
 }
 
 void godot::CameraManager::ZoomOut(){
 	float next_scrollfactor = camera.GetZoomDegree() + zoom_scroll_factor;
-	if (next_scrollfactor < zoom_max)
+	float zoom_max_current = min(zoom_max, DEFAULT_TILE_NUMBER_X * TILE_WIDTH / get_viewport_rect().size.x);
+	//Godot::print("[CameraManager] zoom max current: " + Vector2(next_scrollfactor, zoom_max_current));// +" / new_position :  " + new_position);
+	if (next_scrollfactor < zoom_max_current)
 		SetCurrentZoom(next_scrollfactor);
 }
 
