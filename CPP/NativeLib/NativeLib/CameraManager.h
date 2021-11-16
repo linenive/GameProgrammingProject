@@ -11,12 +11,16 @@ namespace godot {
 
 	private:
 		Camera camera;
+
 		float zoom_max = 1.5;
 		float zoom_min = 0.5;
 		float zoom_scroll_factor = 0.2;
 
 		void CameraMoveWithKey(Vector2 velocity);
 		void CameraMoveWithMouse(Vector2 now_mouse_vector);
+
+		Vector2 CalcNewPosition(Vector2 new_position);
+
 	public:
 		float mouse_moving_bound_size;
 		float camera_moving_speed = CAMERA_MOVING_SPEED;
