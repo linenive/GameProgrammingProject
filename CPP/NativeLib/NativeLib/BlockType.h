@@ -16,7 +16,7 @@ public:
     static int level[10];
     static string name[10];
 
-    //TODO: ¿ÜºÎ ÆÄÀÏ·Î ÃÊ±âÈ­
+    //TODO: ì™¸ë¶€ íŒŒì¼ë¡œ ì´ˆê¸°í™”
     static void Init() {
         level[static_cast<int>(eBlockType::WOOD_WALL)] = 1;
         name[static_cast<int>(eBlockType::WOOD_WALL)] = "wood_wall";
