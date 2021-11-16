@@ -10,7 +10,7 @@ var g_world_size
 var g_screen_size
 var g_velocity
 
-var kcamera_speed=10
+var kcamera_speed=10.0
 var kmouse_moving_interval=10
 
 var kzoom_default=1.0

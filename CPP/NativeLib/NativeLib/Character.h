@@ -7,6 +7,8 @@
 #include "Stat.h"
 #include <vector>
 
+using namespace beginner;
+
 enum eLevel {
 	LEVEL1, LEVEL2, LEVEL3
 };
@@ -22,13 +24,13 @@ private:
 	Inventory* inventory;
     eLevel level;
     eGender gender;
-    vector<Skill> skill_list;
+    vector<beginner::Skill> skill_list;
     Task* current_task;
     Stat base_stat;
 
     void SetRandomSkill();
-    void AddSkill(Skill new_skill);
-    void SwitchSkill(int old_skill_index, Skill new_skill);
+    void AddSkill(beginner::Skill new_skill);
+    void SwitchSkill(int old_skill_index, beginner::Skill new_skill);
     void SetBaseStat();
 
 public:
