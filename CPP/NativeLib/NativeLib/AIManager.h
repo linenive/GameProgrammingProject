@@ -31,7 +31,6 @@ private:
 		if (currentTask == nullptr) return;
 		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
 	}
-	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AddLeaveVillageTask(Character* character) {
 		Task* new_task = new Task(CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint()));
 		character->GetSchedule()->SetTask(new_task);
