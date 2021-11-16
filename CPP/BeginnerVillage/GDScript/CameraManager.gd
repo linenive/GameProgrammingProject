@@ -20,7 +20,6 @@ var kzoom_min = 0.5
 
 func _ready():	
 	SetScreenLimit()
-	#SetCameraLimit()
 	InitCameraSetting()
 	
 	$CameraCPP.SetCurrentCameraPosition(Vector2(g_world_size.x/2, g_world_size.y/2))
@@ -32,12 +31,6 @@ func _process(_delta):
 func SetScreenLimit():
 	g_world_size = get_node("/root/Main/WorldManager").GetWorldSize()
 	g_screen_size = get_viewport_rect().size
-	
-func SetCameraLimit():
-	$Camera2D.limit_left = 0
-	$Camera2D.limit_right = g_world_size.x
-	$Camera2D.limit_top = 0
-	$Camera2D.limit_bottom = g_world_size.y
 	
 func InitCameraSetting():
 	$CameraCPP.g_speed = kcamera_speed
