@@ -1,42 +1,32 @@
 #include "InputManager.h"
 #include "GodotScenePath.h"
 
-void InputManager::StartDrag(Vector2 start_pos) {
-	drag_start_point = start_pos;
-	is_dragging = true;
-}
-
-void InputManager::EndDrag(Vector2 end_pos) {
-	is_dragging = false;
-}
-
 
 void InputManager::MouseClick(Vector2 position) {
-	Godot::print("[InputManager]Mouse Click: " + position);
-
-	StartDrag(position);
+	control_context->MouseClick(position);
 }
 
 void InputManager::MouseRelease(Vector2 position) {
-	Godot::print("[InputManager]Mouse Release: " + position);
-
-	EndDrag(position);
-
+	control_context->MouseRelease(position);
 }
 
 void InputManager::MouseHover(Vector2 position) {
+	control_context->MouseHover(position);
 	now_mouse_point = position;
 }
 
-bool InputManager::IsDragging()
-{
-	return is_dragging;
+bool InputManager::IsDragging() {
+	return control_context->GetInputStatus().is_dragging;
 }
 
-Rect2 InputManager::GetDragRect()
-{
+void InputManager::TestStructureButton() {
+	control_context->SwitchToBulidState();
+}
+
+Rect2 InputManager::GetDragRect() {
 	Vector2 drag_left_top = Vector2();
 	Vector2 drag_size = Vector2();
+	Vector2 drag_start_point = control_context->GetInputStatus().drag_start_point;
 
 	if (drag_start_point.x > now_mouse_point.x) {
 		drag_left_top.x = now_mouse_point.x;
@@ -57,6 +47,14 @@ Rect2 InputManager::GetDragRect()
 	return Rect2(drag_left_top, drag_size);
 }
 
+bool InputManager::IsTileHighlighting() {
+	return control_context->GetInputStatus().is_area_highlighted;
+}
+
+Rect2 InputManager::GetTileHighlight() {
+	return control_context->GetInputStatus().highlighted_area;
+}
+
 void InputManager::_register_methods() {
 	register_method("_init", &InputManager::_init);
 	register_method("_ready", &InputManager::_ready);
@@ -65,15 +63,18 @@ void InputManager::_register_methods() {
 	register_method("MouseHover", &InputManager::MouseHover);
 	register_method("IsDragging", &InputManager::IsDragging);
 	register_method("GetDragRect", &InputManager::GetDragRect);
+	register_method("TestStructureButton", &InputManager::TestStructureButton);
+	register_method("IsTileHighlighting", &InputManager::IsTileHighlighting);
+	register_method("GetTileHighlight", &InputManager::GetTileHighlight);
 }
 
 void InputManager::_init() {
-	is_dragging = false;
 
 }
 
 void InputManager::_ready() {
-	InputManager();
+	LoadGameWorld();
+	control_context = new ControlContext(game_world);
 }
 
 void InputManager::LoadGameWorld() {
@@ -82,5 +83,4 @@ void InputManager::LoadGameWorld() {
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
 	game_world = child->GetGameWorld();
-
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Common.h"
 #include "GameManager.h"
+#include "ControlState.h"
 #include <Node.hpp>
 #include <InputEventMouseButton.hpp>
 
@@ -8,24 +9,29 @@ class InputManager : public Node {
 	GODOT_CLASS(InputManager, Node);
 
 private:
+	ControlContext* control_context;
 	GameWorldForInput* game_world;
-	bool is_dragging;
-	Vector2 drag_start_point;
 	Vector2 now_mouse_point;
 
 	void LoadGameWorld();
-	void StartDrag(Vector2 start_pos);
-	void EndDrag(Vector2 end_pos);
 
 public:
+	~InputManager() {
+		delete control_context;
+	}
+	
 	static void _register_methods();
 	void _init();
 	void _ready();
+
 	void MouseClick(Vector2 position);
 	void MouseRelease(Vector2 position);
 	void MouseHover(Vector2 position);
 
 	bool IsDragging();
+	void TestStructureButton();
 	Rect2 GetDragRect();
+	bool IsTileHighlighting();
+	Rect2 GetTileHighlight();
 
 };

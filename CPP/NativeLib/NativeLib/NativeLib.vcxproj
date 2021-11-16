@@ -179,6 +179,7 @@
     <ClInclude Include="GameWorldForWorld.h" />
     <ClInclude Include="GodotScenePath.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="ControlState.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Material.h" />
@@ -187,6 +188,8 @@
     <ClInclude Include="PickRandom.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RepeatitionRandomOcccurrence.h" />
+    <ClCompile Include="Structure.h" />
+    <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileFactory.h" />

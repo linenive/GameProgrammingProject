@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -23,6 +23,9 @@
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
 
 [node name="Main" type="Node"]
@@ -116,7 +119,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ObjectInfoUI" type="CanvasLayer" parent="UIControl"]
+[node name="Button2" type="Button" parent="UIControl/HUD"]
+anchor_left = 0.000651121
+anchor_right = 0.000651121
+margin_left = 966.667
+margin_top = 2.33334
+margin_right = 1021.67
+margin_bottom = 52.3333
+custom_fonts/font = SubResource( 3 )
+text = "가구 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ObjectInfoUI" type="Node" parent="UIControl"]
 
 [node name="PopupUI1" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
@@ -776,3 +792,4 @@ margin_bottom = 5496.0
 [node name="Node" type="Node" parent="UIControl/LogUI"]
 
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
+[connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
