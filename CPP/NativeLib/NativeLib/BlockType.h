@@ -16,7 +16,7 @@ public:
     static int level[10];
     static string name[10];
 
-    //TODO: 외부 파일로 초기화
+    //TODO: init by external file
     static void Init() {
         level[static_cast<int>(eBlockType::WOOD_WALL)] = 1;
         name[static_cast<int>(eBlockType::WOOD_WALL)] = "wood_wall";
