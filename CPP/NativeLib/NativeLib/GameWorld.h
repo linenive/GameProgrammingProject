@@ -4,7 +4,6 @@
 #include "GameWorldForWorld.h"
 #include "GameWorldForInput.h"
 #include "GameWorldForEvent.h"
-#include <string>
 
 const unsigned int big_prime_number = 154813283;
 
