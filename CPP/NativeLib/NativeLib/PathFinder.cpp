@@ -86,6 +86,7 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	now_tile = end_tile;
 
 	//back tracking
+	String path= Vector2(now_tile.x, now_tile.y);
 	for (i=0; i<closed_parent_list.size(); i++)
 	{
 		parent_tile = closed_parent_list[now_tile];
@@ -94,7 +95,12 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 		//Godot::print("[PathFinder] Push new path: " + Vector2(now_tile.x, now_tile.y)  + " from " + Vector2(parent_tile.x, parent_tile.y));
 		now_tile = parent_tile;
 		ans.insert(ans.begin(), parent_tile);
+
+		path += " -> "+Vector2(parent_tile.x, parent_tile.y);
 	}
+
+	Godot::print("[PathFinder] GET Path: " + path);
+
 	ans.push_back(end_tile);
 
 	vector<Vector2> new_path = GetPathListByCoor(ans);
