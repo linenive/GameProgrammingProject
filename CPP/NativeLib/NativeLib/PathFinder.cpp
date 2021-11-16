@@ -29,6 +29,8 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	open_parent_list[start_tile] = start_tile;
 	score_f_list[start_tile] = 0;
 
+	now_tile = start_tile;
+
 	while (now_tile != end_tile && open_list.size()>0)
 	{
 		now_tile = (*open_list.begin()).first;
@@ -78,7 +80,6 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, now_score_f));
 			open_list.insert(make_pair(next_tile, now_score_f));
 			open_parent_list[next_tile] = now_tile;
-			
 		}
 	}
 

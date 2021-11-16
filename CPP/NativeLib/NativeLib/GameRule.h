@@ -45,7 +45,7 @@ const float CAMERA_DEFAULT_ZOOM_DEGREE = 1.0;
 const int EVENT_LOG_STACK_MAX = 1000;
 
 // max force that can press to the character
-// bigger - >smoother
-const float CHARACTER_MAX_FORCE = 0.4;
+// smaller - >smoother
+const float CHARACTER_MAX_FORCE = 6;// 0.4;
 const float CHARACTER_SLOWING_RADIUS = 3;
 
