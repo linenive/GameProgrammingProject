@@ -24,6 +24,10 @@ func set_camera_position(position):
 
 func show_new_log(single_log):
 	$HBoxContainer/LogContainer/log_text.text = single_log[0] + ": " + single_log[1]
+	
+	if $HBoxContainer/track_btn.get_signal_connection_list("pressed").size() != 0:
+		$HBoxContainer/track_btn.disconnect("pressed", self, "set_camera_position")
+		
 	$HBoxContainer/track_btn.connect("pressed", self, "set_camera_position", [single_log[7]])
 	tween_fade_out()
 
