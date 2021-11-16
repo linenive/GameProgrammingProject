@@ -4,7 +4,7 @@
 #include "CoordinatesSystem.h"
 
 // Todo: load DB
-enum class PurposeOfVisitType {
+enum class ePurposeOfVisitType {
 	Lodge,
 	JustChilling,
 	Recovery,
@@ -15,7 +15,7 @@ enum class PurposeOfVisitType {
 
 class PurposeOfVisit {
 private:
-	PurposeOfVisitType type;
+	ePurposeOfVisitType type;
 	string name;
 	bool is_done = false;
 
@@ -24,7 +24,7 @@ public:
 	bool CanExecute() {
 		return false && is_done;
 	}
-	PurposeOfVisit(string _name, PurposeOfVisitType _type)
+	PurposeOfVisit(string _name, ePurposeOfVisitType _type)
 		: name(_name), type(_type) {}
 };
 
