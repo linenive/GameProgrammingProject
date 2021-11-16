@@ -11,7 +11,7 @@ int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile){
 vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	int i, x, y;
-	int now_score_h, now_score_g;
+	int now_score_h, now_score_g, now_score_f;
 	Coordinates now_tile, next_tile;
 
 	set<pair<Coordinates, int>, CompareWithScore> open_list;
@@ -24,26 +24,21 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	Coordinates start_tile = ApsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = ApsolutePositionToCoordinates(target_pos);
-	Coordinates parent_tile;// = start_tile;
 
-	//Godot::print("[PathFinder] End Tile: " + target_pos);
+	Godot::print("[PathFinder] Start Tile : "+ Vector2(start_tile.x, start_tile.y) +" End Tile : " + Vector2(end_tile.x, end_tile.y));
 	open_list.insert(make_pair(start_tile, 0));
-	//ans.push_back(start_tile);
+	open_parent_list[start_tile] = start_tile;
 
-	//ans.back()
-	while (now_tile != end_tile)
-		//for (int j = 0; j < 10; j++)
+	//while (now_tile != end_tile)
+		for (int j = 0; j < 10; j++)
 	{
 		now_tile = (*open_list.begin()).first;
-		//closed_list.insert(now_tile);
 		closed_parent_list[now_tile] = open_parent_list[now_tile];
-		//Godot::print("[PathFinder] >>> NOW TILE: " + Vector2(now_tile.x, now_tile.y) + "parent tile : " + Vector2(closed_parent_list[now_tile].x, closed_parent_list[now_tile].y));
-		//parent_tile = now_tile;
-		//ans.push_back(now_tile);
+
+		Godot::print("[PathFinder] ADD CLOSE Tile : " + Vector2(now_tile.x, now_tile.y) + " Parent Tile : " + Vector2(closed_parent_list[now_tile].x, closed_parent_list[now_tile].y));
 
 		open_list.erase(open_list.begin());
 		open_parent_list.erase(now_tile);
-		//open_list.clear();
 
 		for (i = 0; i < 8; i++) {
 
@@ -55,10 +50,6 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
 
 			if (closed_parent_list.find(next_tile) != closed_parent_list.end()) continue;
-			//if (closed_list.find(next_tile) != closed_list.end()) continue;
-			//if (closed_list.count(next_tile)) continue;
-			//auto it = find(ans.begin(), ans.end(),next_tile);
-			//if (it != ans.end()) continue;
 
 			if (DetectObstacle(next_tile)) continue;
 
@@ -73,23 +64,31 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			else now_score_g = score_f_list[now_tile] + weight_g_diagonal;
 
 			//AstarF
-			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, (now_score_h + now_score_g)));
+			now_score_f = (now_score_h + now_score_g);
+			//has key next_tile
+			if (score_f_list.find(next_tile) != score_f_list.end()) {
+				if (score_f_list[next_tile] < now_score_f) {
+					now_score_f = score_f_list[next_tile];
+				}
+			}
 
-			//Godot::print("[PathFinder] ADD OPEN LIST: " + Vector2(next_tile.x, next_tile.y));
-			//Godot::print("[PathFinder] ADD OPEN LIST: " + Vector2(j, score_f_list[next_tile]));
-			open_list.insert(make_pair(next_tile, score_f_list[next_tile]));
+			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, now_score_f));
+
+			open_list.insert(make_pair(next_tile, now_score_f));//score_f_list[next_tile]
 			open_parent_list[next_tile] = now_tile;
 		}
 	}
 
+	Coordinates parent_tile;
+	now_tile = end_tile;
 	//¿ªÃßÀû
 	for (i=0; i<closed_parent_list.size(); i++)
 	{
 		parent_tile = closed_parent_list[now_tile];
-		now_tile = parent_tile;
 		if (parent_tile == start_tile)
 			break;
-		Godot::print("[PathFinder] Push new path: "+Vector2(parent_tile.x, parent_tile.y));
+		Godot::print("[PathFinder] Push new path: " + Vector2(now_tile.x, now_tile.y)  + " to " + Vector2(parent_tile.x, parent_tile.y));
+		now_tile = parent_tile;
 		ans.insert(ans.begin(), parent_tile);
 	}
 	ans.push_back(end_tile);
