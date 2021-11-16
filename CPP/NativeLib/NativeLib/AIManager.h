@@ -32,7 +32,6 @@ private:
 		Task* currentTask = performer->GetSchedule()->GetTask();
 		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().GetPosition(), target), target);
 	}
-	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AddLeaveVillageTask(Character* character) {
 		Task* new_task = new Task(CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint()));
 		character->GetSchedule()->SetTask(new_task);
