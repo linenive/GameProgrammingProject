@@ -55,6 +55,12 @@
     <Filter Include="헤더 파일\Manager\Event">
       <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Repository\World\WorldObject\Block">
+      <UniqueIdentifier>{b51e4bbe-ef34-4169-8f41-dcd69579ec3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository\World\WorldObject\StaticUnit">
+      <UniqueIdentifier>{ec5715f8-9a20-44e0-abfd-4d53500abbba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -112,7 +118,10 @@
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
     <ClCompile Include="Structure.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticUnitManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,10 +288,28 @@
       <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+      <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
     </ClInclude>
-    <ClInclude Include="StaticObject.h">
-      <Filter>헤더 파일\Repository\World</Filter>
+    <ClInclude Include="BlockType.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticUnit.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingType.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingRepository.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForStaticUnit.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticUnitManager.h">
+      <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
