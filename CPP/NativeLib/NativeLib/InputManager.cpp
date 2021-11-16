@@ -22,6 +22,10 @@ bool InputManager::IsDragging() {
 	return control_context->GetInputStatus().is_dragging;
 }
 
+bool InputManager::IsBuilding() {
+	return control_context->GetInputStatus().is_building;
+}
+
 void InputManager::ChangeStateToBuild(int building_type) {
 	control_context->SwitchToBulidState(building_type);
 }
@@ -66,6 +70,8 @@ void InputManager::_register_methods() {
 	register_method("MouseHover", &InputManager::MouseHover);
 	register_method("IsDragging", &InputManager::IsDragging);
 	register_method("GetDragRect", &InputManager::GetDragRect);
+	register_method("IsBuilding", &InputManager::IsBuilding);
+	register_method("GetBuildingBluePrint", &InputManager::GetBuildingBluePrint);
 	
 	register_method("ChangeStateToBuild", &InputManager::ChangeStateToBuild);
 	register_method("IsTileHighlighting", &InputManager::IsTileHighlighting);
@@ -81,7 +87,9 @@ void InputManager::_init() {
 
 void InputManager::_ready() {
 	LoadGameWorld();
-	control_context = new ControlContext(game_world, static_unit_service);
+	static_unit_service.SetGameWorld((GameWorldForStaticUnit *)game_world);
+	control_context = new ControlContext(game_world, &static_unit_service);
+	printf("ready end\n");
 }
 
 void InputManager::LoadGameWorld() {

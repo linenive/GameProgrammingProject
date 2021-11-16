@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "ControlState.h"
 #include "StaticUnitService.h"
+#include "GameWorldForStaticUnit.h"
 #include <Node.hpp>
 #include <InputEventMouseButton.hpp>
 
@@ -11,7 +12,7 @@ class InputManager : public Node {
 
 private:
 	ControlContext* control_context;
-	StaticUnitService* static_unit_service;
+	StaticUnitService static_unit_service;
 	GameWorldForInput* game_world;
 	Vector2 now_mouse_point;
 	Vector2 now_mouse_right_click_point;
@@ -21,7 +22,6 @@ private:
 public:
 	~InputManager() {
 		delete control_context;
-		delete static_unit_service;
 	}
 	
 	static void _register_methods();
@@ -35,6 +35,20 @@ public:
 
 	Vector2 GetNowMouseRightClickPoint() { return now_mouse_right_click_point; }
 	bool IsDragging();
+	bool IsBuilding();
+	Array GetBuildingBluePrint() {
+		Array block_array = Array();
+		Building* scheduled_building = control_context->GetInputStatus().scheduled_building;
+
+		for (Block* b : scheduled_building->blocks) {
+			Array arr = Array();
+			arr.append(String(b->GetName().c_str()));
+			arr.append(b->GetPhysics().GetPosition());
+			block_array.push_back(arr);
+		}
+
+		return block_array;
+	}
 	void ChangeStateToBuild(int building_type);
 	Rect2 GetDragRect();
 	bool IsTileHighlighting();

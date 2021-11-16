@@ -23,6 +23,8 @@ private:
 public:
 	void SetGameWorld(GameWorldForStaticUnit* world);
 	int CreateBuilding(int type, Vector2 top_left_tile_position);
+	Building* CreateBluePrintBuilding(int type);
+	void RegisterBlueprintBlocks(vector< vector<eBlockType> >& blocks, Building* building);
 	bool IsPlacablePosition(int type, Vector2 top_left_tile_position);
 	void DeleteBuildingById(int id);
 	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);

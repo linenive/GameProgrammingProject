@@ -1,8 +1,11 @@
 #pragma once
-class StaticUnitService;
+#include "StaticUnitService.h"
 
 class InputStatus {
 public:
+	~InputStatus() {
+		delete scheduled_building;
+	}
 	bool is_dragging = false;
 	Vector2 drag_start_point;
 	Vector2 now_mouse_point;
@@ -10,7 +13,7 @@ public:
 	Rect2 highlighted_area;
 
 	int is_building = false;
-	int scheduled_building_type;
+	Building* scheduled_building;
 
 	void ResetDrag() {
 		is_dragging = false;
@@ -70,7 +73,7 @@ public:
 class BuildState : public ControlState {
 private:
 	StaticUnitService* static_unit_service;
-	int scheduled_building_type;
+	
 	void HighlightHoverdTile(Vector2 mouse_position) {
 		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
 		if (hovered_tile_id >= 0) {
@@ -88,6 +91,10 @@ public:
 
 	void MouseHover(Vector2 mouse_position) override {
 		HighlightHoverdTile(mouse_position);
+
+		if (input.scheduled_building != nullptr) {
+			input.scheduled_building->SetBluePrintPosition(mouse_position);
+		}
 	}
 
 	void MouseClick(Vector2 mouse_position) override {
@@ -103,7 +110,7 @@ public:
 	}
 
 	void SetScheduledBuildingType(int building_type) {
-		scheduled_building_type = building_type;
+		input.scheduled_building = static_unit_service->CreateBluePrintBuilding(building_type);
 	}
 };
 
@@ -148,6 +155,7 @@ private:
 
 public:
 	ControlContext(GameWorldForInput* world, StaticUnitService* static_unit_service) {
+		printf("%d\n", static_unit_service!=nullptr);
 		normal_state = new NormalState(world);
 		build_state = new BuildState(world, static_unit_service);
 		current_state = normal_state;
@@ -155,7 +163,6 @@ public:
 	~ControlContext() {
 		delete normal_state;
 		delete build_state;
-
 	}
 
 	void SwitchToNormalState() {
