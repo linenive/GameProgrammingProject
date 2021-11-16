@@ -18,6 +18,7 @@
 [ext_resource path="res://Scene/EventLogUI.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scene/LogUIControl.gd" type="Script" id=17]
 [ext_resource path="res://Scene/EventLogPanelUI.gd" type="Script" id=18]
+[ext_resource path="res://Scene/MenuUI.gd" type="Script" id=19]
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
@@ -86,7 +87,7 @@ __meta__ = {
 [node name="InputEffect" type="Node2D" parent="GodotInput"]
 script = SubResource( 4 )
 
-[node name="UIControl" type="Node" parent="."]
+[node name="UIControl" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )
 
 [node name="ConfirmationDialog" parent="UIControl" instance=ExtResource( 12 )]
@@ -127,6 +128,8 @@ __meta__ = {
 }
 
 [node name="VillageInfoUI" parent="UIControl/HUD" instance=ExtResource( 13 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_bottom = -56.2
 
 [node name="TileInfoTest" type="Label" parent="UIControl/HUD"]
@@ -185,22 +188,28 @@ script = ExtResource( 17 )
 
 [node name="NewLogUI" parent="UIControl/LogUI" instance=ExtResource( 15 )]
 modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 228.396
-margin_top = 465.985
-margin_right = -228.0
-margin_bottom = -94.0154
+anchor_left = 0.5
+anchor_top = 0.77
+anchor_right = 0.5
+anchor_bottom = 0.77
+margin_left = -283.604
+margin_top = -20.0542
+margin_right = 284.396
+margin_bottom = 19.9458
 
 [node name="EventLogPanel" type="WindowDialog" parent="UIControl/LogUI"]
-visible = true
-margin_left = 599.0
-margin_top = 68.0
-margin_right = 968.0
-margin_bottom = 542.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 113.849
+margin_top = -234.04
+margin_right = 482.849
+margin_bottom = 239.96
 window_title = "Event Log"
 script = ExtResource( 18 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -816,6 +825,189 @@ margin_right = 359.0
 margin_bottom = 5496.0
 
 [node name="Node" type="Node" parent="UIControl/LogUI"]
+
+[node name="MenuUI" type="CanvasLayer" parent="UIControl"]
+script = ExtResource( 19 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIControl/MenuUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -5.0
+margin_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PeopleBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "주민"
+
+[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/PeopleBtn"]
+visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/PeopleBtn/Node"]
+margin_top = -44.0
+margin_right = 80.0
+margin_bottom = -9.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "영입"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/PeopleBtn/Node"]
+margin_top = -88.0
+margin_right = 80.0
+margin_bottom = -53.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "관리"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ConstructionBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+margin_left = 90.0
+margin_right = 170.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "건축"
+
+[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/ConstructionBtn"]
+visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/ConstructionBtn/Node"]
+margin_top = -44.0
+margin_right = 80.0
+margin_bottom = -9.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "건설"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/ConstructionBtn/Node"]
+margin_top = -88.0
+margin_right = 80.0
+margin_bottom = -53.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "철거"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ResearchBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+margin_left = 180.0
+margin_right = 260.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "연구"
+
+[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn"]
+visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn/Node"]
+margin_top = -44.0
+margin_right = 80.0
+margin_bottom = -9.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "종족"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn/Node"]
+margin_top = -88.0
+margin_right = 80.0
+margin_bottom = -53.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "클래스"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button3" type="Button" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn/Node"]
+margin_top = -132.0
+margin_right = 80.0
+margin_bottom = -97.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "무기"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MenuBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+margin_left = 270.0
+margin_right = 350.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "메뉴"
+
+[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/MenuBtn"]
+visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/MenuBtn/Node"]
+margin_top = -44.0
+margin_right = 80.0
+margin_bottom = -9.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "종료"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/MenuBtn/Node"]
+margin_top = -88.0
+margin_right = 80.0
+margin_bottom = -53.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "설정"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button3" type="Button" parent="UIControl/MenuUI/HBoxContainer/MenuBtn/Node"]
+margin_top = -132.0
+margin_right = 80.0
+margin_bottom = -97.0
+rect_min_size = Vector2( 80, 35 )
+custom_fonts/font = SubResource( 3 )
+text = "저장"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]

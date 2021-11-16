@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 export var available_popups : Array
 export var used_popups : Array

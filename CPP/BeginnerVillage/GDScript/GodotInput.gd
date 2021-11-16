@@ -3,22 +3,22 @@ var input_manager
 var world_manager
 var camera_manager
 var tile_info_label
-var uicontrol
 
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
 	world_manager = get_node("/root/Main/WorldManager")
 	camera_manager = get_node("/root/Main/CameraManager/CameraCPP")
 	tile_info_label = get_node("/root/Main/UIControl/HUD/TileInfoTest")
-	uicontrol = get_node("/root/Main/UIControl")
 
-func _input(event):
+func input(event):
 	input_process_for_game_world(event)
 	input_process_for_ui(event)
 
 func input_process_for_ui(event):
 	# To-do: ui 입력 처리
-	pass
+	if event is InputEventMouseMotion:
+		var mouse_pos = convert_position_by_camera(event.position)
+		update_tile_info(mouse_pos)
 
 func input_process_for_game_world(event):
 	if event is InputEventMouseButton:
@@ -48,7 +48,7 @@ func left_mouse_button_released(position):
 
 func mouse_motion(position):
 	input_manager.MouseHover(position)
-	update_tile_info(position)
+	#update_tile_info(position)
 	#uicontrol.show_tile_info(position)
 
 func update_tile_info(mouse_vector):
