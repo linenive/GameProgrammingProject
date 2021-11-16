@@ -50,7 +50,10 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 			if (closed_parent_list.find(next_tile) != closed_parent_list.end()) continue;
 
-			if (DetectObstacle(next_tile)) continue;
+			if (DetectObstacle(next_tile))
+			{
+				continue;
+			}
 
 			now_score_h = AstarH(next_tile, end_tile);
 
@@ -69,13 +72,11 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			if (open_parent_list.find(next_tile) != open_parent_list.end()) {
 
 				//new key is larger score
-				if (score_f_list[next_tile] < now_score_f) {
-					continue;
-				}
+				if (score_f_list[next_tile] < now_score_f) continue;
 			}
 
 			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, now_score_f));
-			open_list.insert(make_pair(next_tile, now_score_f));//score_f_list[next_tile]
+			open_list.insert(make_pair(next_tile, now_score_f));
 			open_parent_list[next_tile] = now_tile;
 			
 		}
@@ -126,7 +127,7 @@ vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
 	return ans_vector;
 }
 
-// 다른데서 받아와야 함
+// After fix -> get from another class
 int PathFinder::CalculateTileNumberByCoordinates(Coordinates coord) {
 	int tile_size_x = tile_map->GetTileSizeX();
 	return coord.x + tile_size_x * coord.y;
