@@ -23,7 +23,7 @@ func _ready():
 	SetCameraLimit()
 	InitCameraSetting()
 	
-	$CameraCPP.zoom_scroll_factor = 1.6
+	#$CameraCPP.g_zoom_scroll_factor = 1.6
 	
 func _process(_delta):
 	DetectCameraMoveObj()
