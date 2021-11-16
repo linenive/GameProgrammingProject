@@ -22,7 +22,7 @@ private:
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 
 		Task* currentTask = performer->GetTask();
-		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().getPosition(), target), target);
+		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().GetPosition(), target), target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {

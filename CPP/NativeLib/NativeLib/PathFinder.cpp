@@ -21,8 +21,8 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	unordered_map<Coordinates, int, CoordinatesHash> score_f_list;
 	vector<Coordinates> ans;
 
-	Coordinates start_tile = ApsolutePositionToCoordinates(start_pos);
-	Coordinates end_tile = ApsolutePositionToCoordinates(target_pos);
+	Coordinates start_tile = AbsolutePositionToCoordinates(start_pos);
+	Coordinates end_tile = AbsolutePositionToCoordinates(target_pos);
 
 	Godot::print("[PathFinder] Start Tile : "+ Vector2(start_tile.x, start_tile.y) +" End Tile : " + Vector2(end_tile.x, end_tile.y));
 	open_list.insert(make_pair(start_tile, 0));
@@ -108,7 +108,7 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 bool PathFinder::DetectObstacle(Coordinates next_tile) {
 	
 	int tile_ind = CalculateTileNumberByCoordinates(next_tile);
-	int tile_type = (tile_map->GetTile(tile_ind).GetTileType().type);
+	int tile_type = (int)(tile_map->GetTile(tile_ind).GetTileType().type);
 	return  tile_type > 1;
 }
 

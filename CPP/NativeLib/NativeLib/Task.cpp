@@ -51,7 +51,7 @@ void Task::ExecuteTask(WorldObject* performer){
 	
 	Physics new_physics = CalcPhysics(performer->GetPhysics(), now_target);
 
-	if (ArriveNowTarget(new_physics.getPosition())) {
+	if (ArriveNowTarget(new_physics.GetPosition())) {
 		now_moving = CanChangeNextPos();
 	}
 	else {
