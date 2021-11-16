@@ -16,20 +16,20 @@ Vector2 Truncate(Vector2 velocity, float max) {
 }
 
 void Task::ChangeTarget(vector<Vector2> new_path_list, Vector2 new_target){
-	now_moving = false;
+	current_moving = false;
 
 	task_target = new_target;
 	path_list = new_path_list;
 
-	now_path_list_length = path_list.size();
-	now_path_index = -1;
-	now_moving = CanChangeNextPos();
+	current_path_list_length = path_list.size();
+	current_path_index = -1;
+	current_moving = CanChangeNextPos();
 }
 
 bool Task::CanChangeNextPos() {
-	if (++now_path_index < now_path_list_length) {
-		now_target = path_list[now_path_index];
-		Godot::print("[Task] new target: " + now_target);
+	if (++current_path_index < current_path_list_length) {
+		current_target = path_list[current_path_index];
+		Godot::print("[Task] new target: " + current_target);
 		return true;
 	}
 	return false;
@@ -47,21 +47,21 @@ Physics CalcPhysics(Physics performer_physics, Vector2 target) {
 }
 
 void Task::ExecuteTask(WorldObject* performer){
-	if (now_moving == false) return;
+	if (current_moving == false) return;
 	
-	Physics new_physics = CalcPhysics(performer->GetPhysics(), now_target);
+	Physics new_physics = CalcPhysics(performer->GetPhysics(), current_target);
 
-	if (ArriveNowTarget(new_physics.GetPosition())) {
-		now_moving = CanChangeNextPos();
+	if (ArriveCurrentTarget(new_physics.GetPosition())) {
+		current_moving = CanChangeNextPos();
 	}
 	else {
 		performer->SetPhysics(UpdatePosition(new_physics));
 	}
 }
 
-bool Task::ArriveNowTarget(Vector2 now_position) {
-	Vector2 now_distance = now_target - now_position;
-	float distance = now_distance.length();
+bool Task::ArriveCurrentTarget(Vector2 current_position) {
+	Vector2 current_distance = current_target - current_position;
+	float distance = current_distance.length();
 
 	if (distance < CHARACTER_SLOWING_RADIUS) return true;
 	else return false;

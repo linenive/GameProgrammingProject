@@ -6,13 +6,13 @@
 // To-do: 다른 태스크는 나중에 만들기
 class Task{
 private:
-	Vector2 now_target;
+	Vector2 current_target;
 	Vector2 task_target;
 
 	vector<Vector2> path_list;
-	int now_path_index;
-	int now_path_list_length;
-	bool now_moving;
+	int current_path_index;
+	int current_path_list_length;
+	bool current_moving;
 
 public:
 	Task(Vector2 target) : task_target(target) {}
@@ -24,5 +24,5 @@ public:
 	bool CanChangeNextPos();
 
 	void ExecuteTask(WorldObject* performer);
-	bool ArriveNowTarget(Vector2 now_position);
+	bool ArriveCurrentTarget(Vector2 current_position);
 };

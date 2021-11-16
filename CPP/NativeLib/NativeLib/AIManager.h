@@ -38,12 +38,12 @@ private:
 	}
 
 public:
-	void SetGameWorld(GameWorldForAI* world, TileRepository* tile) {
+	void SetGameWorld(GameWorldForAI* world) {
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
 		
-		now_tile_repo = tile;
-		path_finder.SetTileRepository(tile);
+		now_tile_repo = world->GetTileMap();
+		path_finder.SetTileRepository(now_tile_repo);
 	}
 	void Update(float delta) {
 		// To-do: �Ʒ��� �������� ������Ʈ�� �־ ������
