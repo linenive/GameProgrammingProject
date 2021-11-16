@@ -105,6 +105,39 @@ public:
 	}
 };
 
+class InstallState : public ControlState {
+private:
+	void HighlightHoverdTile(Vector2 mouse_position) {
+		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
+		if (hovered_tile_id >= 0) {
+			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_id);
+			input.is_area_highlighted = true;
+			input.highlighted_area = hoverd_surface->GetPhysics().GetRect();
+		}
+		else {
+			input.is_area_highlighted = false;
+		}
+	}
+public:
+	InstallState(GameWorldForInput* _world) : ControlState(_world) {}
+
+	void MouseHover(Vector2 mouse_position) override {
+		HighlightHoverdTile(mouse_position);
+	}
+
+	void MouseClick(Vector2 mouse_position) override {
+		Godot::print("[InstallState]Mouse Click: " + mouse_position);
+	}
+
+	void MouseRelease(Vector2 mouse_position) override {
+		Godot::print("[InstallState]Mouse Release: " + mouse_position);
+	}
+
+	void Reset() override {
+		input.is_area_highlighted = false;
+	}
+};
+
 class ControlContext {
 private:
 	ControlState* current_state;
