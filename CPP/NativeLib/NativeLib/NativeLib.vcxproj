@@ -149,6 +149,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="StaticUnitManager.cpp" />
     <ClCompile Include="Structure.h" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
@@ -165,7 +166,10 @@
     <ClInclude Include="AIExecuter.h" />
     <ClInclude Include="AIManager.h" />
     <ClInclude Include="Block.h" />
-    <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="BlockType.h" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="BuildingRepository.h" />
+    <ClInclude Include="BuildingType.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterFactory.h" />
@@ -176,6 +180,7 @@
     <ClInclude Include="EventLogRepository.h" />
     <ClInclude Include="GameWorldForAI.h" />
     <ClInclude Include="GameWorldForInput.h" />
+    <ClInclude Include="GameWorldForStaticUnit.h" />
     <ClInclude Include="GameWorldForUI.h" />
     <ClInclude Include="GameWorldForWorld.h" />
     <ClInclude Include="GodotScenePath.h" />
@@ -186,6 +191,8 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="ObjectRepository.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="StaticUnit.h" />
+    <ClInclude Include="StaticUnitManager.h" />
     <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Surface.h" />

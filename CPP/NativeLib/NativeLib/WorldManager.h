@@ -17,17 +17,17 @@ public:
 	void _process(float delta);
 
 	int GetTileNumber() { return game_world->GetTileMap()->GetTileSize(); }
-	Transform2D GetTileTransform(int tile_id){
-		return game_world->GetTileMap()->GetSurface(tile_id).GetPhysics().GetTransform();
+	Transform2D GetTileTransform(int tile_id) {
+		return game_world->GetTileMap()->GetSurface(tile_id)->GetPhysics().GetTransform();
 	}
 	Vector2 GetTileScale(int tile_id) {
-		return game_world->GetTileMap()->GetSurface(tile_id).GetPhysics().GetScale();
+		return game_world->GetTileMap()->GetSurface(tile_id)->GetPhysics().GetScale();
 	}
 	int GetTileType(int tile_id) {
-		return (int) game_world->GetTileMap()->GetSurface(tile_id).GetSurfaceType().type;
+		return (int)game_world->GetTileMap()->GetSurface(tile_id)->GetSurfaceType().type;
 	}
 	String GetTileName(int tile_id) {
-		return String(game_world->GetTileMap()->GetSurface(tile_id).GetName().c_str());
+		return String(game_world->GetTileMap()->GetSurface(tile_id)->GetName().c_str());
 	}
 	void TestNewCharacter(Transform2D transform) {
 		game_world->GetObjectRepository()->TestNewCharacter(transform);

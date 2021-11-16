@@ -7,7 +7,7 @@ class TileRepository {
 private:
 	int tile_size_x;
 	int tile_size_y;
-	Tile* tile_map[MAX_TILE_NUMBER_Y * MAX_TILE_NUMBER_X];
+	Tile* tile_map[MAX_TILE_NUMBER_Y][MAX_TILE_NUMBER_X];
 
 	void CreateTileMapTemp();
 
@@ -27,17 +27,24 @@ private:
 		return IsInWorld(hovered_tile);
 	}
 
+	pair<int, int> TileIdToXy(int tile_id) {
+		return { tile_id / DEFAULT_TILE_NUMBER_X, tile_id % DEFAULT_TILE_NUMBER_X };
+	}
+
 public:
 	TileRepository() :tile_size_x(DEFAULT_TILE_NUMBER_X), tile_size_y(DEFAULT_TILE_NUMBER_Y) {
-
 		CreateTileMapTemp();
 	}
 
 	int GetTileSize() { return tile_size_x * tile_size_y; }
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
-	Tile GetTile(int tile_num) { return *tile_map[tile_num]; }
-	Surface GetSurface(int tile_num) { return (*tile_map[tile_num]).GetSurface(); }
+	Tile* GetTile(int x, int y) { return tile_map[y][x]; }
+	Surface* GetSurface(int tile_id) {
+		pair<int, int> xy = TileIdToXy(tile_id);
+		return GetSurface(xy.first, xy.second);
+	}
+	Surface* GetSurface(int x, int y) { return tile_map[y][x]->GetSurface(); }
 
 	int GetTileId(Vector2 vector) {
 		if (IsInWorld(vector)) {
@@ -51,15 +58,16 @@ public:
 	}
 
 	// StaticObject ฐüทร
-	void AddBlockOnTile(Block* block, int tile_num, int layer_num)
+	void SetBlockOnTile(int x, int y, int layer_index, string _name, StaticUnit* _owner)
 	{
-		tile_map[tile_num]->SetBlock(block, layer_num);
+		tile_map[y][x]->SetBlock(layer_index, _name, _owner);
 	}
 
-	bool IsEmptySpace(int tile_num, int layer_num)
+	bool IsEmptySpace(int x, int y, int layer_index)
 	{
-		if (tile_num >= MAX_TILE_NUMBER_Y * MAX_TILE_NUMBER_X)
+		if (x >= MAX_TILE_NUMBER_X || x < 0 || y >= MAX_TILE_NUMBER_Y || y < 0)
 			return false;
-		return tile_map[tile_num]->IsEmptyLayer(layer_num);
+		return tile_map[x][y]->IsEmptyLayer(layer_index);
 	}
 };
+

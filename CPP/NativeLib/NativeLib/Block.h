@@ -1,14 +1,27 @@
 #pragma once
-#include "StaticObject.h"
+
+#include "GameRule.h"
+#include "StaticUnit.h"
 #include "WorldObject.h"
 
 class Block : public WorldObject
 {
+private:
+
 public:
-	StaticObject* owner;
-	Block(string _name, Transform2D _new_transform, Vector2 _new_scale, StaticObject* _owner)
-		: WorldObject(_name, _new_transform, _new_scale), owner(_owner)
-	{
+	StaticUnit* owner;
+	bool is_exist;
+	Block(string _name, Transform2D _new_transform, Vector2 _new_scale, StaticUnit* _owner)
+		: WorldObject(_name, _new_transform, _new_scale), owner(_owner), is_exist(false) {
 		isPassThrough = false;
+	}
+
+	Block(string _name, Transform2D _new_transform, Vector2 _new_scale)
+		: WorldObject(_name, _new_transform, _new_scale), is_exist(false) {
+		isPassThrough = false;
+	}
+
+	void Disappear() {
+		is_exist = false;
 	}
 };

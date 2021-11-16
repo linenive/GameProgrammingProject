@@ -44,7 +44,7 @@ public:
 
 class NormalState : public ControlState {
 public:
-	NormalState(GameWorldForInput* _world): ControlState(_world){}
+	NormalState(GameWorldForInput* _world) : ControlState(_world) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 	}
@@ -58,7 +58,7 @@ public:
 		Godot::print("[NormalState]Mouse Release: " + mouse_position);
 		EndDrag(mouse_position);
 	}
-	void Reset() {
+	void Reset() override {
 		input.ResetDrag();
 	}
 };
@@ -68,9 +68,9 @@ private:
 	void HighlightHoverdTile(Vector2 mouse_position) {
 		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
 		if (hovered_tile_id >= 0) {
-			Surface hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_id);
+			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_id);
 			input.is_area_highlighted = true;
-			input.highlighted_area = hoverd_surface.GetPhysics().GetRect();
+			input.highlighted_area = hoverd_surface->GetPhysics().GetRect();
 		}
 		else {
 			input.is_area_highlighted = false;
@@ -91,7 +91,7 @@ public:
 		Godot::print("[BuildState]Mouse Release: " + mouse_position);
 	}
 
-	void Reset() {
+	void Reset() override {
 		input.is_area_highlighted = false;
 	}
 };
@@ -103,7 +103,7 @@ private:
 	BuildState* build_state;
 
 public:
-	ControlContext(GameWorldForInput* world){
+	ControlContext(GameWorldForInput* world) {
 		normal_state = new NormalState(world);
 		build_state = new BuildState(world);
 		current_state = normal_state;
