@@ -141,6 +141,12 @@
     <ClCompile Include="BuildingType.cpp">
       <Filter>소스 파일\Repository\World\WorldObject\StaticUnit</Filter>
     </ClCompile>
+    <ClCompile Include="Structure.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestManager.h">
@@ -281,9 +287,6 @@
     <ClInclude Include="Random.h">
       <Filter>헤더 파일\Manager\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Structure.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
-    </ClInclude>
     <ClInclude Include="StructureFactory.h">
       <Filter>헤더 파일\Factory</Filter>
     </ClInclude>
@@ -328,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="StaticUnitService.h">
       <Filter>헤더 파일\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

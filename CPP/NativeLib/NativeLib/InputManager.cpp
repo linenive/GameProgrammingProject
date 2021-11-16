@@ -22,12 +22,8 @@ bool InputManager::IsDragging() {
 	return control_context->GetInputStatus().is_dragging;
 }
 
-void InputManager::TestStructureButton() {
-	control_context.SetState(new BuildState());
-}
-
-void InputManager::TestStructureButton() {
-	control_context->SwitchToBulidState();
+void InputManager::ChangeStateToBuild(int building_type) {
+	control_context->SwitchToBulidState(building_type);
 }
 
 Rect2 InputManager::GetDragRect() {
@@ -71,7 +67,7 @@ void InputManager::_register_methods() {
 	register_method("IsDragging", &InputManager::IsDragging);
 	register_method("GetDragRect", &InputManager::GetDragRect);
 	
-	register_method("TestStructureButton", &InputManager::TestStructureButton);
+	register_method("ChangeStateToBuild", &InputManager::ChangeStateToBuild);
 	register_method("IsTileHighlighting", &InputManager::IsTileHighlighting);
 	register_method("GetTileHighlight", &InputManager::GetTileHighlight);
 	register_method("MouseRightClick", &InputManager::MouseRightClick);
@@ -85,7 +81,7 @@ void InputManager::_init() {
 
 void InputManager::_ready() {
 	LoadGameWorld();
-	control_context = new ControlContext(game_world);
+	control_context = new ControlContext(game_world, static_unit_service);
 }
 
 void InputManager::LoadGameWorld() {

@@ -157,7 +157,6 @@ margin_left = 966.667
 margin_top = 2.33334
 margin_right = 1021.67
 margin_bottom = 52.3333
-
 custom_fonts/font = SubResource( 4 )
 text = "가구 1"
 

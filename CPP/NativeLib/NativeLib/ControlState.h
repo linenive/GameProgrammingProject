@@ -36,15 +36,6 @@ protected:
 		return world->GetTileMap()->GetTileId(mouse_position);
 	}
 
-	int GetTileIDIfMouseHoverTileMap(Vector2 mouse_position) {
-		if (world->GetTileMap()->CheckTileInVector2(mouse_position)) {
-			return world->GetTileMap()->GetTileIdByVector2(mouse_position);
-		}
-		else {
-			return -1;
-		}
-	}
-
 public:
 	ControlState(GameWorldForInput* _world) : world(_world) {}
 	virtual void MouseHover(Vector2 position) = 0;
