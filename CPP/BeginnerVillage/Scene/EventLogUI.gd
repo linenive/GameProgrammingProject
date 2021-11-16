@@ -19,4 +19,7 @@ func show_log(single_log):
 	$HBoxContainer/VBoxContainer/content_date.text = String(single_log[2])+"년 "+String(single_log[3])+"월 "+\
 			String(single_log[4])+"일 "+ String(single_log[5])+":"+\
 			String(single_log[6])
+			
+	if $HBoxContainer/track_btn.get_signal_connection_list("pressed").size() != 0:
+		$HBoxContainer/track_btn.disconnect("pressed", self, "set_camera_position")
 	$HBoxContainer/track_btn.connect("pressed", self, "set_camera_position", [single_log[7]])
