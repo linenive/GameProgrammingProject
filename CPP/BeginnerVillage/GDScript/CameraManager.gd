@@ -15,15 +15,15 @@ var kmouse_moving_interval=10
 
 var kzoom_default=1.0
 var kzoom_in=0.5
-var kzoom_max = 1.5
+var kzoom_max = 5
 var kzoom_min = 0.5
 
 func _ready():	
 	SetScreenLimit()
-	SetCameraLimit()
+	#SetCameraLimit()
 	InitCameraSetting()
 	
-	#$CameraCPP.g_zoom_scroll_factor = 1.6
+	$CameraCPP.SetCurrentCameraPosition(Vector2(g_world_size.x/2, g_world_size.y/2))
 	
 func _process(_delta):
 	DetectCameraMoveObj()

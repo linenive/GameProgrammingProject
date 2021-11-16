@@ -35,24 +35,25 @@ void CameraManager::_init() {
 
 void godot::CameraManager::CameraMoveWithKey(Vector2 velocity){
 	if (velocity.length() > 0) {
-		velocity = velocity.normalized() * camera_moving_speed;
+		velocity = velocity.normalized() * camera_moving_speed * camera.GetZoomDegree();
 		camera.CameraMove(CalcNewPosition(velocity));
 	}
 }
 
 void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector){
 	Vector2 add_pos = Vector2(0, 0);
+
 	if (now_mouse_vector.x < mouse_moving_bound_size) {
-		add_pos.x = -camera_moving_speed;
+		add_pos.x = -camera_moving_speed * camera.GetZoomDegree();
 	}
 	else if (now_mouse_vector.x > get_viewport_rect().size.x - mouse_moving_bound_size) {
-		add_pos.x = camera_moving_speed;
+		add_pos.x = camera_moving_speed * camera.GetZoomDegree();
 	}
 	if (now_mouse_vector.y < mouse_moving_bound_size) {
-		add_pos.y = -camera_moving_speed;
+		add_pos.y = -camera_moving_speed * camera.GetZoomDegree();
 	}
 	else if (now_mouse_vector.y > get_viewport_rect().size.y - mouse_moving_bound_size) {
-		add_pos.y = camera_moving_speed;
+		add_pos.y = camera_moving_speed * camera.GetZoomDegree();
 	}
 	camera.CameraMove(CalcNewPosition(add_pos));
 }
