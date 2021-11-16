@@ -1,23 +1,9 @@
 #pragma once
-#include "Base.h"
 #include "WorldObjectFactory.h"
 #include "Character.h"
 
+// Todo: hard coding -> load DB
 class PurposeOfVisitFactory {
-private:
-	static string name[10];
-	static string NameOf(ePurposeOfVisitType type) {
-		return name[static_cast<int>(type)];
-	};
-	//To-do: init by external file
-	static void Init() {
-		name[static_cast<int>(ePurposeOfVisitType::Lodge)] = "Lodge";
-		name[static_cast<int>(ePurposeOfVisitType::JustChilling)] = "JustChilling";
-		name[static_cast<int>(ePurposeOfVisitType::Recovery)] = "Recovery";
-		name[static_cast<int>(ePurposeOfVisitType::Cure)] = "Cure";
-		name[static_cast<int>(ePurposeOfVisitType::Shopping)] = "Shopping";
-		name[static_cast<int>(ePurposeOfVisitType::BuyLiquidMedicine)] = "BuyLiquidMedicine";
-	}
 public:
 	PurposeOfVisit* CreatePurposeOfVisit(ePurposeOfVisitType type) {
 		PurposeOfVisit* purpose;
@@ -28,7 +14,7 @@ public:
 			purpose = new PurposeOfVisit("NoName", type);
 		}
 		return purpose;
-	}	
+	}
 };
 
 class CharacterFactory : public WorldObjectFactory {
