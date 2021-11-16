@@ -150,7 +150,7 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="StaticUnitManager.cpp" />
+    <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="Structure.h" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
@@ -198,7 +198,7 @@
     <ClInclude Include="RepeatitionRandomOcccurrence.h" />
     <ClCompile Include="Structure.h" />
     <ClInclude Include="StaticUnit.h" />
-    <ClInclude Include="StaticUnitManager.h" />
+    <ClInclude Include="StaticUnitService.h" />
     <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Surface.h" />
