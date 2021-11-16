@@ -4,7 +4,6 @@
 #include "GameRule.h"
 #include "CoordinatesSystem.h"
 
-// world object�� vector�� �����Ͽ����� ���� quad-tree �ڷᱸ���� �����غ���.
 class TileRepository{
 private:
 	int tile_size_x;

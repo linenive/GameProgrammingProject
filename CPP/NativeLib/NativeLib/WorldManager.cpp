@@ -62,12 +62,6 @@ void WorldManager::LoadGameWorld() {
 
 }
 
-bool WorldManager::CheckCoordinatesInTileMap(Coordinates coord){
-	return (
-		coord.x > -1 && coord.x < game_world->GetTileMap()->GetTileSizeX() &&
-		coord.y > -1 && coord.y < game_world->GetTileMap()->GetTileSizeY()
-	);
-}
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {
 	Array result = Array();
 	Item item = game_world->GetObjectRepository()->GetCharacter(character_id).GetInventory()->GetItem(item_id);
