@@ -26,6 +26,9 @@ void CameraManager::_register_methods() {
 	register_property<CameraManager, float>("g_mouse_moving_interval", &CameraManager::mouse_moving_bound_size, 100);
 	register_property<CameraManager, float>("g_zoom_max", &CameraManager::zoom_max, 1.5);
 	register_property<CameraManager, float>("g_zoom_min", &CameraManager::zoom_min, 0.5);
+
+	register_property<CameraManager, float>("zoom_scroll_factor", &CameraManager::zoom_scroll_factor, 0.2);
+
 }
 void CameraManager::_init() {
 }
