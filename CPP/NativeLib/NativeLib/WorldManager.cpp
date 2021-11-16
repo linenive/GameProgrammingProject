@@ -12,6 +12,7 @@ void WorldManager::_register_methods() {
 	register_method("GetSurfaceScale", &WorldManager::GetSurfaceScale);
 	register_method("GetSurfaceType", &WorldManager::GetSurfaceType);
 	register_method("GetSurfaceName", &WorldManager::GetSurfaceName);
+	register_method("GetBlockTypes", &WorldManager::GetBlockTypes);
 
 	register_method("TestNewCharacter", &WorldManager::TestNewCharacter);
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
@@ -44,6 +45,17 @@ void WorldManager::_process(float delta)
 
 int WorldManager::GetTileId(Vector2 vector) {
 	return game_world->GetTileMap()->GetTileId(vector);
+}
+
+Array WorldManager::GetBlockTypes(int tile_id){
+	Array result = Array();
+	Tile* tile = game_world->GetTileMap()->GetTile(tile_id);
+	for (int i = 0; i < MAX_TILE_LAYER; i++) {
+		if (!tile->IsEmptyLayer(i)) {
+			result.append((int)tile->GetBlock(i)->block_type);
+		}
+	}
+	return result;
 }
 
 Vector2 WorldManager::GetWorldSize() {

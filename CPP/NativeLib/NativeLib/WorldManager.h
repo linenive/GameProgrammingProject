@@ -29,6 +29,7 @@ public:
 	String GetTileName(int tile_id) {
 		return String(game_world->GetTileMap()->GetSurface(tile_id)->GetName().c_str());
 	}
+	Array GetBlockTypes(int tile_id);
 	void TestNewCharacter(Transform2D transform) {
 		game_world->GetObjectRepository()->TestNewCharacter(transform);
 	}

@@ -40,6 +40,10 @@ public:
 	int GetTileSize() { return tile_size_x * tile_size_y; }
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
+	Tile* GetTile(int tile_id) {
+		pair<int, int> xy = TileIdToXy(tile_id);
+		return GetTile(xy.first, xy.second);
+	}
 	Tile* GetTile(int x, int y) { return tile_map[y][x]; }
 	Surface* GetSurface(int tile_id) {
 		pair<int, int> xy = TileIdToXy(tile_id);

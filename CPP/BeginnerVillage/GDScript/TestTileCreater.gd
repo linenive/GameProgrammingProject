@@ -7,6 +7,8 @@ var character_scene
 var block_texture = []
 
 func _ready():
+	load_db()
+	
 	world_manager = get_node("/root/Main/WorldManager")
 	tile_scene = load("res://Scene/Tile.tscn")
 	block_scene = load("res://Scene/Block.tscn")
@@ -16,9 +18,10 @@ func _ready():
 
 # To-do: load db. not hard coding.
 func load_db():
-	block_texture[0] = load("res://Image/block_door.png")
-	block_texture[1] = load("res://Image/block_floor.png")
-	block_texture[2] = load("res://Image/block_wall.png")
+	block_texture.append(load("res://Image/block_door.png"))
+	block_texture.append(load("res://Image/block_wall.png"))
+	block_texture.append(load("res://Image/block_door.png"))
+	block_texture.append(load("res://Image/block_floor.png"))
 
 func create_surface():
 	var tile_size = world_manager.GetTileNumber()
@@ -29,15 +32,14 @@ func create_surface():
 		surface_node.transform = transform
 		surface_node.texture = tile_image_changer(world_manager.GetSurfaceType(i))
 		$Tile.add_child(surface_node)
-		
-		# create_blocks(i, transform)
+		create_blocks(i, transform)
 
 func create_blocks(tile_id, transform):
 	var block_types = world_manager.GetBlockTypes(tile_id)
 	for bt in block_types:
 		var block_node = block_scene.instance()
 		block_node.transform = transform
-		block_node.texture = block_texture[tile_id]
+		block_node.texture = block_texture[bt]
 		$Block.add_child(block_node)
 
 func tile_image_changer(tile_type_id):
