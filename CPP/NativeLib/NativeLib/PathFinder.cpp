@@ -11,8 +11,8 @@ int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile){
 vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	int i, x, y;
-	int now_score_h, now_score_g, now_score_f;
-	Coordinates now_tile, next_tile;
+	int current_score_h, current_score_g, current_score_f;
+	Coordinates current_tile, next_tile;
 
 	set<pair<Coordinates, int>, CompareWithScore> open_list;
 	unordered_map<Coordinates, Coordinates, CoordinatesHash> open_parent_list;
@@ -31,22 +31,22 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	open_parent_list[start_tile] = start_tile;
 	score_f_list[start_tile] = 0;
 
-	now_tile = start_tile;
+	current_tile = start_tile;
 
-	while (now_tile != end_tile && open_list.size()>0)
+	while (current_tile != end_tile && open_list.size()>0)
 	{
-		now_tile = (*open_list.begin()).first;
-		closed_parent_list[now_tile] = open_parent_list[now_tile];
+		current_tile = (*open_list.begin()).first;
+		closed_parent_list[current_tile] = open_parent_list[current_tile];
 
-		//Godot::print("[PathFinder] ADD CLOSE Tile : " + Vector2(now_tile.x, now_tile.y) + " Parent Tile : " + Vector2(closed_parent_list[now_tile].x, closed_parent_list[now_tile].y)
+		//Godot::print("[PathFinder] ADD CLOSE Tile : " + Vector2(current_tile.x, current_tile.y) + " Parent Tile : " + Vector2(closed_parent_list[current_tile].x, closed_parent_list[current_tile].y)
 		//+ " score : "+Vector2((*open_list.begin()).second,0));
 
 		open_list.erase(open_list.begin());
 
 		for (i = 0; i < 8; i++) {
 
-			x = now_tile.x + dx[i];
-			y = now_tile.y + dy[i];
+			x = current_tile.x + dx[i];
+			y = current_tile.y + dy[i];
 			next_tile.x = x;
 			next_tile.y = y;
 
@@ -59,44 +59,44 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 				continue;
 			}
 
-			now_score_h = AstarH(next_tile, end_tile);
+			current_score_h = AstarH(next_tile, end_tile);
 
 			//AstarG
-			if (score_f_list.find(now_tile) == score_f_list.end()) {
-				Godot::print("[PathFinder] has not score f: " + Vector2(now_tile.x, now_tile.y));
+			if (score_f_list.find(current_tile) == score_f_list.end()) {
+				Godot::print("[PathFinder] has not score f: " + Vector2(current_tile.x, current_tile.y));
 			}
 
-			if (dx[i] == 0 || dy[i] == 0) now_score_g = score_f_list[now_tile] + weight_g_straight;
-			else now_score_g = score_f_list[now_tile] + weight_g_diagonal;
+			if (dx[i] == 0 || dy[i] == 0) current_score_g = score_f_list[current_tile] + weight_g_straight;
+			else current_score_g = score_f_list[current_tile] + weight_g_diagonal;
 
 			//AstarF
-			now_score_f = (now_score_h + now_score_g);
+			current_score_f = (current_score_h + current_score_g);
 
 			//has key next_tile
 			if (open_parent_list.find(next_tile) != open_parent_list.end()) {
 
 				//new key is larger score
-				if (score_f_list[next_tile] < now_score_f) continue;
+				if (score_f_list[next_tile] < current_score_f) continue;
 			}
 
-			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, now_score_f));
-			open_list.insert(make_pair(next_tile, now_score_f));
-			open_parent_list[next_tile] = now_tile;
+			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, current_score_f));
+			open_list.insert(make_pair(next_tile, current_score_f));
+			open_parent_list[next_tile] = current_tile;
 		}
 	}
 
 	Coordinates parent_tile;
-	now_tile = end_tile;
+	current_tile = end_tile;
 
 	//back tracking
-	String path= Vector2(now_tile.x, now_tile.y);
+	String path= Vector2(current_tile.x, current_tile.y);
 	for (i=0; i<closed_parent_list.size(); i++)
 	{
-		parent_tile = closed_parent_list[now_tile];
+		parent_tile = closed_parent_list[current_tile];
 		if (parent_tile == start_tile) break;	
 		if (parent_tile.x < 0) break;
-		//Godot::print("[PathFinder] Push new path: " + Vector2(now_tile.x, now_tile.y)  + " from " + Vector2(parent_tile.x, parent_tile.y));
-		now_tile = parent_tile;
+		//Godot::print("[PathFinder] Push new path: " + Vector2(current_tile.x, current_tile.y)  + " from " + Vector2(parent_tile.x, parent_tile.y));
+		current_tile = parent_tile;
 		ans.insert(ans.begin(), parent_tile);
 
 		path += " -> "+Vector2(parent_tile.x, parent_tile.y);
@@ -125,7 +125,7 @@ void PathFinder::SetTileRepository(TileRepository* tile) {
 	tile_map = tile;
 }
 
-Vector2 PathFinder::CalcObstacleVector(Coordinates now_tile) {
+Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 	int x, y;
 
 	int dx[4] = { -1, 1, 0, 0};
@@ -133,8 +133,8 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates now_tile) {
 	Vector2 obs_vec= Vector2(0,0);
 
 	for (int i = 0; i < 4; i++) {
-		x = now_tile.x + dx[i];
-		y = now_tile.y + dy[i];
+		x = current_tile.x + dx[i];
+		y = current_tile.y + dy[i];
 
 		if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
 		if (DetectObstacle(Coordinates(x, y))) {
