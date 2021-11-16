@@ -2,19 +2,32 @@
 #include "WorldObjectFactory.h"
 #include "Character.h"
 
-// Todo: hard coding -> load DB
 class PurposeOfVisitFactory {
+private:
+	static string name[10];
+	static string NameOf(ePurposeOfVisitType type) {
+		return name[static_cast<int>(type)];
+	};
+	//To-do: init by external file
+	static void Init() {
+		name[static_cast<int>(ePurposeOfVisitType::Lodge)] = "Lodge";
+		name[static_cast<int>(ePurposeOfVisitType::JustChilling)] = "JustChilling";
+		name[static_cast<int>(ePurposeOfVisitType::Recovery)] = "Recovery";
+		name[static_cast<int>(ePurposeOfVisitType::Cure)] = "Cure";
+		name[static_cast<int>(ePurposeOfVisitType::Shopping)] = "Shopping";
+		name[static_cast<int>(ePurposeOfVisitType::BuyLiquidMedicine)] = "BuyLiquidMedicine";
+	}
 public:
-	PurposeOfVisit* CreatePurposeOfVisit(PurposeOfVisitType type) {
+	PurposeOfVisitFactory() {
+		Init();
+	}
+	PurposeOfVisit* CreatePurposeOfVisit(ePurposeOfVisitType type) {
 		PurposeOfVisit* purpose;
-		if (type == PurposeOfVisitType::Lodge) {
-			purpose = new PurposeOfVisit("Lodge", type);
-		}
-		else {
-			purpose = new PurposeOfVisit("NoName", type);
-		}
+		purpose = new PurposeOfVisit(NameOf(type), type);
 		return purpose;
 	}
+
+	
 };
 
 class CharacterFactory : public WorldObjectFactory {
@@ -30,7 +43,7 @@ private:
 			GuestSchedule* schedule = (GuestSchedule *)character->GetSchedule();
 			// To-do: Probability가 포함된 pool에서 random type을 pick하도록 바꾼다.
 			// To-do: 한 번 picked 된 type은 delete in pool.
-			schedule->AddPurposOfVisit(purpose_factory.CreatePurposeOfVisit(PurposeOfVisitType::Lodge));
+			schedule->AddPurposOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::Lodge));
 		}
 	}
 
