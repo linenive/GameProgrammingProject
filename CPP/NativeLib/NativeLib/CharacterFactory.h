@@ -26,9 +26,7 @@ public:
 		PurposeOfVisit* purpose;
 		purpose = new PurposeOfVisit(NameOf(type), type);
 		return purpose;
-	}
-
-	
+	}	
 };
 
 class CharacterFactory : public WorldObjectFactory {
