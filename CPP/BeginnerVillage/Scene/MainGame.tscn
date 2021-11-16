@@ -1,4 +1,3 @@
-
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
@@ -142,9 +141,7 @@ margin_left = 61.7732
 margin_top = 133.576
 margin_right = 149.493
 margin_bottom = 123.776
-
 custom_fonts/font = SubResource( 3 )
-
 text = "test"
 align = 2
 __meta__ = {

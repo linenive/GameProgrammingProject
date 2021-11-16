@@ -3,12 +3,14 @@ var input_manager
 var world_manager
 var camera_manager
 var tile_info_label
+var uicontrol
 
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
 	world_manager = get_node("/root/Main/WorldManager")
 	camera_manager = get_node("/root/Main/CameraManager/CameraCPP")
 	tile_info_label = get_node("/root/Main/UIControl/HUD/TileInfoTest")
+	uicontrol = get_node("/root/Main/UIControl");
 
 func _input(event):
 	input_process_for_game_world(event)

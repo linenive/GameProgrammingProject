@@ -1,4 +1,5 @@
 #pragma once
+#include "TileRepository.h"
 #include "ObjectRepository.h"
 
 class GameWorldForAI {
