@@ -1,7 +1,6 @@
 #include "InputManager.h"
 #include "GodotScenePath.h"
 
-
 void InputManager::MouseClick(Vector2 position) {
 	control_context->MouseClick(position);
 }
@@ -9,7 +8,6 @@ void InputManager::MouseClick(Vector2 position) {
 void InputManager::MouseRelease(Vector2 position) {
 	control_context->MouseRelease(position);
 }
-
 void InputManager::MouseHover(Vector2 position) {
 	control_context->MouseHover(position);
 	now_mouse_point = position;
@@ -17,6 +15,9 @@ void InputManager::MouseHover(Vector2 position) {
 
 bool InputManager::IsDragging() {
 	return control_context->GetInputStatus().is_dragging;
+}
+void InputManager::MouseRightClick(Vector2 position) {
+	now_mouse_right_click_point = position;
 }
 
 void InputManager::TestStructureButton() {
@@ -63,9 +64,13 @@ void InputManager::_register_methods() {
 	register_method("MouseHover", &InputManager::MouseHover);
 	register_method("IsDragging", &InputManager::IsDragging);
 	register_method("GetDragRect", &InputManager::GetDragRect);
+
 	register_method("TestStructureButton", &InputManager::TestStructureButton);
 	register_method("IsTileHighlighting", &InputManager::IsTileHighlighting);
 	register_method("GetTileHighlight", &InputManager::GetTileHighlight);
+
+	register_method("MouseRightClick", &InputManager::MouseRightClick);
+	register_method("GetNowMouseRightClickPoint", &InputManager::GetNowMouseRightClickPoint);
 }
 
 void InputManager::_init() {

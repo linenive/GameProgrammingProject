@@ -3,6 +3,7 @@
 #include "TaskReserveInfo.h"
 #include "GameWorldForAI.h"
 #include "AIExecuter.h"
+#include "PathFinder.h"
 #include "Task.h"
 
 class AIManager {
@@ -11,12 +12,18 @@ private:
 	GameWorldForAI* game_world;
 	vector<Character*>* characters;
 	AIExecuter* ai_executer;
+	TileRepository* now_tile_repo;
+	PathFinder path_finder = PathFinder();
 
 	void FindNewTask(Character* performer) {
-		// ÀÓ½Ã·Î 600, 300 ±îÁö ÀÌµ¿ÇÏ´Â task ³ÖÀ½
 		Task* new_task = new Task(Vector2(600.0, 300.0));
 		performer->SetTask(new_task);
 	};
+	void ChangeTaskTarget(Character* performer, Vector2 target) {
+
+		Task* currentTask = performer->GetTask();
+		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().GetPosition(), target), target);
+	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
@@ -34,11 +41,20 @@ public:
 	void SetGameWorld(GameWorldForAI* world) {
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
+		
+		now_tile_repo = world->GetTileMap();
+		path_finder.SetTileRepository(now_tile_repo);
 	}
 	void Update(float delta) {
-		// To-do: ¾Æ·¡´Â °¡²û¾¿¸¸ ¾÷µ¥ÀÌÆ®ÇØ ÁÖ¾îµµ ±¦ÂúÀ½
+		// To-do: ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö¾îµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		AssignTaskToWholeCharacter();
 		ExecuteCharactersTask();
 	};
-	
+
+	void ChangeTaskTargetWholeCharacter(Vector2 target) {
+		for (Character* c : *characters) {
+			if (c->HasTask())
+				ChangeTaskTarget(c, target);
+		}
+	}
 };

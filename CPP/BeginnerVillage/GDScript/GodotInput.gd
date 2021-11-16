@@ -3,12 +3,14 @@ var input_manager
 var world_manager
 var camera_manager
 var tile_info_label
+var uicontrol
 
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
 	world_manager = get_node("/root/Main/WorldManager")
 	camera_manager = get_node("/root/Main/CameraManager/CameraCPP")
 	tile_info_label = get_node("/root/Main/UIControl/HUD/TileInfoTest")
+	uicontrol = get_node("/root/Main/UIControl");
 
 func _input(event):
 	input_process_for_game_world(event)
@@ -28,6 +30,11 @@ func input_process_for_game_world(event):
 				left_mouse_button_pressed(mouse_pos)
 			else:
 				left_mouse_button_released(mouse_pos)
+		elif event.button_index ==BUTTON_RIGHT:
+			if event.pressed:
+				right_mouse_button_pressed(event.position)
+				uicontrol.MouseRightClickLabelUpdate(event.position)
+				
 	if event is InputEventMouseMotion:
 		var mouse_pos = convert_position_by_camera(event.position)
 		mouse_motion(mouse_pos)
@@ -45,7 +52,10 @@ func left_mouse_button_pressed(position):
 
 func left_mouse_button_released(position):
 	input_manager.MouseRelease(position)
-
+	
+func right_mouse_button_pressed(position):
+	input_manager.MouseRightClick(position)
+	
 func mouse_motion(position):
 	input_manager.MouseHover(position)
 	#update_tile_info(position)

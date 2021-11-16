@@ -6,7 +6,7 @@ private:
 	Transform2D transform;
 	Vector2 scale;
 public:
-	float mass;
+	float mass = 10;
 	Vector2 velocity;
 	Vector2 max_velocity;
 

@@ -12,6 +12,7 @@ private:
 	ControlContext* control_context;
 	GameWorldForInput* game_world;
 	Vector2 now_mouse_point;
+	Vector2 now_mouse_right_click_point;
 
 	void LoadGameWorld();
 
@@ -25,9 +26,11 @@ public:
 	void _ready();
 
 	void MouseClick(Vector2 position);
+	void MouseRightClick(Vector2 position);
 	void MouseRelease(Vector2 position);
 	void MouseHover(Vector2 position);
 
+	Vector2 GetNowMouseRightClickPoint() { return now_mouse_right_click_point; }
 	bool IsDragging();
 	void TestStructureButton();
 	Rect2 GetDragRect();

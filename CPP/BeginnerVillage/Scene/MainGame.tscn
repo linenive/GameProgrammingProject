@@ -157,6 +157,25 @@ margin_right = 1021.67
 margin_bottom = 52.3333
 custom_fonts/font = SubResource( 4 )
 text = "가구 1"
+
+[node name="CharacterMove" type="Button" parent="UIControl/HUD"]
+margin_left = 401.0
+margin_top = 5.0
+margin_right = 413.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 4 )
+text = "이동"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickPositionLabel" type="Label" parent="UIControl/HUD/CharacterMove"]
+margin_left = 3.0
+margin_top = 35.0
+margin_right = 150.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 4 )
+text = "x, y"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1011,3 +1030,4 @@ __meta__ = {
 
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
+[connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]
