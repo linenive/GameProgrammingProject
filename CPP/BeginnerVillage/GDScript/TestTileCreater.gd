@@ -30,12 +30,15 @@ func create_surface():
 		surface_node.texture = tile_image_changer(world_manager.GetSurfaceType(i))
 		$Tile.add_child(surface_node)
 		
-		var block_types = world_manager.GetBlockTypes(i)
-		for bt in block_types:
-			var block_node = block_scene.instance()
-			block_node.transform = transform
-			block_node.texture = block_texture[i]
-			$Block.add_child(block_node)
+		# create_blocks(i, transform)
+
+func create_blocks(tile_id, transform):
+	var block_types = world_manager.GetBlockTypes(tile_id)
+	for bt in block_types:
+		var block_node = block_scene.instance()
+		block_node.transform = transform
+		block_node.texture = block_texture[tile_id]
+		$Block.add_child(block_node)
 
 func tile_image_changer(tile_type_id):
 	var texture;

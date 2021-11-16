@@ -67,6 +67,12 @@
     <Filter Include="헤더 파일\Service">
       <UniqueIdentifier>{09f606ed-1b52-472a-9543-dac725d48891}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject\Block">
+      <UniqueIdentifier>{20bf0065-4b71-4ac6-997e-df65f1bdecc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject\StaticUnit">
+      <UniqueIdentifier>{58793609-6061-4117-ac55-a65a607379d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -128,6 +134,12 @@
     </ClCompile>
     <ClCompile Include="StaticUnitService.cpp">
       <Filter>소스 파일\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockType.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingType.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject\StaticUnit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

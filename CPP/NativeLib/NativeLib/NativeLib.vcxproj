@@ -142,6 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockType.cpp" />
+    <ClCompile Include="BuildingType.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CoordinatesSystem.cpp" />
     <ClCompile Include="DateSystem.cpp" />

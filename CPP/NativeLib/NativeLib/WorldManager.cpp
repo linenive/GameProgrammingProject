@@ -6,11 +6,12 @@ void WorldManager::_register_methods() {
 	register_method("_ready", &WorldManager::_ready);
 	register_method("_process", &WorldManager::_process);
 
+	register_method("GetTileId", &WorldManager::GetTileId);
 	register_method("GetTileNumber", &WorldManager::GetTileNumber);
-	register_method("GetTileTransform", &WorldManager::GetSurfaceTransform);
-	register_method("GetTileScale", &WorldManager::GetSurfaceScale);
-	register_method("GetTileType", &WorldManager::GetSurfaceType);
-	register_method("GetTileName", &WorldManager::GetSurfaceName);
+	register_method("GetSurfaceTransform", &WorldManager::GetSurfaceTransform);
+	register_method("GetSurfaceScale", &WorldManager::GetSurfaceScale);
+	register_method("GetSurfaceType", &WorldManager::GetSurfaceType);
+	register_method("GetSurfaceName", &WorldManager::GetSurfaceName);
 
 	register_method("TestNewCharacter", &WorldManager::TestNewCharacter);
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
@@ -20,7 +21,6 @@ void WorldManager::_register_methods() {
 	register_method("GetCharacterItem", &WorldManager::GetCharacterItem);
 	register_method("GetCharacterInventorySize", &WorldManager::GetCharacterInventorySize);
 
-	register_method("GetTileId", &WorldManager::GetTileId);
 	register_method("GetWorldSize", &WorldManager::GetWorldSize);
 
 	register_method("GetVillageName", &WorldManager::GetVillageName);
