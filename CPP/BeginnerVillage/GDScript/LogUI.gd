@@ -12,7 +12,7 @@ var tempint = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	camera_manager = get_node("/root/Main/CameraManager")
-	log_ui_control = get_node("/root/Main/UIControl/LogUI")
+	log_ui_control = get_node("/root/Main/UIControl/LogUIControl")
 	tween = $Tween;
 	
 	#set_visible(true)

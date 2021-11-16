@@ -8,8 +8,8 @@ var last_log
 
 func _ready():
 	ui_manager = get_node("/root/Main/UIManager")
-	new_log_ui = get_node("/root/Main/UIControl/LogUI/NewLogUI")
-	event_log_panel = get_node("/root/Main/UIControl/LogUI/EventLogPanel")
+	new_log_ui = get_node("/root/Main/UIControl/LogUIControl/NewLogUI")
+	event_log_panel = get_node("/root/Main/UIControl/LogUIControl/EventLogPanel")
 
 func show_log():
 	var logs = ui_manager.GetEventLogs()

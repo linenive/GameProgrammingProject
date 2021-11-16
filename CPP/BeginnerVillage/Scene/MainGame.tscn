@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -16,9 +16,15 @@
 [ext_resource path="res://Scene/JanTestGDScript.gd" type="Script" id=14]
 [ext_resource path="res://Scene/LogUI.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scene/EventLogUI.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scene/LogUIControl.gd" type="Script" id=17]
-[ext_resource path="res://Scene/EventLogPanelUI.gd" type="Script" id=18]
-[ext_resource path="res://Scene/MenuUI.gd" type="Script" id=19]
+[ext_resource path="res://GDScript/LogUIControl.gd" type="Script" id=17]
+[ext_resource path="res://GDScript/EventLogPanelUI.gd" type="Script" id=18]
+[ext_resource path="res://GDScript/MenuUI.gd" type="Script" id=19]
+[ext_resource path="res://Scene/ChoiceButtonUI.tscn" type="PackedScene" id=20]
+[ext_resource path="res://GDScript/ChoiceButtonControl.gd" type="Script" id=21]
+[ext_resource path="res://Image/furniture_2.png" type="Texture" id=22]
+[ext_resource path="res://Image/furniture_3.png" type="Texture" id=23]
+[ext_resource path="res://Scene/PeopleInfoUI.tscn" type="PackedScene" id=24]
+[ext_resource path="res://GDScript/PeopleUIControl.gd" type="Script" id=25]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -183,10 +189,10 @@ __meta__ = {
 
 [node name="PopupUI10" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
 
-[node name="LogUI" type="CanvasLayer" parent="UIControl"]
+[node name="LogUIControl" type="CanvasLayer" parent="UIControl"]
 script = ExtResource( 17 )
 
-[node name="NewLogUI" parent="UIControl/LogUI" instance=ExtResource( 15 )]
+[node name="NewLogUI" parent="UIControl/LogUIControl" instance=ExtResource( 15 )]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.77
@@ -197,7 +203,7 @@ margin_top = -20.0542
 margin_right = 284.396
 margin_bottom = 19.9458
 
-[node name="EventLogPanel" type="WindowDialog" parent="UIControl/LogUI"]
+[node name="EventLogPanel" type="WindowDialog" parent="UIControl/LogUIControl"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -213,7 +219,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UIControl/LogUI/EventLogPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UIControl/LogUIControl/EventLogPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -224,612 +230,612 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UIControl/LogUI/EventLogPanel/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer"]
 
-[node name="EventLogUI" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_right = 359.0
 
-[node name="EventLogUI2" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI2" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 55.0
 margin_right = 359.0
 margin_bottom = 106.0
 
-[node name="EventLogUI3" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI3" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 110.0
 margin_right = 359.0
 margin_bottom = 161.0
 
-[node name="EventLogUI4" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI4" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 165.0
 margin_right = 359.0
 margin_bottom = 216.0
 
-[node name="EventLogUI5" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI5" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 220.0
 margin_right = 359.0
 margin_bottom = 271.0
 
-[node name="EventLogUI6" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI6" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 275.0
 margin_right = 359.0
 margin_bottom = 326.0
 
-[node name="EventLogUI7" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI7" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 330.0
 margin_right = 359.0
 margin_bottom = 381.0
 
-[node name="EventLogUI8" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI8" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 385.0
 margin_right = 359.0
 margin_bottom = 436.0
 
-[node name="EventLogUI9" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI9" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 440.0
 margin_right = 359.0
 margin_bottom = 491.0
 
-[node name="EventLogUI10" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI10" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 495.0
 margin_right = 359.0
 margin_bottom = 546.0
 
-[node name="EventLogUI11" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI11" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 550.0
 margin_right = 359.0
 margin_bottom = 601.0
 
-[node name="EventLogUI12" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI12" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 605.0
 margin_right = 359.0
 margin_bottom = 656.0
 
-[node name="EventLogUI13" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI13" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 660.0
 margin_right = 359.0
 margin_bottom = 711.0
 
-[node name="EventLogUI14" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI14" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 715.0
 margin_right = 359.0
 margin_bottom = 766.0
 
-[node name="EventLogUI15" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI15" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 770.0
 margin_right = 359.0
 margin_bottom = 821.0
 
-[node name="EventLogUI16" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI16" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 825.0
 margin_right = 359.0
 margin_bottom = 876.0
 
-[node name="EventLogUI17" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI17" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 880.0
 margin_right = 359.0
 margin_bottom = 931.0
 
-[node name="EventLogUI18" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI18" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 935.0
 margin_right = 359.0
 margin_bottom = 986.0
 
-[node name="EventLogUI19" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI19" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 990.0
 margin_right = 359.0
 margin_bottom = 1041.0
 
-[node name="EventLogUI20" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI20" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1045.0
 margin_right = 359.0
 margin_bottom = 1096.0
 
-[node name="EventLogUI21" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI21" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1100.0
 margin_right = 359.0
 margin_bottom = 1151.0
 
-[node name="EventLogUI22" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI22" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1155.0
 margin_right = 359.0
 margin_bottom = 1206.0
 
-[node name="EventLogUI23" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI23" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1210.0
 margin_right = 359.0
 margin_bottom = 1261.0
 
-[node name="EventLogUI24" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI24" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1265.0
 margin_right = 359.0
 margin_bottom = 1316.0
 
-[node name="EventLogUI25" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI25" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1320.0
 margin_right = 359.0
 margin_bottom = 1371.0
 
-[node name="EventLogUI26" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI26" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1375.0
 margin_right = 359.0
 margin_bottom = 1426.0
 
-[node name="EventLogUI27" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI27" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1430.0
 margin_right = 359.0
 margin_bottom = 1481.0
 
-[node name="EventLogUI28" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI28" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1485.0
 margin_right = 359.0
 margin_bottom = 1536.0
 
-[node name="EventLogUI29" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI29" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1540.0
 margin_right = 359.0
 margin_bottom = 1591.0
 
-[node name="EventLogUI30" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI30" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1595.0
 margin_right = 359.0
 margin_bottom = 1646.0
 
-[node name="EventLogUI31" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI31" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1650.0
 margin_right = 359.0
 margin_bottom = 1701.0
 
-[node name="EventLogUI32" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI32" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1705.0
 margin_right = 359.0
 margin_bottom = 1756.0
 
-[node name="EventLogUI33" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI33" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1760.0
 margin_right = 359.0
 margin_bottom = 1811.0
 
-[node name="EventLogUI34" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI34" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1815.0
 margin_right = 359.0
 margin_bottom = 1866.0
 
-[node name="EventLogUI35" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI35" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1870.0
 margin_right = 359.0
 margin_bottom = 1921.0
 
-[node name="EventLogUI36" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI36" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1925.0
 margin_right = 359.0
 margin_bottom = 1976.0
 
-[node name="EventLogUI37" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI37" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 1980.0
 margin_right = 359.0
 margin_bottom = 2031.0
 
-[node name="EventLogUI38" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI38" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2035.0
 margin_right = 359.0
 margin_bottom = 2086.0
 
-[node name="EventLogUI39" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI39" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2090.0
 margin_right = 359.0
 margin_bottom = 2141.0
 
-[node name="EventLogUI40" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI40" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2145.0
 margin_right = 359.0
 margin_bottom = 2196.0
 
-[node name="EventLogUI41" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI41" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2200.0
 margin_right = 359.0
 margin_bottom = 2251.0
 
-[node name="EventLogUI42" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI42" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2255.0
 margin_right = 359.0
 margin_bottom = 2306.0
 
-[node name="EventLogUI43" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI43" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2310.0
 margin_right = 359.0
 margin_bottom = 2361.0
 
-[node name="EventLogUI44" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI44" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2365.0
 margin_right = 359.0
 margin_bottom = 2416.0
 
-[node name="EventLogUI45" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI45" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2420.0
 margin_right = 359.0
 margin_bottom = 2471.0
 
-[node name="EventLogUI46" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI46" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2475.0
 margin_right = 359.0
 margin_bottom = 2526.0
 
-[node name="EventLogUI47" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI47" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2530.0
 margin_right = 359.0
 margin_bottom = 2581.0
 
-[node name="EventLogUI48" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI48" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2585.0
 margin_right = 359.0
 margin_bottom = 2636.0
 
-[node name="EventLogUI49" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI49" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2640.0
 margin_right = 359.0
 margin_bottom = 2691.0
 
-[node name="EventLogUI50" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI50" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2695.0
 margin_right = 359.0
 margin_bottom = 2746.0
 
-[node name="EventLogUI51" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI51" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2750.0
 margin_right = 359.0
 margin_bottom = 2801.0
 
-[node name="EventLogUI52" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI52" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2805.0
 margin_right = 359.0
 margin_bottom = 2856.0
 
-[node name="EventLogUI53" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI53" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2860.0
 margin_right = 359.0
 margin_bottom = 2911.0
 
-[node name="EventLogUI54" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI54" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2915.0
 margin_right = 359.0
 margin_bottom = 2966.0
 
-[node name="EventLogUI55" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI55" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 2970.0
 margin_right = 359.0
 margin_bottom = 3021.0
 
-[node name="EventLogUI56" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI56" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3025.0
 margin_right = 359.0
 margin_bottom = 3076.0
 
-[node name="EventLogUI57" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI57" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3080.0
 margin_right = 359.0
 margin_bottom = 3131.0
 
-[node name="EventLogUI58" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI58" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3135.0
 margin_right = 359.0
 margin_bottom = 3186.0
 
-[node name="EventLogUI59" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI59" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3190.0
 margin_right = 359.0
 margin_bottom = 3241.0
 
-[node name="EventLogUI60" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI60" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3245.0
 margin_right = 359.0
 margin_bottom = 3296.0
 
-[node name="EventLogUI61" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI61" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3300.0
 margin_right = 359.0
 margin_bottom = 3351.0
 
-[node name="EventLogUI62" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI62" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3355.0
 margin_right = 359.0
 margin_bottom = 3406.0
 
-[node name="EventLogUI63" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI63" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3410.0
 margin_right = 359.0
 margin_bottom = 3461.0
 
-[node name="EventLogUI64" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI64" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3465.0
 margin_right = 359.0
 margin_bottom = 3516.0
 
-[node name="EventLogUI65" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI65" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3520.0
 margin_right = 359.0
 margin_bottom = 3571.0
 
-[node name="EventLogUI66" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI66" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3575.0
 margin_right = 359.0
 margin_bottom = 3626.0
 
-[node name="EventLogUI67" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI67" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3630.0
 margin_right = 359.0
 margin_bottom = 3681.0
 
-[node name="EventLogUI68" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI68" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3685.0
 margin_right = 359.0
 margin_bottom = 3736.0
 
-[node name="EventLogUI69" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI69" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3740.0
 margin_right = 359.0
 margin_bottom = 3791.0
 
-[node name="EventLogUI70" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI70" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3795.0
 margin_right = 359.0
 margin_bottom = 3846.0
 
-[node name="EventLogUI71" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI71" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3850.0
 margin_right = 359.0
 margin_bottom = 3901.0
 
-[node name="EventLogUI72" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI72" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3905.0
 margin_right = 359.0
 margin_bottom = 3956.0
 
-[node name="EventLogUI73" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI73" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 3960.0
 margin_right = 359.0
 margin_bottom = 4011.0
 
-[node name="EventLogUI74" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI74" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4015.0
 margin_right = 359.0
 margin_bottom = 4066.0
 
-[node name="EventLogUI75" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI75" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4070.0
 margin_right = 359.0
 margin_bottom = 4121.0
 
-[node name="EventLogUI76" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI76" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4125.0
 margin_right = 359.0
 margin_bottom = 4176.0
 
-[node name="EventLogUI77" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI77" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4180.0
 margin_right = 359.0
 margin_bottom = 4231.0
 
-[node name="EventLogUI78" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI78" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4235.0
 margin_right = 359.0
 margin_bottom = 4286.0
 
-[node name="EventLogUI79" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI79" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4290.0
 margin_right = 359.0
 margin_bottom = 4341.0
 
-[node name="EventLogUI80" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI80" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4345.0
 margin_right = 359.0
 margin_bottom = 4396.0
 
-[node name="EventLogUI81" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI81" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4400.0
 margin_right = 359.0
 margin_bottom = 4451.0
 
-[node name="EventLogUI82" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI82" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4455.0
 margin_right = 359.0
 margin_bottom = 4506.0
 
-[node name="EventLogUI83" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI83" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4510.0
 margin_right = 359.0
 margin_bottom = 4561.0
 
-[node name="EventLogUI84" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI84" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4565.0
 margin_right = 359.0
 margin_bottom = 4616.0
 
-[node name="EventLogUI85" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI85" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4620.0
 margin_right = 359.0
 margin_bottom = 4671.0
 
-[node name="EventLogUI86" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI86" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4675.0
 margin_right = 359.0
 margin_bottom = 4726.0
 
-[node name="EventLogUI87" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI87" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4730.0
 margin_right = 359.0
 margin_bottom = 4781.0
 
-[node name="EventLogUI88" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI88" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4785.0
 margin_right = 359.0
 margin_bottom = 4836.0
 
-[node name="EventLogUI89" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI89" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4840.0
 margin_right = 359.0
 margin_bottom = 4891.0
 
-[node name="EventLogUI90" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI90" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4895.0
 margin_right = 359.0
 margin_bottom = 4946.0
 
-[node name="EventLogUI91" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI91" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 4950.0
 margin_right = 359.0
 margin_bottom = 5001.0
 
-[node name="EventLogUI92" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI92" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5005.0
 margin_right = 359.0
 margin_bottom = 5056.0
 
-[node name="EventLogUI93" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI93" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5060.0
 margin_right = 359.0
 margin_bottom = 5111.0
 
-[node name="EventLogUI94" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI94" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5115.0
 margin_right = 359.0
 margin_bottom = 5166.0
 
-[node name="EventLogUI95" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI95" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5170.0
 margin_right = 359.0
 margin_bottom = 5221.0
 
-[node name="EventLogUI96" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI96" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5225.0
 margin_right = 359.0
 margin_bottom = 5276.0
 
-[node name="EventLogUI97" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI97" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5280.0
 margin_right = 359.0
 margin_bottom = 5331.0
 
-[node name="EventLogUI98" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI98" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5335.0
 margin_right = 359.0
 margin_bottom = 5386.0
 
-[node name="EventLogUI99" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI99" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5390.0
 margin_right = 359.0
 margin_bottom = 5441.0
 
-[node name="EventLogUI100" parent="UIControl/LogUI/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="EventLogUI100" parent="UIControl/LogUIControl/EventLogPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 visible = false
 margin_top = 5445.0
 margin_right = 359.0
 margin_bottom = 5496.0
 
-[node name="Node" type="Node" parent="UIControl/LogUI"]
+[node name="Node" type="Node" parent="UIControl/LogUIControl"]
 
-[node name="MenuUI" type="CanvasLayer" parent="UIControl"]
+[node name="MenuUIControl" type="CanvasLayer" parent="UIControl"]
 script = ExtResource( 19 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UIControl/MenuUI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UIControl/MenuUIControl"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -844,20 +850,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PeopleBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+[node name="PeopleBtn" type="Button" parent="UIControl/MenuUIControl/HBoxContainer"]
 margin_right = 80.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
 custom_fonts/font = SubResource( 4 )
 text = "주민"
 
-[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/PeopleBtn"]
+[node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/PeopleBtn"]
 visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/PeopleBtn/Node"]
+[node name="RecruitBtn" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/PeopleBtn/Node"]
 margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
@@ -868,7 +874,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/PeopleBtn/Node"]
+[node name="ManageBtn" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/PeopleBtn/Node"]
 margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
@@ -879,7 +885,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="ConstructionBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+[node name="ArchitectureBtn" type="Button" parent="UIControl/MenuUIControl/HBoxContainer"]
 margin_left = 90.0
 margin_right = 170.0
 margin_bottom = 35.0
@@ -887,13 +893,13 @@ rect_min_size = Vector2( 80, 35 )
 custom_fonts/font = SubResource( 4 )
 text = "건축"
 
-[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/ConstructionBtn"]
+[node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn"]
 visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/ConstructionBtn/Node"]
+[node name="ConstructionBtn" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn/Node"]
 margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
@@ -904,7 +910,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/ConstructionBtn/Node"]
+[node name="Button2" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn/Node"]
 margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
@@ -915,7 +921,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="ResearchBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+[node name="ResearchBtn" type="Button" parent="UIControl/MenuUIControl/HBoxContainer"]
 margin_left = 180.0
 margin_right = 260.0
 margin_bottom = 35.0
@@ -923,13 +929,13 @@ rect_min_size = Vector2( 80, 35 )
 custom_fonts/font = SubResource( 4 )
 text = "연구"
 
-[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn"]
+[node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/ResearchBtn"]
 visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn/Node"]
+[node name="Button" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/ResearchBtn/Node"]
 margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
@@ -940,7 +946,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn/Node"]
+[node name="Button2" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/ResearchBtn/Node"]
 margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
@@ -951,7 +957,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button3" type="Button" parent="UIControl/MenuUI/HBoxContainer/ResearchBtn/Node"]
+[node name="Button3" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/ResearchBtn/Node"]
 margin_top = -132.0
 margin_right = 80.0
 margin_bottom = -97.0
@@ -962,7 +968,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="MenuBtn" type="Button" parent="UIControl/MenuUI/HBoxContainer"]
+[node name="MenuBtn" type="Button" parent="UIControl/MenuUIControl/HBoxContainer"]
 margin_left = 270.0
 margin_right = 350.0
 margin_bottom = 35.0
@@ -970,13 +976,13 @@ rect_min_size = Vector2( 80, 35 )
 custom_fonts/font = SubResource( 4 )
 text = "메뉴"
 
-[node name="Node" type="Control" parent="UIControl/MenuUI/HBoxContainer/MenuBtn"]
+[node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/MenuBtn"]
 visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="UIControl/MenuUI/HBoxContainer/MenuBtn/Node"]
+[node name="Button" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/MenuBtn/Node"]
 margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
@@ -987,7 +993,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button2" type="Button" parent="UIControl/MenuUI/HBoxContainer/MenuBtn/Node"]
+[node name="Button2" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/MenuBtn/Node"]
 margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
@@ -998,7 +1004,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button3" type="Button" parent="UIControl/MenuUI/HBoxContainer/MenuBtn/Node"]
+[node name="Button3" type="Button" parent="UIControl/MenuUIControl/HBoxContainer/MenuBtn/Node"]
 margin_top = -132.0
 margin_right = 80.0
 margin_bottom = -97.0
@@ -1008,6 +1014,176 @@ text = "저장"
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="ChoiceButtonControl" type="CanvasLayer" parent="UIControl"]
+script = ExtResource( 21 )
+imamge1 = ExtResource( 22 )
+imamge2 = ExtResource( 23 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIControl/ChoiceButtonControl"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -495.0
+margin_top = -245.0
+margin_right = 495.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 990, 0 )
+mouse_filter = 2
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIControl/ChoiceButtonControl/VBoxContainer"]
+margin_top = 230.0
+margin_right = 990.0
+margin_bottom = 230.0
+custom_constants/separation = 10
+
+[node name="ChoiceButton" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+
+[node name="ChoiceButton2" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 125.0
+margin_right = 240.0
+
+[node name="ChoiceButton3" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 250.0
+margin_right = 365.0
+
+[node name="ChoiceButton4" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 375.0
+margin_right = 490.0
+
+[node name="ChoiceButton5" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 500.0
+margin_right = 615.0
+
+[node name="ChoiceButton6" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 625.0
+margin_right = 740.0
+
+[node name="ChoiceButton7" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 750.0
+margin_right = 865.0
+
+[node name="ChoiceButton8" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 875.0
+margin_right = 990.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UIControl/ChoiceButtonControl/VBoxContainer"]
+margin_top = 240.0
+margin_right = 990.0
+margin_bottom = 240.0
+custom_constants/separation = 10
+
+[node name="ChoiceButton" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+
+[node name="ChoiceButton2" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+margin_left = 125.0
+margin_right = 240.0
+
+[node name="ChoiceButton3" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+margin_left = 250.0
+margin_right = 365.0
+
+[node name="ChoiceButton4" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+margin_left = 375.0
+margin_right = 490.0
+
+[node name="ChoiceButton5" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+margin_left = 500.0
+margin_right = 615.0
+
+[node name="ChoiceButton6" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+margin_left = 625.0
+margin_right = 740.0
+
+[node name="ChoiceButton7" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+margin_left = 750.0
+margin_right = 865.0
+
+[node name="ChoiceButton8" parent="UIControl/ChoiceButtonControl/VBoxContainer/HBoxContainer2" instance=ExtResource( 20 )]
+visible = false
+margin_left = 875.0
+margin_right = 990.0
+
+[node name="PeopleUIControl" type="CanvasLayer" parent="UIControl"]
+script = ExtResource( 25 )
+
+[node name="ManagePeopleUI" type="WindowDialog" parent="UIControl/PeopleUIControl"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 109.849
+margin_top = -247.04
+margin_right = 478.849
+margin_bottom = 226.96
+window_title = "Manage People&Guest"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 5.0
+margin_bottom = 37.0
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="People" type="ScrollContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer/People"]
+margin_right = 361.0
+margin_bottom = 438.0
+rect_min_size = Vector2( 361, 438 )
+
+[node name="PeopleInfoUI" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer/People/VBoxContainer" instance=ExtResource( 24 )]
+
+[node name="Guest" type="ScrollContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer/Guest"]
 
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
