@@ -58,17 +58,10 @@ public:
 		}
 	}
 
-	// StaticObject ฐüทร
-	void SetBlockOnTile(int x, int y, int layer_index, string _name, StaticUnit* _owner)
-	{
-		tile_map[y][x]->SetBlock(layer_index, _name, _owner, eBlockType::NONE);
-	}
-
 	bool IsEmptySpace(int x, int y, int layer_index)
 	{
 		if (x >= MAX_TILE_NUMBER_X || x < 0 || y >= MAX_TILE_NUMBER_Y || y < 0)
 			return false;
-		return tile_map[x][y]->IsEmptyLayer(layer_index);
+		return tile_map[y][x]->IsEmptyLayer(layer_index);
 	}
 };
-
