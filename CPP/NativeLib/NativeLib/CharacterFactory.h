@@ -28,9 +28,7 @@ public:
 			purpose = new PurposeOfVisit("NoName", type);
 		}
 		return purpose;
-	}
-
-	
+	}	
 };
 
 class CharacterFactory : public WorldObjectFactory {
