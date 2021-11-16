@@ -4,4 +4,7 @@
     <LocalDebuggerCommandArguments>-e--path ..\BeginnerVillage</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <ShowAllFiles>true</ShowAllFiles>
+  </PropertyGroup>
 </Project>

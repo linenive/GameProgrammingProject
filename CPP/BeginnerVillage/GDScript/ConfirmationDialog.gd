@@ -16,6 +16,7 @@ func init_confirmation_dialog(title, direction, hint, ok_btn_text="Yes", cancel_
 	get_ok().text = ok_btn_text
 	get_cancel().text = cancel_btn_text
 	
+	print("afwefaewa")
 	popup_centered()
 
 func ok_btn_pressed():
