@@ -25,9 +25,9 @@ private:
 	int dx[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 	int dy[8] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 
-	int weight_h = 10;
+	int weight_h = 12;
 	int weight_g_straight = 10;
-	int weight_g_diagonal = 14;
+	int weight_g_diagonal = 15;
 
 	int AstarH(Coordinates start_tile, Coordinates end_tile);
 
