@@ -15,7 +15,6 @@ public:
 	}
 	~TaskForIdleMove() {
 	}
-	//void ExecuteTask(WorldObject* performer) override;
 
 	void SetIdleMove();
 	Vector2 GetNewTarget();

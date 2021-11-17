@@ -26,6 +26,13 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	Coordinates start_tile = AbsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = AbsolutePositionToCoordinates(target_pos);
 
+	if (DetectDeathArea(end_tile)) {
+
+		
+		ans.push_back(end_tile);
+		return GetPathListByCoor(ans);
+	}
+
 	Godot::print("[PathFinder] Start Pos : " + start_pos + " End Pos : " + target_pos);
 	Godot::print("[PathFinder] Start Tile : " + Vector2(start_tile.x, start_tile.y) + " End Tile : " + Vector2(end_tile.x, end_tile.y));
 	open_list.insert(make_pair(start_tile, 0));
@@ -34,11 +41,8 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	current_tile = start_tile;
 
-	int loopcount = 0;
 	while (current_tile != end_tile && open_list.size() > 0)
 	{
-		if (loopcount > 200) break;
-		loopcount++;
 		current_tile = (*open_list.begin()).first;
 		closed_parent_list[current_tile] = open_parent_list[current_tile];
 
@@ -102,7 +106,6 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	}
 
 	Godot::print("[PathFinder] GET Path: " + path);
-	Godot::print("[PathFinder] loop count: " + Vector2(0, loopcount));
 
 	ans.push_back(end_tile);
 
@@ -145,6 +148,18 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 	obs_vec = -obs_vec.normalized();
 	obs_vec = Vector2(obs_vec.x * TILE_WIDTH, obs_vec.y * TILE_HEIGHT);
 	return obs_vec;
+}
+
+bool PathFinder::DetectDeathArea(Coordinates next_tile){
+	if (next_tile.x < 0 || next_tile.y < 0 || next_tile.x >= MAX_TILE_NUMBER_X || next_tile.y >= MAX_TILE_NUMBER_Y) return true;
+
+	int tile_id = CalculateTileNumberByCoordinates(next_tile);
+	int tile_type = (int)(tile_map->GetTile(tile_id)->GetSurface()->GetSurfaceType().type);
+
+	Godot::print("[PathFinder] endtile type : " + Vector2(tile_id, tile_type));
+
+	if (DetectObstacle(next_tile)) return true;
+	return false;
 }
 
 vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
