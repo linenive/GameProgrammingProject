@@ -13,7 +13,7 @@ func _ready():
 	$ManagePeopleUI/TabContainer/People.get_v_scrollbar().modulate = Color(0,0,0,0)
 	$ManagePeopleUI/TabContainer/Guest.get_v_scrollbar().modulate = Color(0,0,0,0)
 	
-	open()
+	#open()
 
 func open():
 	manage_people_ui.show()

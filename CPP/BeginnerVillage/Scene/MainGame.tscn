@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -41,7 +41,7 @@ font_data = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="TextureDB" type="Node" parent="."]
-script = ExtResource( 20 )
+script = ExtResource( 26 )
 
 [node name="UIManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -75,7 +75,7 @@ __meta__ = {
 }
 
 [node name="InputEffect" type="Node2D" parent="GodotInput"]
-script = ExtResource( 21 )
+script = ExtResource( 27 )
 
 [node name="Blueprint" type="Node" parent="GodotInput/InputEffect"]
 
@@ -1190,9 +1190,6 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer/Guest"]
 
-[connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
-[connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
-[connection signal="change_to_normal_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_normal_state"]
 [connection signal="tree_exited" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_tree_exited"]
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
