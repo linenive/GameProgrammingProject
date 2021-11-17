@@ -99,7 +99,6 @@ public:
 		for (Character* c : *characters) {
 			if (c->GetSchedule()->HasTask() && c->GetSchedule()->GetTask()->GetTaskType() == eTaskType::TASK_MOVE)
 				ChangeTaskTarget(c, target);
-			printf("A");
 		}
 	}
 };
