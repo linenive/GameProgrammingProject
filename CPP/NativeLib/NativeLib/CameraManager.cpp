@@ -33,14 +33,14 @@ void CameraManager::_register_methods() {
 void CameraManager::_init() {
 }
 
-void godot::CameraManager::CameraMoveWithKey(Vector2 velocity){
+void godot::CameraManager::CameraMoveWithKey(Vector2 velocity) {
 	if (velocity.length() > 0) {
 		velocity = velocity.normalized() * camera_moving_speed * camera.GetZoomDegree();
 		camera.CameraMove(CalcNewPosition(velocity));
 	}
 }
 
-void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector){
+void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector) {
 	Vector2 add_pos = Vector2(0, 0);
 
 	if (now_mouse_vector.x < mouse_moving_bound_size) {
@@ -58,43 +58,41 @@ void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector){
 	camera.CameraMove(CalcNewPosition(add_pos));
 }
 
-Vector2 godot::CameraManager::CalcNewPosition(Vector2 new_position){
+Vector2 godot::CameraManager::CalcNewPosition(Vector2 new_position) {
 	new_position += camera.GetPosition();
-	Vector2 current_viewport_half = get_viewport_rect().size / 2 * camera.GetZoomDegree();
-	float current_width = DEFAULT_TILE_NUMBER_X * TILE_WIDTH;
-	float current_height = DEFAULT_TILE_NUMBER_Y * TILE_HEIGHT;
-	Vector2 current_boundary_size = Vector2(current_width,current_height)- current_viewport_half;
-	if (new_position.x < current_viewport_half.x) {
-		new_position.x = current_viewport_half.x;
-	}
-	else if (new_position.x > current_boundary_size.x) {
-		new_position.x = current_boundary_size.x;
-	}
 
-	if (new_position.y < current_viewport_half.y) {
-		new_position.y = current_viewport_half.y;
+	Vector2 restrict_bound_min = get_viewport_rect().size / 2;
+	Vector2 restrict_bound_max = Vector2(DEFAULT_TILE_NUMBER_X * TILE_WIDTH, DEFAULT_TILE_NUMBER_Y * TILE_HEIGHT) - restrict_bound_min;
+	if (new_position.x < restrict_bound_min.x) {
+		new_position.x = restrict_bound_min.x;
 	}
-	else if (new_position.y > current_boundary_size.y) {
-		new_position.y = current_boundary_size.y;
+	else if (new_position.x > restrict_bound_max.x) {
+		new_position.x = restrict_bound_max.x;
+	}
+	if (new_position.y < restrict_bound_min.y) {
+		new_position.y = restrict_bound_min.y;
+	}
+	else if (new_position.y > restrict_bound_max.y) {
+		new_position.y = restrict_bound_max.y;
 	}
 	return new_position;
 }
 
-void godot::CameraManager::ZoomOut(){
+void godot::CameraManager::ZoomOut() {
 	float next_scrollfactor = camera.GetZoomDegree() + zoom_scroll_factor;
-	float zoom_max_current = min(zoom_max, DEFAULT_TILE_NUMBER_X * TILE_WIDTH / get_viewport_rect().size.x);
+	float zoom_max_current = zoom_max;
 	//Godot::print("[CameraManager] zoom max current: " + Vector2(next_scrollfactor, zoom_max_current));// +" / new_position :  " + new_position);
 	if (next_scrollfactor < zoom_max_current)
 		SetCurrentZoom(next_scrollfactor);
 }
 
-void godot::CameraManager::ZoomIn(){
+void godot::CameraManager::ZoomIn() {
 	float next_scrollfactor = camera.GetZoomDegree() - zoom_scroll_factor;
 	if (next_scrollfactor > zoom_min)
 		SetCurrentZoom(next_scrollfactor);
 }
 
-void godot::CameraManager::SetCurrentZoom(float new_zoom){
+void godot::CameraManager::SetCurrentZoom(float new_zoom) {
 	camera.SetZoomDegree(new_zoom);
 }
 
