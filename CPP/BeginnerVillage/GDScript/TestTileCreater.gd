@@ -13,20 +13,23 @@ func _ready():
 	block_scene = load("res://Scene/Block.tscn")
 	character_scene = load("res://Scene/Character.tscn")
 	
-	create_surface()
+	CreateTileMap()
 
-func create_surface():
+func CreateSurface(surface_type, transform):
+	var surface_node = tile_scene.instance()
+	surface_node.transform = transform
+	surface_node.texture = tile_image_changer(world_manager.GetSurfaceType(surface_type))
+	$Tile.add_child(surface_node)
+
+func CreateTileMap():
 	var tile_size = world_manager.GetTileNumber()
 	
 	for i in tile_size:
-		var surface_node = tile_scene.instance()
 		var transform =	world_manager.GetSurfaceTransform(i)
-		surface_node.transform = transform
-		surface_node.texture = tile_image_changer(world_manager.GetSurfaceType(i))
-		$Tile.add_child(surface_node)
-		create_blocks(i, transform)
+		CreateSurface(i, transform)
+		CreateBlocks(i, transform)
 
-func create_blocks(tile_id, transform):
+func CreateBlocks(tile_id, transform):
 	var block_types = world_manager.GetBlockTypes(tile_id)
 	for bt in block_types:
 		var block_node = block_scene.instance()
@@ -67,9 +70,9 @@ func _on_Button_pressed():
 	new_character(float(x), float(y))
 
 func _on_InputManager_build_building(ID):
-	create_building_nodes(ID)
+	CreateBuildingNodes(ID)
 
-func create_building_nodes(building_id):
+func CreateBuildingNodes(building_id):
 	for n in $Block.get_children():
 		$Block.remove_child(n)
 		n.queue_free()
@@ -78,7 +81,7 @@ func create_building_nodes(building_id):
 	
 	for i in tile_size:
 		var transform =	world_manager.GetSurfaceTransform(i)
-		create_blocks(i, transform)
+		CreateBlocks(i, transform)
 	
 	
 	
