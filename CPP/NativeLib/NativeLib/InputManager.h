@@ -19,6 +19,10 @@ private:
 
 	void LoadGameWorld();
 
+	void EmitStateSignal();
+	void EmitBuildSignal(int building_id);
+	void FetchInputQueue();
+
 public:
 	~InputManager() {
 		delete control_context;
@@ -27,6 +31,7 @@ public:
 	static void _register_methods();
 	void _init();
 	void _ready();
+	void _process(float delta);
 
 	void MouseClick(Vector2 position);
 	void MouseRightClick(Vector2 position);
@@ -41,6 +46,4 @@ public:
 	Rect2 GetDragRect();
 	bool IsTileHighlighting();
 	Rect2 GetTileHighlight();
-
-	void EmitStateSignal();
 };

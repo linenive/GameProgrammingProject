@@ -4,8 +4,7 @@ StaticUnitService::StaticUnitService() : StaticUnitService(1, 1) {}
 StaticUnitService::StaticUnitService(int start_building_id, int start_structur_id)
 	: next_building_id(start_building_id), next_structure_id(start_structur_id) { }
 
-void StaticUnitService::SetGameWorld(GameWorldForStaticUnit* world)
-{
+void StaticUnitService::SetGameWorld(GameWorldForStaticUnit* world){
 	game_world = world;
 }
 
@@ -26,7 +25,6 @@ int StaticUnitService::CreateBuilding_(eBuildingType type, Coordinates top_left_
 		data.name,
 		Rect2(x, y, data.width, data.height),
 		data.slot_num);
-
 	RegisterBlocksToWorld(x, y, data.blocks, new_building);
 
 	game_world->AddBuilding(new_building);
@@ -77,8 +75,10 @@ bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< ve
 			Tile* tile = game_world->GetTileByPos(start_x + i, start_y + j);
 			int level = BlockType::LevelOf(blocks[i][j]);
 
-			if (tile->IsEmptyLayer(level) == false)
+			if (tile->IsEmptyLayer(level) == false) {
 				return false;
+			}
+				
 		}
 	}
 	return true;

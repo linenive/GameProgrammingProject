@@ -1,4 +1,5 @@
 #pragma once
+#include <queue>
 #include "StaticUnitService.h"
 #include "CoordinatesSystem.h"
 
@@ -14,6 +15,9 @@ public:
 	bool is_area_highlighted = false;
 	Rect2 highlighted_area;
 	bool is_building = false;
+
+	queue<int> new_building_ids;
+
 
 	void ResetDrag() {
 		is_dragging = false;
@@ -92,7 +96,9 @@ private:
 	}
 
 	void BuildBuilding(Vector2 mouse_position) {
-		static_unit_service->CreateBuilding((int)scheduled_building_type, mouse_position);
+		int new_building_id;
+		new_building_id = static_unit_service->CreateBuilding((int)scheduled_building_type, mouse_position);
+		input.new_building_ids.push(new_building_id);
 	}
 
 public:

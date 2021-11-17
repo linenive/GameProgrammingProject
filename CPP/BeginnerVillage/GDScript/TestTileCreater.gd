@@ -65,3 +65,20 @@ func _on_Button_pressed():
 	var x = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	var y = get_node("/root/Main/UIControl/HUD/y").get_line(0)
 	new_character(float(x), float(y))
+
+func _on_InputManager_build_building(ID):
+	create_building_nodes(ID)
+
+func create_building_nodes(building_id):
+	for n in $Block.get_children():
+		$Block.remove_child(n)
+		n.queue_free()
+	
+	var tile_size = world_manager.GetTileNumber()
+	
+	for i in tile_size:
+		var transform =	world_manager.GetSurfaceTransform(i)
+		create_blocks(i, transform)
+	
+	
+	

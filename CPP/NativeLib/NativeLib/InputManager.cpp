@@ -84,9 +84,14 @@ void InputManager::EmitStateSignal(){
 	emit_signal(String("change_to_building_state"));
 }
 
+void InputManager::EmitBuildSignal(int building_id) {
+	emit_signal(String("build_building"), building_id);
+}
+
 void InputManager::_register_methods() {
 	register_method("_init", &InputManager::_init);
 	register_method("_ready", &InputManager::_ready);
+	register_method("_process", &InputManager::_process);
 	register_method("MouseClick", &InputManager::MouseClick);
 	register_method("MouseRelease", &InputManager::MouseRelease);
 	register_method("MouseHover", &InputManager::MouseHover);
@@ -101,6 +106,7 @@ void InputManager::_register_methods() {
 	register_method("MouseRightClick", &InputManager::MouseRightClick);
 	register_method("GetNowMouseRightClickPoint", &InputManager::GetNowMouseRightClickPoint);
 	register_signal<InputManager>(String("change_to_building_state"), Dictionary());
+	register_signal<InputManager>(String("build_building"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void InputManager::_init() {
@@ -109,8 +115,12 @@ void InputManager::_init() {
 
 void InputManager::_ready() {
 	LoadGameWorld();
-	static_unit_service.SetGameWorld((GameWorldForStaticUnit*)game_world);
+	static_unit_service.SetGameWorld((GameWorld*)game_world);
 	control_context = new ControlContext(game_world, &static_unit_service);
+}
+
+void InputManager::_process(float delta) {
+	FetchInputQueue();
 }
 
 void InputManager::LoadGameWorld() {
@@ -119,4 +129,15 @@ void InputManager::LoadGameWorld() {
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
 	game_world = child->GetGameWorld();
+}
+
+void InputManager::FetchInputQueue() {
+	// 현재 새로 건설된 건물만 있지만, 이후 다른 것들에 대해서도 추가할 예정임
+	queue<int>* new_building_ids = &(control_context->GetInputStatus()->new_building_ids);
+	while (!new_building_ids->empty()) {
+		int new_id = new_building_ids->front();
+		new_building_ids->pop();
+		EmitBuildSignal(new_id);
+	}
+	
 }

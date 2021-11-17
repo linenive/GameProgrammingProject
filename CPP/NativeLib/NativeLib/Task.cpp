@@ -1,5 +1,5 @@
 #include "Task.h"
-#include <cmath>
+#include <algorithm>
 
 Vector2 UpdateVelocityBySeek(Physics performer_physics, Vector2 target) {
 	return (target - performer_physics.GetPosition()).normalized() * performer_physics.max_velocity;
