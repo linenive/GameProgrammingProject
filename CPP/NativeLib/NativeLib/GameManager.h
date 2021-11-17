@@ -16,6 +16,19 @@ private:
 	void NewGame();
 	void LoadGame();
 
+	//To-do
+	void EmitNewCharacter(int character_id) {
+		emit_signal(String("create_character"), character_id);
+	}
+	void FetchQueue() {
+		queue<int>* new_character_ids = &(game_world.GetObjectRepository()->new_character_ids);
+		while (!new_character_ids->empty()) {
+			int new_id = new_character_ids->front();
+			new_character_ids->pop();
+			EmitNewCharacter(new_id);
+		}
+	}
+
 public:
 	static void _register_methods();
 	void _init();

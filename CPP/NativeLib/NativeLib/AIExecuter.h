@@ -4,6 +4,9 @@ class AIExecuter {
 
 public:
 	void ExecuteCharacterTask(Character* c) {
-		c->GetTask()->ExecuteTask(c);
+		Schedule* s = c->GetSchedule();
+		if (s->HasTask()) {
+			s->GetTask()->ExecuteTask(c);
+		}
 	}
 };
