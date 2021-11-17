@@ -20,6 +20,10 @@ public:
 		inventory = new Inventory();
 		inventory->Get(new Material("Wood"));
 	}
+
+	void SetSchedule(Schedule* new_schedule){
+		schedule = new_schedule;
+	}
 	
 	Schedule* GetSchedule() { return schedule; }
 	Inventory* GetInventory() {	return inventory; }

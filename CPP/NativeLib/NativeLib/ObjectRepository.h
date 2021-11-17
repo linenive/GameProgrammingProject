@@ -1,6 +1,7 @@
 #pragma once
 #include "CharacterFactory.h"
 #include <vector>
+#include <queue>
 
 // world object�� vector�� �����Ͽ����� ���� quad-tree �ڷᱸ���� �����غ���.
 class ObjectRepository{
@@ -11,9 +12,10 @@ private:
 	vector<Character*> characters;
 	vector<Character*> guests;
 	vector<Character*> residents;
-	int character_size;
-
+	
 public:
+	// To-do
+	queue<int> new_character_ids;
 	ObjectRepository() {
 	}
 	~ObjectRepository() {
@@ -29,10 +31,19 @@ public:
 	void TestNewCharacter(Transform2D transform) {
 		WorldObject* new_character = factory.CreateObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
 		characters.push_back((Character*)new_character);
-
-		guests.push_back((Character*)new_character);
-		character_size++;
+		residents.push_back((Character*)new_character);
 		Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetPhysics().GetPosition());
+	}
+	void CreateNewGuest() {
+		Coordinates arrival_point = Coordinates(0, 15);
+		WorldObject* new_character = factory.CreateObject(
+			Transform2D(0, CoordinatesToCenterVector(arrival_point)),
+			Vector2(TILE_WIDTH, TILE_HEIGHT)
+		);
+		characters.push_back((Character*)new_character);
+		guests.push_back((Character*)new_character);
+		new_character_ids.push(characters.size() - 1);
+		Godot::print("[ObjectRepository]CreateNewGuest");
 	}
 	int GetCharacterNumber() {
 		return characters.size();
