@@ -33,6 +33,38 @@ int StaticUnitService::CreateBuilding_(eBuildingType type, Coordinates top_left_
 	return new_building->id;
 }
 
+Building* StaticUnitService::CreateBluePrintBuilding(int type) {
+	BuildingData data = BuildingData((eBuildingType)type);
+
+	Building* new_building = new Building(
+		-1,
+		data.name,
+		Rect2(0, 0, data.width, data.height),
+		data.slot_num);
+
+	RegisterBlueprintBlocks(data.blocks, new_building);
+
+	return new_building;
+}
+
+void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& blocks, Building* building) {
+	for (int i = 0; i < blocks.size(); i++) {
+		for (int j = 0; j < blocks[i].size(); j++) {
+			eBlockType& block_type = blocks[i][j];
+
+			// To-do: Blueprint가 delete되는 경우, 등록한 Block에 대해 delete해야 함.
+			// 기존 Building과 다르므로 다른 처리가 필요함.
+			Block* block = new Block(
+				BlockType::NameOf(block_type),
+				Transform2D(0.0, Vector2(i * TILE_WIDTH, j * TILE_HEIGHT)),
+				Vector2(TILE_WIDTH, TILE_HEIGHT)
+			);
+			block->block_type = block_type;
+			building->RegisterBlock(block);
+		}
+	}
+}
+
 bool StaticUnitService::IsPlacablePosition(int type, Vector2 top_left_tile_position) {
 	Coordinates left_top_coordinates = AbsolutePositionToCoordinates(top_left_tile_position);
 	BuildingData data = BuildingData(static_cast<eBuildingType>(type));

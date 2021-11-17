@@ -42,4 +42,5 @@ public:
 	bool IsTileHighlighting();
 	Rect2 GetTileHighlight();
 
+	void EmitStateSignal();
 };

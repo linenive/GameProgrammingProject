@@ -47,3 +47,5 @@ Coordinates AbsolutePositionToCoordinates(Vector2 apsolute_position);
 Coordinates AbsolutePositionToCoordinates(Transform2D absolute_position);
 
 Vector2 CoordinatesToCenterVector(Coordinates coord);
+
+Vector2 ClingToCloseCoordinate(Vector2 apsolute_position);

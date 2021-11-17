@@ -19,22 +19,39 @@ void InputManager::MouseRightClick(Vector2 position) {
 }
 
 bool InputManager::IsDragging() {
-	return control_context->GetInputStatus().is_dragging;
+	return control_context->GetInputStatus()->is_dragging;
 }
 
 bool InputManager::IsBuilding() {
-	return control_context->GetInputStatus().is_building;
+	return control_context->GetInputStatus()->is_building;
+}
+
+Array InputManager::GetBuildingBluePrint() {
+	Array block_array = Array();
+	Building* scheduled_building = control_context->GetInputStatus()->scheduled_building;
+	Vector2 building_position = scheduled_building->ocupation_area.position;
+	for (Block* b : scheduled_building->blocks) {
+		Array arr = Array();
+		arr.append((int)b->block_type);
+		Vector2 new_position = Vector2(b->GetPhysics().GetPosition());
+		new_position = new_position + building_position;
+		arr.append(new_position);
+		block_array.push_back(arr);
+	}
+
+	return block_array;
 }
 
 
 void InputManager::ChangeStateToBuild(int building_type) {
 	control_context->SwitchToBulidState(building_type);
+	EmitStateSignal();
 }
 
 Rect2 InputManager::GetDragRect() {
 	Vector2 drag_left_top = Vector2();
 	Vector2 drag_size = Vector2();
-	Vector2 drag_start_point = control_context->GetInputStatus().drag_start_point;
+	Vector2 drag_start_point = control_context->GetInputStatus()->drag_start_point;
 
 	if (drag_start_point.x > now_mouse_point.x) {
 		drag_left_top.x = now_mouse_point.x;
@@ -56,11 +73,15 @@ Rect2 InputManager::GetDragRect() {
 }
 
 bool InputManager::IsTileHighlighting() {
-	return control_context->GetInputStatus().is_area_highlighted;
+	return control_context->GetInputStatus()->is_area_highlighted;
 }
 
 Rect2 InputManager::GetTileHighlight() {
-	return control_context->GetInputStatus().highlighted_area;
+	return control_context->GetInputStatus()->highlighted_area;
+}
+
+void InputManager::EmitStateSignal(){
+	emit_signal(String("change_to_building_state"));
 }
 
 void InputManager::_register_methods() {
@@ -70,15 +91,16 @@ void InputManager::_register_methods() {
 	register_method("MouseRelease", &InputManager::MouseRelease);
 	register_method("MouseHover", &InputManager::MouseHover);
 	register_method("IsDragging", &InputManager::IsDragging);
-	register_method("IsBuilding", &InputManager::IsBuilding);
 	register_method("GetDragRect", &InputManager::GetDragRect);
+	register_method("IsBuilding", &InputManager::IsBuilding);
+	register_method("GetBuildingBluePrint", &InputManager::GetBuildingBluePrint);
 	
 	register_method("ChangeStateToBuild", &InputManager::ChangeStateToBuild);
 	register_method("IsTileHighlighting", &InputManager::IsTileHighlighting);
 	register_method("GetTileHighlight", &InputManager::GetTileHighlight);
 	register_method("MouseRightClick", &InputManager::MouseRightClick);
 	register_method("GetNowMouseRightClickPoint", &InputManager::GetNowMouseRightClickPoint);
-
+	register_signal<InputManager>(String("change_to_building_state"), Dictionary());
 }
 
 void InputManager::_init() {
@@ -87,10 +109,8 @@ void InputManager::_init() {
 
 void InputManager::_ready() {
 	LoadGameWorld();
-	// control_context = new ControlContext(game_world, static_unit_service);
 	static_unit_service.SetGameWorld((GameWorldForStaticUnit*)game_world);
 	control_context = new ControlContext(game_world, &static_unit_service);
-	printf("ready end\n");
 }
 
 void InputManager::LoadGameWorld() {
