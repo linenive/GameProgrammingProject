@@ -30,7 +30,7 @@ private:
 			GuestSchedule* schedule = (GuestSchedule*)character->GetSchedule();
 			// To-do: Probability가 포함된 pool에서 random type을 pick하도록 바꾼다.
 			// To-do: 한 번 picked 된 type은 delete in pool.
-			schedule->AddPurposOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::Lodge));
+			schedule->AddPurposeOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::Lodge));
 		}
 	}
 
@@ -38,8 +38,10 @@ protected:
 
 public:
 	WorldObject* CreateObject(Transform2D transform, Vector2 scale) {
+		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X, 30));
 		Character* new_character = new Character(transform, scale);
-		SettingPurposeOfVisit(new_character);
+		new_character->SetSchedule(new_schedule);
+		// SettingPurposeOfVisit(new_character);
 
 		return new_character;
 	}

@@ -28,7 +28,6 @@ public:
 		: name(_name), type(_type) {}
 };
 
-
 class Schedule {
 protected:
 	Coordinates village_arrival_point;
@@ -42,6 +41,10 @@ public:
 	Schedule():currentTask(nullptr){
 	
 	}
+	Schedule(Coordinates _village_arrival_point, Coordinates _village_departure_point) :
+		currentTask(nullptr),
+		village_arrival_point(_village_arrival_point),
+		village_departure_point(_village_departure_point){}
 	Task* GetTask() { return currentTask; }
 	void SetTask(Task* new_task) { currentTask = new_task; }
 	bool HasTask() { return currentTask != nullptr; }
@@ -58,10 +61,12 @@ public:
 			delete p;
 		}
 	}
+	GuestSchedule(Coordinates _village_arrival_point, Coordinates _village_departure_point) :
+		Schedule(_village_arrival_point, _village_departure_point) {}
 	vector<PurposeOfVisit*> GetPurposOfVisit() {
 		return purpose_of_visits;
 	}
-	void AddPurposOfVisit(PurposeOfVisit*  new_purpose_of_visit) {
+	void AddPurposeOfVisit(PurposeOfVisit*  new_purpose_of_visit) {
 		purpose_of_visits.push_back(new_purpose_of_visit);
 	}
 };

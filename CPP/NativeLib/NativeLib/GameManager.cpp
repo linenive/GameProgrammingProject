@@ -11,6 +11,8 @@ void GameManager::_register_methods() {
 	register_method("_physics_process", &GameManager::_physics_process);
 
 	register_method("AIClickUpdate", &GameManager::AIClickUpdate);
+
+	register_signal<GameManager>(String("create_character"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void GameManager::_init(){
@@ -25,6 +27,7 @@ void GameManager::_ready(){
 void GameManager::_process(float delta){
 	ai_manager.Update(delta);
 	progress_manager.Update(delta);
+	FetchQueue();
 }
 
 void GameManager::_physics_process(float delta){

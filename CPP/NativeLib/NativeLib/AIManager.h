@@ -21,29 +21,24 @@ private:
 	TileRepository* now_tile_repo;
 	Timer assign_task_timer;
 
-	void FindNewTask(Character* performer) {
-		TaskForMove* new_task = new TaskForMove(now_tile_repo);
-		//TaskForIdleMove* new_task = new TaskForIdleMove(now_tile_repo, performer);
-		performer->SetTask(new_task);
-	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetSchedule()->GetTask());
 		if (currentTask == nullptr) return;
 		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
-	void AddTempTask(Character* character) {
-		// �ӽ÷� 600, 300 ���� �̵��ϴ� task ����
-		Task* new_task = new Task(Vector2(600.0, 600.0));
-		character->GetSchedule()->SetTask(new_task);
-	}
-	}
 	void AddLeaveVillageTask(Character* character) {
-		Task* new_task = new Task(CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint()));
+		Vector2 leave_point = CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint());
+		Task* new_task = new TaskForMove(now_tile_repo);
+		ChangeTaskTarget(character, leave_point);
 		character->GetSchedule()->SetTask(new_task);
+	}
+	void AddIdleTask(Character* performer) {
+		Task* new_task = new TaskForIdleMove(now_tile_repo, performer);
+		performer->GetSchedule()->SetTask(new_task);
 	}
 	void FindNewTaskToResident(Character* resident) {
-		AddTempTask(resident);
+		AddIdleTask(resident);
 	}
 	// To-do: hard coding -> algorithm which use DB
 	void FindNewTaskToGuest(Character* guest) {
@@ -51,7 +46,7 @@ private:
 		for (PurposeOfVisit* p : purposes) {
 			if (p->CanExecute()) {
 				// To-do: ������ �´� Ȱ�� �߰�
-				AddTempTask(guest);
+				AddIdleTask(guest);
 				return;
 			}
 		}
