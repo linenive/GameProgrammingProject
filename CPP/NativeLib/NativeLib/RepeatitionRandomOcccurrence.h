@@ -3,9 +3,12 @@
 
 class RepeatitionRandomOccurrence {
 private:
-	float probability = 0.2f;
+	float probability;
 
 public:
+	void setProbability(float new_probability) {
+		probability = new_probability;
+	}
 	bool isOccurrence(unsigned int random_seed) {
 		srand(random_seed);
 		float v = Number2Probability(rand());

@@ -4,6 +4,8 @@
 #include "GameWorldForAI.h"
 #include "AIExecuter.h"
 #include "TaskForIdleMove.h"
+#include "PathFinder.h"
+#include "Task.h"
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
@@ -17,6 +19,7 @@ private:
 	vector<Character*>* residents;
 	AIExecuter* ai_executer;
 	TileRepository* now_tile_repo;
+	Timer assign_task_timer;
 
 	void FindNewTask(Character* performer) {
 		TaskForMove* new_task = new TaskForMove(now_tile_repo);
@@ -24,9 +27,16 @@ private:
 		performer->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
-		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetTask());
+		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetSchedule()->GetTask());
 		if (currentTask == nullptr) return;
 		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
+	}
+	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
+	void AddTempTask(Character* character) {
+		// �ӽ÷� 600, 300 ���� �̵��ϴ� task ����
+		Task* new_task = new Task(Vector2(600.0, 600.0));
+		character->GetSchedule()->SetTask(new_task);
+	}
 	}
 	void AddLeaveVillageTask(Character* character) {
 		Task* new_task = new Task(CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint()));
@@ -91,7 +101,7 @@ public:
 
 	void ChangeTaskTargetWholeCharacter(Vector2 target) {
 		for (Character* c : *characters) {
-			if (c->HasTask() && c->GetTask()->GetTaskType() == eTaskType::TASK_MOVE)
+			if (c->GetSchedule()->HasTask() && c->GetSchedule()->GetTask()->GetTaskType() == eTaskType::TASK_MOVE)
 				ChangeTaskTarget(c, target);
 		}
 	}
