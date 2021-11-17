@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Image/DefaultCharacter.png" type="Texture" id=1]
+
+[node name="PeopleInfoUI" type="Button"]
+margin_right = 361.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 2.0
+margin_top = -2.0
+margin_right = 52.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 50, 75 )
+rect_scale = Vector2( 0.75, 0.75 )
+rect_pivot_offset = Vector2( 25, 37 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 54.0
+margin_top = 8.0
+margin_right = 158.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 104.0
+margin_bottom = 14.0
+text = "Character_Name"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 104.0
+margin_bottom = 32.0
+text = "Species"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 104.0
+margin_bottom = 50.0
+text = "Class"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 54.0
+margin_right = 347.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
