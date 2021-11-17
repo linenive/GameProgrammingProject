@@ -22,7 +22,7 @@ public:
         level[static_cast<int>(eBlockType::WOOD_WALL)] = 1;
         name[static_cast<int>(eBlockType::WOOD_WALL)] = "wood_wall";
 
-        level[static_cast<int>(eBlockType::WOOD_DOOR)] = 1;
+        level[static_cast<int>(eBlockType::WOOD_DOOR)] = 0;
         name[static_cast<int>(eBlockType::WOOD_DOOR)] = "wood_door";
 
         level[static_cast<int>(eBlockType::WOOD_FLOOR)] = 0;

@@ -118,7 +118,7 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 bool PathFinder::DetectObstacle(Coordinates next_tile) {
 	int tile_id = CalculateTileNumberByCoordinates(next_tile);
 	int tile_type = (int)(tile_map->GetTile(tile_id)->GetSurface()->GetSurfaceType().type);
-	return  tile_type > 1;
+	return  tile_type > 1 && tile_map->GetTile(tile_id)->IsEmptyLayer(1);
 }
 
 void PathFinder::SetTileRepository(TileRepository* tile) {
