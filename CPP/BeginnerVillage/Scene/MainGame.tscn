@@ -141,7 +141,6 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="UIControl/HUD"]
-visible = false
 anchor_left = 0.000651121
 anchor_right = 0.000651121
 margin_left = 966.667
@@ -150,15 +149,12 @@ margin_right = 1021.67
 margin_bottom = 52.3333
 custom_fonts/font = SubResource( 3 )
 text = "가구 1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CharacterMove" type="Button" parent="UIControl/HUD"]
-margin_left = 401.0
-margin_top = 5.0
-margin_right = 413.0
-margin_bottom = 25.0
+margin_left = 145.827
+margin_top = 105.273
+margin_right = 187.827
+margin_bottom = 127.273
 custom_fonts/font = SubResource( 3 )
 text = "이동"
 __meta__ = {
@@ -1193,6 +1189,9 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer/Guest"]
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
+[connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
+[connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
+[connection signal="change_to_normal_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_normal_state"]
 [connection signal="tree_exited" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_tree_exited"]
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
