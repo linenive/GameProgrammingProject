@@ -24,6 +24,7 @@ private:
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetTask());
 		if (currentTask == nullptr) return;
+		printf("ChangeTaskTarget2\n");
 		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
 	}
 
@@ -32,8 +33,8 @@ private:
 	void AddLeaveVillageTask(Character* character) {
 		Vector2 leave_point = CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint());
 		Task* new_task = new TaskForMove(now_tile_repo);
-		ChangeTaskTarget(character, leave_point);
 		character->GetSchedule()->SetTask(new_task);
+		ChangeTaskTarget(character, leave_point);
 	}
 	void AddIdleTask(Character* performer) {
 		Task* new_task = new TaskForIdleMove(now_tile_repo, performer);
@@ -81,8 +82,8 @@ public:
 	void SetGameWorld(GameWorldForAI* world) {
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
-		guests = world->GetObjectRepository()->GetCharacters();
-		residents = world->GetObjectRepository()->GetCharacters();
+		guests = world->GetObjectRepository()->GetGuests();
+		residents = world->GetObjectRepository()->GetResidents();
 		
 		now_tile_repo = world->GetTileMap();
 	}

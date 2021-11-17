@@ -76,6 +76,9 @@
     <Filter Include="헤더 파일\Manager\AI">
       <UniqueIdentifier>{8efc3935-03ff-4787-afd8-395133e6d343}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Manager\AI">
+      <UniqueIdentifier>{f99d3c03-18ba-4f2f-b573-a1781cc2d358}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -143,6 +146,12 @@
     </ClCompile>
     <ClCompile Include="PathFinder.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Structure.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskForMove.cpp">
+      <Filter>소스 파일\Manager\AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,9 +287,6 @@
     <ClInclude Include="Random.h">
       <Filter>헤더 파일\Manager\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Structure.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
-    </ClInclude>
     <ClInclude Include="StructureFactory.h">
       <Filter>헤더 파일\Factory</Filter>
     </ClInclude>
@@ -336,6 +342,9 @@
       <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
     <ClInclude Include="Task.h">
+      <Filter>헤더 파일\Manager\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskForMove.h">
       <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
   </ItemGroup>

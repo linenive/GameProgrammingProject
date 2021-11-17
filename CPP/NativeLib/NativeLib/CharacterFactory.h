@@ -38,7 +38,7 @@ protected:
 
 public:
 	WorldObject* CreateObject(Transform2D transform, Vector2 scale) {
-		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X, 30));
+		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X-1, 30));
 		Character* new_character = new Character(transform, scale);
 		new_character->SetSchedule(new_schedule);
 		// SettingPurposeOfVisit(new_character);

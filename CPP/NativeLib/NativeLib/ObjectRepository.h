@@ -32,7 +32,7 @@ public:
 		WorldObject* new_character = factory.CreateObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
 		characters.push_back((Character*)new_character);
 		residents.push_back((Character*)new_character);
-		Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetPhysics().GetPosition());
+		// Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetPhysics().GetPosition());
 	}
 	void CreateNewGuest() {
 		Coordinates arrival_point = Coordinates(0, 15);
@@ -43,7 +43,7 @@ public:
 		characters.push_back((Character*)new_character);
 		guests.push_back((Character*)new_character);
 		new_character_ids.push(characters.size() - 1);
-		Godot::print("[ObjectRepository]CreateNewGuest");
+		// Godot::print("[ObjectRepository]CreateNewGuest");
 	}
 	int GetCharacterNumber() {
 		return characters.size();
