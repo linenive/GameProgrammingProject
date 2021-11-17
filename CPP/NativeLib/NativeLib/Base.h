@@ -9,9 +9,3 @@ using namespace std;
 #include <algorithm>	
 #include <list>
 #include <cmath>
-
-#include "CoreTypeDef.h"
-#include "BitArray.h"
-#include "JPSCollision.h"
-#include "JPSHeap.h"
-#include "JPSPath.h"

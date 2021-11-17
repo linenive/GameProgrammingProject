@@ -139,7 +139,16 @@
       <Filter>소스 파일\Repository\World\WorldObject\StaticUnit</Filter>
     </ClCompile>
     <ClCompile Include="PathFinder.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Repository\World\</Filter>
+    </ClCompile>
+    <ClCompile Include="Structure.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskForMove.cpp">
+      <Filter>소스 파일\Repository\World\</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskForIdleMove.cpp">
+      <Filter>소스 파일\Repository\World\</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -330,7 +339,12 @@
       <Filter>헤더 파일\Service</Filter>
     </ClInclude>
     <ClInclude Include="PathFinder.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Repository\World</Filter>
+    <ClInclude Include="TaskForMove.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskForIdleMove.h">
+      <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

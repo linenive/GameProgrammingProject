@@ -155,6 +155,8 @@
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TaskForIdleMove.cpp" />
+    <ClCompile Include="TaskForMove.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
     <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="NativeLib.cpp" />
@@ -203,6 +205,8 @@
     <ClInclude Include="StaticUnit.h" />
     <ClInclude Include="StaticUnitService.h" />
     <ClInclude Include="StructureFactory.h" />
+    <ClInclude Include="TaskForIdleMove.h" />
+    <ClInclude Include="TaskForMove.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tile.h" />

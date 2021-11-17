@@ -26,6 +26,7 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	Coordinates start_tile = AbsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = AbsolutePositionToCoordinates(target_pos);
 
+	Godot::print("[PathFinder] Start Pos : "+ start_pos +" End Pos : " + target_pos);
 	Godot::print("[PathFinder] Start Tile : "+ Vector2(start_tile.x, start_tile.y) +" End Tile : " + Vector2(end_tile.x, end_tile.y));
 	open_list.insert(make_pair(start_tile, 0));
 	open_parent_list[start_tile] = start_tile;

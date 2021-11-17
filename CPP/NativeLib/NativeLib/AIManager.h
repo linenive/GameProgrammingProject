@@ -3,8 +3,7 @@
 #include "TaskReserveInfo.h"
 #include "GameWorldForAI.h"
 #include "AIExecuter.h"
-#include "PathFinder.h"
-#include "Task.h"
+#include "TaskForIdleMove.h"
 
 class AIManager {
 
@@ -13,16 +12,17 @@ private:
 	vector<Character*>* characters;
 	AIExecuter* ai_executer;
 	TileRepository* now_tile_repo;
-	PathFinder path_finder = PathFinder();
 
 	void FindNewTask(Character* performer) {
-		Task* new_task = new Task(Vector2(600.0, 300.0));
+		TaskForMove* new_task = new TaskForMove(now_tile_repo);
+		//TaskForIdleMove* new_task = new TaskForIdleMove(now_tile_repo, performer);
 		performer->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 
-		Task* currentTask = performer->GetTask();
-		currentTask->ChangeTarget(path_finder.PathFinding(performer->GetPhysics().GetPosition(), target), target);
+		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetTask());
+		if (currentTask == nullptr) return;
+		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
@@ -43,7 +43,6 @@ public:
 		characters = world->GetObjectRepository()->GetCharacters();
 		
 		now_tile_repo = world->GetTileMap();
-		path_finder.SetTileRepository(now_tile_repo);
 	}
 	void Update(float delta) {
 		// To-do: �Ʒ��� �������� ������Ʈ�� �־ ������
@@ -53,7 +52,7 @@ public:
 
 	void ChangeTaskTargetWholeCharacter(Vector2 target) {
 		for (Character* c : *characters) {
-			if (c->HasTask())
+			if (c->HasTask() && c->GetTask()->GetTaskType() == eTaskType::TASK_MOVE)
 				ChangeTaskTarget(c, target);
 		}
 	}
