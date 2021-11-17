@@ -154,7 +154,6 @@
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
-    <ClCompile Include="Structure.h" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
     <ClCompile Include="TestManager.cpp" />
