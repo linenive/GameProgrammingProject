@@ -34,8 +34,11 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	current_tile = start_tile;
 
+	int loopcount = 0;
 	while (current_tile != end_tile && open_list.size()>0)
 	{
+		if (loopcount > 200) break;
+		loopcount++;
 		current_tile = (*open_list.begin()).first;
 		closed_parent_list[current_tile] = open_parent_list[current_tile];
 
@@ -55,11 +58,7 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 			if (closed_parent_list.find(next_tile) != closed_parent_list.end()) continue;
 
-			if (DetectObstacle(next_tile))
-			{
-				continue;
-			}
-
+			if (DetectObstacle(next_tile)) continue;
 			current_score_h = AstarH(next_tile, end_tile);
 
 			//AstarG
@@ -75,7 +74,6 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 			//has key next_tile
 			if (open_parent_list.find(next_tile) != open_parent_list.end()) {
-
 				//new key is larger score
 				if (score_f_list[next_tile] < current_score_f) continue;
 			}
@@ -104,6 +102,7 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	}
 
 	Godot::print("[PathFinder] GET Path: " + path);
+	Godot::print("[PathFinder] loop count: " + Vector2(0,loopcount));
 
 	ans.push_back(end_tile);
 
