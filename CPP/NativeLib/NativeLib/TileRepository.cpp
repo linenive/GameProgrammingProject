@@ -7,7 +7,7 @@ void TileRepository::CreateTileMapTemp() {
 			float pos_x = MAP_START_POS_X + i * TILE_WIDTH + TILE_WIDTH / 2;
 			float pos_y = MAP_START_POS_Y + j * TILE_HEIGHT + TILE_HEIGHT / 2;
 
-			tile_map[i][j] = new Tile(
+			tile_map[j][i] = new Tile(
 				SurfaceType(SURFACE_EARTH), pos_x, pos_y
 			);
 		}

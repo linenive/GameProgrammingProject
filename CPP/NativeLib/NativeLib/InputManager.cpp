@@ -45,7 +45,12 @@ Array InputManager::GetBuildingBluePrint() {
 
 void InputManager::ChangeStateToBuild(int building_type) {
 	control_context->SwitchToBulidState(building_type);
-	EmitStateSignal();
+	EmitStateSignalBuilding();
+}
+
+void InputManager::ChangeStateToNormal() {
+	control_context->SwitchToNormalState();
+	EmitStateSignalNormal();
 }
 
 Rect2 InputManager::GetDragRect() {
@@ -80,8 +85,12 @@ Rect2 InputManager::GetTileHighlight() {
 	return control_context->GetInputStatus()->highlighted_area;
 }
 
-void InputManager::EmitStateSignal(){
+void InputManager::EmitStateSignalBuilding(){
 	emit_signal(String("change_to_building_state"));
+}
+
+void InputManager::EmitStateSignalNormal() {
+	emit_signal(String("change_to_normal_state"));
 }
 
 void InputManager::EmitBuildSignal(int building_id) {
@@ -106,6 +115,7 @@ void InputManager::_register_methods() {
 	register_method("MouseRightClick", &InputManager::MouseRightClick);
 	register_method("GetNowMouseRightClickPoint", &InputManager::GetNowMouseRightClickPoint);
 	register_signal<InputManager>(String("change_to_building_state"), Dictionary());
+	register_signal<InputManager>(String("change_to_normal_state"), Dictionary());
 	register_signal<InputManager>(String("build_building"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
@@ -134,6 +144,9 @@ void InputManager::LoadGameWorld() {
 void InputManager::FetchInputQueue() {
 	// 현재 새로 건설된 건물만 있지만, 이후 다른 것들에 대해서도 추가할 예정임
 	queue<int>* new_building_ids = &(control_context->GetInputStatus()->new_building_ids);
+	if (!new_building_ids->empty()) {
+		ChangeStateToNormal();
+	}
 	while (!new_building_ids->empty()) {
 		int new_id = new_building_ids->front();
 		new_building_ids->pop();
