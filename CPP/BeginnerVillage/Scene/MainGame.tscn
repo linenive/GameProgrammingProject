@@ -141,6 +141,7 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="UIControl/HUD"]
+visible = false
 anchor_left = 0.000651121
 anchor_right = 0.000651121
 margin_left = 966.667
@@ -149,6 +150,9 @@ margin_right = 1021.67
 margin_bottom = 52.3333
 custom_fonts/font = SubResource( 3 )
 text = "가구 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CharacterMove" type="Button" parent="UIControl/HUD"]
 margin_left = 401.0
@@ -200,11 +204,9 @@ script = ExtResource( 17 )
 [node name="NewLogUI" parent="UIControl/LogUIControl" instance=ExtResource( 15 )]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
-anchor_top = 0.77
 anchor_right = 0.5
-anchor_bottom = 0.77
 margin_left = -283.604
-margin_top = -20.0542
+margin_top = 5.0
 margin_right = 284.396
 margin_bottom = 19.9458
 

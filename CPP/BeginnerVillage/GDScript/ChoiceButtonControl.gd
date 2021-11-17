@@ -9,8 +9,11 @@ var choice_button_count = 16;
 
 var choice_result
 
+var input_manager
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	input_manager = get_node("/root/Main/InputManager")
 	var hbox_containers = [$VBoxContainer/HBoxContainer, $VBoxContainer/HBoxContainer2]
 	
 	for hbox_container in hbox_containers:
@@ -20,8 +23,7 @@ func _ready():
 	close()
 
 func test():
-	var test_array = [["building1", imamge1], ["building2", imamge2]]
-	
+	var test_array = [["building1", imamge1, 0], ["building2", imamge2, 1]]
 	show_choice_buttons(test_array)
 
 # display choice buttons according to array
@@ -42,9 +44,14 @@ func show_choice_buttons(array):
 func get_result_from_choice_button(choice_result):
 	self.choice_result = choice_result
 	print(self.choice_result)
+	input_manager.ChangeStateToBuild(choice_result[2])
 
 func close():
+	#input_manager.ChangeStateToNormal() #imsy for 2nd presentation
 	get_child(0).visible = false
 
 func open():
 	get_child(0).visible = true
+
+func is_open():
+	return get_child(0).visible
