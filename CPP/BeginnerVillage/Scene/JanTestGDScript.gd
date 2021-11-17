@@ -20,6 +20,5 @@ func GetEventLogExample():
 			String(single_log[4])+"일 "+ String(single_log[5])+":"+\
 			String(single_log[6]))
 
-
 func _on_Button2_pressed():
-	input_manager.TestStructureButton()
+	input_manager.ChangeStateToBuild(0)

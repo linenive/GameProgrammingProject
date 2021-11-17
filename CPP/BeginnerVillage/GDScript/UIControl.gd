@@ -79,11 +79,6 @@ func is_already_shown(object_id):
 	
 	return false
 
-func show_tile_info(mouse_pos):
-	#var tile_id = world_manager.GetTileNumberByVector2(mouse_pos)
-	#var tile_type = world_manager.GetTileType(tile_id)
-	#print(tile_type)
-	pass
 
 func MouseRightClickLabelUpdate(new_click_position):
 	clicked_position_label.text = str(new_click_position)

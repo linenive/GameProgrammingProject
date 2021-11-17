@@ -22,8 +22,7 @@ void UIManager::_ready() {
 	LoadGameWorld();
 }
 
-void UIManager::_process(float delta)
-{
+void UIManager::_process(float delta) {
 	
 }
 

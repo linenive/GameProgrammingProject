@@ -1,6 +1,7 @@
 #pragma once
 #include "GameManager.h"
 #include <Node.hpp>
+
 class WorldManager : public Node {
 	GODOT_CLASS(WorldManager, Node);
 
@@ -16,18 +17,19 @@ public:
 	void _process(float delta);
 
 	int GetTileNumber() { return game_world->GetTileMap()->GetTileSize(); }
-	Transform2D GetTileTransform(int tile_id){
-		return game_world->GetTileMap()->GetTile(tile_id).GetPhysics().GetTransform();
+	Transform2D GetSurfaceTransform(int tile_id) {
+		return game_world->GetTileMap()->GetSurface(tile_id)->GetPhysics().GetTransform();
 	}
-	Vector2 GetTileScale(int tile_id) {
-		return game_world->GetTileMap()->GetTile(tile_id).GetPhysics().GetScale();
+	Vector2 GetSurfaceScale(int tile_id) {
+		return game_world->GetTileMap()->GetSurface(tile_id)->GetPhysics().GetScale();
 	}
-	int GetTileType(int tile_id) {
-		return (int) game_world->GetTileMap()->GetTile(tile_id).GetTileType().type;
+	int GetSurfaceType(int tile_id) {
+		return (int)game_world->GetTileMap()->GetSurface(tile_id)->GetSurfaceType().type;
 	}
-	String GetTileName(int tile_id) {
-		return String(game_world->GetTileMap()->GetTile(tile_id).GetName().c_str());
+	String GetSurfaceName(int tile_id) {
+		return String(game_world->GetTileMap()->GetSurface(tile_id)->GetName().c_str());
 	}
+	Array GetBlockTypes(int tile_id);
 	void TestNewCharacter(Transform2D transform) {
 		game_world->GetObjectRepository()->TestNewCharacter(transform);
 	}

@@ -2,24 +2,40 @@ extends Node
 
 var world_manager
 var tile_scene
+var block_scene
 var character_scene
+var texture_db
 
-func _ready():
+func _ready():	
 	world_manager = get_node("/root/Main/WorldManager")
+	texture_db = get_node("/root/Main/TextureDB")
 	tile_scene = load("res://Scene/Tile.tscn")
+	block_scene = load("res://Scene/Block.tscn")
 	character_scene = load("res://Scene/Character.tscn")
 	
-	tile_map_create()
+	CreateTileMap()
 
-func tile_map_create():
+func CreateSurface(surface_type, transform):
+	var surface_node = tile_scene.instance()
+	surface_node.transform = transform
+	surface_node.texture = tile_image_changer(world_manager.GetSurfaceType(surface_type))
+	$Tile.add_child(surface_node)
+
+func CreateTileMap():
 	var tile_size = world_manager.GetTileNumber()
 	
 	for i in tile_size:
-		var node = tile_scene.instance()
-		var transform =	world_manager.GetTileTransform(i)
-		node.transform = transform
-		node.texture = tile_image_changer(world_manager.GetTileType(i))
-		$Tile.add_child(node)
+		var transform =	world_manager.GetSurfaceTransform(i)
+		CreateSurface(i, transform)
+		CreateBlocks(i, transform)
+
+func CreateBlocks(tile_id, transform):
+	var block_types = world_manager.GetBlockTypes(tile_id)
+	for bt in block_types:
+		var block_node = block_scene.instance()
+		block_node.transform = transform
+		block_node.texture = texture_db.block_texture[bt]
+		$Block.add_child(block_node)
 
 func tile_image_changer(tile_type_id):
 	var texture;
@@ -52,3 +68,20 @@ func _on_Button_pressed():
 	var x = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	var y = get_node("/root/Main/UIControl/HUD/y").get_line(0)
 	new_character(float(x), float(y))
+
+func _on_InputManager_build_building(ID):
+	CreateBuildingNodes(ID)
+
+func CreateBuildingNodes(building_id):
+	for n in $Block.get_children():
+		$Block.remove_child(n)
+		n.queue_free()
+	
+	var tile_size = world_manager.GetTileNumber()
+	
+	for i in tile_size:
+		var transform =	world_manager.GetSurfaceTransform(i)
+		CreateBlocks(i, transform)
+	
+	
+	

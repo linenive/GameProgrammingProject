@@ -55,6 +55,24 @@
     <Filter Include="헤더 파일\Manager\Event">
       <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Repository\World\WorldObject\Block">
+      <UniqueIdentifier>{b51e4bbe-ef34-4169-8f41-dcd69579ec3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Repository\World\WorldObject\StaticUnit">
+      <UniqueIdentifier>{ec5715f8-9a20-44e0-abfd-4d53500abbba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service">
+      <UniqueIdentifier>{b292abb1-277b-4d87-bf1d-b0e4479204fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Service">
+      <UniqueIdentifier>{09f606ed-1b52-472a-9543-dac725d48891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject\Block">
+      <UniqueIdentifier>{20bf0065-4b71-4ac6-997e-df65f1bdecc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject\StaticUnit">
+      <UniqueIdentifier>{58793609-6061-4117-ac55-a65a607379d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestManager.cpp">
@@ -110,6 +128,18 @@
     </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>소스 파일\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticUnitService.cpp">
+      <Filter>소스 파일\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockType.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingType.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,12 +205,6 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>헤더 파일\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>헤더 파일\Repository\World</Filter>
-    </ClInclude>
-    <ClInclude Include="TileRepository.h">
-      <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>헤더 파일\Manager</Filter>
@@ -258,13 +282,55 @@
       <Filter>헤더 파일\Manager\Event</Filter>
     </ClInclude>
     <ClInclude Include="Structure.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
     </ClInclude>
     <ClInclude Include="StructureFactory.h">
       <Filter>헤더 파일\Factory</Filter>
     </ClInclude>
     <ClInclude Include="ControlState.h">
       <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureFactory.h">
+      <Filter>헤더 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlState.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TileRepository.h">
+      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>헤더 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockType.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticUnit.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingType.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingRepository.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldForStaticUnit.h">
+      <Filter>헤더 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticUnitService.h">
+      <Filter>헤더 파일\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

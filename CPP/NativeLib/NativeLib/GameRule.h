@@ -12,6 +12,9 @@ const int MAX_TILE_NUMBER_X = 128;
 const int MAX_TILE_NUMBER_Y = 128;
 const float TILE_WIDTH = 32;
 const float TILE_HEIGHT = 32;
+
+// Tile
+const int MAX_TILE_LAYER = 3;
  
 // Time System
 const int MINUTE_PER_HOUR = 60;

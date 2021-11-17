@@ -65,9 +65,9 @@ func update_tile_info(mouse_vector):
 	var tile_id = world_manager.GetTileId(mouse_vector)
 	if tile_id >= 0:
 		tile_info_label.text \
-			= String(tile_id)+": "+world_manager.GetTileName(tile_id) \
+			= String(tile_id)+": "+world_manager.GetSurfaceName(tile_id) \
 			+ ", scale: (" \
-			+ String(world_manager.GetTileScale().x) + "," \
-			+ String(world_manager.GetTileScale().y) + ")"
+			+ String(world_manager.GetSurfaceScale().x) + "," \
+			+ String(world_manager.GetSurfaceScale().y) + ")"
 	else:
 		tile_info_label.text = ""
