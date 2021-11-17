@@ -24,6 +24,7 @@ void TaskForMove::ChangeTarget(Vector2 new_start, Vector2 new_target) {
 	current_moving = false;
 	current_position = new_start;
 	
+	Godot::print("[Task] new target: " + new_target);
 	SetPathList(new_start, new_target);
 }
 

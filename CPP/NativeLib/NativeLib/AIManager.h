@@ -14,13 +14,14 @@ private:
 	TileRepository* now_tile_repo;
 
 	void FindNewTask(Character* performer) {
-		//TaskForMove* new_task = new TaskForMove(now_tile_repo);
-		TaskForIdleMove* new_task = new TaskForIdleMove(now_tile_repo, performer);
+		TaskForMove* new_task = new TaskForMove(now_tile_repo);
+		//TaskForIdleMove* new_task = new TaskForIdleMove(now_tile_repo, performer);
 		performer->SetTask(new_task);
 	};
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
 
 		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetTask());
+		if (currentTask == nullptr) return;
 		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
 	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
