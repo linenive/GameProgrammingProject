@@ -26,10 +26,13 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	Coordinates start_tile = AbsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = AbsolutePositionToCoordinates(target_pos);
 
-	if (DetectDeathArea(end_tile)) {
+	int tile_id = CalculateTileNumberByCoordinates(end_tile);
+	int tile_type = (int)(tile_map->GetTile(tile_id)->GetSurface()->GetSurfaceType().type);
+	Godot::print("[PathFinder] endtile type : " + Vector2(tile_id, tile_type));
 
-		
+	if (DetectDeathArea(end_tile)) {
 		ans.push_back(end_tile);
+
 		return GetPathListByCoor(ans);
 	}
 
@@ -152,11 +155,6 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 
 bool PathFinder::DetectDeathArea(Coordinates next_tile){
 	if (next_tile.x < 0 || next_tile.y < 0 || next_tile.x >= MAX_TILE_NUMBER_X || next_tile.y >= MAX_TILE_NUMBER_Y) return true;
-
-	int tile_id = CalculateTileNumberByCoordinates(next_tile);
-	int tile_type = (int)(tile_map->GetTile(tile_id)->GetSurface()->GetSurfaceType().type);
-
-	Godot::print("[PathFinder] endtile type : " + Vector2(tile_id, tile_type));
 
 	if (DetectObstacle(next_tile)) return true;
 	return false;
