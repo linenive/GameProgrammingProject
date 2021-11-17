@@ -1,7 +1,7 @@
 #pragma once
 #include "PathFinder.h"
 
-int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile){
+int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile) {
 	int x = abs(end_tile.x - start_tile.x);
 	int y = abs(end_tile.y - start_tile.y);
 
@@ -26,18 +26,19 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	Coordinates start_tile = AbsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = AbsolutePositionToCoordinates(target_pos);
 
-	if (DetectDeathArea(end_tile)) return GetPathListByCoor(ans);
-
-	Godot::print("[PathFinder] Start Pos : "+ start_pos +" End Pos : " + target_pos);
-	Godot::print("[PathFinder] Start Tile : "+ Vector2(start_tile.x, start_tile.y) +" End Tile : " + Vector2(end_tile.x, end_tile.y));
+	Godot::print("[PathFinder] Start Pos : " + start_pos + " End Pos : " + target_pos);
+	Godot::print("[PathFinder] Start Tile : " + Vector2(start_tile.x, start_tile.y) + " End Tile : " + Vector2(end_tile.x, end_tile.y));
 	open_list.insert(make_pair(start_tile, 0));
 	open_parent_list[start_tile] = start_tile;
 	score_f_list[start_tile] = 0;
 
 	current_tile = start_tile;
 
-	while (current_tile != end_tile && open_list.size()>0)
+	int loopcount = 0;
+	while (current_tile != end_tile && open_list.size() > 0)
 	{
+		if (loopcount > 200) break;
+		loopcount++;
 		current_tile = (*open_list.begin()).first;
 		closed_parent_list[current_tile] = open_parent_list[current_tile];
 
@@ -53,9 +54,11 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			next_tile.x = x;
 			next_tile.y = y;
 
-			if (DetectDeathArea(next_tile)) continue;
+			if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
+
 			if (closed_parent_list.find(next_tile) != closed_parent_list.end()) continue;
 
+			if (DetectObstacle(next_tile)) continue;
 			current_score_h = AstarH(next_tile, end_tile);
 
 			//AstarG
@@ -85,20 +88,21 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	current_tile = end_tile;
 
 	//back tracking
-	String path= Vector2(current_tile.x, current_tile.y);
-	for (i=0; i<closed_parent_list.size(); i++)
+	String path = Vector2(current_tile.x, current_tile.y);
+	for (i = 0; i < closed_parent_list.size(); i++)
 	{
 		parent_tile = closed_parent_list[current_tile];
-		if (parent_tile == start_tile) break;	
+		if (parent_tile == start_tile) break;
 		if (parent_tile.x < 0) break;
 		//Godot::print("[PathFinder] Push new path: " + Vector2(current_tile.x, current_tile.y)  + " from " + Vector2(parent_tile.x, parent_tile.y));
 		current_tile = parent_tile;
 		ans.insert(ans.begin(), parent_tile);
 
-		path += " -> "+Vector2(parent_tile.x, parent_tile.y);
+		path += " -> " + Vector2(parent_tile.x, parent_tile.y);
 	}
 
 	Godot::print("[PathFinder] GET Path: " + path);
+	Godot::print("[PathFinder] loop count: " + Vector2(0, loopcount));
 
 	ans.push_back(end_tile);
 
@@ -123,9 +127,9 @@ void PathFinder::SetTileRepository(TileRepository* tile) {
 Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 	int x, y;
 
-	int dx[4] = { -1, 1, 0, 0};
-	int dy[4] = { 0, 0, -1, 1};
-	Vector2 obs_vec= Vector2(0,0);
+	int dx[4] = { -1, 1, 0, 0 };
+	int dy[4] = { 0, 0, -1, 1 };
+	Vector2 obs_vec = Vector2(0, 0);
 
 	for (int i = 0; i < 4; i++) {
 		x = current_tile.x + dx[i];
@@ -143,18 +147,11 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 	return obs_vec;
 }
 
-bool PathFinder::DetectDeathArea(Coordinates next_tile){
-
-	if (next_tile.x < 0 || next_tile.y < 0 || next_tile.x >= MAX_TILE_NUMBER_X || next_tile.y >= MAX_TILE_NUMBER_Y) return true;
-	if (DetectObstacle(next_tile)) return true;;
-	return false;
-}
-
 vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
 
 	std::vector<Coordinates>::iterator iter;
 	vector<Vector2> ans_vector;
-	for (iter = ans.begin()+1; iter != ans.end(); iter++) {
+	for (iter = ans.begin() + 1; iter != ans.end(); iter++) {
 		ans_vector.push_back(CoordinatesToCenterVector((*iter)) + CalcObstacleVector((*iter)));
 	}
 	return ans_vector;

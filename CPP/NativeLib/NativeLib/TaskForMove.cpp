@@ -41,7 +41,7 @@ void TaskForMove:: SetPathList(Vector2 new_start, Vector2 new_target){
 bool TaskForMove::CanChangeNextPos() {
 	if (++current_path_index < current_path_list_length) {
 		current_target = path_list[current_path_index];
-		//Godot::print("[Task] new target: " + current_target);
+		Godot::print("[Task] new target: " + current_target);
 		return true;
 	}
 	return false;
