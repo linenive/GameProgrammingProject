@@ -29,7 +29,7 @@ private:
 	}
 
 	pair<int, int> TileIdToXy(int tile_id) {
-		return { tile_id / DEFAULT_TILE_NUMBER_X, tile_id % DEFAULT_TILE_NUMBER_X };
+		return { tile_id % DEFAULT_TILE_NUMBER_X,  tile_id / DEFAULT_TILE_NUMBER_X };
 	}
 
 public:
