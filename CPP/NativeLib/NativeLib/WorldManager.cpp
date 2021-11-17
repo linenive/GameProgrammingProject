@@ -76,7 +76,7 @@ void WorldManager::LoadGameWorld() {
 
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {
 	Array result = Array();
-	Item item = game_world->GetObjectRepository()->GetCharacter(character_id)->GetInventory()->GetItem(item_id);
+	Item item = game_world->GetObjectRepository()->GetCharacter(character_id).GetInventory()->GetItem(item_id);
 
 	result.push_back(item.GetName().c_str());
 	result.push_back(item.GetType().c_str());

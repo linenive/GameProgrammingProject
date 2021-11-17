@@ -58,15 +58,6 @@ func new_character(x, y):
 	
 	character_instance.init_character(world_manager.GetCharacterNumber()-1)
 
-# 위가 임시고 이게 정식 함수
-func create_character(id):
-	var character_instance = character_scene.instance()
-	var transform2 = world_manager.GetCharacterTransform(id)
-	character_instance.transform = transform2
-	$Character.add_child(character_instance)
-	
-	character_instance.init_character(world_manager.GetCharacterNumber()-1)
-
 func _process(delta):
 	var character_num = world_manager.GetCharacterNumber()
 	for i in character_num:
@@ -92,5 +83,5 @@ func CreateBuildingNodes(building_id):
 		var transform =	world_manager.GetSurfaceTransform(i)
 		CreateBlocks(i, transform)
 	
-func _on_Main_create_character(ID):
-	create_character(ID)
+	
+	
