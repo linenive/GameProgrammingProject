@@ -4,7 +4,7 @@ StaticUnitService::StaticUnitService() : StaticUnitService(1, 1) {}
 StaticUnitService::StaticUnitService(int start_building_id, int start_structur_id)
 	: next_building_id(start_building_id), next_structure_id(start_structur_id) { }
 
-inline void StaticUnitService::SetGameWorld(GameWorldForStaticUnit* world)
+void StaticUnitService::SetGameWorld(GameWorldForStaticUnit* world)
 {
 	game_world = world;
 }
