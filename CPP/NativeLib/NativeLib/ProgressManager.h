@@ -16,6 +16,9 @@ private:
 
 	}
 public:
+	ProgressManager() {
+		guest_visit_event.setProbability(0.1f);
+	}
 	void SetGameWorld(GameWorldForEvent* world) {
 		game_world = world;
 		time_repo = world->GetTimeRepository();
