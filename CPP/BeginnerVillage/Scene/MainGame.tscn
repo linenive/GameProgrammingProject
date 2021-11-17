@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -25,29 +25,11 @@
 [ext_resource path="res://Image/furniture_3.png" type="Texture" id=23]
 [ext_resource path="res://Scene/PeopleInfoUI.tscn" type="PackedScene" id=24]
 [ext_resource path="res://GDScript/PeopleUIControl.gd" type="Script" id=25]
+[ext_resource path="res://Scene/TextureDB.gd" type="Script" id=26]
+[ext_resource path="res://Scene/InputEffect.gd" type="Script" id=27]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-var input_manager
-
-func _ready():
-	input_manager = get_node(\"/root/Main/InputManager\")
-
-func _process(_delta):
-	update()
-
-func _draw():
-	if input_manager.IsDragging():
-		draw_drag_box(input_manager.GetDragRect())
-	if input_manager.IsTileHighlighting():
-		draw_highlight_box(input_manager.GetTileHighlight())
-
-func draw_drag_box(rect):
-	draw_rect(rect, Color.white, false, 1.0, false)
-
-func draw_highlight_box(rect):
-	draw_rect(rect, Color.darkgray, false, 1.0, false)
-"
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
@@ -55,11 +37,11 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 4 )
-
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
+
+[node name="TextureDB" type="Node" parent="."]
+script = ExtResource( 20 )
 
 [node name="UIManager" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -80,6 +62,8 @@ script = ExtResource( 9 )
 
 [node name="Tile" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
+[node name="Block" type="Node" parent="JanTestGDScript/TestTileCreater"]
+
 [node name="Character" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
 [node name="GodotInput" type="Control" parent="."]
@@ -91,7 +75,9 @@ __meta__ = {
 }
 
 [node name="InputEffect" type="Node2D" parent="GodotInput"]
-script = SubResource( 1 )
+script = ExtResource( 21 )
+
+[node name="Blueprint" type="Node" parent="GodotInput/InputEffect"]
 
 [node name="UIControl" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )
@@ -107,7 +93,7 @@ margin_left = 5.78651
 margin_top = 109.276
 margin_right = 121.787
 margin_bottom = 152.275
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "캐릭터 만들기"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -147,7 +133,7 @@ margin_left = 61.7732
 margin_top = 133.576
 margin_right = 149.493
 margin_bottom = 123.776
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "test"
 align = 2
 __meta__ = {
@@ -161,8 +147,27 @@ margin_left = 966.667
 margin_top = 2.33334
 margin_right = 1021.67
 margin_bottom = 52.3333
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "가구 1"
+
+[node name="CharacterMove" type="Button" parent="UIControl/HUD"]
+margin_left = 401.0
+margin_top = 5.0
+margin_right = 413.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 3 )
+text = "이동"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickPositionLabel" type="Label" parent="UIControl/HUD/CharacterMove"]
+margin_left = 3.0
+margin_top = 35.0
+margin_right = 150.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 3 )
+text = "x, y"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -854,7 +859,7 @@ __meta__ = {
 margin_right = 80.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "주민"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/PeopleBtn"]
@@ -868,7 +873,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "영입"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -879,7 +884,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "관리"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -890,7 +895,7 @@ margin_left = 90.0
 margin_right = 170.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "건축"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn"]
@@ -904,7 +909,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "건설"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -915,7 +920,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "철거"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -926,7 +931,7 @@ margin_left = 180.0
 margin_right = 260.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "연구"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/ResearchBtn"]
@@ -940,7 +945,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "종족"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -951,7 +956,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "클래스"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -962,7 +967,7 @@ margin_top = -132.0
 margin_right = 80.0
 margin_bottom = -97.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "무기"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -973,7 +978,7 @@ margin_left = 270.0
 margin_right = 350.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "메뉴"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/MenuBtn"]
@@ -987,7 +992,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "종료"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -998,7 +1003,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "설정"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1009,7 +1014,7 @@ margin_top = -132.0
 margin_right = 80.0
 margin_bottom = -97.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "저장"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1185,5 +1190,10 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer/Guest"]
 
+[connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
+[connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
+[connection signal="change_to_normal_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_normal_state"]
+[connection signal="tree_exited" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_tree_exited"]
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
+[connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]

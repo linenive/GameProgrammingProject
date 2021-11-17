@@ -12,6 +12,9 @@ const int MAX_TILE_NUMBER_X = 128;
 const int MAX_TILE_NUMBER_Y = 128;
 const float TILE_WIDTH = 32;
 const float TILE_HEIGHT = 32;
+
+// Tile
+const int MAX_TILE_LAYER = 3;
  
 // Time System
 const int MINUTE_PER_HOUR = 60;
@@ -41,6 +44,11 @@ const int ITEM_STACK_MAX = 10;
 const float CAMERA_MOVING_SPEED = 4.0;
 const float CAMERA_MOVING_MOUSE_BOUNDARY = 2.0;
 const float CAMERA_DEFAULT_ZOOM_DEGREE = 1.0;
-
 // Event
 const int EVENT_LOG_STACK_MAX = 1000;
+
+// max force that can press to the character
+// smaller - >smoother
+const float CHARACTER_MAX_FORCE = 6;// 0.4;
+const float CHARACTER_SLOWING_RADIUS = 3;
+

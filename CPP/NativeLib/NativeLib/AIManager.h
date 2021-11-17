@@ -3,7 +3,7 @@
 #include "TaskReserveInfo.h"
 #include "GameWorldForAI.h"
 #include "AIExecuter.h"
-#include "Task.h"
+#include "TaskForIdleMove.h"
 
 class AIManager {
 
@@ -11,12 +11,19 @@ private:
 	GameWorldForAI* game_world;
 	vector<Character*>* characters;
 	AIExecuter* ai_executer;
+	TileRepository* now_tile_repo;
 
 	void FindNewTask(Character* performer) {
-		// ÀÓ½Ã·Î 600, 300 ±îÁö ÀÌµ¿ÇÏ´Â task ³ÖÀ½
-		Task* new_task = new Task(Vector2(600.0, 300.0));
+		TaskForMove* new_task = new TaskForMove(now_tile_repo);
+		//TaskForIdleMove* new_task = new TaskForIdleMove(now_tile_repo, performer);
 		performer->SetTask(new_task);
 	};
+	void ChangeTaskTarget(Character* performer, Vector2 target) {
+
+		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetTask());
+		if (currentTask == nullptr) return;
+		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
+	}
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AssignTaskToWholeCharacter() {
 		for (Character* c : *characters) {
@@ -34,11 +41,19 @@ public:
 	void SetGameWorld(GameWorldForAI* world) {
 		game_world = world;
 		characters = world->GetObjectRepository()->GetCharacters();
+		
+		now_tile_repo = world->GetTileMap();
 	}
 	void Update(float delta) {
-		// To-do: ¾Æ·¡´Â °¡²û¾¿¸¸ ¾÷µ¥ÀÌÆ®ÇØ ÁÖ¾îµµ ±¦ÂúÀ½
+		// To-do: ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö¾îµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		AssignTaskToWholeCharacter();
 		ExecuteCharactersTask();
 	};
-	
+
+	void ChangeTaskTargetWholeCharacter(Vector2 target) {
+		for (Character* c : *characters) {
+			if (c->HasTask() && c->GetTask()->GetTaskType() == eTaskType::TASK_MOVE)
+				ChangeTaskTarget(c, target);
+		}
+	}
 };

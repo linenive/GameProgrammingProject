@@ -1,14 +1,19 @@
 #pragma once
-#include "Common.h"
 #include "WorldObject.h"
-// To-do: 다른 태스크는 나중에 만들기
-class Task{
-private:
-	Vector2 target;
 
+enum class eTaskType {
+	TASK_NONE, TASK_IDLE, TASK_MOVE
+};
+
+class Task{
+protected:
+	eTaskType type;
 public:
-	Task(Vector2 target) : target(target) {}
-	~Task() {
+	Task(){
+		type = eTaskType::TASK_NONE;
 	}
-	void ExecuteTask(WorldObject* performer);
+	~Task() {}
+	virtual void ExecuteTask(WorldObject* performer);
+	virtual void ClearTask();
+	eTaskType GetTaskType(){ return type; }
 };

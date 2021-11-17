@@ -2,7 +2,7 @@
 #include "CharacterFactory.h"
 #include <vector>
 
-// world object¸¦ vector·Î ±¸ÇöÇÏ¿´À¸³ª ÀÌÈÄ quad-tree ÀÚ·á±¸Á¶¸¦ °í·ÁÇØº»´Ù.
+// world objectï¿½ï¿½ vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ quad-tree ï¿½Ú·á±¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½.
 class ObjectRepository{
 private:
 	CharacterFactory factory = CharacterFactory();

@@ -10,8 +10,8 @@ private:
 	
 public:
 
-	void CameraMove(Vector2 add_vector) {
-		current_position += add_vector;
+	void CameraMove(Vector2 new_position){
+		current_position = new_position;
 	}
 
 	virtual Vector2 GetPosition() {
