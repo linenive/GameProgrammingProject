@@ -41,5 +41,13 @@ func create_building_blueprint():
 		block_node.modulate.a = 0.5
 		$Blueprint.add_child(block_node)
 
+func delete_building_blueprint():
+	for n in $Blueprint.get_children():
+		$Blueprint.remove_child(n)
+		n.queue_free()
+
 func _on_InputManager_change_to_building_state():
 	create_building_blueprint()
+	
+func _on_InputManager_change_to_normal_state():
+	delete_building_blueprint()

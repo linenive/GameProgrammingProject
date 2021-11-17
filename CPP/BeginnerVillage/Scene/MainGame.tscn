@@ -1017,6 +1017,7 @@ __meta__ = {
 [connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
 [connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
 [connection signal="tree_exited" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_tree_exited"]
+[connection signal="change_to_normal_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_normal_state"]
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
 [connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]

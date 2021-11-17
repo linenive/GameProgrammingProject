@@ -48,7 +48,6 @@ public:
 	virtual void MouseHover(Vector2 position) = 0;
 	virtual void MouseClick(Vector2 position) = 0;
 	virtual void MouseRelease(Vector2 position) = 0;
-	virtual void Reset() = 0;
 	void SetGameWorld(GameWorldForInput* _world) { world = _world; }
 	InputStatus* GetInputStatus() { return &input; }
 };
@@ -68,9 +67,6 @@ public:
 	void MouseRelease(Vector2 mouse_position) override {
 		Godot::print("[NormalState]Mouse Release: " + mouse_position);
 		EndDrag(mouse_position);
-	}
-	void Reset() override {
-		input.ResetDrag();
 	}
 };
 
@@ -126,11 +122,6 @@ public:
 		Godot::print("[BuildState]Mouse Release: " + mouse_position);
 	}
 
-	void Reset() override {
-		input.is_building = false;
-		delete input.scheduled_building;
-	}
-
 	void SetScheduledBuildingType(int building_type) {
 		scheduled_building_type = (eBuildingType)building_type;
 		input.scheduled_building = static_unit_service->CreateBluePrintBuilding(building_type);
@@ -165,10 +156,6 @@ public:
 	void MouseRelease(Vector2 mouse_position) override {
 		Godot::print("[InstallState]Mouse Release: " + mouse_position);
 	}
-
-	void Reset() override {
-		input.is_area_highlighted = false;
-	}
 };
 
 class ControlContext {
@@ -189,12 +176,10 @@ public:
 	}
 
 	void SwitchToNormalState() {
-		current_state->Reset();
 		current_state = normal_state;
 	}
 
 	void SwitchToBulidState(int building_type) {
-		current_state->Reset();
 		build_state->SetScheduledBuildingType(building_type);
 		current_state = build_state;
 	}

@@ -19,7 +19,8 @@ private:
 
 	void LoadGameWorld();
 
-	void EmitStateSignal();
+	void EmitStateSignalBuilding();
+	void EmitStateSignalNormal();
 	void EmitBuildSignal(int building_id);
 	void FetchInputQueue();
 
@@ -43,6 +44,7 @@ public:
 	bool IsBuilding();
 	Array GetBuildingBluePrint();
 	void ChangeStateToBuild(int building_type);
+	void ChangeStateToNormal();
 	Rect2 GetDragRect();
 	bool IsTileHighlighting();
 	Rect2 GetTileHighlight();
