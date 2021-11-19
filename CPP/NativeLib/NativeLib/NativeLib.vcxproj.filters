@@ -138,7 +138,7 @@
     <ClCompile Include="StaticUnitService.cpp">
       <Filter>소스 파일\Service</Filter>
     </ClCompile>
-    <ClCompile Include="BlockType.cpp">
+    <ClCompile Include="BlockTypeProperty.cpp">
       <Filter>소스 파일\Repository\World\WorldObject\Block</Filter>
     </ClCompile>
     <ClCompile Include="BuildingType.cpp">
@@ -311,7 +311,7 @@
     <ClInclude Include="Block.h">
       <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
     </ClInclude>
-    <ClInclude Include="BlockType.h">
+    <ClInclude Include="BlockTypeProperty.h">
       <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
     </ClInclude>
     <ClInclude Include="StaticUnit.h">

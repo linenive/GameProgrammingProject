@@ -2,7 +2,6 @@
 #include "Surface.h"
 #include "WorldObject.h"
 #include "Block.h"
-#include "BlockType.h"
 
 class Tile {
 private:

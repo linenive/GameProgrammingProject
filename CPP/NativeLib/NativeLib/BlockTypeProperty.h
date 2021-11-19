@@ -9,7 +9,10 @@ enum class eBlockType {
     WOOD_FLOOR
 };
 
-class BlockType {
+class BlockTypeProperty {
+private:
+    static bool is_initialized;
+
 public:
     static int LevelOf(eBlockType type);
     static string NameOf(eBlockType type);

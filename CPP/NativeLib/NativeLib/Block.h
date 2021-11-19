@@ -2,7 +2,7 @@
 
 #include "GameRule.h"
 #include "WorldObject.h"
-#include "BlockType.h"
+#include "BlockTypeProperty.h"
 
 class Block : public WorldObject {
 private:

@@ -8,8 +8,6 @@ const float MAP_START_POS_X = 0;
 const float MAP_START_POS_Y = 0;
 const int DEFAULT_TILE_NUMBER_X = 128;
 const int DEFAULT_TILE_NUMBER_Y = 128;
-const int MAX_TILE_NUMBER_X = 512;
-const int MAX_TILE_NUMBER_Y = 512;
 const float TILE_WIDTH = 32;
 const float TILE_HEIGHT = 32;
 

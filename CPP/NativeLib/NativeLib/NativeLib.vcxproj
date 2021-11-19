@@ -142,7 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BlockType.cpp" />
+    <ClCompile Include="BlockTypeProperty.cpp" />
     <ClCompile Include="BuildingType.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CoordinatesSystem.cpp" />
@@ -170,7 +170,7 @@
     <ClInclude Include="AIExecuter.h" />
     <ClInclude Include="AIManager.h" />
     <ClInclude Include="Block.h" />
-    <ClInclude Include="BlockType.h" />
+    <ClInclude Include="BlockTypeProperty.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingRepository.h" />
     <ClInclude Include="BuildingType.h" />

@@ -51,7 +51,7 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			next_tile.x = x;
 			next_tile.y = y;
 
-			if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
+			if (x < 0 || y < 0 || x >= DEFAULT_TILE_NUMBER_X || y >= DEFAULT_TILE_NUMBER_Y) continue;
 
 			if (closed_parent_list.find(next_tile) != closed_parent_list.end()) continue;
 
@@ -116,9 +116,8 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	return new_path;
 }
 bool PathFinder::DetectObstacle(Coordinates next_tile) {
-	int tile_id = CalculateTileNumberByCoordinates(next_tile);
-	int tile_type = (int)(tile_map->GetTile(tile_id)->GetSurface()->GetSurfaceType().type);
-	return  tile_type > 1 && tile_map->GetTile(tile_id)->IsEmptyLayer(1);
+	int tile_type = (int)(tile_map->GetTile(next_tile.x, next_tile.y)->GetSurface()->GetSurfaceType().type);
+	return  tile_type > 1 && !tile_map->IsEmptySpace(next_tile.x, next_tile.y, 1);
 }
 
 void PathFinder::SetTileRepository(TileRepository* tile) {
@@ -136,7 +135,7 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 		x = current_tile.x + dx[i];
 		y = current_tile.y + dy[i];
 
-		if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
+		if (x < 0 || y < 0 || x >= DEFAULT_TILE_NUMBER_X || y >= DEFAULT_TILE_NUMBER_Y) continue;
 		if (DetectObstacle(Coordinates(x, y))) {
 			obs_vec.x += dx[i];
 			obs_vec.y += dy[i];
@@ -157,13 +156,5 @@ vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
 	}
 	return ans_vector;
 }
-
-// After fix -> get from another class
-int PathFinder::CalculateTileNumberByCoordinates(Coordinates coord) {
-	int tile_size_x = tile_map->GetTileSizeX();
-	return coord.x + tile_size_x * coord.y;
-}
-
-
 
 
