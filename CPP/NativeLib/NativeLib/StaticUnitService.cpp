@@ -95,6 +95,7 @@ void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< 
 			block->block_type = block_type;
 			block->owner_id = building->id;
 			block->is_exist = true;
+			block->SetPassSpeed(BlockTypeProperty::PassSpeedOf(block_type));
 
 			building->RegisterBlock(
 				tile->GetBlock(BlockTypeProperty::LevelOf(block_type))
@@ -120,7 +121,7 @@ vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) 
 	vector<Coordinates> result;
 	for (auto block : building->blocks) {
 		result.push_back(
-			AbsolutePositionToCoordinates(block->GetPhysics().GetTransform())
+			AbsolutePositionToCoordinates(block->GetPhysics()->GetTransform())
 		);
 	}
 	return result;

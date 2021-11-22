@@ -62,10 +62,15 @@ public:
 		}
 	}
 
-	bool IsEmptySpace(int x, int y, int layer_index)
-	{
+	bool IsEmptySpace(int x, int y, int layer_index) {
 		if (x >= DEFAULT_TILE_NUMBER_X || x < 0 || y >= DEFAULT_TILE_NUMBER_Y || y < 0)
 			return false;
 		return tile_map[y][x]->IsEmptyLayer(layer_index);
+	}
+
+	bool IsPassableTile(int x, int y) {
+		if (x >= DEFAULT_TILE_NUMBER_X || x < 0 || y >= DEFAULT_TILE_NUMBER_Y || y < 0)
+			return false;
+		return tile_map[y][x]->GetPassSpeed() > 0.0;
 	}
 };

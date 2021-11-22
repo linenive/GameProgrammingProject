@@ -33,7 +33,7 @@ Array InputManager::GetBuildingBluePrint() {
 	for (Block* b : scheduled_building->blocks) {
 		Array arr = Array();
 		arr.append((int)b->block_type);
-		Vector2 new_position = Vector2(b->GetPhysics().GetPosition());
+		Vector2 new_position = Vector2(b->GetPhysics()->GetPosition());
 		new_position = new_position + building_position;
 		arr.append(new_position);
 		block_array.push_back(arr);

@@ -10,8 +10,6 @@ void GameManager::_register_methods() {
 	register_method("_process", &GameManager::_process);
 	register_method("_physics_process", &GameManager::_physics_process);
 
-	register_method("AIClickUpdate", &GameManager::AIClickUpdate);
-
 	register_signal<GameManager>(String("create_character"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
@@ -31,11 +29,6 @@ void GameManager::_process(float delta){
 }
 
 void GameManager::_physics_process(float delta){
-}
-
-void GameManager::AIClickUpdate(Vector2 new_target) {
-	Godot::print("[GameManager]AIClikUpdate: " + new_target);
-	ai_manager.ChangeTaskTargetWholeCharacter(new_target);
 }
 
 

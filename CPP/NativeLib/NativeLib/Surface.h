@@ -41,4 +41,12 @@ public:
 	}
 
 	SurfaceType GetSurfaceType() { return surface_type; }
+
+	float GetPassSpeed() {
+		return pass_speed;
+	}
+
+	void SetPassSpeed(float _pass_speed) {
+		pass_speed = _pass_speed;
+	}
 };

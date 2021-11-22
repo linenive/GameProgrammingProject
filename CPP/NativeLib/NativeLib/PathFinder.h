@@ -3,6 +3,7 @@
 #include "CoordinatesSystem.h"
 #include <unordered_map>
 #include <set>
+#include <queue>
 
 using namespace std;
 class CompareWithScore {
@@ -32,12 +33,13 @@ private:
 	int AstarH(Coordinates start_tile, Coordinates end_tile);
 
 	Vector2 CalcObstacleVector(Coordinates current_tile);
-	bool DetectObstacle(Coordinates next_tile);
-	int CalculateTileNumberByCoordinates(Coordinates coord);
+	bool IsPassableTile(Coordinates next_tile);
 
 public:
-	void SetTileRepository(TileRepository* tile);
-	vector<Vector2> PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
-	vector<Vector2> GetPathListByCoor(vector<Coordinates> ans);
+	PathFinder(TileRepository* tile){
+		tile_map = tile;
+	}
+	queue<Vector2>* PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
+	queue<Vector2>* GetPathListByCoor(vector<Coordinates> ans, Vector2 target_pos);
 };
 
