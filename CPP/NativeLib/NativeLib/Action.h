@@ -20,8 +20,7 @@ private:
 	}
 
 public:
-	MoveAction(const Vector2 _target):Action(_target){
-	}
+	MoveAction(const Vector2 _target):Action(_target){}
 	virtual void ExecuteAction(WorldObject* performer) {
 		Physics* physics = performer->GetPhysics();
 		physics->CalculateVelocity(target);

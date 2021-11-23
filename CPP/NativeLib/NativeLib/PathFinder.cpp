@@ -96,7 +96,7 @@ queue<Vector2>* PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 		parent_tile = closed_parent_list[current_tile];
 		if (parent_tile == start_tile) break;	
 		if (parent_tile.x < 0) break;
-		//Godot::print("[PathFinder] Push new path: " + Vector2(current_tile.x, current_tile.y)  + " from " + Vector2(parent_tile.x, parent_tile.y));
+		Godot::print("[PathFinder] Push new path: " + Vector2(current_tile.x, current_tile.y)  + " from " + Vector2(parent_tile.x, parent_tile.y));
 		current_tile = parent_tile;
 		ans.insert(ans.begin(), parent_tile);
 
