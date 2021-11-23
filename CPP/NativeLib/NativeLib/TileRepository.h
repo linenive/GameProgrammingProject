@@ -73,4 +73,10 @@ public:
 			return false;
 		return tile_map[y][x]->GetPassSpeed() > 0.0;
 	}
+
+	float GetTileSpeed(int x, int y) {
+		if (x >= DEFAULT_TILE_NUMBER_X || x < 0 || y >= DEFAULT_TILE_NUMBER_Y || y < 0)
+			return false;
+		return tile_map[y][x]->GetPassSpeed();
+	}
 };
