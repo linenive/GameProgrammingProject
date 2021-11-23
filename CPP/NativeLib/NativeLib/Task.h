@@ -49,6 +49,8 @@ public:
 
 	virtual void NextAction() {
 		delete current_action;
+		current_action = nullptr;
+
 		if (!paths->empty()) {
 			current_action = new MoveAction(paths->front());
 			paths->pop();

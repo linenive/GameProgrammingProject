@@ -242,9 +242,6 @@
     <ClInclude Include="VillageRepository.h">
       <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
-    <ClInclude Include="AIManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Physics.h">
       <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
@@ -345,6 +342,9 @@
       <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
     <ClInclude Include="TaskService.h">
+      <Filter>헤더 파일\Manager\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIManager.h">
       <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
   </ItemGroup>

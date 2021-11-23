@@ -33,15 +33,14 @@ class Schedule {
 protected:
 	Coordinates village_arrival_point;
 	Coordinates village_departure_point;
-	Task* task;
+	Task* task = nullptr;
 	
 public:
 	~Schedule() {
-		if(task != nullptr)
-			delete task;
+		delete task;
 	}
-	Schedule():task(nullptr){
-	
+	Schedule() {
+
 	}
 	Schedule(Coordinates _village_arrival_point, Coordinates _village_departure_point) :
 		task(nullptr),
