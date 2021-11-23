@@ -26,7 +26,7 @@ void GameManager::_ready(){
 void GameManager::_process(float delta){
 	ai_manager.Update(delta);
 	progress_manager.Update(delta);
-	FetchQueue();
+	FetchQueueAndSignalToGodot();
 }
 
 void GameManager::_physics_process(float delta){

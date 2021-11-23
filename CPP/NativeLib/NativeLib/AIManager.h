@@ -11,6 +11,8 @@
 class AIManager {
 
 private:
+	queue<Character*>* village_leavers;
+
 	GameWorldForAI* game_world;
 	vector<Character*>* characters;
 	vector<Character*>* guests;
@@ -95,5 +97,9 @@ public:
 		}
 
 		ExecuteCharactersTask();
+	}
+
+	queue<Character*>* GetVillageLeavers() {
+		return village_leavers;
 	}
 };
