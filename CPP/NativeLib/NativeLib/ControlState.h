@@ -39,8 +39,8 @@ protected:
 		input.is_dragging = false;
 	}
 
-	int GetTileIDIfMouseHoverTileMap(Vector2 mouse_position) {
-		return world->GetTileMap()->GetTileId(mouse_position);
+	Coordinates GetTileCoordMouseHoveredTileMap(Vector2 mouse_position) {
+		return world->GetTileMap()->GetTileCoordinate(mouse_position);
 	}
 
 public:
@@ -76,9 +76,9 @@ private:
 	eBuildingType scheduled_building_type = eBuildingType::SMALL_HOUSE;
 
 	void HighlightHoverdTile(Vector2 mouse_position) {
-		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
-		if (hovered_tile_id >= 0) {
-			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_id);
+		Coordinates hovered_tile_coord = GetTileCoordMouseHoveredTileMap(mouse_position);
+		if (hovered_tile_coord.x >= 0) {
+			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_coord);
 		}
 		else {
 		}
@@ -132,9 +132,9 @@ public:
 class InstallState : public ControlState {
 private:
 	void HighlightHoverdTile(Vector2 mouse_position) {
-		int hovered_tile_id = GetTileIDIfMouseHoverTileMap(mouse_position);
-		if (hovered_tile_id >= 0) {
-			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_id);
+		Coordinates hovered_tile_coord = GetTileCoordMouseHoveredTileMap(mouse_position);
+		if (hovered_tile_coord.x >= 0) {
+			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_coord);
 			input.is_area_highlighted = true;
 			input.highlighted_area = hoverd_surface->GetPhysics()->GetRect();
 		}

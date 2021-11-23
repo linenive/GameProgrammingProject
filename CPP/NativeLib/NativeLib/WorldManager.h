@@ -16,20 +16,29 @@ public:
 	void _ready();
 	void _process(float delta);
 
-	int GetTileNumber() { return game_world->GetTileMap()->GetTileSize(); }
-	Transform2D GetSurfaceTransform(int tile_id) {
-		return game_world->GetTileMap()->GetSurface(tile_id)->GetPhysics()->GetTransform();
+	Vector2 GetTileCoordinate(Vector2 position) {
+		Coordinates coord = game_world->GetTileMap()->GetTileCoordinate(position);
+		return Vector2(coord.x, coord.y);
 	}
-	Vector2 GetSurfaceScale(int tile_id) {
-		return game_world->GetTileMap()->GetSurface(tile_id)->GetPhysics()->GetScale();
+
+	float GetTilePassSpeed(Vector2 coordinate) {
+		return game_world->GetTileMap()->GetTilePassSpeed(coordinate.x, coordinate.y);
 	}
-	int GetSurfaceType(int tile_id) {
-		return (int)game_world->GetTileMap()->GetSurface(tile_id)->GetSurfaceType().type;
+	int GetTileSizeX() { return game_world->GetTileMap()->GetTileSizeX(); }
+	int GetTileSizeY() { return game_world->GetTileMap()->GetTileSizeY(); }
+	Transform2D GetSurfaceTransform(Vector2 coordinate) {
+		return game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetPhysics()->GetTransform();
 	}
-	String GetSurfaceName(int tile_id) {
-		return String(game_world->GetTileMap()->GetSurface(tile_id)->GetName().c_str());
+	Vector2 GetSurfaceScale(Vector2 coordinate) {
+		return game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetPhysics()->GetScale();
 	}
-	Array GetBlockTypes(int tile_id);
+	int GetSurfaceType(Vector2 coordinate) {
+		return (int)game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetSurfaceType().type;
+	}
+	String GetSurfaceName(Vector2 coordinate) {
+		return String(game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetName().c_str());
+	}
+	Array GetBlockTypes(Vector2 coordinate);
 	void TestNewCharacter(Transform2D transform) {
 		game_world->GetObjectRepository()->TestNewCharacter(transform);
 	}
@@ -52,12 +61,6 @@ public:
 	int GetCharacterInventorySize(int character_id) {
 		return game_world->GetObjectRepository()->GetCharacter(character_id)->GetInventory()->GetSize();
 	}
-
-	int GetTileId(Vector2 vector);
-
-	bool CheckTileInVector2(Vector2 vector);
-	int GetTileIdByVector2(Vector2 vector);
-	int CalculateTileNumberByCoordinates(Coordinates coord);
 
 	Vector2 GetWorldSize();
 

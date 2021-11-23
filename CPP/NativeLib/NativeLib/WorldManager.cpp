@@ -6,8 +6,10 @@ void WorldManager::_register_methods() {
 	register_method("_ready", &WorldManager::_ready);
 	register_method("_process", &WorldManager::_process);
 
-	register_method("GetTileId", &WorldManager::GetTileId);
-	register_method("GetTileNumber", &WorldManager::GetTileNumber);
+	register_method("GetTileCoordinate", &WorldManager::GetTileCoordinate);
+	register_method("GetTilePassSpeed", &WorldManager::GetTilePassSpeed);
+	register_method("GetTileSizeX", &WorldManager::GetTileSizeX);
+	register_method("GetTileSizeY", &WorldManager::GetTileSizeY);
 	register_method("GetSurfaceTransform", &WorldManager::GetSurfaceTransform);
 	register_method("GetSurfaceScale", &WorldManager::GetSurfaceScale);
 	register_method("GetSurfaceType", &WorldManager::GetSurfaceType);
@@ -43,13 +45,9 @@ void WorldManager::_process(float delta)
 
 }
 
-int WorldManager::GetTileId(Vector2 vector) {
-	return game_world->GetTileMap()->GetTileId(vector);
-}
-
-Array WorldManager::GetBlockTypes(int tile_id){
+Array WorldManager::GetBlockTypes(Vector2 coordinate){
 	Array result = Array();
-	Tile* tile = game_world->GetTileMap()->GetTile(tile_id);
+	Tile* tile = game_world->GetTileMap()->GetTile(coordinate.x, coordinate.y);
 	for (int i = 0; i < MAX_TILE_LAYER; i++) {
 		if (!tile->IsEmptyLayer(i)) {
 			result.append((int)tile->GetBlock(i)->block_type);

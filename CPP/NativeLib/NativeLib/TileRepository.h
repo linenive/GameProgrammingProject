@@ -12,10 +12,6 @@ private:
 
 	void CreateTileMapTemp();
 
-	int CalculateTileNumberByCoordinates(Coordinates coord) {
-		return coord.x + tile_size_x * coord.y;
-	}
-
 	bool IsInWorld(Coordinates coord) {
 		return (
 			coord.x > -1 && coord.x < tile_size_x&&
@@ -28,37 +24,24 @@ private:
 		return IsInWorld(hovered_tile);
 	}
 
-	pair<int, int> TileIdToXy(int tile_id) {
-		return { tile_id % DEFAULT_TILE_NUMBER_X, tile_id / DEFAULT_TILE_NUMBER_X };
-	}
-
 public:
 	TileRepository() :tile_size_x(DEFAULT_TILE_NUMBER_X), tile_size_y(DEFAULT_TILE_NUMBER_Y) {
 		CreateTileMapTemp();
 	}
-
-	int GetTileSize() { return tile_size_x * tile_size_y; }
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
-	Tile* GetTile(int tile_id) {
-		pair<int, int> xy = TileIdToXy(tile_id);
-		return GetTile(xy.first, xy.second);
-	}
 	Tile* GetTile(int x, int y) { return tile_map[y][x]; }
-	Surface* GetSurface(int tile_id) {
-		pair<int, int> xy = TileIdToXy(tile_id);
-		return GetSurface(xy.first, xy.second);
-	}
 	Surface* GetSurface(int x, int y) { return tile_map[y][x]->GetSurface(); }
+	Surface* GetSurface(Coordinates coord) { return tile_map[coord.y][coord.x]->GetSurface();}
 
-	int GetTileId(Vector2 vector) {
+	Coordinates GetTileCoordinate(Vector2 vector) {
 		if (IsInWorld(vector)) {
 			Coordinates hovered_tile = AbsolutePositionToCoordinates(vector);
-			return CalculateTileNumberByCoordinates(hovered_tile);
+			return hovered_tile;
 		}
 		else {
 			// To-do: enum���� ���� �ڵ� �����ϱ�: InvalidPositionError
-			return -1;
+			return Coordinates(-1, -1);
 		}
 	}
 
@@ -74,7 +57,7 @@ public:
 		return tile_map[y][x]->GetPassSpeed() > 0.0;
 	}
 
-	float GetTileSpeed(int x, int y) {
+	float GetTilePassSpeed(int x, int y) {
 		if (x >= DEFAULT_TILE_NUMBER_X || x < 0 || y >= DEFAULT_TILE_NUMBER_Y || y < 0)
 			return false;
 		return tile_map[y][x]->GetPassSpeed();
