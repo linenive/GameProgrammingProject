@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Base.h"
-#include "BlockType.h"
+#include "BlockTypeProperty.h"
 
 #define ww eBlockType::WOOD_WALL
 #define wd eBlockType::WOOD_DOOR

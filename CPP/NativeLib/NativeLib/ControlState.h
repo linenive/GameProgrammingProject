@@ -136,7 +136,7 @@ private:
 		if (hovered_tile_id >= 0) {
 			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_id);
 			input.is_area_highlighted = true;
-			input.highlighted_area = hoverd_surface->GetPhysics().GetRect();
+			input.highlighted_area = hoverd_surface->GetPhysics()->GetRect();
 		}
 		else {
 			input.is_area_highlighted = false;

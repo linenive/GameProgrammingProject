@@ -8,7 +8,7 @@ int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile){
 	return (x + y) * weight_h;
 }
 
-vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
+queue<Vector2>* PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	int i, x, y;
 	int current_score_h, current_score_g, current_score_f;
@@ -51,11 +51,11 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 			next_tile.x = x;
 			next_tile.y = y;
 
-			if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
+			if (x < 0 || y < 0 || x >= DEFAULT_TILE_NUMBER_X || y >= DEFAULT_TILE_NUMBER_Y) continue;
 
 			if (closed_parent_list.find(next_tile) != closed_parent_list.end()) continue;
 
-			if (DetectObstacle(next_tile))
+			if (!IsPassableTile(next_tile))
 			{
 				continue;
 			}
@@ -103,26 +103,14 @@ vector<Vector2> PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 		path += " -> "+Vector2(parent_tile.x, parent_tile.y);
 	}
 
-	Godot::print("[PathFinder] GET Path: " + path);
+	//Godot::print("[PathFinder] GET Path: " + path);
 
 	ans.push_back(end_tile);
 
-	vector<Vector2> new_path = GetPathListByCoor(ans);
-
-	if (new_path.size() > 0) {
-		new_path[new_path.size() - 1] = target_pos;
-	}
-
-	return new_path;
+	return GetPathListByCoor(ans, target_pos);
 }
-bool PathFinder::DetectObstacle(Coordinates next_tile) {
-	int tile_id = CalculateTileNumberByCoordinates(next_tile);
-	int tile_type = (int)(tile_map->GetTile(tile_id)->GetSurface()->GetSurfaceType().type);
-	return  tile_type > 1 && tile_map->GetTile(tile_id)->IsEmptyLayer(1);
-}
-
-void PathFinder::SetTileRepository(TileRepository* tile) {
-	tile_map = tile;
+bool PathFinder::IsPassableTile(Coordinates next_tile) {
+	return tile_map->IsPassableTile(next_tile.x, next_tile.y);
 }
 
 Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
@@ -136,8 +124,8 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 		x = current_tile.x + dx[i];
 		y = current_tile.y + dy[i];
 
-		if (x < 0 || y < 0 || x >= MAX_TILE_NUMBER_X || y >= MAX_TILE_NUMBER_Y) continue;
-		if (DetectObstacle(Coordinates(x, y))) {
+		if (x < 0 || y < 0 || x >= DEFAULT_TILE_NUMBER_X || y >= DEFAULT_TILE_NUMBER_Y) continue;
+		if (IsPassableTile(Coordinates(x, y))) {
 			obs_vec.x += dx[i];
 			obs_vec.y += dy[i];
 		}
@@ -148,22 +136,18 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 	return obs_vec;
 }
 
-vector<Vector2> PathFinder::GetPathListByCoor(vector<Coordinates> ans) {
+queue<Vector2>* PathFinder::GetPathListByCoor(vector<Coordinates> ans, Vector2 target_pos) {
 
 	std::vector<Coordinates>::iterator iter;
-	vector<Vector2> ans_vector;
+	queue<Vector2>* ans_vector = new queue<Vector2>;
 	for (iter = ans.begin()+1; iter != ans.end(); iter++) {
-		ans_vector.push_back(CoordinatesToCenterVector((*iter)) + CalcObstacleVector((*iter)));
+		ans_vector->push(CoordinatesToCenterVector((*iter)) + CalcObstacleVector((*iter)));
+	}
+	if (ans_vector->size() > 0) {
+		// 확인하기
+		ans_vector->push(target_pos);
 	}
 	return ans_vector;
 }
-
-// After fix -> get from another class
-int PathFinder::CalculateTileNumberByCoordinates(Coordinates coord) {
-	int tile_size_x = tile_map->GetTileSizeX();
-	return coord.x + tile_size_x * coord.y;
-}
-
-
 
 

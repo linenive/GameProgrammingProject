@@ -28,26 +28,42 @@ public:
 		: name(_name), type(_type) {}
 };
 
+
 class Schedule {
 protected:
 	Coordinates village_arrival_point;
 	Coordinates village_departure_point;
-	Task* currentTask;
+	Task* task = nullptr;
+	
 public:
 	~Schedule() {
-		if(currentTask != nullptr)
-			delete currentTask;
+		delete task;
 	}
-	Schedule():currentTask(nullptr){
-	
+	Schedule() {
+
 	}
 	Schedule(Coordinates _village_arrival_point, Coordinates _village_departure_point) :
-		currentTask(nullptr),
+		task(nullptr),
 		village_arrival_point(_village_arrival_point),
 		village_departure_point(_village_departure_point){}
-	Task* GetTask() { return currentTask; }
-	void SetTask(Task* new_task) { currentTask = new_task; }
-	bool HasTask() { return currentTask != nullptr; }
+
+	bool HasTask() {
+		return task != nullptr;
+	}
+
+	void SetTask(Task* new_task) {
+		task = new_task;
+	}
+
+	Task* GetTask() {
+		return task;
+	}
+
+	void DeleteTask() {
+		delete task;
+		task = nullptr;
+	}
+	
 	Coordinates GetVillageDeparturePoint() { return village_departure_point; }
 };
 

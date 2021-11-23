@@ -129,16 +129,13 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Task.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject</Filter>
-    </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
     <ClCompile Include="StaticUnitService.cpp">
       <Filter>소스 파일\Service</Filter>
     </ClCompile>
-    <ClCompile Include="BlockType.cpp">
+    <ClCompile Include="BlockTypeProperty.cpp">
       <Filter>소스 파일\Repository\World\WorldObject\Block</Filter>
     </ClCompile>
     <ClCompile Include="BuildingType.cpp">
@@ -245,9 +242,6 @@
     <ClInclude Include="VillageRepository.h">
       <Filter>헤더 파일\Repository\World</Filter>
     </ClInclude>
-    <ClInclude Include="AIManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Physics.h">
       <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
@@ -311,7 +305,7 @@
     <ClInclude Include="Block.h">
       <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
     </ClInclude>
-    <ClInclude Include="BlockType.h">
+    <ClInclude Include="BlockTypeProperty.h">
       <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
     </ClInclude>
     <ClInclude Include="StaticUnit.h">
@@ -341,10 +335,16 @@
     <ClInclude Include="Schedule.h">
       <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>헤더 파일\Manager\AI</Filter>
+    </ClInclude>
     <ClInclude Include="Task.h">
       <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
-    <ClInclude Include="TaskForMove.h">
+    <ClInclude Include="TaskService.h">
+      <Filter>헤더 파일\Manager\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIManager.h">
       <Filter>헤더 파일\Manager\AI</Filter>
     </ClInclude>
   </ItemGroup>

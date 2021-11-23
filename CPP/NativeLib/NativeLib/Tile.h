@@ -2,7 +2,6 @@
 #include "Surface.h"
 #include "WorldObject.h"
 #include "Block.h"
-#include "BlockType.h"
 
 class Tile {
 private:
@@ -22,6 +21,7 @@ private:
 public:
 	Tile(SurfaceType _surfaceType, float _pos_x, float _pos_y) {
 		surface = new Surface(_surfaceType, CreateTransform2D(_pos_x, _pos_y), CreateScale());
+		surface->SetPassSpeed(1.0); //To-do not hard coding
 		for (int i = 0; i < MAX_TILE_LAYER; i++) {
 			layer[i] = new Block("base_block", CreateTransform2D(_pos_x, _pos_y), CreateScale());
 		}
@@ -45,8 +45,12 @@ public:
 	}
 
 	float GetPassSpeed() {
-		// To-do
-		return 1.0;
+		float speed = 1.0;
+		for (int i = 0; i < MAX_TILE_LAYER; i++) {
+			speed *= layer[i]->GetPassSpeed();
+		}
+		speed *= surface->GetPassSpeed();
+		return speed;
 	}
 
 	Surface* GetSurface() {
@@ -61,9 +65,9 @@ public:
 		return layer[_layer_index];
 	}
 
-	bool IsEmptyLayer(int layer_num) {
-		if (layer_num >= MAX_TILE_LAYER)
+	bool IsEmptyLayer(int layer_index) {
+		if (layer_index >= MAX_TILE_LAYER)
 			return false;
-		return layer[layer_num]->is_exist == false;
+		return layer[layer_index]->is_exist == false;
 	}
 };

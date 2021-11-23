@@ -16,7 +16,6 @@ public:
 		delete inventory;
 	}
 	Character(Transform2D transform, Vector2 scale) : WorldObject("Noname", transform, scale){
-		schedule = new Schedule();
 		inventory = new Inventory();
 		inventory->Get(new Material("Wood"));
 	}

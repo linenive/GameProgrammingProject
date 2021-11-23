@@ -142,7 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BlockType.cpp" />
+    <ClCompile Include="BlockTypeProperty.cpp" />
     <ClCompile Include="BuildingType.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CoordinatesSystem.cpp" />
@@ -154,7 +154,6 @@
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
-    <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskForMove.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
     <ClCompile Include="TestManager.cpp" />
@@ -167,10 +166,12 @@
     <ClCompile Include="WorldManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TaskService.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="AIExecuter.h" />
     <ClInclude Include="AIManager.h" />
     <ClInclude Include="Block.h" />
-    <ClInclude Include="BlockType.h" />
+    <ClInclude Include="BlockTypeProperty.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingRepository.h" />
     <ClInclude Include="BuildingType.h" />
@@ -205,7 +206,6 @@
     <ClInclude Include="StaticUnit.h" />
     <ClInclude Include="StaticUnitService.h" />
     <ClInclude Include="StructureFactory.h" />
-    <ClInclude Include="TaskForMove.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tile.h" />
@@ -229,7 +229,7 @@
     <ClInclude Include="testProperty.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
-    <ClInclude Include="Task.h" />
+    <ClInclude Include="Action.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

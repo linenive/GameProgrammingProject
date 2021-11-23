@@ -8,8 +8,6 @@ const float MAP_START_POS_X = 0;
 const float MAP_START_POS_Y = 0;
 const int DEFAULT_TILE_NUMBER_X = 128;
 const int DEFAULT_TILE_NUMBER_Y = 128;
-const int MAX_TILE_NUMBER_X = 512;
-const int MAX_TILE_NUMBER_Y = 512;
 const float TILE_WIDTH = 32;
 const float TILE_HEIGHT = 32;
 
@@ -50,7 +48,8 @@ const int EVENT_LOG_STACK_MAX = 1000;
 // max force that can press to the character
 // smaller - >smoother
 const float CHARACTER_MAX_FORCE = 6;// 0.4;
-const float CHARACTER_SLOWING_RADIUS = 3;
+const float CHARACTER_ARRIVE_RADIUS = 1.0f;
+const float CHARACTER_SLOWING_RADIUS = 4.0f;
 
 // AI
 const float ASSIGN_TASK_INTERVAL_TIME = 5.0;

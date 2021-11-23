@@ -1,10 +1,22 @@
 #pragma once
 #include "Common.h"
+#include <algorithm>
 
 class Physics {
 private:
 	Transform2D transform;
 	Vector2 scale;
+
+	Vector2 Truncate(Vector2 velocity, float max) {
+		float i = max / velocity.length();
+		i = min(i, 1.0f);
+		return velocity * i;
+	}
+
+	Vector2 UpdateVelocityBySeek(Vector2 target) {
+		return (target - GetPosition()).normalized() * max_velocity;
+	}
+
 public:
 	float mass = 10;
 	Vector2 velocity;
@@ -37,5 +49,19 @@ public:
 			scale.x,
 			scale.y
 		);
+	}
+
+	void CalculateVelocity(Vector2 target) {
+		Vector2 desired_velocity = UpdateVelocityBySeek(target);
+		Vector2 steering = desired_velocity - velocity;
+
+		steering = Truncate(steering, CHARACTER_MAX_FORCE);
+		steering = steering / mass;
+
+		velocity = Truncate(velocity + steering, CHARACTER_MAX_VELOCITY);
+	}
+
+	void UpdatePosition() {
+		SetPosition(GetPosition() + velocity);
 	}
 };

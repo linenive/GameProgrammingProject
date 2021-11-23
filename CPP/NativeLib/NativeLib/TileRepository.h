@@ -8,7 +8,7 @@ class TileRepository {
 private:
 	int tile_size_x;
 	int tile_size_y;
-	Tile* tile_map[MAX_TILE_NUMBER_Y][MAX_TILE_NUMBER_X];
+	Tile* tile_map[DEFAULT_TILE_NUMBER_Y][DEFAULT_TILE_NUMBER_X];
 
 	void CreateTileMapTemp();
 
@@ -29,7 +29,7 @@ private:
 	}
 
 	pair<int, int> TileIdToXy(int tile_id) {
-		return { tile_id / DEFAULT_TILE_NUMBER_X, tile_id % DEFAULT_TILE_NUMBER_X };
+		return { tile_id % DEFAULT_TILE_NUMBER_X, tile_id / DEFAULT_TILE_NUMBER_X };
 	}
 
 public:
@@ -62,10 +62,15 @@ public:
 		}
 	}
 
-	bool IsEmptySpace(int x, int y, int layer_index)
-	{
-		if (x >= MAX_TILE_NUMBER_X || x < 0 || y >= MAX_TILE_NUMBER_Y || y < 0)
+	bool IsEmptySpace(int x, int y, int layer_index) {
+		if (x >= DEFAULT_TILE_NUMBER_X || x < 0 || y >= DEFAULT_TILE_NUMBER_Y || y < 0)
 			return false;
 		return tile_map[y][x]->IsEmptyLayer(layer_index);
+	}
+
+	bool IsPassableTile(int x, int y) {
+		if (x >= DEFAULT_TILE_NUMBER_X || x < 0 || y >= DEFAULT_TILE_NUMBER_Y || y < 0)
+			return false;
+		return tile_map[y][x]->GetPassSpeed() > 0.0;
 	}
 };

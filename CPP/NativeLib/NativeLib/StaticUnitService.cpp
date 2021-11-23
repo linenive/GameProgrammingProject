@@ -53,7 +53,7 @@ void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& bl
 			// To-do: Blueprint가 delete되는 경우, 등록한 Block에 대해 delete해야 함.
 			// 기존 Building과 다르므로 다른 처리가 필요함.
 			Block* block = new Block(
-				BlockType::NameOf(block_type),
+				BlockTypeProperty::NameOf(block_type),
 				Transform2D(0.0, Vector2(i * TILE_WIDTH, j * TILE_HEIGHT)),
 				Vector2(TILE_WIDTH, TILE_HEIGHT)
 			);
@@ -73,7 +73,7 @@ bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< ve
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
 			Tile* tile = game_world->GetTileByPos(start_x + i, start_y + j);
-			int level = BlockType::LevelOf(blocks[j][i]);
+			int level = BlockTypeProperty::LevelOf(blocks[j][i]);
 
 			if (tile->IsEmptyLayer(level) == false) {
 				return false;
@@ -89,15 +89,16 @@ void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< 
 		for (int j = 0; j < blocks[i].size(); j++) {
 			Tile* tile = game_world->GetTileByPos(start_x + i, start_y + j);
 			eBlockType& block_type = blocks[j][i];
-			Block* block = tile->GetBlock(BlockType::LevelOf(block_type));
+			Block* block = tile->GetBlock(BlockTypeProperty::LevelOf(block_type));
 
-			block->SetName(BlockType::NameOf(block_type));
+			block->SetName(BlockTypeProperty::NameOf(block_type));
 			block->block_type = block_type;
 			block->owner_id = building->id;
 			block->is_exist = true;
+			block->SetPassSpeed(BlockTypeProperty::PassSpeedOf(block_type));
 
 			building->RegisterBlock(
-				tile->GetBlock(BlockType::LevelOf(block_type))
+				tile->GetBlock(BlockTypeProperty::LevelOf(block_type))
 			);
 		}
 	}
@@ -120,7 +121,7 @@ vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) 
 	vector<Coordinates> result;
 	for (auto block : building->blocks) {
 		result.push_back(
-			AbsolutePositionToCoordinates(block->GetPhysics().GetTransform())
+			AbsolutePositionToCoordinates(block->GetPhysics()->GetTransform())
 		);
 	}
 	return result;
