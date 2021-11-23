@@ -8,12 +8,13 @@
 
 #include "GameWorldForObjectService.h"
 #include "GameWorldForTaskService.h"
+#include "GameWorldForProgressService.h"
 
 class GameWorld :
 	public GameWorldForUI, public GameWorldForAI,
 	public GameWorldForWorld, public GameWorldForInput,
 	public GameWorldForProgressService, public GameWorldForStaticUnit,
-	public GameWorldForObjectService, public GameWorldForTaskService{
+	public GameWorldForObjectService, public GameWorldForTaskService {
 
 private:
 	TimeRepository time_repo;

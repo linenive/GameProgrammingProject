@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <queue>
+#include "Character.h"
 
 // world object�� vector�� �����Ͽ����� ���� quad-tree �ڷᱸ���� �����غ���.
 class ObjectRepository{

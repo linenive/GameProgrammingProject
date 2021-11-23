@@ -35,12 +35,12 @@ public:
 		delete control_context;
 	}
 	GameService(){
-		object_service = new ObjectService((GameWorldForObjectService*)&game_world);
-		task_service = new TaskService((GameWorldForTaskService*)&game_world);
-		static_unit_service = new StaticUnitService();
-		progress_service = new ProgressService((GameWorldForProgressService*)&game_world);
-		ui_service = new UIService((GameWorldForUI*)&game_world);
-		control_context = new ControlContext((GameWorldForInput*)&game_world, static_unit_service);
+		object_service = new ObjectService(&game_world);
+		task_service = new TaskService(&game_world);
+		static_unit_service = new StaticUnitService(&game_world);
+		progress_service = new ProgressService(&game_world);
+		ui_service = new UIService(&game_world);
+		control_context = new ControlContext(&game_world, static_unit_service);
 	};
 
 };

@@ -21,7 +21,6 @@ private:
 	void HideBuildingBlocks(Building* building);
 
 public:
-	void SetGameWorld(GameWorldForStaticUnit* world);
 	int CreateBuilding(int type, Vector2 top_left_tile_position);
 	Building* CreateBluePrintBuilding(int type);
 	void RegisterBlueprintBlocks(vector< vector<eBlockType> >& blocks, Building* building);
@@ -29,6 +28,6 @@ public:
 	void DeleteBuildingById(int id);
 	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);
 
-	StaticUnitService();
-	StaticUnitService(int start_building_id, int start_structur_id);
+	StaticUnitService(GameWorldForStaticUnit* world);
+	StaticUnitService(GameWorldForStaticUnit* world, int start_building_id, int start_structur_id);
 };

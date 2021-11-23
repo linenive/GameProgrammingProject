@@ -1,12 +1,8 @@
 #include "StaticUnitService.h"
 
-StaticUnitService::StaticUnitService() : StaticUnitService(1, 1) {}
-StaticUnitService::StaticUnitService(int start_building_id, int start_structur_id)
-	: next_building_id(start_building_id), next_structure_id(start_structur_id) { }
-
-void StaticUnitService::SetGameWorld(GameWorldForStaticUnit* world){
-	game_world = world;
-}
+StaticUnitService::StaticUnitService(GameWorldForStaticUnit* world) : StaticUnitService(world, 1, 1) {}
+StaticUnitService::StaticUnitService(GameWorldForStaticUnit* world, int start_building_id, int start_structur_id)
+	: game_world(world), next_building_id(start_building_id), next_structure_id(start_structur_id) {}
 
 int StaticUnitService::CreateBuilding(int type, Vector2 top_left_tile_position) {
 	return CreateBuilding_(static_cast<eBuildingType>(type), AbsolutePositionToCoordinates(top_left_tile_position));
