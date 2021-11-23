@@ -19,33 +19,33 @@ void UIManager::_init(){
 }
 
 void UIManager::_ready() {
-	LoadGameWorld();
+	LoadGameService();
 }
 
 void UIManager::_process(float delta) {
 	
 }
 
-void UIManager::LoadGameWorld() {
+void UIManager::LoadGameService() {
 	Node* node = get_node(NodePath(String(SCENEPATH_GAMEMANAGER.c_str())));
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
-	game_world = child->GetGameWorld();
+	ui_service = child->GetGameService()->ui_service;
 }
 
 int UIManager::GetYear() {
-	return game_world->GetGameTime().GetYear().val;
+	return ui_service->GetGameTime().GetYear().val;
 }
 int UIManager::GetMonth() {
-	return game_world->GetGameTime().GetMonth().val;
+	return ui_service->GetGameTime().GetMonth().val;
 }
 int UIManager::GetDay() {
-	return game_world->GetGameTime().GetDay().val;
+	return ui_service->GetGameTime().GetDay().val;
 }
 int UIManager::GetHour() {
-	return game_world->GetGameTime().GetHour().val;
+	return ui_service->GetGameTime().GetHour().val;
 }
 int UIManager::GetMinute() {
-	return game_world->GetGameTime().GetMinute().val;
+	return ui_service->GetGameTime().GetMinute().val;
 }

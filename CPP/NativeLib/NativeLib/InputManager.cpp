@@ -125,8 +125,6 @@ void InputManager::_init() {
 
 void InputManager::_ready() {
 	LoadGameWorld();
-	static_unit_service.SetGameWorld((GameWorld*)game_world);
-	control_context = new ControlContext(game_world, &static_unit_service);
 }
 
 void InputManager::_process(float delta) {
@@ -138,7 +136,7 @@ void InputManager::LoadGameWorld() {
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
-	game_world = child->GetGameWorld();
+	control_context = child->GetGameService()->control_context;
 }
 
 void InputManager::FetchInputQueue() {

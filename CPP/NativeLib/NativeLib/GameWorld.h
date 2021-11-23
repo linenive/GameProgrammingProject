@@ -1,18 +1,19 @@
-#pragma once
+﻿#pragma once
 #include "GameWorldForUI.h"
 #include "GameWorldForAI.h"
 #include "GameWorldForWorld.h"
 #include "GameWorldForInput.h"
-#include "GameWorldForEvent.h"
 #include "GameWorldForStaticUnit.h"
 #include <string>
 
-const unsigned int big_prime_number = 154813283;
+#include "GameWorldForObjectService.h"
+#include "GameWorldForTaskService.h"
 
 class GameWorld :
 	public GameWorldForUI, public GameWorldForAI,
 	public GameWorldForWorld, public GameWorldForInput,
-	public GameWorldForEvent, public GameWorldForStaticUnit {
+	public GameWorldForProgressService, public GameWorldForStaticUnit,
+	public GameWorldForObjectService, public GameWorldForTaskService{
 
 private:
 	TimeRepository time_repo;
@@ -21,19 +22,29 @@ private:
 	VillageRepository village_repo;
 	EventLogRepository event_log_repo;
 	BuildingRepository building_repo;
+
 	unsigned int base_random_seed;
 
 	unsigned int ExtractSeed(string value) {
 		unsigned int new_seed = 13;
 		for (int i = 0; i < value.size(); i++)
-			new_seed = 31 * new_seed + (int) value[i];
+			new_seed = 31 * new_seed + (int)value[i];
 		return new_seed;
 	}
 
 public:
-	GameWorld();
+	GameWorld() {
+		time_repo = TimeRepository();
+		tile_repo = TileRepository();
+		object_repo = ObjectRepository();
+		village_repo = VillageRepository();
+		base_random_seed = ExtractSeed("banana");
+
+	}
+
+
 	virtual GameTime GetGameTime() { return time_repo.GetGameTime(); }
-	virtual TimeRepository* GetTimeRepository() { return &time_repo; }	
+	virtual TimeRepository* GetTimeRepository() { return &time_repo; }
 	//To-do ������ repository ���� ���� �ʴ� �������� ����.
 	virtual TileRepository* GetTileMap() { return &tile_repo; }
 	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }

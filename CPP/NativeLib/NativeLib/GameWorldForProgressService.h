@@ -1,7 +1,7 @@
 #pragma once
 #include "TimeRepository.h"
 
-class GameWorldForEvent {
+class GameWorldForProgressService {
 public:
 	virtual TimeRepository* GetTimeRepository() = 0;
 	virtual ObjectRepository* GetObjectRepository() = 0;

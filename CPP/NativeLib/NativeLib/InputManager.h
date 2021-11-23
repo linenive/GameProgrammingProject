@@ -1,9 +1,7 @@
 #pragma once
 #include "Common.h"
 #include "GameManager.h"
-#include "ControlState.h"
 #include "StaticUnitService.h"
-#include "GameWorldForStaticUnit.h"
 #include <Node.hpp>
 #include <InputEventMouseButton.hpp>
 
@@ -12,11 +10,10 @@ class InputManager : public Node {
 
 private:
 	ControlContext* control_context;
-	GameWorldForInput* game_world;
+
 	Vector2 now_mouse_point;
 	Vector2 now_mouse_right_click_point;
-	StaticUnitService static_unit_service;
-
+	
 	void LoadGameWorld();
 
 	void EmitStateSignalBuilding();
@@ -25,9 +22,6 @@ private:
 	void FetchInputQueue();
 
 public:
-	~InputManager() {
-		delete control_context;
-	}
 	
 	static void _register_methods();
 	void _init();

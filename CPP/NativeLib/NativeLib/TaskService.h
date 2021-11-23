@@ -9,7 +9,7 @@ private:
 		return path_finder.PathFinding(start_position, target_position);
 	}
 public:
-	TaskService(TileRepository* tile_repo) : path_finder(PathFinder(tile_repo)) {}
+	TaskService(GameWorldForTaskService* game_service) : path_finder(PathFinder(game_service->GetTileMap())) {}
 
 	Task* CreateSeekTask(Character* c, Vector2 seek_target) {
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), seek_target);

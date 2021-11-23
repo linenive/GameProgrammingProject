@@ -13,7 +13,6 @@ class AIManager {
 private:
 	queue<Character*>* village_leavers;
 
-	GameWorldForAI* game_world;
 	vector<Character*>* characters;
 	vector<Character*>* guests;
 	vector<Character*>* residents;
@@ -81,13 +80,12 @@ public:
 		delete task_service;
 	}
 	AIManager() : task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)) {}
-	void SetGameWorld(GameWorldForAI* world) {
-		game_world = world;
-		characters = world->GetObjectRepository()->GetCharacters();
-		guests = world->GetObjectRepository()->GetGuests();
-		residents = world->GetObjectRepository()->GetResidents();
+	void SetGameWorld(GameService* game_service) {
+		characters = game_service->object_service->GetCharacters();
+		guests = game_service->object_service->GetGuests();
+		residents = game_service->object_service->GetResidents();
 
-		task_service = new TaskService(world->GetTileMap());
+		task_service = game_service->task_service;
 	}
 	void Update(float delta) {
 		task_assign_timer.timeGo(delta);

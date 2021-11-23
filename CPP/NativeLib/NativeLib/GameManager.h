@@ -1,17 +1,15 @@
 #pragma once
 #include "Common.h"
-#include "GameWorld.h"
+#include "GameService.h"
 #include "AIManager.h"
-#include "ProgressManager.h"
 #include <Node.hpp>
 
 class GameManager : public Node {
 	GODOT_CLASS(GameManager, Node);
 
 private:
-	GameWorld game_world;
+	GameService game_service;
 	AIManager ai_manager;
-	ProgressManager progress_manager;
 
 	void NewGame();
 	void LoadGame();
@@ -22,7 +20,7 @@ private:
 	}
 
 	void FetchQueueAndSignalToGodot() {
-		queue<int>* new_character_ids = &(game_world.GetObjectRepository()->new_character_ids);
+		queue<int>* new_character_ids = &(game_service.object_service->new_character_ids);
 		while (!new_character_ids->empty()) {
 			int new_id = new_character_ids->front();
 			new_character_ids->pop();
@@ -45,5 +43,5 @@ public:
 	void _physics_process(float delta);
 
 	void AIClickUpdate(Vector2 new_target);
-	GameWorld* GetGameWorld() { return &game_world; }
+	GameService* GetGameService() { return &game_service; }
 };

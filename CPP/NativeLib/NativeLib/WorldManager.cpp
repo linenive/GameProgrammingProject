@@ -68,7 +68,7 @@ void WorldManager::LoadGameWorld() {
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
-	game_world = child->GetGameWorld();
+	game_world = child->GetGameService();
 
 }
 
