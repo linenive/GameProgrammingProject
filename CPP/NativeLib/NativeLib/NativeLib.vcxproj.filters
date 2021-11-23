@@ -82,11 +82,11 @@
     <Filter Include="소스 파일\Manager\AI">
       <UniqueIdentifier>{f99d3c03-18ba-4f2f-b573-a1781cc2d358}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject\Status">
+      <UniqueIdentifier>{54b447d8-ca07-469a-a38c-07125d8e1d4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="testProperty.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -153,14 +153,11 @@
     <ClCompile Include="TaskForMove.cpp">
       <Filter>소스 파일\Manager\AI</Filter>
     </ClCompile>
+    <ClCompile Include="Stat.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject\Status</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="testProperty.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>

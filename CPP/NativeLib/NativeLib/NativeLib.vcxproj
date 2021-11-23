@@ -153,10 +153,10 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="TaskForMove.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
-    <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="testProperty.cpp" />
     <ClCompile Include="TileRepository.cpp" />
@@ -233,8 +233,6 @@
     <ClInclude Include="GameRule.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameWorld.h" />
-    <ClInclude Include="TestManager.h" />
-    <ClInclude Include="testProperty.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="Action.h" />

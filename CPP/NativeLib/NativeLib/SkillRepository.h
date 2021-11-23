@@ -1,5 +1,5 @@
 #pragma once
-#include "Skill.h"
+#include "CharacterSkill.h"
 #include "UnlockEvent.h"
 #include <string>
 #include <vector>
@@ -8,39 +8,35 @@
 
 class SkillRepository {
 private:
-	map< eUnlockEvent, vector<Skill> > event_skill_map;
+	map< eUnlockEvent, vector<CharacterSkill> > event_skill_map;
 
-	void NewSkill(Skill skill);
-	void NewSkill(Skill skill, eUnlockEvent event);
-	Skill Name(string name) { return Skill(name, Stat()); }
+	void NewSkill(CharacterSkill skill);
+	void NewSkill(CharacterSkill skill, eUnlockEvent event);
+	CharacterSkill Name(string name) { return CharacterSkill(name, Stat()); }
 
 public:
-	vector<Skill> all_skill_list;
-	vector<Skill> available_skill_list;
+	vector<CharacterSkill> all_skill_list;
+	vector<CharacterSkill> available_skill_list;
 
 	SkillRepository();
 	void UnlockSkillWithEvent(eUnlockEvent event);
 };
 
-void SkillRepository::NewSkill(Skill skill) {
+void SkillRepository::NewSkill(CharacterSkill skill) {
 	all_skill_list.push_back(skill);
 	available_skill_list.push_back(skill);
 }
 
-void SkillRepository::NewSkill(Skill skill, eUnlockEvent event) {
+void SkillRepository::NewSkill(CharacterSkill skill, eUnlockEvent event) {
 	all_skill_list.push_back(skill);
 	event_skill_map[event].push_back(skill);
 }
 
 void SkillRepository::UnlockSkillWithEvent(eUnlockEvent event) {
-	for (Skill skill : event_skill_map[event]) {
+	for (CharacterSkill skill : event_skill_map[event]) {
 		available_skill_list.push_back(skill);
 	}
 }
-/*
-	 **스킬 종류 추가하는 공간**
-	 bool 로 쓸건 value 1로 고정
-*/
 
 SkillRepository::SkillRepository() {
 	NewSkill(Name("FastWalk1").Add(BASE_MOVE_SPEED, 5));

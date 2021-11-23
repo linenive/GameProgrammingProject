@@ -3,7 +3,7 @@
 #include "Inventory.h"
 #include "Material.h"
 #include "Schedule.h"
-#include "Skill.h"
+#include "CharacterSkill.h"
 #include "Stat.h"
 #include <vector>
 
@@ -22,13 +22,13 @@ private:
 	Inventory* inventory;
     eLevel level;
     eGender gender;
-    vector<Skill> skill_list;
+    vector<CharacterSkill> skill_list;
     Task* current_task;
     Stat base_stat;
 
     void SetRandomSkill();
-    void AddSkill(Skill new_skill);
-    void SwitchSkill(int old_skill_index, Skill new_skill);
+    void AddSkill(CharacterSkill new_skill);
+    void SwitchSkill(int old_skill_index, CharacterSkill new_skill);
     void SetBaseStat();
 
 public:

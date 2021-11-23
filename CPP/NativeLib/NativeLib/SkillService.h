@@ -1,5 +1,5 @@
 #pragma once
-#include "Skill.h"
+#include "CharacterSkill.h"
 #include "SkillRepository.h"
 #include "PickRandom.h"
 #include <vector>
@@ -9,23 +9,23 @@ class SkillService {
 private:
 	SkillRepository repository;
 public:
-	Skill* PickRandomSkill();
-	Skill* PickSkillByName(string name);
+	CharacterSkill* PickRandomSkill();
+	CharacterSkill* PickSkillByName(string name);
 	void UnlockSkillWithEvent(eUnlockEvent event);
 };
 
 
-Skill *SkillService::PickRandomSkill() {
+CharacterSkill *SkillService::PickRandomSkill() {
 	return &*select_randomly(repository.available_skill_list.begin(), repository.available_skill_list.end());
 }
 
-Skill *SkillService::PickSkillByName(string name) {
-	for (Skill& skill : repository.all_skill_list) {
+CharacterSkill *SkillService::PickSkillByName(string name) {
+	for (CharacterSkill& skill : repository.all_skill_list) {
 		if (skill.GetSkillName() == name)
 			return &skill;
 	}
 	//TODO error message
-	return &Skill("dummy", Stat());
+	return &CharacterSkill("dummy", Stat());
 }
 
 void SkillService::UnlockSkillWithEvent(eUnlockEvent event) {
@@ -36,11 +36,11 @@ void Example() {
 	SkillService skill_service;
 
 	cout << "hey" << endl;
-	Skill* picked_skill = skill_service.PickSkillByName("FastWalk1");
+	CharacterSkill* picked_skill = skill_service.PickSkillByName("FastWalk1");
 	cout << picked_skill->GetSkillName() << endl;
 	cout << picked_skill->stat.GetStatFieldValue(BASE_MOVE_SPEED) << endl;
 
-	Skill* random_skill = skill_service.PickRandomSkill();
+	CharacterSkill* random_skill = skill_service.PickRandomSkill();
 	cout << random_skill->GetSkillName() << endl;
 
 	cout << skill_service.PickRandomSkill()->GetSkillName() << endl;
