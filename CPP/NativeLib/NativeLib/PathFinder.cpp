@@ -125,7 +125,7 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 		y = current_tile.y + dy[i];
 
 		if (x < 0 || y < 0 || x >= DEFAULT_TILE_NUMBER_X || y >= DEFAULT_TILE_NUMBER_Y) continue;
-		if (IsPassableTile(Coordinates(x, y))) {
+		if (!IsPassableTile(Coordinates(x, y))) {
 			obs_vec.x += dx[i];
 			obs_vec.y += dy[i];
 		}
