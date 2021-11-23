@@ -153,10 +153,10 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="TaskForMove.cpp" />
     <ClCompile Include="TaskReserveInfo.cpp" />
-    <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="testProperty.cpp" />
     <ClCompile Include="TileRepository.cpp" />
@@ -206,6 +206,13 @@
     <ClInclude Include="StaticUnit.h" />
     <ClInclude Include="StaticUnitService.h" />
     <ClInclude Include="StructureFactory.h" />
+    <ClInclude Include="TaskForMove.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="SkillRepository.h" />
+    <ClInclude Include="SkillService.h" />
+    <ClInclude Include="Stat.h" />
+    <ClInclude Include="StatField.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tile.h" />
@@ -218,6 +225,7 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillageRepository.h" />
+    <ClInclude Include="UnlockEvent.h" />
     <ClInclude Include="WorldManager.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="WorldObjectFactory.h" />
@@ -225,8 +233,6 @@
     <ClInclude Include="GameRule.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameWorld.h" />
-    <ClInclude Include="TestManager.h" />
-    <ClInclude Include="testProperty.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="Action.h" />

@@ -55,6 +55,9 @@
     <Filter Include="헤더 파일\Manager\Event">
       <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Repository\World\WorldObject\Status">
+      <UniqueIdentifier>{ac832d6a-7a79-4a23-beae-73c7d2f4cb62}</UniqueIdentifier>
+    </Filter>
     <Filter Include="헤더 파일\Repository\World\WorldObject\Block">
       <UniqueIdentifier>{b51e4bbe-ef34-4169-8f41-dcd69579ec3a}</UniqueIdentifier>
     </Filter>
@@ -79,11 +82,11 @@
     <Filter Include="소스 파일\Manager\AI">
       <UniqueIdentifier>{f99d3c03-18ba-4f2f-b573-a1781cc2d358}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Repository\World\WorldObject\Status">
+      <UniqueIdentifier>{54b447d8-ca07-469a-a38c-07125d8e1d4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="testProperty.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -150,14 +153,11 @@
     <ClCompile Include="TaskForMove.cpp">
       <Filter>소스 파일\Manager\AI</Filter>
     </ClCompile>
+    <ClCompile Include="Stat.cpp">
+      <Filter>소스 파일\Repository\World\WorldObject\Status</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="testProperty.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
@@ -245,6 +245,21 @@
     <ClInclude Include="Physics.h">
       <Filter>헤더 파일\Repository\World\WorldObject</Filter>
     </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="StatField.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillRepository.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -274,6 +289,12 @@
     </ClInclude>
     <ClInclude Include="RepeatitionRandomOcccurrence.h">
       <Filter>헤더 파일\Manager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="UnlockEvent.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillService.h">
+      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
     </ClInclude>
     <ClInclude Include="PickRandom.h">
       <Filter>헤더 파일\Library</Filter>
