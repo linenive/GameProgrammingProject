@@ -1,5 +1,6 @@
 #pragma once
 #include "GameWorld.h"
+#include "PathFindService.h"
 #include "ObjectService.h"
 #include "TaskService.h"
 #include "StaticUnitService.h"
@@ -13,6 +14,7 @@ private:
 	GameWorld game_world;
 
 public:
+	PathFindService* path_find_service;
 	ObjectService* object_service;
 	TaskService* task_service;
 	StaticUnitService* static_unit_service;
@@ -31,8 +33,11 @@ public:
 		delete control_context;
 	}
 	GameService() {
+		path_find_service = new PathFindService(&game_world.tile_repo);
 		object_service = new ObjectService(&game_world.object_repo);
-		task_service = new TaskService(&game_world.tile_repo);
+		task_service = new TaskService(
+			&game_world.tile_repo, path_find_service
+		);
 		static_unit_service = new StaticUnitService(
 			&game_world.tile_repo, &game_world.building_repo
 		);

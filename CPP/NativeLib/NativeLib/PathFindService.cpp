@@ -1,14 +1,14 @@
 #pragma once
-#include "PathFinder.h"
+#include "PathFindService.h"
 
-int PathFinder::AstarH(Coordinates start_tile, Coordinates end_tile){
+int PathFindService::AstarH(Coordinates start_tile, Coordinates end_tile){
 	int x = abs(end_tile.x - start_tile.x);
 	int y = abs(end_tile.y - start_tile.y);
 
 	return (x + y) * weight_h;
 }
 
-queue<Vector2>* PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
+queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	int i, x, y;
 	int current_score_h, current_score_g, current_score_f;
@@ -109,11 +109,11 @@ queue<Vector2>* PathFinder::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 
 	return GetPathListByCoor(ans, target_pos);
 }
-bool PathFinder::IsPassableTile(Coordinates next_tile) {
+bool PathFindService::IsPassableTile(Coordinates next_tile) {
 	return tile_map->IsPassableTile(next_tile.x, next_tile.y);
 }
 
-Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
+Vector2 PathFindService::CalcObstacleVector(Coordinates current_tile) {
 	int x, y;
 
 	int dx[4] = { -1, 1, 0, 0};
@@ -136,7 +136,7 @@ Vector2 PathFinder::CalcObstacleVector(Coordinates current_tile) {
 	return obs_vec;
 }
 
-queue<Vector2>* PathFinder::GetPathListByCoor(vector<Coordinates> ans, Vector2 target_pos) {
+queue<Vector2>* PathFindService::GetPathListByCoor(vector<Coordinates> ans, Vector2 target_pos) {
 
 	std::vector<Coordinates>::iterator iter;
 	queue<Vector2>* ans_vector = new queue<Vector2>;

@@ -18,7 +18,7 @@ struct CoordinatesHash {
 		return hash<int>()(coor.x) ^ hash<int>()(coor.y);
 	}
 };
-class PathFinder {
+class PathFindService {
 
 private:
 	TileRepository* tile_map;
@@ -36,7 +36,7 @@ private:
 	bool IsPassableTile(Coordinates next_tile);
 
 public:
-	PathFinder(TileRepository* tile){
+	PathFindService(TileRepository* tile){
 		tile_map = tile;
 	}
 	queue<Vector2>* PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
