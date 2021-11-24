@@ -6,7 +6,7 @@
 #include "StaticUnitService.h"
 #include "ProgressService.h"
 #include "UIService.h"
-#include "ControlState.h"
+#include "ControlContextService.h"
 
 class GameService{
 
@@ -21,7 +21,7 @@ public:
 	ProgressService* progress_service;
 	UIService* ui_service;
 
-	ControlContext* control_context;
+	ControlContextService* control_context_service;
 	
 	~GameService() {
 		delete object_service;
@@ -30,7 +30,7 @@ public:
 		delete progress_service;
 		delete ui_service;
 
-		delete control_context;
+		delete control_context_service;
 	}
 	GameService() {
 		path_find_service = new PathFindService(&game_world.tile_repo);
@@ -47,7 +47,7 @@ public:
 		ui_service = new UIService(
 			&game_world.time_repo, &game_world.event_log_repo
 		);
-		control_context = new ControlContext(
+		control_context_service = new ControlContextService(
 			&game_world.tile_repo, static_unit_service
 		);
 	};

@@ -1,7 +1,7 @@
 #pragma once
 #include "Common.h"
 #include "GameManager.h"
-#include "StaticUnitService.h"
+#include "ControlContextService.h"
 #include <Node.hpp>
 #include <InputEventMouseButton.hpp>
 
@@ -9,7 +9,7 @@ class InputManager : public Node {
 	GODOT_CLASS(InputManager, Node);
 
 private:
-	ControlContext* control_context;
+	ControlContextService* control_context_service;
 
 	Vector2 now_mouse_point;
 	Vector2 now_mouse_right_click_point;

@@ -2,15 +2,15 @@
 #include "GodotScenePath.h"
 
 void InputManager::MouseClick(Vector2 position) {
-	control_context->MouseClick(position);
+	control_context_service->MouseClick(position);
 }
 
 void InputManager::MouseRelease(Vector2 position) {
-	control_context->MouseRelease(position);
+	control_context_service->MouseRelease(position);
 }
 
 void InputManager::MouseHover(Vector2 position) {
-	control_context->MouseHover(position);
+	control_context_service->MouseHover(position);
 	now_mouse_point = position;
 }
 
@@ -19,16 +19,16 @@ void InputManager::MouseRightClick(Vector2 position) {
 }
 
 bool InputManager::IsDragging() {
-	return control_context->GetInputStatus()->is_dragging;
+	return control_context_service->GetInputStatus()->is_dragging;
 }
 
 bool InputManager::IsBuilding() {
-	return control_context->GetInputStatus()->is_building;
+	return control_context_service->GetInputStatus()->is_building;
 }
 
 Array InputManager::GetBuildingBluePrint() {
 	Array block_array = Array();
-	Building* scheduled_building = control_context->GetInputStatus()->scheduled_building;
+	Building* scheduled_building = control_context_service->GetInputStatus()->scheduled_building;
 	Vector2 building_position = scheduled_building->ocupation_area.position;
 	for (Block* b : scheduled_building->blocks) {
 		Array arr = Array();
@@ -44,19 +44,19 @@ Array InputManager::GetBuildingBluePrint() {
 
 
 void InputManager::ChangeStateToBuild(int building_type) {
-	control_context->SwitchToBulidState(building_type);
+	control_context_service->SwitchToBulidState(building_type);
 	EmitStateSignalBuilding();
 }
 
 void InputManager::ChangeStateToNormal() {
-	control_context->SwitchToNormalState();
+	control_context_service->SwitchToNormalState();
 	EmitStateSignalNormal();
 }
 
 Rect2 InputManager::GetDragRect() {
 	Vector2 drag_left_top = Vector2();
 	Vector2 drag_size = Vector2();
-	Vector2 drag_start_point = control_context->GetInputStatus()->drag_start_point;
+	Vector2 drag_start_point = control_context_service->GetInputStatus()->drag_start_point;
 
 	if (drag_start_point.x > now_mouse_point.x) {
 		drag_left_top.x = now_mouse_point.x;
@@ -78,11 +78,11 @@ Rect2 InputManager::GetDragRect() {
 }
 
 bool InputManager::IsTileHighlighting() {
-	return control_context->GetInputStatus()->is_area_highlighted;
+	return control_context_service->GetInputStatus()->is_area_highlighted;
 }
 
 Rect2 InputManager::GetTileHighlight() {
-	return control_context->GetInputStatus()->highlighted_area;
+	return control_context_service->GetInputStatus()->highlighted_area;
 }
 
 void InputManager::EmitStateSignalBuilding(){
@@ -136,12 +136,12 @@ void InputManager::LoadGameWorld() {
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
-	control_context = child->GetGameService()->control_context;
+	control_context_service = child->GetGameService()->control_context_service;
 }
 
 void InputManager::FetchInputQueue() {
 	// 현재 새로 건설된 건물만 있지만, 이후 다른 것들에 대해서도 추가할 예정임
-	queue<int>* new_building_ids = &(control_context->GetInputStatus()->new_building_ids);
+	queue<int>* new_building_ids = &(control_context_service->GetInputStatus()->new_building_ids);
 	if (!new_building_ids->empty()) {
 		ChangeStateToNormal();
 	}
