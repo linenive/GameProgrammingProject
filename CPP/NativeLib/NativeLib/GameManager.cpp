@@ -2,7 +2,7 @@
 #include "SkillService.h"
 
 void GameManager::NewGame() {
-	game_service = GameService();
+	
 }
 
 void GameManager::_register_methods() {
