@@ -18,6 +18,6 @@ public:
 	}
 
 	int GetMoney() {
-		village_repo->GetVillage()->GetMoney();
+		return village_repo->GetVillage()->GetMoney();
 	}
 };

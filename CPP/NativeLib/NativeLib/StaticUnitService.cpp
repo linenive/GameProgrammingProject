@@ -69,7 +69,7 @@ bool StaticUnitService::IsPlacablePosition(int type, Vector2 top_left_tile_posit
 bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< vector<eBlockType> >& blocks) {
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
-			Tile* tile = GetTileByPos(start_x + i, start_y + j);
+			Tile* tile = GetTile(start_x + i, start_y + j);
 			int level = BlockTypeProperty::LevelOf(blocks[j][i]);
 
 			if (tile->IsEmptyLayer(level) == false) {
@@ -84,7 +84,7 @@ bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< ve
 void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< vector<eBlockType> >& blocks, Building* building) {
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
-			Tile* tile = GetTileByPos(start_x + i, start_y + j);
+			Tile* tile = GetTile(start_x + i, start_y + j);
 			eBlockType& block_type = blocks[j][i];
 			Block* block = tile->GetBlock(BlockTypeProperty::LevelOf(block_type));
 

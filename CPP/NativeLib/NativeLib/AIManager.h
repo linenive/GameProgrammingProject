@@ -42,7 +42,7 @@ private:
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
 		for (PurposeOfVisit* p : purposes) {
 			if (p->CanExecute()) {
-				// To-do: ������ �´� Ȱ�� �߰�
+				// To-do: 
 				AddIdleTask(guest);
 				return;
 			}

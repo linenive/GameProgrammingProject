@@ -208,12 +208,6 @@
     <ClInclude Include="Random.h">
       <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
-    <ClInclude Include="StructureFactory.h">
-      <Filter>헤더 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlState.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Surface.h">
       <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
@@ -354,6 +348,11 @@
     </ClInclude>
     <ClInclude Include="VillageService.h">
       <Filter>소스 파일\Service\Village</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlState.h" />
+    <ClInclude Include="StructureFactory.h" />
+    <ClInclude Include="RandomRepository.h">
+      <Filter>소스 파일\Repository\Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

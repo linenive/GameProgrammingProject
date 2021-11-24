@@ -47,7 +47,7 @@ void WorldManager::_process(float delta)
 
 Array WorldManager::GetBlockTypes(Vector2 coordinate){
 	Array result = Array();
-	Tile* tile = game_world->GetTileMap()->GetTile(coordinate.x, coordinate.y);
+	Tile* tile = tile_service->GetTile(coordinate.x, coordinate.y);
 	for (int i = 0; i < MAX_TILE_LAYER; i++) {
 		if (!tile->IsEmptyLayer(i)) {
 			result.append((int)tile->GetBlock(i)->block_type);
@@ -58,8 +58,8 @@ Array WorldManager::GetBlockTypes(Vector2 coordinate){
 
 Vector2 WorldManager::GetWorldSize() {
 	Vector2 vector = Vector2();
-	vector.x = game_world->GetTileMap()->GetTileSizeX() * TILE_WIDTH;
-	vector.y = game_world->GetTileMap()->GetTileSizeY() * TILE_HEIGHT;
+	vector.x = tile_service->GetTileSizeX() * TILE_WIDTH;
+	vector.y = tile_service->GetTileSizeY() * TILE_HEIGHT;
 	return vector;
 }
 
@@ -70,12 +70,12 @@ void WorldManager::LoadGameWorld() {
 	ERR_FAIL_COND(child == nullptr);
 	object_service = child->GetGameService()->object_service;
 	tile_service = child->GetGameService()->tile_service;
-	villageService = child->GetGameService()->villageService;
+	villageService = child->GetGameService()->village_service;
 }
 
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {
 	Array result = Array();
-	Item item = game_world->GetObjectRepository()->GetCharacter(character_id)->GetInventory()->GetItem(item_id);
+	Item item = object_service->GetCharacter(character_id)->GetInventory()->GetItem(item_id);
 
 	result.push_back(item.GetName().c_str());
 	result.push_back(item.GetType().c_str());

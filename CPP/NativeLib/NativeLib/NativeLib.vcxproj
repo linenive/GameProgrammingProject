@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="ObjectService.h" />
+    <ClInclude Include="RandomRepository.h" />
     <ClInclude Include="TaskService.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="AIExecuter.h" />

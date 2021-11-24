@@ -20,21 +20,21 @@ public:
 	ObjectService* object_service;
 	TaskService* task_service;
 	StaticUnitService* static_unit_service;
-	ProgressService* progress_service;
 	UIService* ui_service;
 	ControlContextService* control_context_service;
 	TileService* tile_service;
-	VillageService* villageService;
+	VillageService* village_service;
+	ProgressService* progress_service;
 	
 	~GameService() {
 		delete object_service;
 		delete task_service;
 		delete static_unit_service;
-		delete progress_service;
 		delete ui_service;
 		delete control_context_service;
 		delete tile_service;
-		delete villageService;
+		delete village_service;
+		delete progress_service;
 	}
 
 	GameService() {
@@ -46,9 +46,6 @@ public:
 		static_unit_service = new StaticUnitService(
 			&game_world.tile_repo, &game_world.building_repo
 		);
-		progress_service = new ProgressService(
-			object_service, &game_world.time_repo
-		);
 		ui_service = new UIService(
 			&game_world.time_repo, &game_world.event_log_repo
 		);
@@ -58,8 +55,12 @@ public:
 		tile_service = new TileService(
 			&game_world.tile_repo
 		);
-		villageService = new VillageService(
+		village_service = new VillageService(
 			&game_world.village_repo
+		);
+		progress_service = new ProgressService(
+			object_service, &game_world.random_repo,
+			&game_world.time_repo, &game_world.event_log_repo
 		);
 	};
 
