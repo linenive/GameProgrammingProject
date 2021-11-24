@@ -153,11 +153,7 @@
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
-    <ClCompile Include="TaskForMove.cpp" />
-    <ClCompile Include="TaskReserveInfo.cpp" />
-    <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="NativeLib.cpp" />
-    <ClCompile Include="testProperty.cpp" />
     <ClCompile Include="TileRepository.cpp" />
     <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
@@ -166,8 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameWorld.h" />
-    <ClInclude Include="GameWorldForObjectService.h" />
-    <ClInclude Include="GameWorldForTaskService.h" />
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="TaskService.h" />
     <ClInclude Include="Task.h" />
@@ -186,12 +180,6 @@
     <ClInclude Include="DateSystem.h" />
     <ClInclude Include="EventLog.h" />
     <ClInclude Include="EventLogRepository.h" />
-    <ClInclude Include="GameWorldForAI.h" />
-    <ClInclude Include="GameWorldForProgressService.h" />
-    <ClInclude Include="GameWorldForInput.h" />
-    <ClInclude Include="GameWorldForStaticUnit.h" />
-    <ClInclude Include="GameWorldForUI.h" />
-    <ClInclude Include="GameWorldForWorld.h" />
     <ClInclude Include="GodotScenePath.h" />
     <ClInclude Include="Schedule.h" />
     <ClInclude Include="InputManager.h" />
@@ -229,8 +217,6 @@
     <ClInclude Include="GameRule.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameService.h" />
-    <ClInclude Include="TestManager.h" />
-    <ClInclude Include="testProperty.h" />
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="Action.h" />
