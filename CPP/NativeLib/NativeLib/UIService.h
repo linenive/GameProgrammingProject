@@ -2,13 +2,15 @@
 
 class UIService {
 private:
-	GameWorldForUI* game_world;
+	TimeRepository* time_repo;
+	EventLogRepository* event_log_repo;
 public:
-	UIService(GameWorldForUI* _game_world) : game_world(_game_world) {}
+	UIService(TimeRepository* _time_repo, EventLogRepository* _event_log_repo)
+		: time_repo(_time_repo), event_log_repo(_event_log_repo) {}
 	GameTime GetGameTime() {
-		return game_world->GetGameTime();
+		return time_repo->GetGameTime();
 	}
 	Array GetSerialized_event_log() {
-		return game_world->GetEventLogRepository()->GetSerialized_event_log();
+		return event_log_repo->GetSerialized_event_log();
 	}
 };

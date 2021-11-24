@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "GameWorldForUI.h"
 #include "GameWorldForAI.h"
 #include "GameWorldForWorld.h"
 #include "GameWorldForInput.h"
@@ -8,6 +7,8 @@
 
 #include "GameWorldForObjectService.h"
 #include "GameWorldForProgressService.h"
+
+#include "EventLogRepository.h"
 
 const unsigned int big_prime_number = 154813283;
 

@@ -36,10 +36,14 @@ public:
 	}
 	GameService(){
 		object_service = new ObjectService(&game_world);
-		task_service = new TaskService(&game_world);
+		task_service = new TaskService(
+			game_world.GetTileRepository()
+		);
 		static_unit_service = new StaticUnitService(&game_world);
 		progress_service = new ProgressService(&game_world);
-		ui_service = new UIService(&game_world);
+		ui_service = new UIService(
+			game_world.GetTimeRepository(), game_world.GetEventLogRepository()
+		);
 		control_context = new ControlContext(&game_world, static_unit_service);
 	};
 
