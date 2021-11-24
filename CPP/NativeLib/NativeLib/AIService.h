@@ -7,16 +7,19 @@
 #include "Timer.h"
 #include "GameRule.h"
 
-class AIManager {
+class AIService {
 
 private:
+	ObjectService* object_service;
+	TaskService* task_service;
+
 	queue<Character*>* village_leavers;
 
 	vector<Character*>* characters;
 	vector<Character*>* guests;
 	vector<Character*>* residents;
 	AIExecuter* ai_executer;
-	TaskService* task_service;
+	
 	Timer task_assign_timer;
 	/*
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
@@ -74,17 +77,16 @@ private:
 	}
 
 public:
-	~AIManager() {
+	~AIService() {
 		delete ai_executer;
 		delete task_service;
 	}
-	AIManager() : task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)) {}
-	void SetGameWorld(GameService* game_service) {
-		characters = game_service->object_service->GetCharacters();
-		guests = game_service->object_service->GetGuests();
-		residents = game_service->object_service->GetResidents();
-
-		task_service = game_service->task_service;
+	AIService(ObjectService* _object_service, TaskService* _task_service)
+		: object_service(_object_service), task_service(_task_service),
+		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)) {
+		characters = object_service->GetCharacters();
+		guests = object_service->GetGuests();
+		residents = object_service->GetResidents();
 	}
 	void Update(float delta) {
 		task_assign_timer.timeGo(delta);

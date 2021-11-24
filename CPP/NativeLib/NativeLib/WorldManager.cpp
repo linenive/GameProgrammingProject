@@ -70,7 +70,7 @@ void WorldManager::LoadGameWorld() {
 	ERR_FAIL_COND(child == nullptr);
 	object_service = child->GetGameService()->object_service;
 	tile_service = child->GetGameService()->tile_service;
-	villageService = child->GetGameService()->village_service;
+	village_service = child->GetGameService()->village_service;
 }
 
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {

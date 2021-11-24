@@ -19,11 +19,10 @@ void GameManager::_init(){
 
 void GameManager::_ready(){
 	NewGame();
-	ai_manager.SetGameWorld(&game_service);
 }
 
 void GameManager::_process(float delta){
-	ai_manager.Update(delta);
+	game_service.ai_service->Update(delta);
 	game_service.progress_service->Update(delta);
 	FetchQueueAndSignalToGodot();
 }

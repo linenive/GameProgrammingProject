@@ -1,7 +1,6 @@
 #pragma once
 #include "Common.h"
 #include "GameService.h"
-#include "AIManager.h"
 #include <Node.hpp>
 
 class GameManager : public Node {
@@ -9,7 +8,6 @@ class GameManager : public Node {
 
 private:
 	GameService game_service;
-	AIManager ai_manager;
 
 	void NewGame();
 	void LoadGame();
@@ -42,6 +40,5 @@ public:
 	void _process(float delta);
 	void _physics_process(float delta);
 
-	void AIClickUpdate(Vector2 new_target);
 	GameService* GetGameService() { return &game_service; }
 };

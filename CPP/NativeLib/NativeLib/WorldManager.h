@@ -8,9 +8,8 @@ class WorldManager : public Node {
 private:
 	ObjectService* object_service;
 	TileService* tile_service;
-	VillageService* villageService;
+	VillageService* village_service;
 	void LoadGameWorld();
-	bool CheckCoordinatesInTileMap(Coordinates coord);
 
 public:
 	static void _register_methods();
@@ -57,7 +56,6 @@ public:
 	String GetCharacterName(int character_id) {
 		return String(object_service->GetCharacter(character_id)->GetName().c_str());
 	}
-	Dictionary GetCharacterInfo(int character_id);
 
 	Array GetCharacterItem(int character_id, int item_id);
 
@@ -68,14 +66,14 @@ public:
 	Vector2 GetWorldSize();
 
 	String GetVillageName() {
-		return String(villageService->GetVillageName());
+		return String(village_service->GetVillageName());
 	}
 
 	void SetVillageName(String new_name) {
-		villageService->SetVillageName(new_name);
+		village_service->SetVillageName(new_name);
 	}
 
 	int GetMoney() {
-		return villageService->GetMoney();
+		return village_service->GetMoney();
 	}
 };
