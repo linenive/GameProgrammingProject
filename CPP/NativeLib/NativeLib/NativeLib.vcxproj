@@ -150,7 +150,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="PathFinder.cpp" />
+    <ClCompile Include="PathFindService.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
@@ -166,6 +166,7 @@
     <ClInclude Include="CharacterSkill.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="ObjectService.h" />
+    <ClInclude Include="PathFindService.h" />
     <ClInclude Include="RandomRepository.h" />
     <ClInclude Include="SkillRepository.h" />
     <ClInclude Include="SkillService.h" />
@@ -196,7 +197,6 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="ObjectRepository.h" />
-    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PickRandom.h" />
     <ClInclude Include="Random.h" />

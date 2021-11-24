@@ -149,9 +149,6 @@
     <ClCompile Include="BuildingType.cpp">
       <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClCompile>
-    <ClCompile Include="PathFinder.cpp">
-      <Filter>소스 파일\Service\PathFinder</Filter>
-    </ClCompile>
     <ClCompile Include="StaticUnitService.cpp">
       <Filter>소스 파일\Service\StaticUnit</Filter>
     </ClCompile>
@@ -184,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="Stat.cpp">
       <Filter>소스 파일\Domain\Stat</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFindService.cpp">
+      <Filter>소스 파일\Service\PathFinder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -270,9 +270,6 @@
     </ClInclude>
     <ClInclude Include="ObjectService.h">
       <Filter>소스 파일\Service\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="PathFinder.h">
-      <Filter>소스 파일\Service\PathFinder</Filter>
     </ClInclude>
     <ClInclude Include="StaticUnitService.h">
       <Filter>소스 파일\Service\StaticUnit</Filter>
@@ -386,6 +383,9 @@
     </ClInclude>
     <ClInclude Include="UnlockEvent.h">
       <Filter>소스 파일\Domain\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFindService.h">
+      <Filter>소스 파일\Service\PathFinder</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
