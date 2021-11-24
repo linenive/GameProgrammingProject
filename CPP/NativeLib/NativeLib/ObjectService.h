@@ -4,14 +4,12 @@
 class ObjectService {
 private:
 	CharacterFactory factory = CharacterFactory();
-	GameWorldForObjectService* game_world;
+
 	ObjectRepository* object_repo;
 
 public:
 	queue<int> new_character_ids;
-	ObjectService(GameWorldForObjectService* _game_world):game_world(_game_world){
-		object_repo = _game_world->GetObjectRepository();
-	}
+	ObjectService(ObjectRepository* _object_repo):object_repo(_object_repo){}
 
 	void TestNewCharacter(Transform2D transform) {
 		WorldObject* new_character = factory.CreateObject(transform, Vector2(TILE_WIDTH, TILE_HEIGHT));
@@ -30,12 +28,12 @@ public:
 	}
 
 	vector<Character*>* GetCharacters() {
-		return game_world->GetObjectRepository()->GetCharacters();
+		return object_repo->GetCharacters();
 	}
 	vector<Character*>* GetGuests() {
-		return game_world->GetObjectRepository()->GetGuests();
+		return object_repo->GetGuests();
 	}
 	vector<Character*>* GetResidents() {
-		return game_world->GetObjectRepository()->GetResidents();
+		return object_repo->GetResidents();
 	}
 };

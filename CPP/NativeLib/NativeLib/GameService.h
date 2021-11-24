@@ -35,7 +35,7 @@ public:
 		delete control_context;
 	}
 	GameService(){
-		object_service = new ObjectService(&game_world);
+		object_service = new ObjectService(game_world.GetObjectRepository());
 		task_service = new TaskService(
 			game_world.GetTileRepository()
 		);

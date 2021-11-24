@@ -4,8 +4,6 @@
 #include "GameWorldForInput.h"
 #include "GameWorldForStaticUnit.h"
 #include <string>
-
-#include "GameWorldForObjectService.h"
 #include "GameWorldForProgressService.h"
 
 #include "EventLogRepository.h"
