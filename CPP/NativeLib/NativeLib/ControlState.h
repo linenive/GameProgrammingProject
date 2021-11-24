@@ -3,7 +3,7 @@
 #include <queue>
 #include "StaticUnitService.h"
 #include "CoordinatesSystem.h"
-#include "GameWorldForInput.h"
+#include "TileRepository.h"
 
 class InputStatus {
 public:
@@ -30,7 +30,7 @@ public:
 class ControlState {
 protected:
 	InputStatus input;
-	GameWorldForInput* world;
+	TileRepository* tile_repo;
 
 	void StartDrag(Vector2 start_pos) {
 		input.drag_start_point = start_pos;
@@ -41,22 +41,21 @@ protected:
 		input.is_dragging = false;
 	}
 
-	Coordinates GetTileCoordMouseHoveredTileMap(Vector2 mouse_position) {
-		return world->GetTileMap()->GetTileCoordinate(mouse_position);
+	Coordinates GetTile(Vector2 mouse_position) {
+		return tile_repo->GetTileCoordinate(mouse_position);
 	}
 
 public:
-	ControlState(GameWorldForInput* _world) : world(_world) {}
+	ControlState(TileRepository* t_repo) : tile_repo(t_repo) {}
 	virtual void MouseHover(Vector2 position) = 0;
 	virtual void MouseClick(Vector2 position) = 0;
 	virtual void MouseRelease(Vector2 position) = 0;
-	void SetGameWorld(GameWorldForInput* _world) { world = _world; }
 	InputStatus* GetInputStatus() { return &input; }
 };
 
 class NormalState : public ControlState {
 public:
-	NormalState(GameWorldForInput* _world) : ControlState(_world) {}
+	NormalState(TileRepository* t_repo) : ControlState(t_repo) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 	}
@@ -78,9 +77,9 @@ private:
 	eBuildingType scheduled_building_type = eBuildingType::SMALL_HOUSE;
 
 	void HighlightHoverdTile(Vector2 mouse_position) {
-		Coordinates hovered_tile_coord = GetTileCoordMouseHoveredTileMap(mouse_position);
+		Coordinates hovered_tile_coord = GetTile(mouse_position);
 		if (hovered_tile_coord.x >= 0) {
-			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_coord);
+			Surface* hoverd_surface = tile_repo->GetSurface(hovered_tile_coord);
 		}
 		else {
 		}
@@ -100,8 +99,8 @@ private:
 	}
 
 public:
-	BuildState(GameWorldForInput* _world, StaticUnitService* _static_unit_service)
-		: ControlState(_world), static_unit_service(_static_unit_service) {}
+	BuildState(TileRepository* t_repo, StaticUnitService* _static_unit_service)
+		: ControlState(t_repo), static_unit_service(_static_unit_service) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 		HighlightHoverdTile(mouse_position);
@@ -134,9 +133,9 @@ public:
 class InstallState : public ControlState {
 private:
 	void HighlightHoverdTile(Vector2 mouse_position) {
-		Coordinates hovered_tile_coord = GetTileCoordMouseHoveredTileMap(mouse_position);
+		Coordinates hovered_tile_coord = GetTile(mouse_position);
 		if (hovered_tile_coord.x >= 0) {
-			Surface* hoverd_surface = world->GetTileMap()->GetSurface(hovered_tile_coord);
+			Surface* hoverd_surface = tile_repo->GetSurface(hovered_tile_coord);
 			input.is_area_highlighted = true;
 			input.highlighted_area = hoverd_surface->GetPhysics()->GetRect();
 		}
@@ -145,7 +144,7 @@ private:
 		}
 	}
 public:
-	InstallState(GameWorldForInput* _world) : ControlState(_world) {}
+	InstallState(TileRepository* t_repo) : ControlState(t_repo) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 		HighlightHoverdTile(mouse_position);
@@ -167,9 +166,9 @@ private:
 	BuildState* build_state;
 
 public:
-	ControlContext(GameWorldForInput* world, StaticUnitService* static_unit_service) {
-		normal_state = new NormalState(world);
-		build_state = new BuildState(world, static_unit_service);
+	ControlContext(TileRepository* t_repo, StaticUnitService* static_unit_service) {
+		normal_state = new NormalState(t_repo);
+		build_state = new BuildState(t_repo, static_unit_service);
 		current_state = normal_state;
 	}
 	~ControlContext() {

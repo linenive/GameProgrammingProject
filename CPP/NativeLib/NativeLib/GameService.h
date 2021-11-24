@@ -5,11 +5,7 @@
 #include "StaticUnitService.h"
 #include "ProgressService.h"
 #include "UIService.h"
-
 #include "ControlState.h"
-
-
-const unsigned int big_prime_number = 154813283;
 
 class GameService{
 
@@ -34,19 +30,21 @@ public:
 
 		delete control_context;
 	}
-	GameService(){
-		object_service = new ObjectService(game_world.GetObjectRepository());
-		task_service = new TaskService(
-			game_world.GetTileRepository()
+	GameService() {
+		object_service = new ObjectService(&game_world.object_repo);
+		task_service = new TaskService(&game_world.tile_repo);
+		static_unit_service = new StaticUnitService(
+			&game_world.tile_repo, &game_world.building_repo
 		);
-		static_unit_service = new StaticUnitService(&game_world);
 		progress_service = new ProgressService(
-			object_service, game_world.GetTimeRepository()
+			object_service, &game_world.time_repo
 		);
 		ui_service = new UIService(
-			game_world.GetTimeRepository(), game_world.GetEventLogRepository()
+			&game_world.time_repo, &game_world.event_log_repo
 		);
-		control_context = new ControlContext(&game_world, static_unit_service);
+		control_context = new ControlContext(
+			&game_world.tile_repo, static_unit_service
+		);
 	};
 
 };
