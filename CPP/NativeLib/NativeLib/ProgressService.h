@@ -6,7 +6,6 @@
 
 class ProgressService {
 private:
-	GameWorldForProgressService* game_service;
 	ObjectService* object_service;
 	TimeRepository* time_repo;
 	RepeatitionRandomOccurrence guest_visit_event;
@@ -17,10 +16,8 @@ private:
 
 	}
 public:
-	ProgressService(GameWorldForProgressService* world) {
-		game_service = world;
-		time_repo = world->GetTimeRepository();
-
+	ProgressService(ObjectService* _object_service, TimeRepository* _time_repo)
+	: object_service(_object_service), time_repo(_time_repo){
 		guest_visit_event.setProbability(0.1f);
 	}
 

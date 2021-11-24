@@ -40,7 +40,9 @@ public:
 			game_world.GetTileRepository()
 		);
 		static_unit_service = new StaticUnitService(&game_world);
-		progress_service = new ProgressService(&game_world);
+		progress_service = new ProgressService(
+			object_service, game_world.GetTimeRepository()
+		);
 		ui_service = new UIService(
 			game_world.GetTimeRepository(), game_world.GetEventLogRepository()
 		);
