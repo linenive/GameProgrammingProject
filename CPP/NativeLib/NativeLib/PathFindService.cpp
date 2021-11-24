@@ -1,11 +1,12 @@
 #pragma once
 #include "PathFindService.h"
+#include <math.h>
 
 int PathFindService::AstarH(Coordinates start_tile, Coordinates end_tile){
 	int x = abs(end_tile.x - start_tile.x);
 	int y = abs(end_tile.y - start_tile.y);
 
-	return (x + y) * weight_h;
+	return sqrt(x*x + y*y) * weight_h;
 }
 
 queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_pos) {
@@ -21,6 +22,7 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 	unordered_map<Coordinates, Vector2, CoordinatesHash> obstacle_vector;
 
 	unordered_map<Coordinates, int, CoordinatesHash> score_f_list;
+	unordered_map<Coordinates, int, CoordinatesHash> moved_distance_list;
 	vector<Coordinates> ans;
 
 	Coordinates start_tile = AbsolutePositionToCoordinates(start_pos);
@@ -31,18 +33,22 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 	open_list.insert(make_pair(start_tile, 0));
 	open_parent_list[start_tile] = start_tile;
 	score_f_list[start_tile] = 0;
+	moved_distance_list[start_tile] = 0;
 
 	current_tile = start_tile;
 
 	while (current_tile != end_tile && open_list.size()>0)
 	{
 		current_tile = (*open_list.begin()).first;
+		open_list.erase(open_list.begin());
+		if (closed_parent_list.find(current_tile) != closed_parent_list.end()) continue;
+
 		closed_parent_list[current_tile] = open_parent_list[current_tile];
 
 		//Godot::print("[PathFinder] ADD CLOSE Tile : " + Vector2(current_tile.x, current_tile.y) + " Parent Tile : " + Vector2(closed_parent_list[current_tile].x, closed_parent_list[current_tile].y)
 		//+ " score : "+Vector2((*open_list.begin()).second,0));
 
-		open_list.erase(open_list.begin());
+
 
 		for (i = 0; i < 8; i++) {
 
@@ -67,11 +73,11 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 				Godot::print("[PathFinder] has not score f: " + Vector2(current_tile.x, current_tile.y));
 			}
 
-			if (dx[i] == 0 || dy[i] == 0) current_score_g = score_f_list[current_tile] + weight_g_straight;
-			else current_score_g = score_f_list[current_tile] + weight_g_diagonal;
+			if (dx[i] == 0 || dy[i] == 0) current_score_g = weight_g_straight;
+			else current_score_g = weight_g_diagonal;
 
 			//AstarF
-			current_score_f = (current_score_h + current_score_g);
+			current_score_f = (current_score_h + current_score_g + moved_distance_list[current_tile]);
 
 			//has key next_tile
 			if (open_parent_list.find(next_tile) != open_parent_list.end()) {
@@ -83,6 +89,7 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 			score_f_list.insert(unordered_map<Coordinates, int>::value_type(next_tile, current_score_f));
 			open_list.insert(make_pair(next_tile, current_score_f));
 			open_parent_list[next_tile] = current_tile;
+			moved_distance_list[next_tile] = moved_distance_list[current_tile] + current_score_g;
 		}
 	}
 
@@ -91,6 +98,7 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 
 	//back tracking
 	String path= Vector2(current_tile.x, current_tile.y);
+	printf("size: %d\n", closed_parent_list.size());
 	for (i=0; i<closed_parent_list.size(); i++)
 	{
 		parent_tile = closed_parent_list[current_tile];
