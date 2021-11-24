@@ -1,10 +1,10 @@
 #pragma once
 #include "CharacterFactory.h"
+#include "ObjectRepository.h"
 
 class ObjectService {
 private:
 	CharacterFactory factory = CharacterFactory();
-
 	ObjectRepository* object_repo;
 
 public:
@@ -35,5 +35,13 @@ public:
 	}
 	vector<Character*>* GetResidents() {
 		return object_repo->GetResidents();
+	}
+	
+	int GetCharacterNumber() {
+		return object_repo->GetCharacterNumber();
+	}
+
+	Character* GetCharacter(int character_id) {
+		return object_repo->GetCharacter(character_id);
 	}
 };

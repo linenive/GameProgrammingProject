@@ -108,6 +108,9 @@
     <Filter Include="소스 파일\Domain\Village">
       <UniqueIdentifier>{ea974419-6e8f-4ce0-8ec8-ab6f95b7f955}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Service\Village">
+      <UniqueIdentifier>{16343c5b-fa1f-4f46-9428-b10462d826f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TimeRepository.cpp">
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="WorldManager.cpp">
       <Filter>소스 파일\Manager\World</Filter>
+    </ClCompile>
+    <ClCompile Include="TileService.h">
+      <Filter>소스 파일\Service\WorldObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +351,9 @@
     </ClInclude>
     <ClInclude Include="Village.h">
       <Filter>소스 파일\Domain\Village</Filter>
+    </ClInclude>
+    <ClInclude Include="VillageService.h">
+      <Filter>소스 파일\Service\Village</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

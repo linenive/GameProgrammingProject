@@ -7,6 +7,8 @@
 #include "ProgressService.h"
 #include "UIService.h"
 #include "ControlContextService.h"
+#include "TileService.h"
+#include "VillageService.h"
 
 class GameService{
 
@@ -20,8 +22,9 @@ public:
 	StaticUnitService* static_unit_service;
 	ProgressService* progress_service;
 	UIService* ui_service;
-
 	ControlContextService* control_context_service;
+	TileService* tile_service;
+	VillageService* villageService;
 	
 	~GameService() {
 		delete object_service;
@@ -29,9 +32,11 @@ public:
 		delete static_unit_service;
 		delete progress_service;
 		delete ui_service;
-
 		delete control_context_service;
+		delete tile_service;
+		delete villageService;
 	}
+
 	GameService() {
 		path_find_service = new PathFindService(&game_world.tile_repo);
 		object_service = new ObjectService(&game_world.object_repo);
@@ -49,6 +54,12 @@ public:
 		);
 		control_context_service = new ControlContextService(
 			&game_world.tile_repo, static_unit_service
+		);
+		tile_service = new TileService(
+			&game_world.tile_repo
+		);
+		villageService = new VillageService(
+			&game_world.village_repo
 		);
 	};
 

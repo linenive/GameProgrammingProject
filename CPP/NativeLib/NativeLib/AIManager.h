@@ -1,7 +1,6 @@
 #pragma once
 #include "Character.h"
 #include "TaskReserveInfo.h"
-#include "GameWorldForAI.h"
 #include "AIExecuter.h"
 #include "TaskService.h"
 #include "CoordinatesSystem.h"

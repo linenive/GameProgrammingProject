@@ -155,6 +155,7 @@
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="TileRepository.cpp" />
+    <ClCompile Include="TileService.h" />
     <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
     <ClCompile Include="UIManager.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="UIService.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillageRepository.h" />
+    <ClInclude Include="VillageService.h" />
     <ClInclude Include="WorldManager.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="WorldObjectFactory.h" />

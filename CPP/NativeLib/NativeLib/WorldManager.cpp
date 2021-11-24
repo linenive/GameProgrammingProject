@@ -68,7 +68,9 @@ void WorldManager::LoadGameWorld() {
 	ERR_FAIL_COND(node == nullptr);
 	GameManager* child = node->cast_to<GameManager>(node);
 	ERR_FAIL_COND(child == nullptr);
-	game_world = child->GetGameService();
+	object_service = child->GetGameService()->object_service;
+	tile_service = child->GetGameService()->tile_service;
+	villageService = child->GetGameService()->villageService;
 }
 
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {
