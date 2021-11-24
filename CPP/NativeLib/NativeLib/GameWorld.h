@@ -44,7 +44,7 @@ public:
 	virtual GameTime GetGameTime() { return time_repo.GetGameTime(); }
 	virtual TimeRepository* GetTimeRepository() { return &time_repo; }
 	//To-do ������ repository ���� ���� �ʴ� �������� ����.
-	virtual TileRepository* GetTileMap() { return &tile_repo; }
+	virtual TileRepository* GetTileRepository() { return &tile_repo; }
 	virtual ObjectRepository* GetObjectRepository() { return &object_repo; }
 	virtual VillageRepository* GetVillageRepository() { return &village_repo; }
 	virtual list<EventLog> GetEventLog() { return event_log_repo.GetEventLog(); }
