@@ -15,6 +15,7 @@ public:
 		Day(DEFAULT_START_DAY))),
 		game_time(Time(Hour(DEFAULT_START_HOUR), Minute(DEFAULT_START_MINUTE))){}
 	GameTime(Date date, Time time) : game_date(date), game_time(time) {}
+
 	void PassOneTick();
 	Year GetYear() { return game_date.GetYear(); }
 	Month GetMonth() { return game_date.GetMonth(); }

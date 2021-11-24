@@ -2,7 +2,7 @@
 #include "SkillService.h"
 
 void GameManager::NewGame() {
-	game_world = GameWorld();
+	
 }
 
 void GameManager::_register_methods() {
@@ -19,14 +19,12 @@ void GameManager::_init(){
 
 void GameManager::_ready(){
 	NewGame();
-	progress_manager.SetGameWorld(&game_world);
-	ai_manager.SetGameWorld(&game_world);
 }
 
 void GameManager::_process(float delta){
-	ai_manager.Update(delta);
-	progress_manager.Update(delta);
-	FetchQueue();
+	game_service.ai_service->Update(delta);
+	game_service.progress_service->Update(delta);
+	FetchQueueAndSignalToGodot();
 }
 
 void GameManager::_physics_process(float delta){

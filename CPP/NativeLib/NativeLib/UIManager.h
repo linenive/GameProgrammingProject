@@ -8,8 +8,8 @@ class UIManager : public Node {
 	GODOT_CLASS(UIManager, Node);
 
 private:
-	GameWorldForUI* game_world;
-	void LoadGameWorld();
+	UIService* ui_service;
+	void LoadGameService();
 
 public:
 	static void _register_methods();
@@ -27,6 +27,6 @@ public:
 	int GetMinute();
 
 	Array GetEventLogs() {
-		return game_world->GetEventLogRepository()->GetSerialized_event_log();
+		return ui_service->GetSerialized_event_log();
 	}
 };

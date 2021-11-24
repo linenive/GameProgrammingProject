@@ -1,12 +1,9 @@
 #include "StaticUnitService.h"
 
-StaticUnitService::StaticUnitService() : StaticUnitService(1, 1) {}
-StaticUnitService::StaticUnitService(int start_building_id, int start_structur_id)
-	: next_building_id(start_building_id), next_structure_id(start_structur_id) { }
-
-void StaticUnitService::SetGameWorld(GameWorldForStaticUnit* world){
-	game_world = world;
-}
+StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo) 
+	: StaticUnitService(tile_repo, building_repo, 1, 1) {}
+StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_building_id, int start_structur_id)
+	: tile_repository(tile_repo), building_repository(building_repo), next_structure_id(start_structur_id) {}
 
 int StaticUnitService::CreateBuilding(int type, Vector2 top_left_tile_position) {
 	return CreateBuilding_(static_cast<eBuildingType>(type), AbsolutePositionToCoordinates(top_left_tile_position));
@@ -27,7 +24,7 @@ int StaticUnitService::CreateBuilding_(eBuildingType type, Coordinates top_left_
 		data.slot_num);
 	RegisterBlocksToWorld(x, y, data.blocks, new_building);
 
-	game_world->AddBuilding(new_building);
+	AddBuilding(new_building);
 	return new_building->id;
 }
 
@@ -72,7 +69,7 @@ bool StaticUnitService::IsPlacablePosition(int type, Vector2 top_left_tile_posit
 bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< vector<eBlockType> >& blocks) {
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
-			Tile* tile = game_world->GetTileByPos(start_x + i, start_y + j);
+			Tile* tile = GetTile(start_x + i, start_y + j);
 			int level = BlockTypeProperty::LevelOf(blocks[j][i]);
 
 			if (tile->IsEmptyLayer(level) == false) {
@@ -87,7 +84,7 @@ bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< ve
 void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< vector<eBlockType> >& blocks, Building* building) {
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
-			Tile* tile = game_world->GetTileByPos(start_x + i, start_y + j);
+			Tile* tile = GetTile(start_x + i, start_y + j);
 			eBlockType& block_type = blocks[j][i];
 			Block* block = tile->GetBlock(BlockTypeProperty::LevelOf(block_type));
 
@@ -105,9 +102,9 @@ void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< 
 }
 
 void StaticUnitService::DeleteBuildingById(int id) {
-	Building* building = game_world->GetBuildingById(id);
+	Building* building = GetBuildingById(id);
 	HideBuildingBlocks(building);
-	game_world->DeleteBuildingFromWorld(id);
+	DeleteBuildingFromWorld(id);
 }
 
 void StaticUnitService::HideBuildingBlocks(Building* building) {
@@ -117,7 +114,7 @@ void StaticUnitService::HideBuildingBlocks(Building* building) {
 }
 
 vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) {
-	Building* building = game_world->GetBuildingById(id);
+	Building* building = GetBuildingById(id);
 	vector<Coordinates> result;
 	for (auto block : building->blocks) {
 		result.push_back(

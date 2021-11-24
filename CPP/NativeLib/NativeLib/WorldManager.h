@@ -6,9 +6,10 @@ class WorldManager : public Node {
 	GODOT_CLASS(WorldManager, Node);
 
 private:
-	GameWorldForWorld* game_world;
+	ObjectService* object_service;
+	TileService* tile_service;
+	VillageService* village_service;
 	void LoadGameWorld();
-	bool CheckCoordinatesInTileMap(Coordinates coord);
 
 public:
 	static void _register_methods();
@@ -17,62 +18,62 @@ public:
 	void _process(float delta);
 
 	Vector2 GetTileCoordinate(Vector2 position) {
-		Coordinates coord = game_world->GetTileMap()->GetTileCoordinate(position);
-		return Vector2(coord.x, coord.y);
+		return tile_service->GetTileCoordinate(position);
 	}
 
 	float GetTilePassSpeed(Vector2 coordinate) {
-		return game_world->GetTileMap()->GetTilePassSpeed(coordinate.x, coordinate.y);
+		return tile_service->GetTilePassSpeed(coordinate.x, coordinate.y);
 	}
-	int GetTileSizeX() { return game_world->GetTileMap()->GetTileSizeX(); }
-	int GetTileSizeY() { return game_world->GetTileMap()->GetTileSizeY(); }
+	int GetTileSizeX() { return tile_service->GetTileSizeX(); }
+	int GetTileSizeY() { return tile_service->GetTileSizeY(); }
 	Transform2D GetSurfaceTransform(Vector2 coordinate) {
-		return game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetPhysics()->GetTransform();
+		return tile_service->GetSurface(coordinate.x, coordinate.y)->GetPhysics()->GetTransform();
 	}
 	Vector2 GetSurfaceScale(Vector2 coordinate) {
-		return game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetPhysics()->GetScale();
+		return tile_service->GetSurface(coordinate.x, coordinate.y)->GetPhysics()->GetScale();
 	}
 	int GetSurfaceType(Vector2 coordinate) {
-		return (int)game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetSurfaceType().type;
+		return (int)tile_service->GetSurface(coordinate.x, coordinate.y)->GetSurfaceType().type;
 	}
 	String GetSurfaceName(Vector2 coordinate) {
-		return String(game_world->GetTileMap()->GetSurface(coordinate.x, coordinate.y)->GetName().c_str());
+		return String(tile_service->GetSurface(coordinate.x, coordinate.y)->GetName().c_str());
 	}
+
 	Array GetBlockTypes(Vector2 coordinate);
+
 	void TestNewCharacter(Transform2D transform) {
-		game_world->GetObjectRepository()->TestNewCharacter(transform);
+		object_service->TestNewCharacter(transform);
 	}
 	int GetCharacterNumber() {
-		return game_world->GetObjectRepository()->GetCharacterNumber();
+		return object_service->GetCharacterNumber();
 	}
 	Transform2D GetCharacterTransform(int character_id) {
-		return game_world->GetObjectRepository()->GetCharacter(character_id)->GetPhysics()->GetTransform();
+		return object_service->GetCharacter(character_id)->GetPhysics()->GetTransform();
 	}
 	Vector2 GetCharacterScale(int character_id) {
-		return game_world->GetObjectRepository()->GetCharacter(character_id)->GetPhysics()->GetScale();
+		return object_service->GetCharacter(character_id)->GetPhysics()->GetScale();
 	}
 	String GetCharacterName(int character_id) {
-		return String(game_world->GetObjectRepository()->GetCharacter(character_id)->GetName().c_str());
+		return String(object_service->GetCharacter(character_id)->GetName().c_str());
 	}
-	Dictionary GetCharacterInfo(int character_id);
 
 	Array GetCharacterItem(int character_id, int item_id);
 
 	int GetCharacterInventorySize(int character_id) {
-		return game_world->GetObjectRepository()->GetCharacter(character_id)->GetInventory()->GetSize();
+		return object_service->GetCharacter(character_id)->GetInventory()->GetSize();
 	}
 
 	Vector2 GetWorldSize();
 
 	String GetVillageName() {
-		return String(game_world->GetVillageRepository()->GetVillage()->GetVillageName().c_str());
+		return String(village_service->GetVillageName());
 	}
 
 	void SetVillageName(String new_name) {
-		game_world->GetVillageRepository()->GetVillage()->SetVillageName(new_name.utf8().get_data());
+		village_service->SetVillageName(new_name);
 	}
 
 	int GetMoney() {
-		return game_world->GetVillageRepository()->GetVillage()->GetMoney();
+		return village_service->GetMoney();
 	}
 };

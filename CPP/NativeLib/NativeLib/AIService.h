@@ -1,22 +1,25 @@
 #pragma once
 #include "Character.h"
 #include "TaskReserveInfo.h"
-#include "GameWorldForAI.h"
 #include "AIExecuter.h"
 #include "TaskService.h"
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
 
-class AIManager {
+class AIService {
 
 private:
-	GameWorldForAI* game_world;
+	ObjectService* object_service;
+	TaskService* task_service;
+
+	queue<Character*>* village_leavers;
+
 	vector<Character*>* characters;
 	vector<Character*>* guests;
 	vector<Character*>* residents;
 	AIExecuter* ai_executer;
-	TaskService* task_service;
+	
 	Timer task_assign_timer;
 	/*
 	void ChangeTaskTarget(Character* performer, Vector2 target) {
@@ -42,7 +45,7 @@ private:
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
 		for (PurposeOfVisit* p : purposes) {
 			if (p->CanExecute()) {
-				// To-do: ������ �´� Ȱ�� �߰�
+				// To-do: 
 				AddIdleTask(guest);
 				return;
 			}
@@ -74,18 +77,16 @@ private:
 	}
 
 public:
-	~AIManager() {
+	~AIService() {
 		delete ai_executer;
 		delete task_service;
 	}
-	AIManager() : task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)) {}
-	void SetGameWorld(GameWorldForAI* world) {
-		game_world = world;
-		characters = world->GetObjectRepository()->GetCharacters();
-		guests = world->GetObjectRepository()->GetGuests();
-		residents = world->GetObjectRepository()->GetResidents();
-
-		task_service = new TaskService(world->GetTileMap());
+	AIService(ObjectService* _object_service, TaskService* _task_service)
+		: object_service(_object_service), task_service(_task_service),
+		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)) {
+		characters = object_service->GetCharacters();
+		guests = object_service->GetGuests();
+		residents = object_service->GetResidents();
 	}
 	void Update(float delta) {
 		task_assign_timer.timeGo(delta);
@@ -95,5 +96,9 @@ public:
 		}
 
 		ExecuteCharactersTask();
+	}
+
+	queue<Character*>* GetVillageLeavers() {
+		return village_leavers;
 	}
 };

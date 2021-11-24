@@ -5,22 +5,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일\Manager">
-      <UniqueIdentifier>{78d4aad0-7bd3-4eac-bd89-5624d947cbad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Repository">
-      <UniqueIdentifier>{77421059-24a6-4e93-b3cc-7945d4bd6ac5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Repository\GameTime">
-      <UniqueIdentifier>{6e0d7fb6-b498-4ee5-95b2-2d2aaa14123e}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Manager">
       <UniqueIdentifier>{85b5a375-e93e-46fe-b881-b1c95e9db7ad}</UniqueIdentifier>
@@ -34,71 +21,110 @@
     <Filter Include="소스 파일\Library">
       <UniqueIdentifier>{8e7af990-e5d5-46f0-b2d3-f439de484604}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Repository\World">
-      <UniqueIdentifier>{9b3cd0cb-8e88-4f3e-833d-3260fd7b67d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Repository\World">
       <UniqueIdentifier>{1439e26a-afbe-4439-818b-6062823e8772}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Factory">
-      <UniqueIdentifier>{bd1542e1-27b3-4b1a-906f-af92618fbc32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Repository\World\WorldObject">
-      <UniqueIdentifier>{66738e3e-65f7-465b-8915-5366c792fd0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Repository\World\WorldObject">
-      <UniqueIdentifier>{a025f874-5fd0-44c5-a6cd-c75761e121f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Library">
-      <UniqueIdentifier>{bfdf4941-9496-409c-93cc-fec84e80e877}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Manager\Event">
-      <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Repository\World\WorldObject\Status">
-      <UniqueIdentifier>{ac832d6a-7a79-4a23-beae-73c7d2f4cb62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Repository\World\WorldObject\Block">
-      <UniqueIdentifier>{b51e4bbe-ef34-4169-8f41-dcd69579ec3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Repository\World\WorldObject\StaticUnit">
-      <UniqueIdentifier>{ec5715f8-9a20-44e0-abfd-4d53500abbba}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Service">
       <UniqueIdentifier>{b292abb1-277b-4d87-bf1d-b0e4479204fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Service">
-      <UniqueIdentifier>{09f606ed-1b52-472a-9543-dac725d48891}</UniqueIdentifier>
+    <Filter Include="소스 파일\Factory">
+      <UniqueIdentifier>{421bf626-737a-43d5-8f02-4204f7c42211}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Repository\World\WorldObject\Block">
-      <UniqueIdentifier>{20bf0065-4b71-4ac6-997e-df65f1bdecc2}</UniqueIdentifier>
+    <Filter Include="소스 파일\Domain">
+      <UniqueIdentifier>{137c009f-836c-4bb5-ab96-e8e142df3e7c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Repository\World\WorldObject\StaticUnit">
-      <UniqueIdentifier>{58793609-6061-4117-ac55-a65a607379d3}</UniqueIdentifier>
+    <Filter Include="소스 파일\Domain\GameTime">
+      <UniqueIdentifier>{6e0d7fb6-b498-4ee5-95b2-2d2aaa14123e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Manager\AI">
-      <UniqueIdentifier>{8efc3935-03ff-4787-afd8-395133e6d343}</UniqueIdentifier>
+    <Filter Include="소스 파일\Domain\WorldObject">
+      <UniqueIdentifier>{66738e3e-65f7-465b-8915-5366c792fd0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\WorldObject\Block">
+      <UniqueIdentifier>{b51e4bbe-ef34-4169-8f41-dcd69579ec3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\Item">
+      <UniqueIdentifier>{e02f5aac-f619-42ff-8e2d-f1406bf12bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\StaticUnit">
+      <UniqueIdentifier>{b2e3e59a-5c6f-4c23-97c7-81e03fdc4b12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\StaticUnit">
+      <UniqueIdentifier>{e1511d13-abd6-40d1-9e14-0e56a0f02625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\WorldObject">
+      <UniqueIdentifier>{3e66aaa0-366e-48a9-8dad-8c1f93468d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\PathFinder">
+      <UniqueIdentifier>{dbe6e088-cdf7-44cd-be36-a00c878cf538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\StaticUnit">
+      <UniqueIdentifier>{ad97208d-b8bc-4c17-8c17-f5cddce8c763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\UI">
+      <UniqueIdentifier>{c642862d-739b-4d0c-8f30-9d95271173eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\Task">
+      <UniqueIdentifier>{333d7b50-8a9e-41a0-8b8f-9c36e24ddb75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\WorldObject">
+      <UniqueIdentifier>{a025f874-5fd0-44c5-a6cd-c75761e121f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\Event">
+      <UniqueIdentifier>{e1cfdc95-1090-4ee0-82c4-7304ccf17bac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\Event">
+      <UniqueIdentifier>{eb2583e6-474e-4f63-9f75-87b06ce3b110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\Task">
+      <UniqueIdentifier>{2aa06855-8a3c-4eca-8788-c471fe05fb87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\AI">
+      <UniqueIdentifier>{d14e36ca-595e-4076-8032-d8a0e499af30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\Input">
+      <UniqueIdentifier>{9cadaedf-3e43-4043-98e1-c6b6c28e8e5d}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Manager\AI">
-      <UniqueIdentifier>{f99d3c03-18ba-4f2f-b573-a1781cc2d358}</UniqueIdentifier>
+      <UniqueIdentifier>{9f5a0c25-30c1-45cc-920f-9e1c592930d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Repository\World\WorldObject\Status">
-      <UniqueIdentifier>{54b447d8-ca07-469a-a38c-07125d8e1d4d}</UniqueIdentifier>
+    <Filter Include="소스 파일\Manager\Camera">
+      <UniqueIdentifier>{5671cf8d-7860-40fc-a58b-b7609464e8ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager\Input">
+      <UniqueIdentifier>{e814376d-6bde-49c4-8ac3-2a77ee9ba81a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\Rule">
+      <UniqueIdentifier>{6a5140b0-7482-4d17-b85a-d668ef2830e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager\UI">
+      <UniqueIdentifier>{19801df5-6d13-40a5-8b8d-2b300b3961da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager\World">
+      <UniqueIdentifier>{486e3b4d-13c0-4524-825d-e51710fc88db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\Village">
+      <UniqueIdentifier>{98c06ef6-67e5-480b-bf65-341ac17349e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\Village">
+      <UniqueIdentifier>{ea974419-6e8f-4ce0-8ec8-ab6f95b7f955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\Village">
+      <UniqueIdentifier>{16343c5b-fa1f-4f46-9428-b10462d826f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\Skill">
+      <UniqueIdentifier>{fb174ca6-12e8-4eed-865a-b5808ad63b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\SkillRepository">
+      <UniqueIdentifier>{0fa27ae1-2849-4ae3-b258-05a30b6c386a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\Skill">
+      <UniqueIdentifier>{48dbfbed-405a-4cf9-9c60-6f35e5ed8a1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\Stat">
+      <UniqueIdentifier>{43487be0-506e-452a-add9-5de5dde556d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="testProperty.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTime.cpp">
-      <Filter>소스 파일\Repository\GameTime</Filter>
-    </ClCompile>
-    <ClCompile Include="DateSystem.cpp">
-      <Filter>소스 파일\Repository\GameTime</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeSystem.cpp">
-      <Filter>소스 파일\Repository\GameTime</Filter>
-    </ClCompile>
     <ClCompile Include="TimeRepository.cpp">
       <Filter>소스 파일\Repository\GameTime</Filter>
     </ClCompile>
@@ -108,265 +134,258 @@
     <ClCompile Include="NativeLib.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
-    <ClCompile Include="GameWorld.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskReserveInfo.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject</Filter>
-    </ClCompile>
     <ClCompile Include="TileRepository.cpp">
       <Filter>소스 파일\Repository\World</Filter>
     </ClCompile>
     <ClCompile Include="CoordinatesSystem.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
-    <ClCompile Include="StaticUnitService.cpp">
-      <Filter>소스 파일\Service</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockTypeProperty.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject\Block</Filter>
+    <ClCompile Include="Structure.h">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClCompile>
     <ClCompile Include="BuildingType.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject\StaticUnit</Filter>
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClCompile>
     <ClCompile Include="PathFinder.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Service\PathFinder</Filter>
     </ClCompile>
-    <ClCompile Include="Structure.h">
-      <Filter>헤더 파일</Filter>
+    <ClCompile Include="StaticUnitService.cpp">
+      <Filter>소스 파일\Service\StaticUnit</Filter>
     </ClCompile>
-    <ClCompile Include="TaskForMove.cpp">
-      <Filter>소스 파일\Manager\AI</Filter>
+    <ClCompile Include="DateSystem.cpp">
+      <Filter>소스 파일\Domain\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>소스 파일\Domain\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeSystem.cpp">
+      <Filter>소스 파일\Domain\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockTypeProperty.cpp">
+      <Filter>소스 파일\Domain\WorldObject\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>소스 파일\Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>소스 파일\Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>소스 파일\Manager\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldManager.cpp">
+      <Filter>소스 파일\Manager\World</Filter>
+    </ClCompile>
+    <ClCompile Include="TileService.h">
+      <Filter>소스 파일\Service\WorldObject</Filter>
     </ClCompile>
     <ClCompile Include="Stat.cpp">
-      <Filter>소스 파일\Repository\World\WorldObject\Status</Filter>
+      <Filter>소스 파일\Domain\Stat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorld.h">
-      <Filter>헤더 파일\Repository</Filter>
-    </ClInclude>
     <ClInclude Include="GameTime.h">
-      <Filter>헤더 파일\Repository\GameTime</Filter>
+      <Filter>소스 파일\Domain\GameTime</Filter>
     </ClInclude>
     <ClInclude Include="DateSystem.h">
-      <Filter>헤더 파일\Repository\GameTime</Filter>
-    </ClInclude>
-    <ClInclude Include="GameRule.h">
-      <Filter>헤더 파일\Library</Filter>
+      <Filter>소스 파일\Domain\GameTime</Filter>
     </ClInclude>
     <ClInclude Include="TimeSystem.h">
-      <Filter>헤더 파일\Repository\GameTime</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeRepository.h">
-      <Filter>헤더 파일\Repository\GameTime</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldObjectFactory.h">
-      <Filter>헤더 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="TileFactory.h">
-      <Filter>헤더 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectRepository.h">
-      <Filter>헤더 파일\Repository\World</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Domain\GameTime</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterFactory.h">
-      <Filter>헤더 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorldForAI.h">
-      <Filter>헤더 파일\Repository</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorldForUI.h">
-      <Filter>헤더 파일\Repository</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorldForWorld.h">
-      <Filter>헤더 파일\Repository</Filter>
-    </ClInclude>
-    <ClInclude Include="GodotScenePath.h">
-      <Filter>헤더 파일\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>헤더 파일\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldManager.h">
-      <Filter>헤더 파일\Manager</Filter>
+      <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="WorldObject.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
+      <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="TaskReserveInfo.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorldForInput.h">
-      <Filter>헤더 파일\Repository</Filter>
-    </ClInclude>
-    <ClInclude Include="CoordinatesSystem.h">
-      <Filter>헤더 파일\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>헤더 파일\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Village.h">
-      <Filter>헤더 파일\Repository\World</Filter>
-    </ClInclude>
-    <ClInclude Include="VillageRepository.h">
-      <Filter>헤더 파일\Repository\World</Filter>
+      <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="Physics.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="StatField.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
-    </ClInclude>
-    <ClInclude Include="Skill.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
-    </ClInclude>
-    <ClInclude Include="Stat.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillRepository.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
-    </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="EventGenerator.h">
-      <Filter>헤더 파일\Manager\Event</Filter>
+      <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>헤더 파일\Manager\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="EventLogRepository.h">
-      <Filter>헤더 파일\Manager\Event</Filter>
+      <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
     <ClInclude Include="EventLog.h">
-      <Filter>헤더 파일\Manager\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorldForEvent.h">
-      <Filter>헤더 파일\Repository</Filter>
-    </ClInclude>
-    <ClInclude Include="ProgressManager.h">
-      <Filter>헤더 파일\Manager</Filter>
+      <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
     <ClInclude Include="RepeatitionRandomOcccurrence.h">
-      <Filter>헤더 파일\Manager\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="UnlockEvent.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillService.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Status</Filter>
-    </ClInclude>
-    <ClInclude Include="PickRandom.h">
-      <Filter>헤더 파일\Library</Filter>
+      <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
-      <Filter>헤더 파일\Manager\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="StructureFactory.h">
-      <Filter>헤더 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlState.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="StructureFactory.h">
-      <Filter>헤더 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlState.h">
-      <Filter>헤더 파일\Manager</Filter>
+      <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
     <ClInclude Include="Surface.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="TileRepository.h">
-      <Filter>헤더 파일\Repository\World\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>헤더 파일\Repository\World</Filter>
+      <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
+      <Filter>소스 파일\Domain\WorldObject\Block</Filter>
     </ClInclude>
     <ClInclude Include="BlockTypeProperty.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\Block</Filter>
+      <Filter>소스 파일\Domain\WorldObject\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="GameService.h">
+      <Filter>소스 파일\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObjectFactory.h">
+      <Filter>소스 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="TileFactory.h">
+      <Filter>소스 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureFactory.h">
+      <Filter>소스 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterFactory.h">
+      <Filter>소스 파일\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
     <ClInclude Include="StaticUnit.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
-    </ClInclude>
-    <ClInclude Include="Building.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClInclude>
     <ClInclude Include="BuildingType.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClInclude>
     <ClInclude Include="BuildingRepository.h">
-      <Filter>헤더 파일\Repository\World\WorldObject\StaticUnit</Filter>
+      <Filter>소스 파일\Repository\StaticUnit</Filter>
     </ClInclude>
-    <ClInclude Include="GameWorldForStaticUnit.h">
-      <Filter>헤더 파일\Repository</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticUnitService.h">
-      <Filter>헤더 파일\Service</Filter>
+    <ClInclude Include="ObjectService.h">
+      <Filter>소스 파일\Service\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="PathFinder.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Service\PathFinder</Filter>
     </ClInclude>
-    <ClInclude Include="AIExecuter.h">
-      <Filter>헤더 파일\Manager\AI</Filter>
+    <ClInclude Include="StaticUnitService.h">
+      <Filter>소스 파일\Service\StaticUnit</Filter>
     </ClInclude>
-    <ClInclude Include="Schedule.h">
-      <Filter>헤더 파일\Manager\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>헤더 파일\Manager\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>헤더 파일\Manager\AI</Filter>
+    <ClInclude Include="UIService.h">
+      <Filter>소스 파일\Service\UI</Filter>
     </ClInclude>
     <ClInclude Include="TaskService.h">
-      <Filter>헤더 파일\Manager\AI</Filter>
+      <Filter>소스 파일\Service\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeRepository.h">
+      <Filter>소스 파일\Repository\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="PickRandom.h">
+      <Filter>소스 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="GodotScenePath.h">
+      <Filter>소스 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRule.h">
+      <Filter>소스 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="CoordinatesSystem.h">
+      <Filter>소스 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>소스 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>소스 파일\Domain\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="EventLogRepository.h">
+      <Filter>소스 파일\Repository\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectRepository.h">
+      <Filter>소스 파일\Repository\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>소스 파일\Domain\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="Schedule.h">
+      <Filter>소스 파일\Domain\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>소스 파일\Domain\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="AIExecuter.h">
+      <Filter>소스 파일\Service\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlState.h">
+      <Filter>소스 파일\Service\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>소스 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="AIManager.h">
-      <Filter>헤더 파일\Manager\AI</Filter>
+      <Filter>소스 파일\Manager\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>소스 파일\Manager\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>소스 파일\Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>소스 파일\Domain\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TileRepository.h">
+      <Filter>소스 파일\Repository\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressService.h">
+      <Filter>소스 파일\Service\Rule</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>소스 파일\Manager\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldManager.h">
+      <Filter>소스 파일\Manager\World</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>소스 파일\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="VillageRepository.h">
+      <Filter>소스 파일\Repository\Village</Filter>
+    </ClInclude>
+    <ClInclude Include="Village.h">
+      <Filter>소스 파일\Domain\Village</Filter>
+    </ClInclude>
+    <ClInclude Include="VillageService.h">
+      <Filter>소스 파일\Service\Village</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlState.h" />
+    <ClInclude Include="StructureFactory.h" />
+    <ClInclude Include="RandomRepository.h">
+      <Filter>소스 파일\Repository\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSkill.h">
+      <Filter>소스 파일\Domain\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillRepository.h">
+      <Filter>소스 파일\Repository\SkillRepository</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillService.h">
+      <Filter>소스 파일\Service\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>소스 파일\Domain\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="StatField.h">
+      <Filter>소스 파일\Domain\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="UnlockEvent.h">
+      <Filter>소스 파일\Domain\Stat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
