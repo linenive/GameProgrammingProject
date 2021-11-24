@@ -1,5 +1,6 @@
 #pragma once
 #include "GameManager.h"
+#include "ObjectService.h"
 #include <Node.hpp>
 
 class WorldManager : public Node {
@@ -7,6 +8,7 @@ class WorldManager : public Node {
 
 private:
 	GameWorldForWorld* game_world;
+	ObjectService *object_service; //주입받기
 	void LoadGameWorld();
 	bool CheckCoordinatesInTileMap(Coordinates coord);
 
@@ -40,7 +42,7 @@ public:
 	}
 	Array GetBlockTypes(Vector2 coordinate);
 	void TestNewCharacter(Transform2D transform) {
-		game_world->GetObjectRepository()->TestNewCharacter(transform);
+		object_service->TestNewCharacter(transform);
 	}
 	int GetCharacterNumber() {
 		return game_world->GetObjectRepository()->GetCharacterNumber();

@@ -1,7 +1,9 @@
 #pragma once
+
 #include <queue>
 #include "StaticUnitService.h"
 #include "CoordinatesSystem.h"
+#include "GameWorldForInput.h"
 
 class InputStatus {
 public:

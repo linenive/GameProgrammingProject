@@ -5,7 +5,6 @@
 #include "BuildingType.h"
 #include "Building.h"
 #include "CoordinatesSystem.h"
-#include "GameManager.h"
 #include <Node.hpp>
 
 class StaticUnitService {

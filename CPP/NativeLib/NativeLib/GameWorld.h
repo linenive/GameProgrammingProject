@@ -10,11 +10,9 @@
 #include "GameWorldForTaskService.h"
 #include "GameWorldForProgressService.h"
 
-class GameWorld :
-	public GameWorldForUI, public GameWorldForAI,
-	public GameWorldForWorld, public GameWorldForInput,
-	public GameWorldForProgressService, public GameWorldForStaticUnit,
-	public GameWorldForObjectService, public GameWorldForTaskService {
+const unsigned int big_prime_number = 154813283;
+
+class GameWorld {
 
 private:
 	TimeRepository time_repo;
@@ -40,7 +38,6 @@ public:
 		object_repo = ObjectRepository();
 		village_repo = VillageRepository();
 		base_random_seed = ExtractSeed("banana");
-
 	}
 
 
