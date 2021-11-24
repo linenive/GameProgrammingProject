@@ -7,7 +7,6 @@
 #include <string>
 
 #include "GameWorldForObjectService.h"
-#include "GameWorldForTaskService.h"
 #include "GameWorldForProgressService.h"
 
 const unsigned int big_prime_number = 154813283;
