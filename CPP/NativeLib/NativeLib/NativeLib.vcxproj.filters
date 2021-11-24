@@ -111,6 +111,18 @@
     <Filter Include="소스 파일\Service\Village">
       <UniqueIdentifier>{16343c5b-fa1f-4f46-9428-b10462d826f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Domain\Skill">
+      <UniqueIdentifier>{fb174ca6-12e8-4eed-865a-b5808ad63b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Repository\SkillRepository">
+      <UniqueIdentifier>{0fa27ae1-2849-4ae3-b258-05a30b6c386a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Service\Skill">
+      <UniqueIdentifier>{48dbfbed-405a-4cf9-9c60-6f35e5ed8a1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\Stat">
+      <UniqueIdentifier>{43487be0-506e-452a-add9-5de5dde556d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TimeRepository.cpp">
@@ -169,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="TileService.h">
       <Filter>소스 파일\Service\WorldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Stat.cpp">
+      <Filter>소스 파일\Domain\Stat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +368,24 @@
     <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="RandomRepository.h">
       <Filter>소스 파일\Repository\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSkill.h">
+      <Filter>소스 파일\Domain\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillRepository.h">
+      <Filter>소스 파일\Repository\SkillRepository</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillService.h">
+      <Filter>소스 파일\Service\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>소스 파일\Domain\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="StatField.h">
+      <Filter>소스 파일\Domain\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="UnlockEvent.h">
+      <Filter>소스 파일\Domain\Stat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

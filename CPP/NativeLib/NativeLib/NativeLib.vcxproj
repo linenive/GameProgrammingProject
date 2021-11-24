@@ -152,6 +152,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="TileRepository.cpp" />
@@ -162,9 +163,14 @@
     <ClCompile Include="WorldManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CharacterSkill.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="RandomRepository.h" />
+    <ClInclude Include="SkillRepository.h" />
+    <ClInclude Include="SkillService.h" />
+    <ClInclude Include="Stat.h" />
+    <ClInclude Include="StatField.h" />
     <ClInclude Include="TaskService.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="AIExecuter.h" />
@@ -210,6 +216,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIService.h" />
+    <ClInclude Include="UnlockEvent.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillageRepository.h" />
     <ClInclude Include="VillageService.h" />
