@@ -62,12 +62,15 @@ func mouse_motion(position):
 	#uicontrol.show_tile_info(position)
 
 func update_tile_info(mouse_vector):
-	var tile_id = world_manager.GetTileId(mouse_vector)
-	if tile_id >= 0:
+	var tile_coord = world_manager.GetTileCoordinate(mouse_vector)
+	if tile_coord.x >= 0:
 		tile_info_label.text \
-			= String(tile_id)+": "+world_manager.GetSurfaceName(tile_id) \
+			= String(tile_coord.x)+","+String(tile_coord.y)+": "\
+			+ world_manager.GetSurfaceName(tile_coord) \
 			+ ", scale: (" \
 			+ String(world_manager.GetSurfaceScale().x) + "," \
-			+ String(world_manager.GetSurfaceScale().y) + ")"
+			+ String(world_manager.GetSurfaceScale().y) + ")" \
+			+ ", pass speed: "\
+			+ String(world_manager.GetTilePassSpeed(tile_coord))
 	else:
 		tile_info_label.text = ""

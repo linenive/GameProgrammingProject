@@ -15,22 +15,24 @@ func _ready():
 	
 	CreateTileMap()
 
-func CreateSurface(surface_type, transform):
+func CreateSurface(tile_coord, transform):
 	var surface_node = tile_scene.instance()
 	surface_node.transform = transform
-	surface_node.texture = tile_image_changer(world_manager.GetSurfaceType(surface_type))
+	surface_node.texture = tile_image_changer(world_manager.GetSurfaceType(tile_coord))
 	$Tile.add_child(surface_node)
 
 func CreateTileMap():
-	var tile_size = world_manager.GetTileNumber()
+	var tile_size_x = world_manager.GetTileSizeX()
+	var tile_size_y = world_manager.GetTileSizeY()
 	
-	for i in tile_size:
-		var transform =	world_manager.GetSurfaceTransform(i)
-		CreateSurface(i, transform)
-		CreateBlocks(i, transform)
+	for j in range(tile_size_y):
+		for i in range(tile_size_x):
+			var transform = world_manager.GetSurfaceTransform(Vector2(i, j))
+			CreateSurface(Vector2(i, j), transform)
+			CreateBlocks(Vector2(i, j), transform)
 
-func CreateBlocks(tile_id, transform):
-	var block_types = world_manager.GetBlockTypes(tile_id)
+func CreateBlocks(tile_coord, transform):
+	var block_types = world_manager.GetBlockTypes(tile_coord)
 	for bt in block_types:
 		var block_node = block_scene.instance()
 		block_node.transform = transform
@@ -86,11 +88,13 @@ func CreateBuildingNodes(building_id):
 		$Block.remove_child(n)
 		n.queue_free()
 	
-	var tile_size = world_manager.GetTileNumber()
+	var tile_size_x = world_manager.GetTileSizeX()
+	var tile_size_y = world_manager.GetTileSizeY()
 	
-	for i in tile_size:
-		var transform =	world_manager.GetSurfaceTransform(i)
-		CreateBlocks(i, transform)
-	
+	for j in range(tile_size_y):
+		for i in range(tile_size_x):
+			var coordinate = world_manager.GetSurfaceTransform(Vector2(i, j))
+			CreateBlocks(Vector2(i, j), coordinate)
+
 func _on_Main_create_character(ID):
 	create_character(ID)
