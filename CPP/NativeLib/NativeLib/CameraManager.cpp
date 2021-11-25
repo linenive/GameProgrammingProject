@@ -59,7 +59,7 @@ void godot::CameraManager::CameraMoveWithMouse(Vector2 now_mouse_vector) {
 Vector2 godot::CameraManager::CalcNewPosition(Vector2 new_position) {
 	new_position += camera.GetPosition();
 
-	Vector2 restrict_bound_min = get_viewport_rect().size / 2;
+	Vector2 restrict_bound_min = get_viewport_rect().size / 2 - camera_boundary_interval;
 	Vector2 restrict_bound_max = Vector2(DEFAULT_TILE_NUMBER_X * TILE_WIDTH, DEFAULT_TILE_NUMBER_Y * TILE_HEIGHT) - restrict_bound_min;
 	if (new_position.x < restrict_bound_min.x) {
 		new_position.x = restrict_bound_min.x;
