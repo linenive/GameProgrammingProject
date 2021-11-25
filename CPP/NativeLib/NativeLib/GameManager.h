@@ -17,21 +17,24 @@ private:
 		emit_signal(String("create_character"), character_id);
 	}
 
+	void EmitDeleteCharacter(int character_id) {
+		emit_signal(String("delete_character"), character_id);
+	}
+
 	void FetchQueueAndSignalToGodot() {
 		queue<int>* new_character_ids = &(game_service.object_service->new_character_ids);
+		queue<int>* deleted_character_ids = &(game_service.object_service->deleted_character_ids);
 		while (!new_character_ids->empty()) {
 			int new_id = new_character_ids->front();
 			new_character_ids->pop();
 			EmitNewCharacter(new_id);
 		}
-	}
-	/*
-	void LetGuestsLeave() {
-		queue<Character*>* village_leavers = ai_manager.GetVillageLeavers();
-		while (!village_leavers->empty()) {
-			
+		while (!deleted_character_ids->empty()) {
+			int del_id = deleted_character_ids->front();
+			deleted_character_ids->pop();
+			EmitDeleteCharacter(del_id);
 		}
-	}*/
+	}
 
 public:
 	static void _register_methods();

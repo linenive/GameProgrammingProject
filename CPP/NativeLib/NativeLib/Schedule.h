@@ -1,7 +1,7 @@
 #pragma once
-#include <vector>
 #include "Task.h"
 #include "CoordinatesSystem.h"
+#include "Physics.h"
 
 // Todo: load DB
 enum class ePurposeOfVisitType {
@@ -34,7 +34,9 @@ protected:
 	Coordinates village_arrival_point;
 	Coordinates village_departure_point;
 	Task* task = nullptr;
-	
+
+	bool is_pause_for_dequeue = false;
+
 public:
 	~Schedule() {
 		delete task;
@@ -43,7 +45,6 @@ public:
 
 	}
 	Schedule(Coordinates _village_arrival_point, Coordinates _village_departure_point) :
-		task(nullptr),
 		village_arrival_point(_village_arrival_point),
 		village_departure_point(_village_departure_point){}
 
@@ -55,14 +56,26 @@ public:
 		task = new_task;
 	}
 
-	Task* GetTask() {
-		return task;
-	}
-
 	void DeleteTask() {
 		delete task;
 		task = nullptr;
 	}
+
+	bool IsTaskType(eTaskType type) {
+		return task->GetType() == type;
+	}
+
+	bool IsTaskEnd() {
+		return !task->HasAction();
+	}
+
+	void ExecuteTask(Physics* performer_physics) {
+		task->Execute(performer_physics);
+	}
+
+	bool IsPauseForDequeue() { return is_pause_for_dequeue; }
+
+	void PauseForDequeue() { is_pause_for_dequeue = true; }
 	
 	Coordinates GetVillageDeparturePoint() { return village_departure_point; }
 };

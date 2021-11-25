@@ -13,29 +13,24 @@ private:
 	ObjectService* object_service;
 	TaskService* task_service;
 
-	queue<Character*>* village_leavers;
-
-	vector<Character*>* characters;
-	vector<Character*>* guests;
-	vector<Character*>* residents;
-	AIExecuter* ai_executer;
+	map<int, Character*>* characters;
+	map<int, Character*>* guests;
+	map<int, Character*>* residents;
+	AIExecuter ai_executer;
 	
 	Timer task_assign_timer;
-	/*
-	void ChangeTaskTarget(Character* performer, Vector2 target) {
-		TaskForMove* currentTask = dynamic_cast<TaskForMove*>(performer->GetSchedule()->GetTask());
-		if (currentTask == nullptr) return;
-		printf("ChangeTaskTarget2\n");
-		currentTask->ChangeTarget(performer->GetPhysics().GetPosition(),target);
-	}*/
+
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
-	void AddLeaveVillageTask(Character* character) {
-		Vector2 leave_point = CoordinatesToCenterVector(character->GetSchedule()->GetVillageDeparturePoint());
+	void AddSeekTask(Character* character, Vector2 leave_point) {
 		Task* new_task = task_service->CreateSeekTask(character, leave_point);
 		character->GetSchedule()->SetTask(new_task);
 	}
+	void AddLeaveVillageTask(Character* character) {
+		Task* new_task = task_service->CreateLeaveVillageTask(character);
+		character->GetSchedule()->SetTask(new_task);
+	}
 	void AddIdleTask(Character* performer) {
-		// 미구현
+		// To-do
 	}
 	void FindNewTaskToResident(Character* resident) {
 		AddIdleTask(resident);
@@ -53,17 +48,17 @@ private:
 		AddLeaveVillageTask(guest);
 	}
 	void AssignTaskToResidents() {
-		// To-do: Task가 있어도 중요도에 따라 새로 할당하는 기능
-		for (Character* c : *residents) {
-			if (!c->GetSchedule()->HasTask())
-				FindNewTaskToResident(c);
+		// To-do: task allocator for task priority
+		for (auto &kv : *residents) {
+			if (!kv.second->GetSchedule()->HasTask())
+				FindNewTaskToResident(kv.second);
 		}
 	}
 	void AssignTaskToGuests() {
-		// To-do: Task가 있어도 중요도에 따라 새로 할당하는 기능
-		for (Character* c : *guests) {
-			if (!c->GetSchedule()->HasTask())
-				FindNewTaskToGuest(c);
+		// To-do: task allocator for task priority
+		for (auto& kv : *guests) {
+			if (!kv.second->GetSchedule()->HasTask())
+				FindNewTaskToGuest(kv.second);
 		}
 	}
 	void AssignTaskToWholeCharacter() {
@@ -71,14 +66,22 @@ private:
 		AssignTaskToGuests();
 	}
 	void ExecuteCharactersTask() {
-		for (Character* c : *characters) {
-			ai_executer->ExecuteCharacterTask(c);
+		for (auto& kv : *characters) {
+			ai_executer.ExecuteCharacterTask(kv.second);
+		}
+	}
+
+	void DeleteLeavers() {
+		queue<int>* village_leavers = &ai_executer.village_leavers;
+		while (!village_leavers->empty()) {
+			int id = village_leavers->front();
+			village_leavers->pop();
+			object_service->DeleteChracter(id);
 		}
 	}
 
 public:
 	~AIService() {
-		delete ai_executer;
 		delete task_service;
 	}
 	AIService(ObjectService* _object_service, TaskService* _task_service)
@@ -96,9 +99,6 @@ public:
 		}
 
 		ExecuteCharactersTask();
-	}
-
-	queue<Character*>* GetVillageLeavers() {
-		return village_leavers;
+		DeleteLeavers();
 	}
 };

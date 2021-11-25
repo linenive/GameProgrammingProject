@@ -98,7 +98,7 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 
 	//back tracking
 	String path= Vector2(current_tile.x, current_tile.y);
-	printf("size: %d\n", closed_parent_list.size());
+	printf("[PathFinder]size: %d\n", closed_parent_list.size());
 	for (i=0; i<closed_parent_list.size(); i++)
 	{
 		parent_tile = closed_parent_list[current_tile];
