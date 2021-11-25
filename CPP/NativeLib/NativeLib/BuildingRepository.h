@@ -7,9 +7,6 @@
 class BuildingRepository {
 private:
     map<int, Building*> building_map; // building_map[id] = building;
-    bool IsExistId(int id) {
-        return building_map.find(id) != building_map.end();
-    }
 public:
     void AddBuilding(Building* building) {
         if (IsExistId(building->id)) {
@@ -21,7 +18,13 @@ public:
     }
     void DeleteBuildingById(int id) {
         if (IsExistId(id)) {
-            delete(building_map[id]);
+            Building* building = building_map[id];
+
+            for (auto block : building->blocks) {
+                block->Disappear();
+            }
+
+            delete(building);
             building_map.erase(id);
         }
         else {
@@ -35,5 +38,8 @@ public:
         else {
             printf("[BuildingRepository]ERROR: trying to get not exist building.\n");
         }
+    }
+    bool IsExistId(int id) {
+        return building_map.find(id) != building_map.end();
     }
 };

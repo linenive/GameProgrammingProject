@@ -6,7 +6,9 @@ enum class eBlockType {
     NONE,
     WOOD_WALL,
     WOOD_DOOR,
-    WOOD_FLOOR
+    WOOD_FLOOR,
+    WOOD_TABLE,
+    WOOD_CHAIR
 };
 
 class BlockTypeProperty {
@@ -36,5 +38,14 @@ public:
         level[static_cast<int>(eBlockType::WOOD_FLOOR)] = 0;
         name[static_cast<int>(eBlockType::WOOD_FLOOR)] = "wood_floor";
         pass_speed[static_cast<int>(eBlockType::WOOD_FLOOR)] = 1.0;
+
+        level[static_cast<int>(eBlockType::WOOD_TABLE)] = 1;
+        name[static_cast<int>(eBlockType::WOOD_TABLE)] = "wood_table";
+        pass_speed[static_cast<int>(eBlockType::WOOD_TABLE)] = 0.2;
+
+        level[static_cast<int>(eBlockType::WOOD_CHAIR)] = 1;
+        name[static_cast<int>(eBlockType::WOOD_CHAIR)] = "wood_chair";
+        pass_speed[static_cast<int>(eBlockType::WOOD_CHAIR)] = 0.2;
+
     }
 };
