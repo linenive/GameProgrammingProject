@@ -21,4 +21,28 @@ public:
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), leave_point);
 		return new LeaveVillageTask(paths);
 	}
+	float GetRandomPoint(float now_point, float bound_max) {
+		float new_point;
+		float rand_var = rand() % 400 - 200;
+		new_point = now_point + rand_var;
+		if (new_point < 0) {
+			new_point = 0;
+		}
+		if (new_point > bound_max) {
+			new_point = bound_max;
+		}
+		//printf("[TaskService]new point: %f, rand_var : %f, now point : %f\n", new_point, rand_var, now_point);
+		return new_point;
+	}
+	Task* CreateWanderTask(Character* c) {
+		float max_x = TILE_WIDTH * DEFAULT_TILE_NUMBER_X, max_y = TILE_HEIGHT * DEFAULT_TILE_NUMBER_Y;
+		Vector2 now_point = c->GetPhysics()->GetPosition();
+		Vector2 wander_point = Vector2(GetRandomPoint(now_point.x, max_x),GetRandomPoint(now_point.y, max_y));
+
+		while (!path_finder->IsPassablePoint(wander_point)) {
+			wander_point = Vector2(GetRandomPoint(now_point.x, max_x), GetRandomPoint(now_point.y, max_y));
+		}
+		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), wander_point);
+		return new WanderTask(paths);
+	}
 };

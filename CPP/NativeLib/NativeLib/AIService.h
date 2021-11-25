@@ -30,7 +30,8 @@ private:
 		character->GetSchedule()->SetTask(new_task);
 	}
 	void AddIdleTask(Character* performer) {
-		// To-do
+		Task* new_task = task_service->CreateWanderTask(performer);
+		performer->GetSchedule()->SetTask(new_task);
 	}
 	void FindNewTaskToResident(Character* resident) {
 		AddIdleTask(resident);
@@ -45,7 +46,8 @@ private:
 				return;
 			}
 		}
-		AddLeaveVillageTask(guest);
+		//AddLeaveVillageTask(guest);
+		AddIdleTask(guest);
 	}
 	void AssignTaskToResidents() {
 		// To-do: task allocator for task priority

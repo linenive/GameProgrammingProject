@@ -41,5 +41,7 @@ public:
 	}
 	queue<Vector2>* PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
 	queue<Vector2>* GetPathListByCoor(vector<Coordinates> ans, Vector2 target_pos);
+
+	bool IsPassablePoint(Vector2 next_point);
 };
 

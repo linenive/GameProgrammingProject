@@ -3,7 +3,7 @@
 #include <queue>
 
 enum class eTaskType {
-	NONE, SEEK, LEAVE_VILLAGE
+	NONE, SEEK, LEAVE_VILLAGE, WANDER
 };
 
 class Task{
@@ -24,6 +24,7 @@ public:
 		}
 		current_action->ExecuteAction(performer_physics);
 	}
+
 	virtual const eTaskType GetType() = 0;
 };
 
@@ -50,10 +51,8 @@ public:
 		if (!paths->empty()) {
 			current_action = new MoveAction(paths->front());
 			paths->pop();
-		}else {
 		}
 	}
-
 	// To-do: 수행 도중 갈 수 없게 된 경우 태스크 삭제하고 다시 새로운 Task로 시작됨
 	
 	virtual const eTaskType GetType() {
@@ -78,6 +77,16 @@ public:
 	}
 };
 
-class WanderTask : public Task {
+class WanderTask : public SeekTask {
 
+public:
+	~WanderTask() {
+		delete paths;
+	}
+	WanderTask(queue<Vector2>* _paths) : SeekTask(_paths) {
+		NextAction();
+	}
+	virtual const eTaskType GetType() {
+		return eTaskType::WANDER;
+	}
 };
