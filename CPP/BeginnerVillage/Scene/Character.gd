@@ -19,3 +19,6 @@ func _input(event):
 
 func init_character(character_id):
 	self.character_id = character_id
+
+func get_id():
+	return character_id

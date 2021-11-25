@@ -1,19 +1,38 @@
 #pragma once
-#include <vector>
+#include <queue>
 
 class AIExecuter {
 private:
+	void EndTask(Character* character) {
+		Schedule* schedule = character->GetSchedule();
+		if (schedule->IsTaskType(eTaskType::LEAVE_VILLAGE)) {
+			schedule->PauseForDequeue();
+			village_leavers.push(character->GetId());
+			return;
+		}
+		character->GetSchedule()->DeleteTask();
+	}
 
 public:
+	queue<int> village_leavers;
+
 	void ExecuteCharacterTask(Character* character) {
 		Schedule* schedule = character->GetSchedule();
-		if (schedule->HasTask()) {
-			Task* task = schedule->GetTask();
-			if (!task->IsEnd()) {
-				task->Execute(character);
-			} else {
-				schedule->DeleteTask();
-			}
+
+		if (!schedule->HasTask()) { return; }
+
+		if (schedule->IsPauseForDequeue()) {
+			return;
+		}
+		else if (!schedule->IsTaskEnd()) {
+			schedule->ExecuteTask(character->GetPhysics());
+		}
+		else {
+			EndTask(character);
 		}
 	}
+
+	
+
+	
 };
