@@ -48,7 +48,7 @@ void Example() {
 	cout << skill_service.PickRandomSkill()->GetSkillName() << endl;
 
 	skill_service.UnlockSkillWithEvent(eUnlockEvent::PASS_ONE_YEAR);
-	cout << "\---pass one year!---\n" << endl;
+	cout << "---pass one year!---\n" << endl;
 
 	cout << skill_service.PickRandomSkill()->GetSkillName() << endl;
 	cout << skill_service.PickRandomSkill()->GetSkillName() << endl;

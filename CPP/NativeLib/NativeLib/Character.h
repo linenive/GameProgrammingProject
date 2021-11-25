@@ -18,6 +18,7 @@ enum eGender {
 class Character : public WorldObject {
 
 private:
+	int id;
 	Schedule* schedule;
 	Inventory* inventory;
     eLevel level;
@@ -36,9 +37,9 @@ public:
 		delete schedule;
 		delete inventory;
 	}
-	Character(Transform2D transform, Vector2 scale) : WorldObject("Noname", transform, scale){
+	Character(int _id, Transform2D transform, Vector2 scale) : id(_id), WorldObject("Noname", transform, scale){
 		inventory = new Inventory();
-		inventory->Get(new Material("Wood"));
+		inventory->Get(new MaterialItem("Wood"));
 	}
 
 	void SetSchedule(Schedule* new_schedule){
@@ -47,4 +48,5 @@ public:
 	
 	Schedule* GetSchedule() { return schedule; }
 	Inventory* GetInventory() {	return inventory; }
+	int GetId() { return id; }
 };

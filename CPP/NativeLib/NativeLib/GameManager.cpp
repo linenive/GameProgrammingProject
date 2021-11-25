@@ -12,6 +12,7 @@ void GameManager::_register_methods() {
 	register_method("_physics_process", &GameManager::_physics_process);
 
 	register_signal<GameManager>(String("create_character"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<GameManager>(String("delete_character"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void GameManager::_init(){

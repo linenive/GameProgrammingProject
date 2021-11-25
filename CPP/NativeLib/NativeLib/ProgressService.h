@@ -29,7 +29,7 @@ public:
 		TimeRepository* _time_repo, EventLogRepository* _event_log_repo)
 	: object_service(_object_service), random_repo(_random_repo),
 		time_repo(_time_repo), event_log_repo(_event_log_repo){
-		guest_visit_event.setProbability(0.1f);
+		guest_visit_event.setProbability(0.07f);
 	}
 
 	void Update(float delta) {
