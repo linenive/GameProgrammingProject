@@ -16,6 +16,8 @@ namespace godot {
 		float zoom_min = 0.5;
 		float zoom_scroll_factor = 0.2;
 
+		Vector2 camera_boundary_interval = Vector2(1000, 1000);
+
 		void CameraMoveWithKey(Vector2 velocity);
 		void CameraMoveWithMouse(Vector2 now_mouse_vector);
 
