@@ -20,7 +20,7 @@ public:
 		object_repo->AddResident((Character*)new_character);
 		// Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetPhysics().GetPosition());
 	}
-	void CreateNewGuest() {
+	Character* CreateNewGuest() {
 		Coordinates arrival_point = Coordinates(0, 15);
 		WorldObject* new_character = factory.CreateObject(
 			next_character_id,
@@ -30,6 +30,8 @@ public:
 		object_repo->AddGuest((Character*)new_character);
 		new_character_ids.push(next_character_id);
 		next_character_id++;
+
+		return (Character*)new_character;
 	}
 
 	void DeleteChracter(int character_id) {
