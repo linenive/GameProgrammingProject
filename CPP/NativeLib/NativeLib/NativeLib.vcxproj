@@ -178,6 +178,9 @@
     <ClInclude Include="SkillService.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatField.h" />
+    <ClInclude Include="StructureRepository.h" />
+    <ClInclude Include="StructureType.cpp" />
+    <ClInclude Include="StructureType.h" />
     <ClInclude Include="TaskService.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="AIExecuter.h" />

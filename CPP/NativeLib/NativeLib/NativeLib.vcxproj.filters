@@ -146,9 +146,6 @@
     <ClCompile Include="Random.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
-    <ClCompile Include="Structure.h">
-      <Filter>소스 파일\Domain\StaticUnit</Filter>
-    </ClCompile>
     <ClCompile Include="BuildingType.cpp">
       <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClCompile>
@@ -196,6 +193,9 @@
     </ClCompile>
     <ClCompile Include="CharacterName.cpp">
       <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClCompile>
+    <ClCompile Include="Structure.h">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -410,5 +410,14 @@
     <Text Include="C:\Users\admin\Desktop\name.txt">
       <Filter>리소스 파일</Filter>
     </Text>
+    <ClInclude Include="StructureRepository.h">
+      <Filter>소스 파일\Repository\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureType.cpp">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureType.h">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
