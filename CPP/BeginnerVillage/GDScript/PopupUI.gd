@@ -38,6 +38,7 @@ func show_info_by_type(node, type):
 func _process(delta):
 	if(is_visible_in_tree()):
 		show_info_by_type(target_node, target_type)
+	pass
 
 func init_popup():
 	target_object_id = 0
@@ -85,20 +86,17 @@ func window_setting_character_info(node_character):
 	$CharacterInfo/InventorySlot/VBoxContainer/content_item_type.text = character_info["item1"][1]
 
 func get_character_info(node):
-	var characters_size = world_manager.GetCharacterNumber();
 	var inventory_size : int
 	var item_info_array : Array
 	
-	var character_position = node.get_position()
+	var character_id = node.get_id()
 	var character_info = {}
 	
-	for i in characters_size:
-		if character_position == world_manager.GetCharacterTransform(i).origin:
-			character_info["name"] = world_manager.GetCharacterName(i)
-			inventory_size = world_manager.GetCharacterInventorySize(i)
+	character_info["name"] = world_manager.GetCharacterName(character_id)
+	inventory_size = world_manager.GetCharacterInventorySize(character_id)
 			
-			for j in inventory_size:
-				item_info_array = world_manager.GetCharacterItem(i, j);
-				character_info["item" + str(j+1)] = item_info_array
+	for j in inventory_size:
+		item_info_array = world_manager.GetCharacterItem(character_id, j);
+		character_info["item" + str(j+1)] = item_info_array
 	
 	return character_info
