@@ -108,17 +108,23 @@
     <Filter Include="소스 파일\Service\Village">
       <UniqueIdentifier>{16343c5b-fa1f-4f46-9428-b10462d826f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Domain\Skill">
-      <UniqueIdentifier>{fb174ca6-12e8-4eed-865a-b5808ad63b38}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Repository\SkillRepository">
       <UniqueIdentifier>{0fa27ae1-2849-4ae3-b258-05a30b6c386a}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Service\Skill">
       <UniqueIdentifier>{48dbfbed-405a-4cf9-9c60-6f35e5ed8a1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Domain\Stat">
+    <Filter Include="소스 파일\Domain\CharacterStatus">
+      <UniqueIdentifier>{843567c8-0629-440d-841b-89dbe224f4b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\CharacterStatus\Skill">
+      <UniqueIdentifier>{fb174ca6-12e8-4eed-865a-b5808ad63b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\CharacterStatus\Stat">
       <UniqueIdentifier>{43487be0-506e-452a-add9-5de5dde556d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Domain\CharacterStatus\Name">
+      <UniqueIdentifier>{e15ad1fd-f63d-4ac1-a407-75b545237438}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,10 +183,19 @@
       <Filter>소스 파일\Service\WorldObject</Filter>
     </ClCompile>
     <ClCompile Include="Stat.cpp">
-      <Filter>소스 파일\Domain\Stat</Filter>
+      <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
     </ClCompile>
     <ClCompile Include="PathFindService.cpp">
       <Filter>소스 파일\Service\PathFinder</Filter>
+    </ClCompile>
+    <ClCompile Include="NameList.cpp">
+      <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClCompile>
+    <ClCompile Include="NameGenerator.cpp">
+      <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterName.cpp">
+      <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,7 +376,7 @@
       <Filter>소스 파일\Repository\Event</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSkill.h">
-      <Filter>소스 파일\Domain\Skill</Filter>
+      <Filter>소스 파일\Domain\CharacterStatus\Skill</Filter>
     </ClInclude>
     <ClInclude Include="SkillRepository.h">
       <Filter>소스 파일\Repository\SkillRepository</Filter>
@@ -370,13 +385,13 @@
       <Filter>소스 파일\Service\Skill</Filter>
     </ClInclude>
     <ClInclude Include="Stat.h">
-      <Filter>소스 파일\Domain\Stat</Filter>
+      <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
     </ClInclude>
     <ClInclude Include="StatField.h">
-      <Filter>소스 파일\Domain\Stat</Filter>
+      <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
     </ClInclude>
     <ClInclude Include="UnlockEvent.h">
-      <Filter>소스 파일\Domain\Stat</Filter>
+      <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
     </ClInclude>
     <ClInclude Include="PathFindService.h">
       <Filter>소스 파일\Service\PathFinder</Filter>
@@ -384,5 +399,16 @@
     <ClInclude Include="AIService.h">
       <Filter>소스 파일\Service\AI</Filter>
     </ClInclude>
+    <ClInclude Include="NameGenerator.h">
+      <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterName.h">
+      <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="C:\Users\admin\Desktop\name.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>

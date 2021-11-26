@@ -20,7 +20,8 @@ void WorldManager::_register_methods() {
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
 	register_method("GetCharacterTransform", &WorldManager::GetCharacterTransform);
 	register_method("GetCharacterScale", &WorldManager::GetCharacterScale);
-	register_method("GetCharacterName", &WorldManager::GetCharacterName);
+	register_method("GetCharacterFirstName", &WorldManager::GetCharacterFirstName);
+	register_method("GetCharacterLastName", &WorldManager::GetCharacterLastName);
 	register_method("GetCharacterItem", &WorldManager::GetCharacterItem);
 	register_method("GetCharacterInventorySize", &WorldManager::GetCharacterInventorySize);
 

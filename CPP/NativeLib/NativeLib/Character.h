@@ -5,6 +5,7 @@
 #include "Schedule.h"
 #include "CharacterSkill.h"
 #include "Stat.h"
+#include "CharacterName.h"
 #include <vector>
 
 enum eLevel {
@@ -19,6 +20,7 @@ class Character : public WorldObject {
 
 private:
 	int id;
+	CharacterFullName full_name;
 	Schedule* schedule;
 	Inventory* inventory;
     eLevel level;
@@ -37,7 +39,10 @@ public:
 		delete schedule;
 		delete inventory;
 	}
-	Character(int _id, Transform2D transform, Vector2 scale) : id(_id), WorldObject("Noname", transform, scale){
+	Character(int _id, CharacterFullName _name, eGender _gender,
+		Transform2D transform, Vector2 scale)
+		: id(_id), full_name(_name), gender(_gender),
+		WorldObject(_name.GetFullname(), transform, scale) {
 		inventory = new Inventory();
 		inventory->Get(new MaterialItem("Wood"));
 	}
@@ -49,4 +54,7 @@ public:
 	Schedule* GetSchedule() { return schedule; }
 	Inventory* GetInventory() {	return inventory; }
 	int GetId() { return id; }
+	string GetFirstName() { return full_name.GetName().value; }
+	string GetLastName() { return full_name.GetLastname(); }
+	CharacterFullName GetFullName() { return full_name; }
 };

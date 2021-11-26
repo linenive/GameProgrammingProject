@@ -145,11 +145,14 @@
     <ClCompile Include="BlockTypeProperty.cpp" />
     <ClCompile Include="BuildingType.cpp" />
     <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="CharacterName.cpp" />
     <ClCompile Include="CoordinatesSystem.cpp" />
     <ClCompile Include="DateSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="NameGenerator.cpp" />
+    <ClCompile Include="NameList.cpp" />
     <ClCompile Include="PathFindService.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Stat.cpp" />
@@ -164,8 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIService.h" />
+    <ClInclude Include="CharacterName.h" />
     <ClInclude Include="CharacterSkill.h" />
     <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="NameGenerator.h" />
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="PathFindService.h" />
     <ClInclude Include="RandomRepository.h" />
@@ -230,6 +235,9 @@
     <ClInclude Include="TimeRepository.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="Action.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="C:\Users\admin\Desktop\name.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

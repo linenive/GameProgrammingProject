@@ -77,7 +77,8 @@ func window_setting_character_info(node_character):
 	var character = node_character as Sprite
 	var character_info = get_character_info(node_character)
 	
-	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_name.text = character_info["name"]
+	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_first_name.text = character_info["first_name"]
+	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_last_name.text = character_info["last_name"]
 	$CharacterInfo/VBoxContainer/HBoxContainer3/content_character_position.text = position_to_string(node_character.get_position())
 	$CharacterInfo/character_sprite.texture = character.texture
 	
@@ -92,7 +93,8 @@ func get_character_info(node):
 	var character_id = node.get_id()
 	var character_info = {}
 	
-	character_info["name"] = world_manager.GetCharacterName(character_id)
+	character_info["first_name"] = world_manager.GetCharacterFirstName(character_id)
+	character_info["last_name"] = world_manager.GetCharacterLastName(character_id)
 	inventory_size = world_manager.GetCharacterInventorySize(character_id)
 			
 	for j in inventory_size:

@@ -53,8 +53,12 @@ public:
 	Vector2 GetCharacterScale(int character_id) {
 		return object_service->GetCharacter(character_id)->GetPhysics()->GetScale();
 	}
-	String GetCharacterName(int character_id) {
-		return String(object_service->GetCharacter(character_id)->GetName().c_str());
+	String GetCharacterFirstName(int character_id) {
+		return String(object_service->GetCharacter(character_id)->GetFirstName().c_str());
+	}
+
+	String GetCharacterLastName(int character_id) {
+		return String(object_service->GetCharacter(character_id)->GetLastName().c_str());
 	}
 
 	Array GetCharacterItem(int character_id, int item_id);

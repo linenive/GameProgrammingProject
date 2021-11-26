@@ -6,6 +6,9 @@
 margin_right = 361.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 0, 70 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 2.0
