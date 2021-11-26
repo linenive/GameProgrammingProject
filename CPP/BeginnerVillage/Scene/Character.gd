@@ -14,6 +14,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		if get_rect().has_point(to_local(godot_input.convert_position_by_camera(event.position))):
+			print("show_character_info_popup : " + str(get_instance_id()))
 			uicontrol.show_info_popup(self, "Character")
 			#camera_manager.SetCameraSetting_Trace(character_path)
 

@@ -21,11 +21,11 @@ func _ready():
 	for popup in get_node("ObjectInfoUI").get_children():
 		available_popups.append(popup)
 
-
 func show_info_popup(node, type):
 	var object_id = node.get_instance_id()
 	
 	if is_already_shown(object_id):
+		print("baby")
 		set_ui_top(get_popup_by_object_id(object_id))
 		return
 	
