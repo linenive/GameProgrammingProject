@@ -28,3 +28,4 @@ Vector2 CoordinatesToCenterVector(Coordinates coord) {
 Vector2 ClingToCloseCoordinate(Vector2 apsolute_position){
 	return CoordinatesToCenterVector(AbsolutePositionToCoordinates(apsolute_position));
 }
+
