@@ -6,7 +6,7 @@ class ObjectService {
 private:
 	CharacterFactory factory = CharacterFactory();
 	ObjectRepository* object_repo;
-	int next_character_id; // save needed
+	int next_character_id = 1; // save needed
 
 public:
 	queue<int> new_character_ids;

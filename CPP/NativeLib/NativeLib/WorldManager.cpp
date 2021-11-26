@@ -30,6 +30,7 @@ void WorldManager::_register_methods() {
 	register_method("GetVillageName", &WorldManager::GetVillageName);
 	register_method("SetVillageName", &WorldManager::SetVillageName);
 	register_method("GetMoney", &WorldManager::GetMoney);
+	register_method("AssignCharacterToHouse", &WorldManager::AssignCharacterToHouse);
 
 }
 
@@ -72,6 +73,7 @@ void WorldManager::LoadGameWorld() {
 	object_service = child->GetGameService()->object_service;
 	tile_service = child->GetGameService()->tile_service;
 	village_service = child->GetGameService()->village_service;
+	resident_service = child->GetGameService()->resident_service;
 }
 
 Array WorldManager::GetCharacterItem(int character_id, int item_id) {

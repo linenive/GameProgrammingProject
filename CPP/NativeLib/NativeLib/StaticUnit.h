@@ -11,7 +11,7 @@ public:
 	Rect2 ocupation_area;
 	vector<Block*> blocks;
 
-	StaticUnit(int id, string _name, Rect2 _ocupation_area) : name(_name), ocupation_area(_ocupation_area) {}
+	StaticUnit(int id, string _name, Rect2 _ocupation_area) : id(id), name(_name), ocupation_area(_ocupation_area) {}
 
 	void RegisterBlock(Block* block)
 	{

@@ -10,6 +10,7 @@
 #include "VillageService.h"
 #include "ProgressService.h"
 #include "AIService.h"
+#include "ResidentService.h"
 
 class GameService{
 
@@ -27,6 +28,7 @@ public:
 	VillageService* village_service;
 	ProgressService* progress_service;
 	AIService* ai_service;
+	ResidentService* resident_service;
 	
 	~GameService() {
 		delete object_service;
@@ -38,6 +40,7 @@ public:
 		delete village_service;
 		delete progress_service;
 		delete ai_service;
+		delete resident_service;
 	}
 
 	GameService() {
@@ -52,6 +55,9 @@ public:
 		ui_service = new UIService(
 			&game_world.time_repo, &game_world.event_log_repo
 		);
+		resident_service = new ResidentService(
+			&game_world.object_repo, &game_world.building_repo
+		);
 
 		// 생성 시 다른 서비스를 받는 서비스들
 		task_service = new TaskService(
@@ -65,7 +71,7 @@ public:
 			&game_world.time_repo, &game_world.event_log_repo
 		);
 		ai_service = new AIService(
-			object_service, task_service
+			object_service, task_service, resident_service
 		);
 	};
 
