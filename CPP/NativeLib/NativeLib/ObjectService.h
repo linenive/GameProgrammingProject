@@ -14,25 +14,28 @@ public:
 	ObjectService(ObjectRepository* _object_repo):object_repo(_object_repo){}
 
 	void TestNewCharacter(Transform2D transform) {
-		WorldObject* new_character = factory.CreateObject(
-			next_character_id++, transform, Vector2(TILE_WIDTH, TILE_HEIGHT)
+		WorldObject* new_character = factory.CreateCharacter(
+			next_character_id++, transform
 		);
 		object_repo->AddResident((Character*)new_character);
 		// Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetPhysics().GetPosition());
 	}
 	void CreateNewGuest() {
 		Coordinates arrival_point = Coordinates(0, 15);
-		WorldObject* new_character = factory.CreateObject(
+		Character* new_character = factory.CreateCharacter(
 			next_character_id,
-			Transform2D(0, CoordinatesToCenterVector(arrival_point)),
-			Vector2(TILE_WIDTH, TILE_HEIGHT)
+			Transform2D(0, CoordinatesToCenterVector(arrival_point))
 		);
-		object_repo->AddGuest((Character*)new_character);
+		String s1 = "[ObjectService]New Character: ";
+		String s2 = new_character->GetFullName().GetFullname().c_str();
+		Godot::print(s1+s2);
+		object_repo->AddGuest(new_character);
 		new_character_ids.push(next_character_id);
 		next_character_id++;
 	}
 
 	void DeleteChracter(int character_id) {
+		factory.ReturnCharacterName(object_repo->GetCharacter(character_id)->GetFullName());
 		object_repo->DeleteCharacter(character_id);
 		deleted_character_ids.push(character_id);
 	}

@@ -1,6 +1,8 @@
 #pragma once
+#include <time.h>
 #include "WorldObjectFactory.h"
 #include "Character.h"
+#include "NameGenerator.h"
 
 // Todo: hard coding -> load DB
 class PurposeOfVisitFactory {
@@ -19,6 +21,8 @@ public:
 
 class CharacterFactory : public WorldObjectFactory {
 private:
+	NameGenerator name_generator;
+
 	PurposeOfVisitFactory purpose_factory;
 	// To-do: game progress에 따라 guest들이 가지는 number of purpose가 늘어나고,
 	// purpose type들도 Unlock될 수 있도록 만든다.
@@ -34,15 +38,27 @@ private:
 		}
 	}
 
-protected:
+	Character* CreateNormalGuest(int character_id, Transform2D transform) {
+		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X - 1, 30));
+		srand((unsigned int)time(NULL));
+		eGender gender = static_cast<eGender>(rand() % 2);
 
-public:
-	WorldObject* CreateObject(int character_id, Transform2D transform, Vector2 scale) {
-		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X-1, 30));
-		Character* new_character = new Character(character_id, transform, scale);
+		Character* new_character = new Character(
+			character_id, name_generator.MakeFullName(static_cast<eNameType>(gender)), gender,
+			transform, Vector2(TILE_WIDTH, TILE_HEIGHT)
+		);
 		new_character->SetSchedule(new_schedule);
 		// SettingPurposeOfVisit(new_character);
-
 		return new_character;
+	}
+
+public:
+
+	Character* CreateCharacter(int character_id, Transform2D transform) {
+		return CreateNormalGuest(character_id, transform);
+	}
+
+	void ReturnCharacterName(CharacterFullName fullName) {
+		name_generator.ReturnName(fullName);
 	}
 };

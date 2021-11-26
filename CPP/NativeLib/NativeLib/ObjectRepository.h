@@ -35,7 +35,6 @@ public:
 		else {
 			printf("[ObjectRepository]ERROR: trying to get not exist character(input id: %d).\n", character_id);
 		}
-		
 	}
 	map<int, Character*>* GetCharacters() {
 		return &characters;
