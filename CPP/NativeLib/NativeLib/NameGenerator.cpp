@@ -4,7 +4,7 @@
 #include <random>
 
 NameGenerator::NameGenerator(){
-    //load_name_data_godot();
+    load_name_data2();
     FillFamilyNameQueue(family_name_list);
     FillManNameQueue(man_name_list);
     FillWomanNameQueue(woman_name_list);
@@ -18,24 +18,24 @@ void ShuffleList(vector<string> &list){
 void NameGenerator::FillFamilyNameQueue(vector<string> &list){
     ShuffleList(list);
     for (int i = 0; i < list.size(); i++)
-        familyNameQueue.push(list[i]);
+        family_name_queue.push(list[i]);
 }
 
 void NameGenerator::FillManNameQueue(vector<string> &list){
     ShuffleList(list);
     for (int i = 0; i < list.size(); i++)
-        manNameQueue.push(CharacterName(list[i], eNameType::MAN));
+        man_name_queue.push(CharacterName(list[i], eNameType::MAN));
 }
 
 void NameGenerator::FillWomanNameQueue(vector<string> &list){
     ShuffleList(list);
     for (int i = 0; i < list.size(); i++)
-        womanNameQueue.push(CharacterName(list[i], eNameType::WOMAN));
+        woman_name_queue.push(CharacterName(list[i], eNameType::WOMAN));
 }
 string NameGenerator::PickFamilyName(){
-    string value = familyNameQueue.front();
-    familyNameQueue.pop();
-    familyNameQueue.push(value);
+    string value = family_name_queue.front();
+    family_name_queue.pop();
+    family_name_queue.push(value);
     return value;
 }
 
@@ -46,15 +46,15 @@ CharacterName GetNameFromQueue(queue<CharacterName> &q){
 }
 
 CharacterName NameGenerator::PickManName(){
-    if(manNameQueue.empty())
-        return dummyName;
-    return GetNameFromQueue(manNameQueue);
+    if(man_name_queue.empty())
+        return dummy_name;
+    return GetNameFromQueue(man_name_queue);
 }
 
 CharacterName NameGenerator::PickWomanName(){
-    if(womanNameQueue.empty())
-        return dummyName;
-    return GetNameFromQueue(womanNameQueue);
+    if(woman_name_queue.empty())
+        return dummy_name;
+    return GetNameFromQueue(woman_name_queue);
 }
 
 CharacterFullName NameGenerator::MakeFullName(eNameType gender){
@@ -67,10 +67,10 @@ CharacterFullName NameGenerator::MakeFullName(eNameType gender){
 }
 
 void NameGenerator::ReturnName(CharacterFullName fullName){
-    if(fullName.GetName() == dummyName)
+    if(fullName.GetName() == dummy_name)
         return;
     if (fullName.GetType() == eNameType::MAN)
-        manNameQueue.push(fullName.GetName());
+        man_name_queue.push(fullName.GetName());
     else
-        womanNameQueue.push(fullName.GetName());
+        woman_name_queue.push(fullName.GetName());
 }
