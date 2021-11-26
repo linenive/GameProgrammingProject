@@ -35,6 +35,7 @@ private:
 	}
 
 	int CreateStructure(eStructureType type, Coordinates top_left_coordinates);
+	Rect2 ConvertToOccupationArea(Coordinates top_left_coordinates, int width, int height);
 
 public:
 	int CreateBuilding(int type, Vector2 top_left_tile_position);

@@ -1,6 +1,6 @@
 #include "StaticUnitService.h"
 
-StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo) 
+StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo)
 	: StaticUnitService(tile_repo, building_repo, 1) {}
 StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_unit_id)
 	: tile_repo(tile_repo), building_repo(building_repo), next_unit_id(start_unit_id) {}
@@ -20,12 +20,21 @@ int StaticUnitService::CreateBuilding(eBuildingType type, Coordinates top_left_c
 	Building* new_building = new Building(
 		next_unit_id++,
 		data.name,
-		Rect2(x, y, data.width, data.height),
+		ConvertToOccupationArea(top_left_coordinates, data.width, data.height),
 		data.slot_num);
 	RegisterBlocksToWorld(x, y, data.blocks, new_building);
 
 	AddBuilding(new_building);
 	return new_building->id;
+}
+
+Rect2 StaticUnitService::ConvertToOccupationArea(Coordinates top_left_coordinates, int width, int height) {
+	return Rect2(
+		top_left_coordinates.x * TILE_WIDTH,
+		top_left_coordinates.y * TILE_HEIGHT,
+		width * TILE_WIDTH,
+		height * TILE_HEIGHT
+	);
 }
 
 int StaticUnitService::CreateStructure(int type, Vector2 top_left_tile_position) {
@@ -43,7 +52,7 @@ int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left
 	Structure* new_structure = new Structure(
 		next_unit_id++,
 		data.name,
-		Rect2(x, y, data.width, data.height));
+		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
 
 	RegisterBlocksToWorld(x, y, data.blocks, new_structure);
 
@@ -98,7 +107,7 @@ bool StaticUnitService::IsPlacablePosition(int start_x, int start_y, vector< vec
 			if (tile->IsEmptyLayer(level) == false) {
 				return false;
 			}
-				
+
 		}
 	}
 	return true;
@@ -108,7 +117,7 @@ void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< 
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
 			Tile* tile = GetTile(start_x + i, start_y + j);
-			eBlockType& block_type = blocks[i][j];
+			eBlockType& block_type = blocks[j][i];
 			Block* block = tile->GetBlock(BlockTypeProperty::LevelOf(block_type));
 
 			block->SetName(BlockTypeProperty::NameOf(block_type));

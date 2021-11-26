@@ -45,6 +45,10 @@ private:
 	// To-do: hard coding -> algorithm which use DB
 	void FindNewTaskToGuest(Character* guest) {
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
+		if (guest->home_id != -1) { //test
+			AddSeekTaskToHome(guest);
+			return;
+		}
 		for (PurposeOfVisit* p : purposes) {
 			if (p->CanExecute()) {
 				// To-do: 
@@ -54,12 +58,6 @@ private:
 		}
 		//AddLeaveVillageTask(guest);
 		AddIdleTask(guest);
-		printf("hey\n");
-		if (guest->home_id != -1) { //test
-			printf("did u came here?\n");
-			AddSeekTaskToHome(guest);
-		}
-		AddLeaveVillageTask(guest);
 	}
 	void AssignTaskToResidents() {
 		// To-do: task allocator for task priority
