@@ -16,20 +16,22 @@ static void load_name_data2() {
 	string m_name_data = "가디 가론 가안 게일 겔 겔드 그리엣 구그 나디 나인 나파 네일 다이야 다후 데닐 데닛 데런 데리 데이엘 데이즈 데인 도날드 도넛 도리 디오 라덴 라이델 라이얀 라이트 라토 레이널드 로무 루벤 로디 로벨 로빈 로카 로토 루디 루아스 루이놀 리마 마톤 마이트 마일 마푸 밀 밀크 만고 말리 멀린 메론 메루 멜 모브 몽 몽몽 무니 무하 민트 바넨 바론 바비 바인 반자 베닐 벤 부리 브라피 블랑 사먄 사우스 샤론 샤빌 샤크 세나 세닐 세바 세앙 세이비 세피 솔라 아보 아폴 에루일 우유 유카 위간 위올드 이라이 이블 자크 잔잔 쟝 제이슨 주스 준 체빌 체크 츄브 카돈 카론 카비 카벨 카인 카일 카치 칸칸 케이프 케인 케일 케프 코올 코쿠 콜드 쿠키 쿤 쿠쿠 캐모 키비 키주 킬드 타이프 타타 테이트 토마 토드 토브 튜브 파비 파인 파일 피마 피엘 피쿠 피픽 페리 하무 하비 함바그 햐크 헤덴 헤비 헤피 헨델 헨리 헨지 화이트 후크 후푸 히치";
 	string w_name_data = "그리에 나디 나인 나파 네일 다이야 다후 데리 데이엘 데이즈 도넛 도리 디오 라스타 라이아 라일라 루벤 로디 로벨 로빈 로즈마리 로카 루디 루루 리마 리푸 마냐 마나 마론 마뤼 밀카 밀크 만고 멀린 메구 메론 메루 메디아 모브 몽몽 몽블랑 무니 무라 무아나 무하 미유 미치 민트 민티아 바냐 바나 바넨 바니엘 바닐 바닐린 바론 바바로아 바반나 바비 베이디 부리 블랑 블린 비바 비비아 비비안 비앙카 사디아 사먄 사이라 사키아 샤샤 샤론 샤빌 샤크 샴푸 세나 세앙 세이비 세피 솔라 오요나 올리브 우유 유나 유카 이라이 이블 이아 잔잔 제이미 주스 준 체이사 체키나 카론 카리엘 카비 카이사 카일 카티나 카푸리 케일 쿠리마 쿠키 코나 코마 코코나 콜라 쿠쿠 캐모 키비 키주 타타 테이트 토마 파비엔 파인 파일 포포리 포리 폴라 푸리 프리에 플로라 플로린 피마 피엘 피쿠 필리아 하니하 햐크 화이트 후크 후푸 히치";
 
+	string f_name_eng = "estern abc das banana cake";
+
 	string word_buffer;
 
-	std::stringstream family_line(f_name_data);
+	std::stringstream family_line(f_name_eng);
 
 	while (getline(family_line, word_buffer, ' ')) {
 		family_name_list.push_back(word_buffer);
 	}
 
-	std::stringstream m_name_line(m_name_data);
+	std::stringstream m_name_line(f_name_eng);
 	while (getline(m_name_line, word_buffer, ' ')) {
 		man_name_list.push_back(word_buffer);
 	}
 
-	std::stringstream f_name_line(w_name_data);
+	std::stringstream f_name_line(f_name_eng);
 	while (getline(f_name_line, word_buffer, ' ')) {
 		woman_name_list.push_back(word_buffer);
 	}
