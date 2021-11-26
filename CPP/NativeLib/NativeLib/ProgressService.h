@@ -18,11 +18,12 @@ private:
 	}
 
 	void VisitNewGuest() {
-		event_log_repo->AddLog(EventLog(
-			"Guest Visit", "Visit Guest " + to_string(test_guest_num), time_repo->CaptureGameTime()
-		));
 		test_guest_num++;
-		object_service->CreateNewGuest();
+		Character* new_character =  object_service->CreateNewGuest();
+		event_log_repo->AddLog(EventLog(
+			"Guest Visit", "Visit Guest " + to_string(test_guest_num), time_repo->CaptureGameTime(),
+			new_character->GetPhysics()->GetPosition()
+		));
 	}
 public:
 	ProgressService(ObjectService* _object_service, RandomRepository* _random_repo,
