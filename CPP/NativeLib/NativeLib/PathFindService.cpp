@@ -121,11 +121,6 @@ bool PathFindService::IsPassableTile(Coordinates next_tile) {
 	return tile_map->IsPassableTile(next_tile.x, next_tile.y);
 }
 
-bool PathFindService::IsPassablePoint(Vector2 next_point){
-	Coordinates next_tile = AbsolutePositionToCoordinates(next_point);
-	return IsPassableTile(next_tile);
-}
-
 Vector2 PathFindService::CalcObstacleVector(Coordinates current_tile) {
 	int x, y;
 

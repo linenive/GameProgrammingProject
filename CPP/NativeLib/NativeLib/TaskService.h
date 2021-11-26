@@ -23,7 +23,7 @@ public:
 	}
 	float GetRandomPoint(float now_point, float bound_max) {
 		float new_point;
-		float rand_var = rand() % 400 - 200;
+		float rand_var = rand() % 20 - 10;
 		new_point = now_point + rand_var;
 		if (new_point < 0) {
 			new_point = 0;
@@ -36,12 +36,14 @@ public:
 	}
 	Task* CreateWanderTask(Character* c) {
 		float max_x = TILE_WIDTH * DEFAULT_TILE_NUMBER_X, max_y = TILE_HEIGHT * DEFAULT_TILE_NUMBER_Y;
-		Vector2 now_point = c->GetPhysics()->GetPosition();
-		Vector2 wander_point = Vector2(GetRandomPoint(now_point.x, max_x),GetRandomPoint(now_point.y, max_y));
+		Coordinates now_coor = AbsolutePositionToCoordinates(c->GetPhysics()->GetPosition());
+		Coordinates wander_coor = Coordinates(GetRandomPoint(now_coor.x, max_x),GetRandomPoint(now_coor.y, max_y));
 
-		while (!path_finder->IsPassablePoint(wander_point)) {
-			wander_point = Vector2(GetRandomPoint(now_point.x, max_x), GetRandomPoint(now_point.y, max_y));
+		while (!path_finder->IsPassableTile(wander_coor)) {
+			wander_coor = Coordinates(GetRandomPoint(now_coor.x, max_x), GetRandomPoint(now_coor.y, max_y));
 		}
+
+		Vector2 wander_point = CoordinatesToCenterVector(wander_coor);
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), wander_point);
 		return new WanderTask(paths);
 	}
