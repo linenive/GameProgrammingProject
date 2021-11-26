@@ -39,7 +39,7 @@ public:
 		Coordinates now_coor = AbsolutePositionToCoordinates(c->GetPhysics()->GetPosition());
 		Coordinates wander_coor = Coordinates(GetRandomPoint(now_coor.x, max_x),GetRandomPoint(now_coor.y, max_y));
 
-		while (!path_finder->IsPassableTile(wander_coor)) {
+		while (!tile_repo->IsPassableTile(wander_coor.x, wander_coor.y)) {
 			wander_coor = Coordinates(GetRandomPoint(now_coor.x, max_x), GetRandomPoint(now_coor.y, max_y));
 		}
 
