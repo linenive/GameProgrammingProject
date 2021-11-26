@@ -20,6 +20,11 @@ public:
         if (IsExistId(id)) {
             Building* building = building_map[id];
 
+            if (!building->character_slots.empty()) {
+                printf("[BuildingRepository]WARNING: please free residents before delete building.\n");
+                return;
+            }
+
             for (auto block : building->blocks) {
                 block->Disappear();
             }
@@ -41,5 +46,11 @@ public:
     }
     bool IsExistId(int id) {
         return building_map.find(id) != building_map.end();
+    }
+
+    ~BuildingRepository() {
+        for (auto item : building_map) {
+            delete(item.second);
+        }
     }
 };

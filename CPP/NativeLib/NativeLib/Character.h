@@ -35,6 +35,10 @@ private:
     void SetBaseStat();
 
 public:
+
+	int home_id = -1;
+	int work_space_id = -1;
+
 	~Character() {
 		delete schedule;
 		delete inventory;
