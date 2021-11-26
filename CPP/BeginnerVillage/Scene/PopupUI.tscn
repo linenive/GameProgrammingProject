@@ -76,7 +76,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
-margin_right = 124.0
+margin_right = 176.0
 margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -91,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="content_character_name" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer"]
+[node name="content_character_first_name" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer"]
 margin_left = 60.0
 margin_right = 116.0
 margin_bottom = 16.0
@@ -101,9 +101,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="content_character_last_name" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer"]
+margin_left = 120.0
+margin_right = 176.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "noname"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
 margin_top = 20.0
-margin_right = 124.0
+margin_right = 176.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -130,7 +140,7 @@ __meta__ = {
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
 margin_top = 40.0
-margin_right = 124.0
+margin_right = 176.0
 margin_bottom = 56.0
 __meta__ = {
 "_edit_use_anchors_": false

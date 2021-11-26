@@ -145,6 +145,7 @@
     <ClCompile Include="BlockTypeProperty.cpp" />
     <ClCompile Include="BuildingType.cpp" />
     <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="CharacterName.cpp" />
     <ClCompile Include="CoordinatesSystem.cpp" />
     <ClCompile Include="DateSystem.cpp" />
     <ClCompile Include="GameManager.cpp" />

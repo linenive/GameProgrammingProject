@@ -42,7 +42,7 @@ public:
 	Character(int _id, CharacterFullName _name, eGender _gender,
 		Transform2D transform, Vector2 scale)
 		: id(_id), full_name(_name), gender(_gender),
-		WorldObject("Noname", transform, scale) {
+		WorldObject(_name.GetFullname(), transform, scale) {
 		inventory = new Inventory();
 		inventory->Get(new MaterialItem("Wood"));
 	}
@@ -54,5 +54,7 @@ public:
 	Schedule* GetSchedule() { return schedule; }
 	Inventory* GetInventory() {	return inventory; }
 	int GetId() { return id; }
+	string GetFirstName() { return full_name.GetName().value; }
+	string GetLastName() { return full_name.GetLastname(); }
 	CharacterFullName GetFullName() { return full_name; }
 };

@@ -27,7 +27,6 @@ public:
 			Transform2D(0, CoordinatesToCenterVector(arrival_point))
 		);
 		String s2 = String(new_character->GetFullName().GetFullname().c_str());
-		Godot::print("[ObjectService]New Character " + s2 + " Created");
 		object_repo->AddGuest(new_character);
 		new_character_ids.push(next_character_id);
 		next_character_id++;

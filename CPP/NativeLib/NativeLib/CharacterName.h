@@ -24,6 +24,7 @@ public:
     CharacterFullName(string familyName, CharacterName name) : familyName(familyName), name(name) {};
 
     string GetFullname();
+    string GetLastname();
     CharacterName GetName();
     eNameType GetType();
 };

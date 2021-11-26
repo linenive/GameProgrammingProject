@@ -8,6 +8,11 @@ string CharacterFullName::GetFullname() {
     return familyName + " " + name.value;
 }
 
+string CharacterFullName::GetLastname()
+{
+    return familyName;
+}
+
 CharacterName CharacterFullName::GetName(){
     return name;
 }

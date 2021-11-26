@@ -194,6 +194,9 @@
     <ClCompile Include="NameGenerator.cpp">
       <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterName.cpp">
+      <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTime.h">
