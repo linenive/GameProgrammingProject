@@ -23,11 +23,35 @@ private:
 		return resident->work_space_id != -1;
 	}
 
+	bool IsInvalidRequest(int resident_id, int building_id) {
+		if (!object_repo->IsExistId(resident_id) || !building_repo->IsExistId(building_id)) {
+			printf("[ResidentService]WARNING: Trying to access not exist IDs. ");
+			printf("char ID : %d, building ID : %d\n", resident_id, building_id);
+			return true;
+		}
+		return false;
+	}
+
+	bool IsInvalidRequest(int resident_id) {
+		if (!object_repo->IsExistId(resident_id)) {
+			printf("[ResidentService]WARNING: Trying to access not exist IDs. ");
+			printf("char ID : %d\n", resident_id);
+			return true;
+		}
+		return false;
+	}
+
+	Vector2 DummyVector() {
+		return Vector2(10, 10);
+	}
+
 public:
 	ResidentService(ObjectRepository* object_repo, BuildingRepository* building_repo) 
 		: object_repo(object_repo), building_repo(building_repo) {}
 	
 	void AssignResidentToHome(int resident_id, int home_id) {
+		if (IsInvalidRequest(resident_id, home_id))
+			return;
 		Character* resident = object_repo->GetCharacter(resident_id);
 		if (HasHome(resident)) {
 			Building* home = building_repo->GetBuildingById(resident->home_id);
@@ -39,6 +63,8 @@ public:
 	}
 
 	void AssignResidentToWorkSpace(int resident_id, int work_space_id) {
+		if (IsInvalidRequest(resident_id, work_space_id))
+			return;
 		Character* resident = object_repo->GetCharacter(resident_id);
 		if (HasWorkSpace(resident)) {
 			Building* work_space = building_repo->GetBuildingById(resident->work_space_id);
@@ -51,6 +77,8 @@ public:
 
 
 	void FreeFromHome(int resident_id) {
+		if (IsInvalidRequest(resident_id))
+			return;
 		Character* resident = object_repo->GetCharacter(resident_id);
 		Building* home = building_repo->GetBuildingById(resident->home_id);
 
@@ -59,6 +87,8 @@ public:
 	}
 
 	void FreeFromWorkSpace(int resident_id) {
+		if (IsInvalidRequest(resident_id))
+			return;
 		Character* resident = object_repo->GetCharacter(resident_id);
 		Building* work_space = building_repo->GetBuildingById(resident->home_id);
 
@@ -67,10 +97,12 @@ public:
 	}
 
 	Vector2 GetResidentHomePosition(int resident_id) {
+		if (IsInvalidRequest(resident_id))
+			return DummyVector();
 		Character* resident = object_repo->GetCharacter(resident_id);
 		if (resident->home_id == -1) {
 			printf("[ResidentService]ERROR: this resident doesn't have home! id: %d\n", resident_id);
-			return Vector2(10, 10); //dummy position
+			return DummyVector();
 		}
 		else {
 			Building* home = building_repo->GetBuildingById(resident->home_id);
@@ -79,10 +111,12 @@ public:
 	}
 
 	Vector2 GetResidentWorkPlacePosition(int resident_id) {
+		if (IsInvalidRequest(resident_id))
+			return DummyVector();
 		Character* resident = object_repo->GetCharacter(resident_id);
 		if (resident->work_space_id == -1) {
 			printf("[ResidentService]ERROR: this resident doesn't have work place! id: %d\n", resident_id);
-			return Vector2(10, 10); //dummy position
+			return DummyVector();
 		}
 		else {
 			Building* work_place = building_repo->GetBuildingById(resident->work_space_id);
