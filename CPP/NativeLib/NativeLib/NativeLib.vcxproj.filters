@@ -483,6 +483,11 @@
     </ClInclude>
     <ClInclude Include="ResidentService.h">
       <Filter>소스 파일\Service\WorldObject</Filter>
+    <ClInclude Include="Furniture.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="SlotItem.h">
+      <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

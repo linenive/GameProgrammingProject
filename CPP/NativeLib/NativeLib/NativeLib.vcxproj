@@ -188,6 +188,7 @@
     <ClInclude Include="SerializableClass.h" />
     <ClInclude Include="SkillRepository.h" />
     <ClInclude Include="SkillService.h" />
+    <ClInclude Include="SlotItem.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatField.h" />
     <ClInclude Include="StaticUnitManager.h" />
