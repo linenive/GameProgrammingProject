@@ -15,26 +15,42 @@ private:
 		building->AssignCharacter(villager);
 	}
 
+	bool HasHome(Character* resident) {
+		return resident->home_id != -1;
+	}
+
+	bool HasWorkSpace(Character* resident) {
+		return resident->work_space_id != -1;
+	}
+
 public:
 	ResidentService(ObjectRepository* object_repo, BuildingRepository* building_repo) 
 		: object_repo(object_repo), building_repo(building_repo) {}
 	
 	void AssignResidentToHome(int resident_id, int home_id) {
 		Character* resident = object_repo->GetCharacter(resident_id);
-		resident->home_id = home_id;
+		if (HasHome(resident)) {
+			Building* home = building_repo->GetBuildingById(resident->home_id);
+			home->FreeResident(resident_id);
+		}
 
+		resident->home_id = home_id;
 		AssignCharacterToBuilding(resident, home_id);
 	}
 
 	void AssignResidentToWorkSpace(int resident_id, int work_space_id) {
 		Character* resident = object_repo->GetCharacter(resident_id);
-		resident->work_space_id = work_space_id;
+		if (HasWorkSpace(resident)) {
+			Building* work_space = building_repo->GetBuildingById(resident->work_space_id);
+			work_space->FreeResident(resident_id);
+		}
 
+		resident->work_space_id = work_space_id;
 		AssignCharacterToBuilding(resident, work_space_id);
 	}
 
 
-	void FreeFromHome(int  resident_id) {
+	void FreeFromHome(int resident_id) {
 		Character* resident = object_repo->GetCharacter(resident_id);
 		Building* home = building_repo->GetBuildingById(resident->home_id);
 
