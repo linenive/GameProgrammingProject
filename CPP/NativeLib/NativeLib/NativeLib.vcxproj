@@ -188,7 +188,6 @@
     <ClInclude Include="SerializableClass.h" />
     <ClInclude Include="SkillRepository.h" />
     <ClInclude Include="SkillService.h" />
-    <ClInclude Include="SlotItem.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatField.h" />
     <ClInclude Include="StaticUnitManager.h" />
@@ -238,6 +237,7 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIService.h" />
     <ClInclude Include="UnlockEvent.h" />
+    <ClInclude Include="UsableFurniture.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillageRepository.h" />
     <ClInclude Include="ResidentService.h" />
