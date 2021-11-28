@@ -37,11 +37,13 @@ private:
 		}
 	}
 
-	Character* CreateNormalGuest(int character_id, Transform2D transform) {
+public:
+
+	Guest* CreateNormalGuest(int character_id, Transform2D transform) {
 		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X - 1, 30));
 		srand((unsigned int)time(NULL));
 		eGender gender = static_cast<eGender>(rand() % 2);
-		Character* new_character = new Character(
+		Guest* new_character = new Guest(
 			character_id, name_generator.MakeFullName(static_cast<eNameType>(gender)), gender,
 			transform, Vector2(TILE_WIDTH, TILE_HEIGHT)
 		);
@@ -49,10 +51,13 @@ private:
 
 		return new_character;
 	}
-public:
 
-	Character* CreateCharacter(int character_id, Transform2D transform) {
-		return CreateNormalGuest(character_id, transform);
+	Resident* CreateResident(int character_id, Character* guest) {
+		Schedule* new_schedule = new ResidentSchedule();
+		Resident* new_resident = new Resident(
+			character_id, guest->GetFullName(), guest->GetGender(),
+			guest->GetPhysics()->GetTransform(), guest->GetPhysics()->GetScale()
+		);
 	}
 
 	void ReturnCharacterName(CharacterFullName fullName) {

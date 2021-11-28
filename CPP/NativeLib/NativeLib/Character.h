@@ -18,7 +18,7 @@ enum eGender {
 
 class Character : public WorldObject {
 
-private:
+protected:
 	int id;
 	CharacterFullName full_name;
 	Schedule* schedule;
@@ -50,15 +50,38 @@ public:
 		inventory = new Inventory();
 		inventory->Get(new MaterialItem("Wood"));
 	}
-
+	Schedule* GetSchedule() { return schedule; }
 	void SetSchedule(Schedule* new_schedule){
 		schedule = new_schedule;
 	}
-	
-	Schedule* GetSchedule() { return schedule; }
 	Inventory* GetInventory() {	return inventory; }
 	int GetId() { return id; }
 	string GetFirstName() { return full_name.GetName().value; }
 	string GetLastName() { return full_name.GetLastname(); }
 	CharacterFullName GetFullName() { return full_name; }
+	eGender GetGender() { return gender; }
+};
+
+class Guest : public Character {
+public:
+	Guest(int _id, CharacterFullName _name, eGender _gender,
+		Transform2D _transform, Vector2 _scale)
+		: Character(_id, _name, _gender, _transform, _scale) {
+		inventory = new Inventory();
+		inventory->Get(new MaterialItem("Wood"));
+	}
+
+	GuestSchedule* GetSchedule() { return (GuestSchedule*)schedule; }
+};
+
+class Resident : public Character {
+public:
+	Resident(int _id, CharacterFullName _name, eGender _gender,
+		Transform2D _transform, Vector2 _scale)
+		: Character(_id, _name, _gender, _transform, _scale) {
+		inventory = new Inventory();
+		inventory->Get(new MaterialItem("Wood"));
+	}
+	
+	ResidentSchedule* GetSchedule() { return (ResidentSchedule*)schedule; }
 };

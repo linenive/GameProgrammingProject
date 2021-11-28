@@ -16,7 +16,6 @@ void WorldManager::_register_methods() {
 	register_method("GetSurfaceName", &WorldManager::GetSurfaceName);
 	register_method("GetBlockTypes", &WorldManager::GetBlockTypes);
 
-	register_method("TestNewCharacter", &WorldManager::TestNewCharacter);
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
 	register_method("GetCharacterTransform", &WorldManager::GetCharacterTransform);
 	register_method("GetCharacterScale", &WorldManager::GetCharacterScale);

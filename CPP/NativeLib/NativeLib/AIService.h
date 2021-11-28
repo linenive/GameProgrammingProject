@@ -16,8 +16,8 @@ private:
 	ResidentService* resident_service;
 
 	map<int, Character*>* characters;
-	map<int, Character*>* guests;
-	map<int, Character*>* residents;
+	map<int, Guest*>* guests;
+	map<int, Resident*>* residents;
 	AIExecuter ai_executer;
 	
 	Timer task_assign_timer;
@@ -31,7 +31,7 @@ private:
 		Vector2 home_pos = resident_service->GetResidentHomePosition(character->GetId());
 		AddSeekTask(character, home_pos);
 	}
-	void AddLeaveVillageTask(Character* character) {
+	void AddLeaveVillageTask(Guest* character) {
 		Task* new_task = task_service->CreateLeaveVillageTask(character);
 		character->GetSchedule()->SetTask(new_task);
 	}
@@ -43,7 +43,7 @@ private:
 		AddIdleTask(resident);
 	}
 	// To-do: hard coding -> algorithm which use DB
-	void FindNewTaskToGuest(Character* guest) {
+	void FindNewTaskToGuest(Guest* guest) {
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
 		if (guest->home_id != -1) { //test
 			AddSeekTaskToHome(guest);
@@ -56,8 +56,8 @@ private:
 				return;
 			}
 		}
-		//AddLeaveVillageTask(guest);
-		AddIdleTask(guest);
+		AddLeaveVillageTask(guest);
+		//AddIdleTask(guest);
 	}
 	void AssignTaskToResidents() {
 		// To-do: task allocator for task priority
@@ -90,7 +90,7 @@ private:
 		while (!village_leavers->empty()) {
 			int id = village_leavers->front();
 			village_leavers->pop();
-			object_service->DeleteChracter(id);
+			object_service->DeleteCharacter(id);
 		}
 	}
 

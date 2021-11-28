@@ -42,9 +42,6 @@ public:
 
 	Array GetBlockTypes(Vector2 coordinate);
 
-	void TestNewCharacter(Transform2D transform) {
-		object_service->TestNewCharacter(transform);
-	}
 	int GetCharacterNumber() {
 		return object_service->GetCharacterNumber();
 	}
