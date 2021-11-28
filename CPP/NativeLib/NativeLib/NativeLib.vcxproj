@@ -160,7 +160,6 @@
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="TileRepository.cpp" />
     <ClCompile Include="TileService.h" />
-    <ClCompile Include="TimeRepository.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="WorldManager.cpp" />

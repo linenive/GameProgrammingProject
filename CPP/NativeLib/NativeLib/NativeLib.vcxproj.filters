@@ -131,9 +131,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TimeRepository.cpp">
-      <Filter>소스 파일\Repository\GameTime</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>

@@ -102,16 +102,18 @@ public:
 		residents = object_service->GetResidents();
 	}
 	void Update(float delta) {
-		task_assign_timer.timeGo(delta);
-		if (task_assign_timer.isTimeEnd()) {
+		task_assign_timer.TimeGo(delta);
+		int task_assign_number = task_assign_timer.GetPassNumberAndReset();
+		while (task_assign_number > 0) {
 			AssignTaskToWholeCharacter();
-			task_assign_timer.reset();
+			task_assign_number--;
 		}
 
-		task_execute_timer.timeGo(delta);
-		if (task_execute_timer.isTimeEnd()) {
+		task_execute_timer.TimeGo(delta);
+		int task_execute_number = task_execute_timer.GetPassNumberAndReset();
+		while (task_execute_number > 0) {
 			ExecuteCharactersTask();
-			task_execute_timer.reset();
+			task_execute_number--;
 		}
 		
 		DeleteLeavers();
