@@ -12,7 +12,6 @@ public:
 	// To-do
 	
 	~ObjectRepository() {
-		map<int, Character*>::iterator it = characters.begin();
 		for (auto &kv : characters)
 			delete kv.second;
 		for (auto &kv : guests)

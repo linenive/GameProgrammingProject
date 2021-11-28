@@ -53,4 +53,5 @@ const float CHARACTER_SLOWING_RADIUS = 4.0f;
 
 // AI
 const float ASSIGN_TASK_INTERVAL_TIME = 5.0;
+const float EXECUTE_TASK_INTERVAL_TIME = 0.01;
 

@@ -54,8 +54,8 @@ public:
 		task = nullptr;
 	}
 
-	bool IsTaskType(eTaskType type) {
-		return task->GetType() == type;
+	eTaskType GetTaskType() {
+		return task->GetType();
 	}
 
 	bool IsTaskEnd() {
