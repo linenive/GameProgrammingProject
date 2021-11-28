@@ -58,6 +58,8 @@ public:
 			character_id, guest->GetFullName(), guest->GetGender(),
 			guest->GetPhysics()->GetTransform(), guest->GetPhysics()->GetScale()
 		);
+		new_resident->SetSchedule(new_schedule);
+		return new_resident;
 	}
 
 	void ReturnCharacterName(CharacterFullName fullName) {

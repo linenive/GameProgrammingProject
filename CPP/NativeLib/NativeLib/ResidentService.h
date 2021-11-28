@@ -128,11 +128,10 @@ public:
 	void RecruitGuestAsResident(int guest_id, int home_id) {
 		if (IsInvalidRequest(guest_id))
 			return;
-		Resident* new_resident = object_service->CreateNewResident(object_repo->GetCharacter(guest_id));
-		object_repo->DeleteCharacter(guest_id);
+		// To-do: check is home id valid?
 
+		Resident* new_resident = object_service->CreateNewResident(object_repo->GetCharacter(guest_id));
+		object_service->DeleteCharacter(guest_id);
 		AssignResidentToHome(new_resident->GetId(), home_id);
 	}
-
-	
 };

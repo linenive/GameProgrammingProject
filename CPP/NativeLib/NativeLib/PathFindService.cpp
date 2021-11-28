@@ -14,8 +14,8 @@ int PathFindService::AstarH(Coordinates start_tile, Coordinates end_tile) {
 queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_pos) {
 	Coordinates start_tile = AbsolutePositionToCoordinates(start_pos);
 	Coordinates end_tile = AbsolutePositionToCoordinates(target_pos);
-	Godot::print("[PathFinder] Start Pos : " + start_pos + " End Pos : " + target_pos);
-	Godot::print("[PathFinder] Start Tile : " + Vector2(start_tile.x, start_tile.y) + " End Tile : " + Vector2(end_tile.x, end_tile.y));
+	//Godot::print("[PathFinder] Start Pos : " + start_pos + " End Pos : " + target_pos);
+	//Godot::print("[PathFinder] Start Tile : " + Vector2(start_tile.x, start_tile.y) + " End Tile : " + Vector2(end_tile.x, end_tile.y));
 
 	priority_queue<P, vector<P>, greater<P> > pq; //score, distance, coordintes
 

@@ -2,7 +2,6 @@
 #include <map>
 #include "Character.h"
 
-// world object�� vector�� �����Ͽ����� ���� quad-tree �ڷᱸ���� �����غ���.
 class ObjectRepository{
 private:
 	map<int, Character*> characters;
@@ -32,6 +31,7 @@ public:
 	Character* GetCharacter(int character_id) {
 		if (IsNotExistId(character_id)) {
 			printf("WARNING: [ObjectRepository]trying to get not exist character! input id: %d\n", character_id);
+			return nullptr;
 		}
 		return characters[character_id];
 	}
@@ -64,7 +64,7 @@ public:
 		int character_id = new_character->GetId();
 
 		if (IsNotExistId(character_id)) {
-			printf("[ObjectRepository]AddGuest(id: %d)\n", character_id);
+			printf("[ObjectRepository]AddResident(id: %d)\n", character_id);
 			characters[character_id] = new_character;
 			residents[character_id] = new_character;
 			return true;

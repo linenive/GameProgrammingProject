@@ -40,15 +40,12 @@ private:
 		performer->GetSchedule()->SetTask(new_task);
 	}
 	void FindNewTaskToResident(Character* resident) {
-		AddIdleTask(resident);
+		AddSeekTaskToHome(resident);
+		//AddIdleTask(resident);
 	}
 	// To-do: hard coding -> algorithm which use DB
 	void FindNewTaskToGuest(Guest* guest) {
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
-		if (guest->home_id != -1) { //test
-			AddSeekTaskToHome(guest);
-			return;
-		}
 		for (PurposeOfVisit* p : purposes) {
 			if (p->CanExecute()) {
 				// To-do: 
@@ -69,9 +66,7 @@ private:
 	void AssignTaskToGuests() {
 		// To-do: task allocator for task priority
 		for (auto& kv : *guests) {
-			if(kv.second->home_id != -1)
-				FindNewTaskToGuest(kv.second);
-			else if (!kv.second->GetSchedule()->HasTask())
+			if (!kv.second->GetSchedule()->HasTask())
 				FindNewTaskToGuest(kv.second);
 		}
 	}

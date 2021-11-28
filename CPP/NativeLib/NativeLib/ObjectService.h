@@ -55,6 +55,10 @@ public:
 		object_repo->DeleteCharacter(character_id);
 		deleted_character_ids.push(character_id);
 	}
+
+	bool IsCharacterNotExist(int character_id) {
+		return object_repo->IsNotExistId(character_id);
+	}
 	
 	int GetCharacterNumber() {
 		return object_repo->GetCharacterNumber();
