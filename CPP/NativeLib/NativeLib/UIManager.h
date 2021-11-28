@@ -27,6 +27,6 @@ public:
 	int GetMinute();
 
 	Array GetEventLogs() {
-		return ui_service->GetSerialized_event_log();
+		return ui_service->GetSerializedEventLogs();
 	}
 };

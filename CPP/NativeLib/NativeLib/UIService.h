@@ -10,7 +10,7 @@ public:
 	GameTime GetGameTime() {
 		return time_repo->GetGameTime();
 	}
-	Array GetSerialized_event_log() {
-		return event_log_repo->GetSerialized_event_log();
+	Array GetSerializedEventLogs() {
+		return event_log_repo->GetSerializedEventLogs();
 	}
 };
