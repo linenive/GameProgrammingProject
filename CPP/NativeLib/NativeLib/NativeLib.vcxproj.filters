@@ -457,7 +457,16 @@
     <ClInclude Include="Furniture.h">
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
-    <ClInclude Include="SlotItem.h">
+    <ClInclude Include="DisplayStand.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="StoreItem.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipItem.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="UsableFurniture.h">
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
   </ItemGroup>
