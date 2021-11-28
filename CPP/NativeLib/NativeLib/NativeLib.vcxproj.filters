@@ -217,9 +217,6 @@
     <ClInclude Include="TaskReserveInfo.h">
       <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
-    <ClInclude Include="Physics.h">
-      <Filter>소스 파일\Domain\WorldObject</Filter>
-    </ClInclude>
     <ClInclude Include="EventGenerator.h">
       <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
@@ -398,6 +395,9 @@
     </ClInclude>
     <ClInclude Include="CharacterName.h">
       <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
