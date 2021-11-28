@@ -129,6 +129,9 @@
     <Filter Include="소스 파일\Domain\StaticUnit\Building">
       <UniqueIdentifier>{57b0ff23-3519-411e-856b-43b8545a5a56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Manager\StaticUnit">
+      <UniqueIdentifier>{9b3e2aa1-16ed-40ae-9945-60c714572eac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="BuildingType.cpp">
       <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticUnitManager.cpp">
+      <Filter>소스 파일\Manager\StaticUnit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +404,12 @@
     </ClInclude>
     <ClInclude Include="Physics.h">
       <Filter>소스 파일\Domain\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializableClass.h">
+      <Filter>소스 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticUnitManager.h">
+      <Filter>소스 파일\Manager\StaticUnit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

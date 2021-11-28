@@ -16,7 +16,7 @@ BuildingData::BuildingData(eBuildingType type) {
         break;
     case eBuildingType::LARGE_HOUSE:
         name = "large_house";
-        slot_num = 2;
+        slot_num = 4;
         blocks = {
             {ww, ww, ww, ww, ww, ww, ww},
             {ww, wf, wf, wf, wf, wf, ww},
