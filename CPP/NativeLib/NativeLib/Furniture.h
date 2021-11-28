@@ -1,23 +1,25 @@
 #pragma once
 #include "Item.h"
 
-class BuildingItem : public Item {
+
+class BuildItem : public Item {
 
 public: 
-	~BuildingItem() {
+	~BuildItem() {
 	}
-	BuildingItem(string name): Item(name, "BuildingItem"){
+	BuildItem(string name, string type): Item(name, type){
 	}
 
 };
-class FurnitureItem : public BuildingItem {
+class FurnitureItem : public BuildItem {
 
-private:
+protected:
 	int grade = 0;
 
 public: 
 	~FurnitureItem() {
 	}
-	FurnitureItem(string name, int level) : BuildingItem(name), grade(grade) {
+	FurnitureItem(string name, string type, int grade) : BuildItem(name,type), grade(grade) {
 	}
 };
+

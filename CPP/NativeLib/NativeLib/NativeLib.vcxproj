@@ -175,6 +175,8 @@
     <ClInclude Include="CharacterSlot.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="ControlContextService.h" />
+    <ClInclude Include="DisplayStand.h" />
+    <ClInclude Include="EquipItem.h" />
     <ClInclude Include="Furniture.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="InstallState.h" />
@@ -185,7 +187,6 @@
     <ClInclude Include="SerializableClass.h" />
     <ClInclude Include="SkillRepository.h" />
     <ClInclude Include="SkillService.h" />
-    <ClInclude Include="SlotItem.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatField.h" />
     <ClInclude Include="StaticUnitManager.h" />
@@ -235,6 +236,7 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIService.h" />
     <ClInclude Include="UnlockEvent.h" />
+    <ClInclude Include="UsableFurniture.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillageRepository.h" />
     <ClInclude Include="ResidentService.h" />
