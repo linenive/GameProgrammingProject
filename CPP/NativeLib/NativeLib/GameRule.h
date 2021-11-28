@@ -48,7 +48,7 @@ const int EVENT_LOG_STACK_MAX = 1000;
 // max force that can press to the character
 // smaller - >smoother
 const float CHARACTER_MAX_FORCE = 6;// 0.4;
-const float CHARACTER_ARRIVE_RADIUS = 1.0f;
+const float CHARACTER_ARRIVE_RADIUS = 3.0f;
 const float CHARACTER_SLOWING_RADIUS = 4.0f;
 
 // AI
