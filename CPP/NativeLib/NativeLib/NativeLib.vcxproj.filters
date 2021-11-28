@@ -126,6 +126,9 @@
     <Filter Include="소스 파일\Domain\CharacterStatus\Name">
       <UniqueIdentifier>{e15ad1fd-f63d-4ac1-a407-75b545237438}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Domain\StaticUnit\Building">
+      <UniqueIdentifier>{57b0ff23-3519-411e-856b-43b8545a5a56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TimeRepository.cpp">
@@ -145,12 +148,6 @@
     </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>소스 파일\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Structure.h">
-      <Filter>소스 파일\Domain\StaticUnit</Filter>
-    </ClCompile>
-    <ClCompile Include="BuildingType.cpp">
-      <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClCompile>
     <ClCompile Include="StaticUnitService.cpp">
       <Filter>소스 파일\Service\StaticUnit</Filter>
@@ -196,6 +193,12 @@
     </ClCompile>
     <ClCompile Include="CharacterName.cpp">
       <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClCompile>
+    <ClCompile Include="Structure.h">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingType.cpp">
+      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,12 +272,6 @@
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
     <ClInclude Include="StaticUnit.h">
-      <Filter>소스 파일\Domain\StaticUnit</Filter>
-    </ClInclude>
-    <ClInclude Include="BuildingType.h">
-      <Filter>소스 파일\Domain\StaticUnit</Filter>
-    </ClInclude>
-    <ClInclude Include="Building.h">
       <Filter>소스 파일\Domain\StaticUnit</Filter>
     </ClInclude>
     <ClInclude Include="BuildingRepository.h">
@@ -410,5 +407,32 @@
     <Text Include="C:\Users\admin\Desktop\name.txt">
       <Filter>리소스 파일</Filter>
     </Text>
+    <ClInclude Include="StructureRepository.h">
+      <Filter>소스 파일\Repository\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureType.cpp">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureType.h">
+      <Filter>소스 파일\Domain\StaticUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingType.h">
+      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSlot.h">
+      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="ResidentService.h">
+      <Filter>소스 파일\Service\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkSpace.h">
+      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

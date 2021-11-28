@@ -5,8 +5,6 @@ BuildingData::BuildingData(eBuildingType type) {
     {
     case eBuildingType::SMALL_HOUSE:
         name = "small_house";
-        width = 5;
-        height = 5;
         slot_num = 2;
         blocks = {
             {ww, ww, ww, ww, ww},
@@ -18,8 +16,6 @@ BuildingData::BuildingData(eBuildingType type) {
         break;
     case eBuildingType::LARGE_HOUSE:
         name = "large_house";
-        width = 7;
-        height = 7;
         slot_num = 2;
         blocks = {
             {ww, ww, ww, ww, ww, ww, ww},
@@ -34,4 +30,6 @@ BuildingData::BuildingData(eBuildingType type) {
     default:
         break;
     }
+    width = blocks[0].size();
+    height = blocks.size();
 }

@@ -1,31 +1,63 @@
 #include "StaticUnitService.h"
 
-StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo) 
-	: StaticUnitService(tile_repo, building_repo, 1, 1) {}
-StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_building_id, int start_structur_id)
-	: tile_repository(tile_repo), building_repository(building_repo), next_structure_id(start_structur_id) {}
+StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo)
+	: StaticUnitService(tile_repo, building_repo, 1) {}
+StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_unit_id)
+	: tile_repo(tile_repo), building_repo(building_repo), next_unit_id(start_unit_id) {}
 
 int StaticUnitService::CreateBuilding(int type, Vector2 top_left_tile_position) {
-	return CreateBuilding_(static_cast<eBuildingType>(type), AbsolutePositionToCoordinates(top_left_tile_position));
+	return CreateBuilding(static_cast<eBuildingType>(type), AbsolutePositionToCoordinates(top_left_tile_position));
 }
 
-int StaticUnitService::CreateBuilding_(eBuildingType type, Coordinates top_left_coordinates) {
+int StaticUnitService::CreateBuilding(eBuildingType type, Coordinates top_left_coordinates) {
 	int x = top_left_coordinates.x;
 	int y = top_left_coordinates.y;
 
 	BuildingData data = BuildingData(type);
-	if (IsPlacablePosition_(x, y, data.blocks) == false)
+	if (IsPlacablePosition(x, y, data.blocks) == false)
 		return -1;
 
 	Building* new_building = new Building(
-		next_building_id++,
+		next_unit_id++,
 		data.name,
-		Rect2(x, y, data.width, data.height),
+		ConvertToOccupationArea(top_left_coordinates, data.width, data.height),
 		data.slot_num);
 	RegisterBlocksToWorld(x, y, data.blocks, new_building);
 
 	AddBuilding(new_building);
 	return new_building->id;
+}
+
+Rect2 StaticUnitService::ConvertToOccupationArea(Coordinates top_left_coordinates, int width, int height) {
+	return Rect2(
+		top_left_coordinates.x * TILE_WIDTH,
+		top_left_coordinates.y * TILE_HEIGHT,
+		width * TILE_WIDTH,
+		height * TILE_HEIGHT
+	);
+}
+
+int StaticUnitService::CreateStructure(int type, Vector2 top_left_tile_position) {
+	return CreateStructure(static_cast<eStructureType>(type), AbsolutePositionToCoordinates(top_left_tile_position));
+}
+
+int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left_coordinates) {
+	int x = top_left_coordinates.x;
+	int y = top_left_coordinates.y;
+
+	StructureData data = StructureData(type);
+	if (IsPlacablePosition(x, y, data.blocks) == false)
+		return -1;
+
+	Structure* new_structure = new Structure(
+		next_unit_id++,
+		data.name,
+		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
+
+	RegisterBlocksToWorld(x, y, data.blocks, new_structure);
+
+	AddStructure(new_structure);
+	return new_structure->id;
 }
 
 Building* StaticUnitService::CreateBluePrintBuilding(int type) {
@@ -63,10 +95,10 @@ void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& bl
 bool StaticUnitService::IsPlacablePosition(int type, Vector2 top_left_tile_position) {
 	Coordinates left_top_coordinates = AbsolutePositionToCoordinates(top_left_tile_position);
 	BuildingData data = BuildingData(static_cast<eBuildingType>(type));
-	return IsPlacablePosition_(left_top_coordinates.x, left_top_coordinates.y, data.blocks);
+	return IsPlacablePosition(left_top_coordinates.x, left_top_coordinates.y, data.blocks);
 }
 
-bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< vector<eBlockType> >& blocks) {
+bool StaticUnitService::IsPlacablePosition(int start_x, int start_y, vector< vector<eBlockType> >& blocks) {
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
 			Tile* tile = GetTile(start_x + i, start_y + j);
@@ -75,13 +107,13 @@ bool StaticUnitService::IsPlacablePosition_(int start_x, int start_y, vector< ve
 			if (tile->IsEmptyLayer(level) == false) {
 				return false;
 			}
-				
+
 		}
 	}
 	return true;
 }
 
-void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< vector<eBlockType> >& blocks, Building* building) {
+void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< vector<eBlockType> >& blocks, StaticUnit* staticUnit) {
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
 			Tile* tile = GetTile(start_x + i, start_y + j);
@@ -90,26 +122,26 @@ void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< 
 
 			block->SetName(BlockTypeProperty::NameOf(block_type));
 			block->block_type = block_type;
-			block->owner_id = building->id;
+			block->owner_id = staticUnit->id;
 			block->is_exist = true;
 			block->SetPassSpeed(BlockTypeProperty::PassSpeedOf(block_type));
 
-			building->RegisterBlock(
+			staticUnit->RegisterBlock(
 				tile->GetBlock(BlockTypeProperty::LevelOf(block_type))
 			);
 		}
 	}
 }
 
-void StaticUnitService::DeleteBuildingById(int id) {
-	Building* building = GetBuildingById(id);
-	HideBuildingBlocks(building);
-	DeleteBuildingFromWorld(id);
-}
-
-void StaticUnitService::HideBuildingBlocks(Building* building) {
-	for (auto block : building->blocks) {
-		block->Disappear();
+void StaticUnitService::DeleteUnitById(int id) {
+	if (building_repo->IsExistId(id)) {
+		DeleteBuildingFromWorld(id);
+	}
+	else if (structure_rep->IsExistId(id)) {
+		DeleteStructureFromWorld(id);
+	}
+	else {
+		printf("[StaticUnitService]ERROR: trying to delete not exsit unit.\n");
 	}
 }
 

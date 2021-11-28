@@ -16,12 +16,7 @@ public:
 		y = y_coord;
 	}
 	bool operator<(const Coordinates& other) const {
-		if (x < other.x) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return std::make_pair(x, y) < std::make_pair(other.x, other.y);
 	}
 	bool operator==(const Coordinates& other) const {
 		if (x == other.x && y == other.y) {

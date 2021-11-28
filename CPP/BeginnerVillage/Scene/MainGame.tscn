@@ -94,7 +94,7 @@ margin_top = 109.276
 margin_right = 121.787
 margin_bottom = 152.275
 custom_fonts/font = SubResource( 1 )
-text = "캐릭터 만들기"
+text = "캐릭터 집에 할당"
 __meta__ = {
 "_edit_use_anchors_": false
 }

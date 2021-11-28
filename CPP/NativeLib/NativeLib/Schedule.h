@@ -53,6 +53,7 @@ public:
 	}
 
 	void SetTask(Task* new_task) {
+		delete(task);
 		task = new_task;
 	}
 

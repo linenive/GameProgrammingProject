@@ -9,6 +9,7 @@ private:
 	ObjectService* object_service;
 	TileService* tile_service;
 	VillageService* village_service;
+	ResidentService* resident_service; //temp
 	void LoadGameWorld();
 
 public:
@@ -79,5 +80,9 @@ public:
 
 	int GetMoney() {
 		return village_service->GetMoney();
+	}
+
+	void AssignCharacterToHouse(int char_id, int building_id) {
+		resident_service->AssignResidentToHome(char_id, building_id);
 	}
 };

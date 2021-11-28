@@ -8,9 +8,6 @@ private:
 	map<int, Character*> characters;
 	map<int, Character*> guests;
 	map<int, Character*> residents;
-	bool IsExistId(int id) {
-		return characters.find(id) != characters.end();
-	}
 	
 public:
 	// To-do
@@ -25,6 +22,10 @@ public:
 			delete kv.second;
 	}
 	
+	bool IsExistId(int id) {
+		return characters.find(id) != characters.end();
+	}
+
 	int GetCharacterNumber() {
 		return (int) characters.size();
 	}

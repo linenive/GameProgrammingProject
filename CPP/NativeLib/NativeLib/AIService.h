@@ -6,12 +6,14 @@
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
+#include "ResidentService.h"
 
 class AIService {
 
 private:
 	ObjectService* object_service;
 	TaskService* task_service;
+	ResidentService* resident_service;
 
 	map<int, Character*>* characters;
 	map<int, Character*>* guests;
@@ -24,6 +26,10 @@ private:
 	void AddSeekTask(Character* character, Vector2 leave_point) {
 		Task* new_task = task_service->CreateSeekTask(character, leave_point);
 		character->GetSchedule()->SetTask(new_task);
+	}
+	void AddSeekTaskToHome(Character* character) {
+		Vector2 home_pos = resident_service->GetResidentHomePosition(character->GetId());
+		AddSeekTask(character, home_pos);
 	}
 	void AddLeaveVillageTask(Character* character) {
 		Task* new_task = task_service->CreateLeaveVillageTask(character);
@@ -39,6 +45,10 @@ private:
 	// To-do: hard coding -> algorithm which use DB
 	void FindNewTaskToGuest(Character* guest) {
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
+		if (guest->home_id != -1) { //test
+			AddSeekTaskToHome(guest);
+			return;
+		}
 		for (PurposeOfVisit* p : purposes) {
 			if (p->CanExecute()) {
 				// To-do: 
@@ -59,7 +69,9 @@ private:
 	void AssignTaskToGuests() {
 		// To-do: task allocator for task priority
 		for (auto& kv : *guests) {
-			if (!kv.second->GetSchedule()->HasTask())
+			if(kv.second->home_id != -1)
+				FindNewTaskToGuest(kv.second);
+			else if (!kv.second->GetSchedule()->HasTask())
 				FindNewTaskToGuest(kv.second);
 		}
 	}
@@ -86,8 +98,8 @@ public:
 	~AIService() {
 		delete task_service;
 	}
-	AIService(ObjectService* _object_service, TaskService* _task_service)
-		: object_service(_object_service), task_service(_task_service),
+	AIService(ObjectService* _object_service, TaskService* _task_service, ResidentService* _resident_service)
+		: object_service(_object_service), task_service(_task_service), resident_service(_resident_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)) {
 		characters = object_service->GetCharacters();
 		guests = object_service->GetGuests();
