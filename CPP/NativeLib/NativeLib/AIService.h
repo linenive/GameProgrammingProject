@@ -21,6 +21,7 @@ private:
 	AIExecuter ai_executer;
 	
 	Timer task_assign_timer;
+	Timer task_execute_timer;
 
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 	void AddSeekTask(Character* character, Vector2 leave_point) {
@@ -95,19 +96,26 @@ public:
 	}
 	AIService(ObjectService* _object_service, TaskService* _task_service, ResidentService* _resident_service)
 		: object_service(_object_service), task_service(_task_service), resident_service(_resident_service),
-		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)) {
+		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
 		characters = object_service->GetCharacters();
 		guests = object_service->GetGuests();
 		residents = object_service->GetResidents();
 	}
 	void Update(float delta) {
-		task_assign_timer.timeGo(delta);
-		if (task_assign_timer.isTimeEnd()) {
+		task_assign_timer.TimeGo(delta);
+		int task_assign_number = task_assign_timer.GetPassNumberAndReset();
+		while (task_assign_number > 0) {
 			AssignTaskToWholeCharacter();
-			task_assign_timer.reset();
+			task_assign_number--;
 		}
 
-		ExecuteCharactersTask();
+		task_execute_timer.TimeGo(delta);
+		int task_execute_number = task_execute_timer.GetPassNumberAndReset();
+		while (task_execute_number > 0) {
+			ExecuteCharactersTask();
+			task_execute_number--;
+		}
+		
 		DeleteLeavers();
 	}
 };

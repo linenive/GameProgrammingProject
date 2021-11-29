@@ -73,7 +73,7 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 
 	queue<Vector2>* ans_queue = new queue<Vector2>;
 	while (!ans.empty()) {
-		ans_queue->push(CoordinatesToCenterVector(ans.back()) + CalcObstacleVector(ans.back()));
+		ans_queue->push(CoordinatesToCenterVector(ans.back())); // + CalcObstacleVector(ans.back()));
 		ans.pop_back();
 	}
 	return ans_queue;

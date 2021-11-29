@@ -5,11 +5,9 @@
 class TimeRepository {
 private:
 	GameTime now_game_time;
-	Timer time_update_interval;
 
 public:
-	TimeRepository() : now_game_time(GameTime()),
-		time_update_interval(Timer(UPDATE_INTERVAL_TIME)){}
+	TimeRepository() : now_game_time(GameTime()){}
 	void CheckEvent();
 	void LoadTime(const Year& year, const Month& month,
 		const Day& day, const Time& time, const Minute& minute);
@@ -20,9 +18,8 @@ public:
 			Time(Hour(now_game_time.GetHour().val), Minute(now_game_time.GetMinute().val))
 		);
 	}
-	void TimeGo(float delta);
-	bool SignalByPassOneTIck() {
-		return time_update_interval.isTimeZero();
+	void PassOneTick() {
+		now_game_time.PassOneTick();
 	}
 	unsigned int GetOverallTime() {
 		return now_game_time.GetYear().val * MONTH_PER_YEAR * DAYS_PER_MONTH * HOUR_PER_DAY * MINUTE_PER_HOUR

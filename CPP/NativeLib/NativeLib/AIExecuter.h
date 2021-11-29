@@ -5,7 +5,7 @@ class AIExecuter {
 private:
 	void EndTask(Character* character) {
 		Schedule* schedule = character->GetSchedule();
-		if (schedule->IsTaskType(eTaskType::LEAVE_VILLAGE)) {
+		if (schedule->GetTaskType()== eTaskType::LEAVE_VILLAGE) {
 			schedule->PauseForDequeue();
 			village_leavers.push(character->GetId());
 			return;

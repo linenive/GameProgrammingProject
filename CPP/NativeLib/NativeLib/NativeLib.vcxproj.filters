@@ -131,9 +131,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TimeRepository.cpp">
-      <Filter>소스 파일\Repository\GameTime</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
@@ -218,9 +215,6 @@
       <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="TaskReserveInfo.h">
-      <Filter>소스 파일\Domain\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics.h">
       <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
     <ClInclude Include="EventGenerator.h">
@@ -401,6 +395,9 @@
     </ClInclude>
     <ClInclude Include="CharacterName.h">
       <Filter>소스 파일\Domain\CharacterStatus\Name</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
