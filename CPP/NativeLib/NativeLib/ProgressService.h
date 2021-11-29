@@ -13,17 +13,14 @@ private:
 
 	Timer time_update_interval;
 
-	int test_guest_num = 1;
-
 	void CreateNewTimeEvent() {
 
 	}
 
 	void VisitNewGuest() {
-		test_guest_num++;
 		Character* new_character =  object_service->CreateNewGuest();
 		event_log_repo->AddLog(EventLog(
-			"Guest Visit", "Visit Guest " + to_string(test_guest_num), time_repo->CaptureGameTime(),
+			"Guest Visit", "Visit Guest " + to_string(new_character->GetId()), time_repo->CaptureGameTime(),
 			new_character->GetPhysics()->GetPosition()
 		));
 	}
