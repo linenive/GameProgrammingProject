@@ -8,12 +8,20 @@ var target_object_id = 0
 var target_node
 var target_type
 
+var guest_info_ui_array : Array
+var resident_info_ui_array : Array
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	uicontrol = get_node("/root/Main/UIControl")
-	world_manager = get_node("/root/Main/WorldManager")
+	
+	guest_info_ui_array.append($CharacterInfo/GuestInfo)
+	guest_info_ui_array.append($CharacterInfo/HBoxContainer/GuestInfo)
+	
+	resident_info_ui_array.append($CharacterInfo/ResidentInfo)
+	resident_info_ui_array.append($CharacterInfo/HBoxContainer/ResidentInfo)
 
-func show_popup(node, type, window_position:Vector2):
+func show_popup(node, type, info, window_position:Vector2):
 	if target_object_id == 0:
 		setting_popup(node, type)
 	
@@ -22,22 +30,19 @@ func show_popup(node, type, window_position:Vector2):
 	var btn = get_close_button()
 	btn.connect("pressed", self, "close_button_pressed")
 	
-	show_info_by_type(node, type)
+	show_info_by_type(node, type, info)
 	
 	show()
 
-func show_info_by_type(node, type):
-	$CharacterInfo.visible = false
-	$ItemInfo.visible = false
-	
+func show_info_by_type(node, type, info):
 	if(type == "Character"):
-		window_setting_character_info(node)
+		window_setting_character_info(node, info)
 	#elif():
 		
 
 func _process(delta):
 	if(is_visible_in_tree()):
-		show_info_by_type(target_node, target_type)
+		show_info_by_type(target_node, target_type, uicontrol.get_character_info(target_node))
 	pass
 
 func init_popup():
@@ -70,35 +75,48 @@ func position_to_string(position):
 	
 	return "(" + str(x) + ", " + str(y) + ")"
 
-func window_setting_character_info(node_character):
-	set_title("Character Info")	
+func window_setting_character_info(node_character, info):
+	$ItemInfo.visible = false
 	$CharacterInfo.visible = true	
 	
 	var character = node_character as Sprite
-	var character_info = get_character_info(node_character)
 	
-	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_first_name.text = character_info["first_name"]
-	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_last_name.text = character_info["last_name"]
+	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_first_name.text = info["first_name"]
+	$CharacterInfo/VBoxContainer/HBoxContainer/content_character_last_name.text = info["last_name"]
+	$CharacterInfo/VBoxContainer/HBoxContainer4/content_character_gender.text = info["gender"]
 	$CharacterInfo/VBoxContainer/HBoxContainer3/content_character_position.text = position_to_string(node_character.get_position())
-	$CharacterInfo/character_sprite.texture = character.texture
+	$CharacterInfo/character_texture.texture = character.texture
 	
 	$CharacterInfo/title_inventory.text = "Inventory"
-	$CharacterInfo/InventorySlot/VBoxContainer/content_item_name.text = character_info["item1"][0]
-	$CharacterInfo/InventorySlot/VBoxContainer/content_item_type.text = character_info["item1"][1]
+	$CharacterInfo/InventorySlot/VBoxContainer/content_item_name.text = info["item1"][0]
+	$CharacterInfo/InventorySlot/VBoxContainer/content_item_type.text = info["item1"][1]
+	
+	window_setting_guest_info()
+	
+	#if "guest 인지":
+	#	window_setting_guest_info()
+	#else:
+	#	window_setting_resident_info()
 
-func get_character_info(node):
-	var inventory_size : int
-	var item_info_array : Array
+func window_setting_guest_info():
+	set_title("Guest Info")	
+	$CharacterInfo/title_character_info.text = "Guest Info"
 	
-	var character_id = node.get_id()
-	var character_info = {}
+	for ui in guest_info_ui_array:
+		ui.visible = true
 	
-	character_info["first_name"] = world_manager.GetCharacterFirstName(character_id)
-	character_info["last_name"] = world_manager.GetCharacterLastName(character_id)
-	inventory_size = world_manager.GetCharacterInventorySize(character_id)
-			
-	for j in inventory_size:
-		item_info_array = world_manager.GetCharacterItem(character_id, j);
-		character_info["item" + str(j+1)] = item_info_array
+	for ui in resident_info_ui_array:
+		ui.visible = false
+
+func window_setting_resident_info():
+	set_title("Resident Info")	
+	$CharacterInfo/title_character_info.text = "Resident Info"
 	
-	return character_info
+	for ui in guest_info_ui_array:
+		ui.visible = false
+	
+	for ui in resident_info_ui_array:
+		ui.visible = true
+
+func _on_track_btn_pressed():
+	uicontrol.popup_ui_track_btn_pressed(target_node.get_position())
