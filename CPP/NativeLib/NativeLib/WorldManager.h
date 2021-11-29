@@ -11,6 +11,14 @@ private:
 	VillageService* village_service;
 	ResidentService* resident_service; //temp
 	void LoadGameWorld();
+	bool IsCharacterNotExistError(int character_id) {
+		if (object_service->IsCharacterNotExist(character_id)) {
+			printf("WARNING: [WorldManager]trying to get not exist character! ");
+			printf("input id : % d\n", character_id);
+			return true;
+		}
+		return false;
+	}
 
 public:
 	static void _register_methods();
@@ -42,23 +50,32 @@ public:
 
 	Array GetBlockTypes(Vector2 coordinate);
 
-	void TestNewCharacter(Transform2D transform) {
-		object_service->TestNewCharacter(transform);
-	}
 	int GetCharacterNumber() {
 		return object_service->GetCharacterNumber();
 	}
 	Transform2D GetCharacterTransform(int character_id) {
+		if (IsCharacterNotExistError(character_id)) {
+			return Transform2D(0, 0, 0, 0, 0, 0);
+		}
 		return object_service->GetCharacter(character_id)->GetPhysics()->GetTransform();
 	}
 	Vector2 GetCharacterScale(int character_id) {
+		if (IsCharacterNotExistError(character_id)) {
+			return Vector2(0,0);
+		}
 		return object_service->GetCharacter(character_id)->GetPhysics()->GetScale();
 	}
 	String GetCharacterFirstName(int character_id) {
+		if (IsCharacterNotExistError(character_id)) {
+			return " ";
+		}
 		return String(object_service->GetCharacter(character_id)->GetFirstName().c_str());
 	}
 
 	String GetCharacterLastName(int character_id) {
+		if (IsCharacterNotExistError(character_id)) {
+			return " ";
+		}
 		return String(object_service->GetCharacter(character_id)->GetLastName().c_str());
 	}
 
@@ -84,5 +101,9 @@ public:
 
 	void AssignCharacterToHouse(int char_id, int building_id) {
 		resident_service->AssignResidentToHome(char_id, building_id);
+	}
+
+	void RecruitGuestAsResident(int char_id, int building_id) {
+		resident_service->RecruitGuestAsResident(char_id, building_id);
 	}
 };

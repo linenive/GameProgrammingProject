@@ -2,13 +2,12 @@
 #include <map>
 #include "Character.h"
 
-// world object�� vector�� �����Ͽ����� ���� quad-tree �ڷᱸ���� �����غ���.
 class ObjectRepository{
 private:
 	map<int, Character*> characters;
-	map<int, Character*> guests;
-	map<int, Character*> residents;
-	
+	map<int, Guest*> guests;
+	map<int, Resident*> residents;
+
 public:
 	// To-do
 	
@@ -21,63 +20,71 @@ public:
 		for (auto &kv : residents)
 			delete kv.second;
 	}
-	
-	bool IsExistId(int id) {
-		return characters.find(id) != characters.end();
+
+	bool IsNotExistId(int character_id) {
+		return characters.find(character_id) == characters.end();
 	}
 
 	int GetCharacterNumber() {
 		return (int) characters.size();
 	}
 	Character* GetCharacter(int character_id) {
-		if (IsExistId(character_id)) {
-			return characters[character_id];
+		if (IsNotExistId(character_id)) {
+			printf("WARNING: [ObjectRepository]trying to get not exist character! input id: %d\n", character_id);
+			return nullptr;
 		}
-		else {
-			printf("[ObjectRepository]ERROR: trying to get not exist character(input id: %d).\n", character_id);
-		}
-		
+		return characters[character_id];
 	}
 	map<int, Character*>* GetCharacters() {
 		return &characters;
 	}
-	map<int, Character*>* GetGuests() {
+	map<int, Guest*>* GetGuests() {
 		return &guests;
 	}
-	map<int, Character*>* GetResidents() {
+	map<int, Resident*>* GetResidents() {
 		return &residents;
 	}
 
-	void AddGuest(Character* new_character) {
+	bool AddGuest(Guest* new_character) {
 		int character_id = new_character->GetId();
 
-		if (IsExistId(character_id)) {
-			printf("[ObjectRepository]ERROR: character id is duplicated(input id: %d).\n", character_id);
-		}
-		else {
+		if (IsNotExistId(character_id)) {
 			printf("[ObjectRepository]AddGuest(id: %d)\n", character_id);
 			characters[character_id] = new_character;
 			guests[character_id] = new_character;
-		}
-	}
-
-	void AddResident(Character* new_character) {
-		characters[new_character->GetId()] = new_character;
-		residents[new_character->GetId()] = new_character;
-	}
-
-	bool DeleteCharacter(int id) {
-		if (IsExistId(id)) {
-			delete characters[id];
-			characters.erase(id);
-			guests.erase(id);
-			residents.erase(id);
 			return true;
 		}
 		else {
-			printf("[ObjectRepository]ERROR: trying to delete not exist character(input id: %d).\n", id);
+			printf("ERROR: [ObjectRepository]character id is duplicated! input id: %d\n", character_id);
 			return false;
 		}
+	}
+
+	bool AddResident(Resident* new_character) {
+		int character_id = new_character->GetId();
+
+		if (IsNotExistId(character_id)) {
+			printf("[ObjectRepository]AddResident(id: %d)\n", character_id);
+			characters[character_id] = new_character;
+			residents[character_id] = new_character;
+			return true;
+		}
+		else {
+			printf("ERROR: [ObjectRepository]character id is duplicated! input id: %d\n", character_id);
+			return false;
+		}
+	}
+
+	bool DeleteCharacter(int character_id) {
+		if (IsNotExistId(character_id)) {
+			printf("ERROR: [ObjectRepository]trying to delete not exist character! input id: %d\n", character_id);
+			return false;
+		}
+		delete characters[character_id];
+		characters.erase(character_id);
+		guests.erase(character_id);
+		residents.erase(character_id);
+		return true;
 	}
 };
 

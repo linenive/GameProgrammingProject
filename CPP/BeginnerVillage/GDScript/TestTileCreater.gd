@@ -97,4 +97,4 @@ func _on_Main_delete_character(ID):
 func _on_Button_pressed():
 	var character_id = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	var building_id = get_node("/root/Main/UIControl/HUD/y").get_line(0)
-	world_manager.AssignCharacterToHouse(character_id, building_id)
+	world_manager.RecruitGuestAsResident(character_id, building_id)

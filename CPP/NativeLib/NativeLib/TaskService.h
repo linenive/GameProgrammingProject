@@ -16,7 +16,7 @@ public:
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), seek_target);
 		return new SeekTask(paths);
 	}
-	Task* CreateLeaveVillageTask(Character* c) {
+	Task* CreateLeaveVillageTask(Guest* c) {
 		Vector2 leave_point = CoordinatesToCenterVector(c->GetSchedule()->GetVillageDeparturePoint());
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), leave_point);
 		return new LeaveVillageTask(paths);

@@ -7,6 +7,7 @@
 
 class ResidentService {
 private:
+	ObjectService* object_service;
 	ObjectRepository* object_repo;
 	BuildingRepository* building_repo;
 
@@ -24,7 +25,7 @@ private:
 	}
 
 	bool IsInvalidRequest(int resident_id, int building_id) {
-		if (!object_repo->IsExistId(resident_id) || !building_repo->IsExistId(building_id)) {
+		if (object_repo->IsNotExistId(resident_id) || !building_repo->IsExistId(building_id)) {
 			printf("[ResidentService]WARNING: Trying to access not exist IDs. ");
 			printf("char ID : %d, building ID : %d\n", resident_id, building_id);
 			return true;
@@ -33,7 +34,7 @@ private:
 	}
 
 	bool IsInvalidRequest(int resident_id) {
-		if (!object_repo->IsExistId(resident_id)) {
+		if (object_repo->IsNotExistId(resident_id)) {
 			printf("[ResidentService]WARNING: Trying to access not exist IDs. ");
 			printf("char ID : %d\n", resident_id);
 			return true;
@@ -46,8 +47,8 @@ private:
 	}
 
 public:
-	ResidentService(ObjectRepository* object_repo, BuildingRepository* building_repo) 
-		: object_repo(object_repo), building_repo(building_repo) {}
+	ResidentService(ObjectService* object_service, ObjectRepository* object_repo, BuildingRepository* building_repo)
+		: object_service(object_service), object_repo(object_repo), building_repo(building_repo) {}
 	
 	void AssignResidentToHome(int resident_id, int home_id) {
 		if (IsInvalidRequest(resident_id, home_id))
@@ -110,17 +111,27 @@ public:
 		}
 	}
 
-	Vector2 GetResidentWorkPlacePosition(int resident_id) {
+	Vector2 GetResidentWorkSpacePosition(int resident_id) {
 		if (IsInvalidRequest(resident_id))
 			return DummyVector();
 		Character* resident = object_repo->GetCharacter(resident_id);
 		if (resident->work_space_id == -1) {
-			printf("[ResidentService]ERROR: this resident doesn't have work place! id: %d\n", resident_id);
+			printf("[ResidentService]ERROR: this resident doesn't have work space! id: %d\n", resident_id);
 			return DummyVector();
 		}
 		else {
-			Building* work_place = building_repo->GetBuildingById(resident->work_space_id);
-			return work_place->GetCenterPosition();
+			Building* work_space = building_repo->GetBuildingById(resident->work_space_id);
+			return work_space->GetCenterPosition();
 		}
+	}
+
+	void RecruitGuestAsResident(int guest_id, int home_id) {
+		if (IsInvalidRequest(guest_id))
+			return;
+		// To-do: check is home id valid?
+
+		Resident* new_resident = object_service->CreateNewResident(object_repo->GetCharacter(guest_id));
+		object_service->DeleteCharacter(guest_id);
+		AssignResidentToHome(new_resident->GetId(), home_id);
 	}
 };

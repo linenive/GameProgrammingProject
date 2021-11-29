@@ -56,6 +56,7 @@ public:
 			&game_world.time_repo, &game_world.event_log_repo
 		);
 		resident_service = new ResidentService(
+			object_service,
 			&game_world.object_repo, &game_world.building_repo
 		);
 

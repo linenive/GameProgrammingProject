@@ -13,43 +13,51 @@ public:
 	queue<int> deleted_character_ids;
 	ObjectService(ObjectRepository* _object_repo):object_repo(_object_repo){}
 
-	void TestNewCharacter(Transform2D transform) {
-		WorldObject* new_character = factory.CreateCharacter(
-			next_character_id++, transform
-		);
-		object_repo->AddResident((Character*)new_character);
-		// Godot::print("[ObjectRepository]TestNewCharacter: " + characters[0]->GetPhysics().GetPosition());
-	}
-	Character* CreateNewGuest() {
+	Guest* CreateNewGuest() {
 		Coordinates arrival_point = Coordinates(0, 15);
-		Character* new_character = factory.CreateCharacter(
+		Guest* new_guest = factory.CreateNormalGuest(
 			next_character_id,
 			Transform2D(0, CoordinatesToCenterVector(arrival_point))
 		);
-		String s2 = String(new_character->GetFullName().GetFullname().c_str());
-		object_repo->AddGuest(new_character);
+		object_repo->AddGuest(new_guest);
 		new_character_ids.push(next_character_id);
 		next_character_id++;
 
-		return (Character*)new_character;
+		return new_guest;
 	}
 
-	void DeleteChracter(int character_id) {
-		factory.ReturnCharacterName(object_repo->GetCharacter(character_id)->GetFullName());
-		object_repo->DeleteCharacter(character_id);
-		deleted_character_ids.push(character_id);
+	Resident* CreateNewResident(Character* guest) {
+
+		Resident* new_resident = factory.CreateResident(
+			next_character_id, guest
+		);
+		object_repo->AddResident(new_resident);
+		new_character_ids.push(next_character_id);
+		next_character_id++;
+
+		return new_resident;
 	}
 
 	map<int, Character*>* GetCharacters() {
 		return object_repo->GetCharacters();
 	}
 
-	map<int, Character*>* GetGuests() {
+	map<int, Guest*>* GetGuests() {
 		return object_repo->GetGuests();
 	}
 
-	map<int, Character*>* GetResidents() {
+	map<int, Resident*>* GetResidents() {
 		return object_repo->GetResidents();
+	}
+
+	void DeleteCharacter(int character_id) {
+		factory.ReturnCharacterName(object_repo->GetCharacter(character_id)->GetFullName());
+		object_repo->DeleteCharacter(character_id);
+		deleted_character_ids.push(character_id);
+	}
+
+	bool IsCharacterNotExist(int character_id) {
+		return object_repo->IsNotExistId(character_id);
 	}
 	
 	int GetCharacterNumber() {
