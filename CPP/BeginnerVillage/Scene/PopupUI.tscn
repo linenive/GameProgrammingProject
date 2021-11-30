@@ -78,7 +78,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
-margin_right = 192.0
+margin_right = 176.0
 margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -115,7 +115,7 @@ __meta__ = {
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
 margin_top = 20.0
-margin_right = 192.0
+margin_right = 176.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -142,7 +142,7 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
 margin_top = 40.0
-margin_right = 192.0
+margin_right = 176.0
 margin_bottom = 56.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -169,7 +169,7 @@ __meta__ = {
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
 margin_top = 60.0
-margin_right = 192.0
+margin_right = 176.0
 margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -418,3 +418,4 @@ scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 5 )
 
 [connection signal="pressed" from="CharacterInfo/HBoxContainer/track_btn" to="." method="_on_track_btn_pressed"]
+[connection signal="pressed" from="CharacterInfo/HBoxContainer/GuestInfo/recruit_btn" to="." method="_on_recruit_btn_pressed"]

@@ -32,7 +32,6 @@ func show_info_popup(node, type):
 	
 	var instantiate_pos = get_instantiate_pos()
 	var popup = get_available_popup()
-	
 	var info = get_object_info(node, type)
 	popup.show_popup(node, type, info, instantiate_pos)
 

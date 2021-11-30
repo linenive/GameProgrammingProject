@@ -112,8 +112,4 @@ public:
 	int GetMoney() {
 		return village_service->GetMoney();
 	}
-
-	void RecruitGuestAsResident(int char_id) {
-		resident_service->RecruitGuestAsResident(char_id);
-	}
 };

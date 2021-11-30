@@ -16,8 +16,8 @@ public:
 	void _ready();
 	void _init();
 
-	void AssignCharacterToHouse(int char_id) {
-		resident_service->AssignResidentToHome(char_id);
+	bool RecruitGuestAsResident(int char_id) {
+		return resident_service->RecruitGuestAsResident(char_id);
 	}
 
 	Array GetBuildingInfo(int id) {

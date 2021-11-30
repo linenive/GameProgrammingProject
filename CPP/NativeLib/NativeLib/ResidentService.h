@@ -62,18 +62,19 @@ public:
 	ResidentService(ObjectService* object_service, ObjectRepository* object_repo, BuildingRepository* building_repo)
 		: object_service(object_service), object_repo(object_repo), building_repo(building_repo) {}
 	
-	void AssignResidentToHome(int resident_id) {
+	bool AssignResidentToHome(int resident_id, int home_id) {
 		if (IsInvalidRequest(resident_id))
-			return;
-		int home_id = building_repo->GetAssignableHouseId();
+			return false;
 		if (home_id == -1)
-			return;
+			return false;
 
 		Character* resident = object_repo->GetCharacter(resident_id);
 		FreeFromExistHome(resident);
 
 		resident->home_id = home_id;
 		AssignCharacterToBuilding(resident, home_id);
+
+		return true;
 	}
 
 	void AssignResidentToWorkSpace(int resident_id, int work_space_id) {
@@ -135,13 +136,17 @@ public:
 		}
 	}
 
-	void RecruitGuestAsResident(int guest_id) {
+	bool RecruitGuestAsResident(int guest_id) {
 		if (IsInvalidRequest(guest_id))
-			return;
+			return false;
 		// To-do: check is home id valid?
-
+		int home_id = building_repo->GetAssignableHouseId();
+		if (home_id == -1)
+			return false;
 		Resident* new_resident = object_service->CreateNewResident(object_repo->GetCharacter(guest_id));
 		object_service->DeleteCharacter(guest_id);
-		AssignResidentToHome(new_resident->GetId());
+		AssignResidentToHome(new_resident->GetId(), home_id);
+
+		return true;
 	}
 };

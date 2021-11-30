@@ -30,7 +30,6 @@ void WorldManager::_register_methods() {
 	register_method("GetVillageName", &WorldManager::GetVillageName);
 	register_method("SetVillageName", &WorldManager::SetVillageName);
 	register_method("GetMoney", &WorldManager::GetMoney);
-	register_method("RecruitGuestAsResident", &WorldManager::RecruitGuestAsResident);
 }
 
 void WorldManager::_init() {

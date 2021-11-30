@@ -2,7 +2,7 @@
 #include "GodotScenePath.h"
 
 void StaticUnitManager::_register_methods() {
-	register_method("AssignCharacterToHouse", &StaticUnitManager::AssignCharacterToHouse);
+	register_method("RecruitGuestAsResident", &StaticUnitManager::RecruitGuestAsResident);
 	register_method("GetBuildingInfo", &StaticUnitManager::GetBuildingInfo);
 	register_method("_ready", &StaticUnitManager::_ready);
 	register_method("_init", &StaticUnitManager::_init);
