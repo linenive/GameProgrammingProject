@@ -21,7 +21,8 @@ int StaticUnitService::CreateBuilding(eBuildingType type, Coordinates top_left_c
 		next_unit_id++,
 		data.name,
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height),
-		data.slot_num);
+		data.slot_num,
+		data.building_role);
 	RegisterBlocksToWorld(x, y, data.blocks, new_building);
 
 	AddBuilding(new_building);
@@ -67,7 +68,8 @@ Building* StaticUnitService::CreateBluePrintBuilding(int type) {
 		-1,
 		data.name,
 		Rect2(0, 0, data.width, data.height),
-		data.slot_num);
+		data.slot_num,
+		data.building_role);
 
 	RegisterBlueprintBlocks(data.blocks, new_building);
 

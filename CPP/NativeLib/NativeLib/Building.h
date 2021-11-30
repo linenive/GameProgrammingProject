@@ -2,15 +2,20 @@
 
 #include "StaticUnit.h"
 #include "CharacterSlot.h"
+#include "BuildingRole.h"
 #include <vector>
 
 using namespace std;
 
 class Building : public StaticUnit {
 public:
-    Building(int _id, string _name, Rect2 _ocupation_area, int _character_slot_num)
-        : StaticUnit(_id, _name, _ocupation_area), character_slot_num(_character_slot_num) {
-    }
+    int character_slot_num;
+    vector<CharacterSlot*> character_slots;
+    eBuildingRole building_role;
+
+    Building(int _id, string _name, Rect2 _ocupation_area, int _character_slot_num, eBuildingRole _building_role)
+        : StaticUnit(_id, _name, _ocupation_area), 
+        character_slot_num(_character_slot_num), building_role(_building_role) { }
 
     ~Building() {
         for (auto slot : character_slots) {
@@ -18,15 +23,12 @@ public:
         }
     }
 
-    int character_slot_num;
-    vector<CharacterSlot*> character_slots;
-
     void AssignCharacter(Character* character) {
-        if (character_slots.size() < character_slot_num) {
+        if (IsAssignable()) {
             character_slots.push_back(new CharacterSlot(character));
         }
         else {
-            printf("[Building]WARNING: trying to assigned resident to full building.\nbuilding_id = %d\n", id);
+            printf("WARNING: [Building]trying to assigned resident to full building.\nbuilding_id = %d\n", id);
         }
     }
 
@@ -39,13 +41,18 @@ public:
                 return;
             }
         }
-        printf("[Building]WARNING: trying to free unassigned resident.\nbuilding_id = %d, character_id = %d\n", id, resident_id);
+        printf("WARNING: [Building]trying to free unassigned resident.\n");
+        printf("building_id = %d, character_id = %d\n", id, resident_id);
     }
 
     Vector2 GetCenterPosition() {
         Vector2 position = ocupation_area.get_position();
         Vector2 size = ocupation_area.get_size();
         return Vector2(position.x + size.x/2, position.y + size.y/2);
+    }
+
+    bool IsAssignable() {
+        return character_slots.size() < character_slot_num;
     }
 
     virtual Array Serialize() { //id, name, character_slot_num, char1_id, char2_id, ...
