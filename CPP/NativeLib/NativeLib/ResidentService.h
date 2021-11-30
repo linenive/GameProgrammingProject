@@ -2,8 +2,6 @@
 
 #include "ObjectRepository.h"
 #include "BuildingRepository.h"
-#include "House.h"
-#include "WorkSpace.h"
 
 class ResidentService {
 private:
@@ -16,8 +14,22 @@ private:
 		building->AssignCharacter(villager);
 	}
 
+	void FreeFromExistHome(Character* resident) {
+		if (HasHome(resident)) {
+			Building* home = building_repo->GetBuildingById(resident->home_id);
+			home->FreeResident(resident->GetId());
+		}
+	}
+
 	bool HasHome(Character* resident) {
 		return resident->home_id != -1;
+	}
+
+	void FreeFromExistWorkSpace(Character* resident) {
+		if (HasWorkSpace(resident)) {
+			Building* work_space = building_repo->GetBuildingById(resident->work_space_id);
+			work_space->FreeResident(resident->GetId());
+		}
 	}
 
 	bool HasWorkSpace(Character* resident) {
@@ -26,7 +38,7 @@ private:
 
 	bool IsInvalidRequest(int resident_id, int building_id) {
 		if (object_repo->IsNotExistId(resident_id) || !building_repo->IsExistId(building_id)) {
-			printf("[ResidentService]WARNING: Trying to access not exist IDs. ");
+			printf("WARNING: [ResidentService]Trying to access not exist IDs. ");
 			printf("char ID : %d, building ID : %d\n", resident_id, building_id);
 			return true;
 		}
@@ -35,7 +47,7 @@ private:
 
 	bool IsInvalidRequest(int resident_id) {
 		if (object_repo->IsNotExistId(resident_id)) {
-			printf("[ResidentService]WARNING: Trying to access not exist IDs. ");
+			printf("WARNING: [ResidentService]Trying to access not exist ID. ");
 			printf("char ID : %d\n", resident_id);
 			return true;
 		}
@@ -50,27 +62,26 @@ public:
 	ResidentService(ObjectService* object_service, ObjectRepository* object_repo, BuildingRepository* building_repo)
 		: object_service(object_service), object_repo(object_repo), building_repo(building_repo) {}
 	
-	void AssignResidentToHome(int resident_id, int home_id) {
-		if (IsInvalidRequest(resident_id, home_id))
-			return;
+	bool AssignResidentToHome(int resident_id, int home_id) {
+		if (IsInvalidRequest(resident_id))
+			return false;
+		if (home_id == -1)
+			return false;
+
 		Character* resident = object_repo->GetCharacter(resident_id);
-		if (HasHome(resident)) {
-			Building* home = building_repo->GetBuildingById(resident->home_id);
-			home->FreeResident(resident_id);
-		}
+		FreeFromExistHome(resident);
 
 		resident->home_id = home_id;
 		AssignCharacterToBuilding(resident, home_id);
+
+		return true;
 	}
 
 	void AssignResidentToWorkSpace(int resident_id, int work_space_id) {
 		if (IsInvalidRequest(resident_id, work_space_id))
 			return;
 		Character* resident = object_repo->GetCharacter(resident_id);
-		if (HasWorkSpace(resident)) {
-			Building* work_space = building_repo->GetBuildingById(resident->work_space_id);
-			work_space->FreeResident(resident_id);
-		}
+		FreeFromExistWorkSpace(resident);
 
 		resident->work_space_id = work_space_id;
 		AssignCharacterToBuilding(resident, work_space_id);
@@ -102,7 +113,7 @@ public:
 			return DummyVector();
 		Character* resident = object_repo->GetCharacter(resident_id);
 		if (resident->home_id == -1) {
-			printf("[ResidentService]ERROR: this resident doesn't have home! id: %d\n", resident_id);
+			printf("ERROR: [ResidentService]this resident doesn't have home! id: %d\n", resident_id);
 			return DummyVector();
 		}
 		else {
@@ -116,7 +127,7 @@ public:
 			return DummyVector();
 		Character* resident = object_repo->GetCharacter(resident_id);
 		if (resident->work_space_id == -1) {
-			printf("[ResidentService]ERROR: this resident doesn't have work space! id: %d\n", resident_id);
+			printf("ERROR: [ResidentService]this resident doesn't have work space! id: %d\n", resident_id);
 			return DummyVector();
 		}
 		else {
@@ -125,13 +136,17 @@ public:
 		}
 	}
 
-	void RecruitGuestAsResident(int guest_id, int home_id) {
+	bool RecruitGuestAsResident(int guest_id) {
 		if (IsInvalidRequest(guest_id))
-			return;
+			return false;
 		// To-do: check is home id valid?
-
+		int home_id = building_repo->GetAssignableHouseId();
+		if (home_id == -1)
+			return false;
 		Resident* new_resident = object_service->CreateNewResident(object_repo->GetCharacter(guest_id));
 		object_service->DeleteCharacter(guest_id);
 		AssignResidentToHome(new_resident->GetId(), home_id);
+
+		return true;
 	}
 };

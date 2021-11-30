@@ -6,11 +6,11 @@
 
 class BuildingRepository {
 private:
-    map<int, Building*> building_map; // building_map[id] = building;
+    map<int, Building*> building_map;
 public:
     void AddBuilding(Building* building) {
         if (IsExistId(building->id)) {
-            printf("[BuildingRepository]ERROR: building id is duplicated.\n");
+            printf("ERROR: [BuildingRepository]building id is duplicated. id = %d\n", building->id);
         }
         else {
             building_map[building->id] = building;
@@ -21,7 +21,8 @@ public:
             Building* building = building_map[id];
 
             if (!building->character_slots.empty()) {
-                printf("[BuildingRepository]WARNING: please free residents before delete building.\n");
+                printf("WARNING: [BuildingRepository] please free residents before delete building. ");
+                printf("id = %d\n", id);
                 return;
             }
 
@@ -33,7 +34,8 @@ public:
             building_map.erase(id);
         }
         else {
-            printf("[BuildingRepository]WARNING: trying to delete not exist building.\n");
+            printf("WARNING: [BuildingRepository]trying to delete not exist building. ");
+            printf("id = %d\n", id);
         }
     }
     Building* GetBuildingById(int id) {
@@ -41,9 +43,22 @@ public:
             return building_map[id];
         }
         else {
-            printf("[BuildingRepository]ERROR: trying to get not exist building.\n");
+            printf("ERROR: [BuildingRepository]trying to get not exist building. ");
+            printf("id = %d\n", id);
         }
     }
+
+    int GetAssignableHouseId() {
+        for (auto e : building_map) {
+            Building* building = e.second;
+            if (building->building_role == eBuildingRole::HOUSE && building->IsAssignable()) {
+                return building->id;
+            }
+        }
+        printf("INFO: [BuildingRepository] there is no assignable house.\n");
+        return -1;
+    }
+
     bool IsExistId(int id) {
         return building_map.find(id) != building_map.end();
     }

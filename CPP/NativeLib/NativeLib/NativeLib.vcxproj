@@ -167,12 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIService.h" />
+    <ClInclude Include="BuildingRole.h" />
     <ClInclude Include="CharacterName.h" />
     <ClInclude Include="CharacterSkill.h" />
     <ClInclude Include="CharacterSlot.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="NameGenerator.h" />
-    <ClInclude Include="House.h" />
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="PathFindService.h" />
     <ClInclude Include="RandomRepository.h" />
@@ -233,7 +233,6 @@
     <ClInclude Include="VillageRepository.h" />
     <ClInclude Include="ResidentService.h" />
     <ClInclude Include="VillageService.h" />
-    <ClInclude Include="WorkSpace.h" />
     <ClInclude Include="WorldManager.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="WorldObjectFactory.h" />

@@ -1,9 +1,10 @@
 extends WindowDialog
 
 var uicontrol
-var world_manager
+var static_unit_manager
 
-var target_object_id = 0
+var target_node_id = 0
+var target_object_id
 
 var target_node
 var target_type
@@ -14,6 +15,7 @@ var resident_info_ui_array : Array
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	uicontrol = get_node("/root/Main/UIControl")
+	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
 	guest_info_ui_array.append($CharacterInfo/GuestInfo)
 	guest_info_ui_array.append($CharacterInfo/HBoxContainer/GuestInfo)
@@ -22,7 +24,7 @@ func _ready():
 	resident_info_ui_array.append($CharacterInfo/HBoxContainer/ResidentInfo)
 
 func show_popup(node, type, info, window_position:Vector2):
-	if target_object_id == 0:
+	if target_node_id == 0:
 		setting_popup(node, type)
 	
 	set_position(window_position)	
@@ -46,24 +48,25 @@ func _process(delta):
 	pass
 
 func init_popup():
-	target_object_id = 0
+	target_node_id = 0
 	target_node = null
 	target_type = ""
 
 func setting_popup(node, type):
-	target_object_id = node.get_instance_id()
+	target_node_id = node.get_instance_id()
 	target_node = node
 	target_type = type
+	target_object_id = target_node.get_id()
 
 func close_button_pressed():
 	init_popup()
 	uicontrol.close_info_popup(self)
 
 func get_target_object_id():
-	return target_object_id
+	return target_node_id
 
 func set_target_object_id(oid):
-	target_object_id = oid
+	target_node_id = oid
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
@@ -120,3 +123,8 @@ func window_setting_resident_info():
 
 func _on_track_btn_pressed():
 	uicontrol.popup_ui_track_btn_pressed(target_node.get_position())
+
+func _on_recruit_btn_pressed():
+	if static_unit_manager.RecruitGuestAsResident(target_object_id):
+		close_button_pressed()
+		hide()

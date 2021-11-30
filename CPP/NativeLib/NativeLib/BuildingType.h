@@ -2,6 +2,7 @@
 
 #include "Base.h"
 #include "BlockTypeProperty.h"
+#include "BuildingRole.h"
 
 #define ww eBlockType::WOOD_WALL
 #define wd eBlockType::WOOD_DOOR
@@ -20,4 +21,5 @@ public:
     int height;
     int slot_num;
     vector< vector<eBlockType> > blocks;
+    eBuildingRole building_role;
 };

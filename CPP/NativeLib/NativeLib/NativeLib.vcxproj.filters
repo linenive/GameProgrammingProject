@@ -411,6 +411,9 @@
     <ClInclude Include="StaticUnitManager.h">
       <Filter>소스 파일\Manager\StaticUnit</Filter>
     </ClInclude>
+    <ClInclude Include="BuildingRole.h">
+      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="C:\Users\admin\Desktop\name.txt">
@@ -434,14 +437,8 @@
     <ClInclude Include="CharacterSlot.h">
       <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
     </ClInclude>
-    <ClInclude Include="House.h">
-      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
-    </ClInclude>
     <ClInclude Include="ResidentService.h">
       <Filter>소스 파일\Service\WorldObject</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkSpace.h">
-      <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

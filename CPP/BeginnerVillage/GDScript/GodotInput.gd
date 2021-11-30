@@ -13,8 +13,8 @@ func _ready():
 	uicontrol = get_node("/root/Main/UIControl");
 
 func _input(event):
-	input_process_for_game_world(event)
 	input_process_for_ui(event)
+	input_process_for_game_world(event)
 
 func input_process_for_ui(event):
 	# To-do: ui 입력 처리
