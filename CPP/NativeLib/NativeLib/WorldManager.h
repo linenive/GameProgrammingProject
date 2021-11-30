@@ -79,6 +79,20 @@ public:
 		return String(object_service->GetCharacter(character_id)->GetLastName().c_str());
 	}
 
+	String GetCharacterGender(int character_id) {
+		if (IsCharacterNotExistError(character_id)) {
+			return " ";
+		}
+
+		switch (object_service->GetCharacter(character_id)->GetGender())
+		{
+			case eGender::MAN:
+				return String("Man");
+			case eGender::WOMAN:
+				return String("Woman");
+		}
+	}
+
 	Array GetCharacterItem(int character_id, int item_id);
 
 	int GetCharacterInventorySize(int character_id) {

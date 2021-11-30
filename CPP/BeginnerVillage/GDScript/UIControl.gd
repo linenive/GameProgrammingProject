@@ -7,6 +7,7 @@ var clicked_position_label : Label
 
 var world_manager
 var input_manager
+var camera_manager
 
 var MAXIMUM_POPUP_COUNT = 10
 var screen_center_pos = Vector2(362, 100)
@@ -15,6 +16,7 @@ var next_ui_pos_offset = Vector2(20, 20)
 func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
+	camera_manager = get_node("/root/Main/CameraManager")
 	
 	clicked_position_label = $HUD/CharacterMove/ClickPositionLabel
 	
@@ -31,7 +33,16 @@ func show_info_popup(node, type):
 	var instantiate_pos = get_instantiate_pos()
 	var popup = get_available_popup()
 	
-	popup.show_popup(node, type, instantiate_pos)
+	var info = get_object_info(node, type)
+	popup.show_popup(node, type, info, instantiate_pos)
+
+func get_object_info(node, type):
+	var info
+	
+	if type == "Character":
+		info = get_character_info(node)
+		
+	return info
 
 func get_available_popup():
 	if available_popups.empty():
@@ -78,9 +89,29 @@ func is_already_shown(object_id):
 	
 	return false
 
-
 func MouseRightClickLabelUpdate(new_click_position):
 	clicked_position_label.text = str(new_click_position)
 	
 func _on_CharacterMove_pressed():
 	var game_manager = get_node("/root/Main").AIClickUpdate(input_manager.GetNowMouseRightClickPoint())
+
+func popup_ui_track_btn_pressed(event_triggered_position):
+	camera_manager.SetCameraPosition(event_triggered_position)
+
+func get_character_info(node):
+	var inventory_size : int
+	var item_info_array : Array
+	
+	var character_id = node.get_id()
+	var character_info = {}
+	
+	character_info["first_name"] = world_manager.GetCharacterFirstName(character_id)
+	character_info["last_name"] = world_manager.GetCharacterLastName(character_id)
+	character_info["gender"] = world_manager.GetCharacterGender(character_id)
+	inventory_size = world_manager.GetCharacterInventorySize(character_id)
+			
+	for j in inventory_size:
+		item_info_array = world_manager.GetCharacterItem(character_id, j);
+		character_info["item" + str(j+1)] = item_info_array
+	
+	return character_info

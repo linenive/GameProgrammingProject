@@ -2,8 +2,8 @@
 
 [ext_resource path="res://GDScript/PopupUI.gd" type="Script" id=1]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Image/DefaultCharacter.png" type="Texture" id=3]
 [ext_resource path="res://Image/tile_earth.png" type="Texture" id=4]
+[ext_resource path="res://Image/furniture_1.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -32,6 +32,7 @@ size = 14
 font_data = ExtResource( 2 )
 
 [node name="PopupUI" type="WindowDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -47,11 +48,12 @@ __meta__ = {
 }
 
 [node name="CharacterInfo" type="Control" parent="."]
-visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 39.0
-margin_bottom = 40.0
+margin_right = -10.0
+margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,7 +78,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
-margin_right = 176.0
+margin_right = 192.0
 margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -111,10 +113,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
 margin_top = 20.0
-margin_right = 176.0
+margin_right = 192.0
 margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_character_gender" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer4"]
+margin_right = 72.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "Gender : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_character_gender" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer4"]
+margin_left = 76.0
+margin_right = 132.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "noname"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 56.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -139,9 +168,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
-margin_top = 40.0
-margin_right = 176.0
-margin_bottom = 56.0
+margin_top = 60.0
+margin_right = 192.0
+margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -165,15 +194,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="character_sprite" type="Sprite" parent="CharacterInfo"]
-position = Vector2( 258.904, 69.8637 )
-scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 3 )
+[node name="character_texture" type="TextureRect" parent="CharacterInfo"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.9194
+margin_top = 38.1629
+margin_right = -0.919434
+margin_bottom = 78.1629
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="title_inventory" type="Label" parent="CharacterInfo"]
-margin_top = 114.5
+margin_top = 128.176
 margin_right = 108.0
-margin_bottom = 134.5
+margin_bottom = 148.176
 custom_fonts/font = SubResource( 4 )
 text = "Inventory"
 __meta__ = {
@@ -181,9 +216,9 @@ __meta__ = {
 }
 
 [node name="InventorySlot" type="HBoxContainer" parent="CharacterInfo"]
-margin_top = 146.0
-margin_right = 130.0
-margin_bottom = 186.0
+margin_top = 159.676
+margin_right = 131.0
+margin_bottom = 199.676
 custom_constants/separation = 10
 alignment = 1
 __meta__ = {
@@ -241,14 +276,62 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="track_btn" type="Button" parent="CharacterInfo"]
-margin_left = 234.912
-margin_top = 1.4158
-margin_right = 279.912
-margin_bottom = 21.4158
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -115.131
+margin_top = -24.0271
+margin_right = 6.86896
+margin_bottom = 5.9729
+alignment = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="track_btn" type="Button" parent="CharacterInfo/HBoxContainer"]
+margin_right = 57.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 57, 30 )
 text = "Track"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GuestInfo" type="Control" parent="CharacterInfo/HBoxContainer"]
+margin_left = 61.0
+margin_right = 118.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 57, 30 )
+
+[node name="recruit_btn" type="Button" parent="CharacterInfo/HBoxContainer/GuestInfo"]
+margin_right = 57.0
+margin_bottom = 30.0
+text = "Recruit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResidentInfo" type="Control" parent="CharacterInfo/HBoxContainer"]
+margin_left = 122.0
+margin_right = 122.0
+margin_bottom = 30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GuestInfo" type="Control" parent="CharacterInfo"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ResidentInfo" type="Control" parent="CharacterInfo"]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="ItemInfo" type="Control" parent="."]
+visible = false
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 40.0
@@ -261,7 +344,7 @@ __meta__ = {
 margin_right = 196.0
 margin_bottom = 26.0
 custom_fonts/font = SubResource( 1 )
-text = "Character Info"
+text = "Item Info"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -277,7 +360,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ItemInfo/VBoxContainer"]
-margin_right = 117.0
+margin_right = 135.0
 margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -294,42 +377,44 @@ __meta__ = {
 
 [node name="content_item_name" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer"]
 margin_left = 60.0
-margin_right = 116.0
+margin_right = 135.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 3 )
-text = "noname"
+text = "item name"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ItemInfo/VBoxContainer"]
 margin_top = 20.0
-margin_right = 117.0
+margin_right = 135.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="title_item_type" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer2"]
-margin_right = 56.0
+margin_right = 52.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
-text = "Class : "
+text = "Type : "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="content_item_type" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer2"]
-margin_left = 60.0
-margin_right = 117.0
+margin_left = 56.0
+margin_right = 118.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 3 )
-text = "warrior"
+text = "Material"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="item_sprite" type="Sprite" parent="ItemInfo"]
-position = Vector2( 258.904, 69.8637 )
+position = Vector2( 258.904, 56.8637 )
 scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
+
+[connection signal="pressed" from="CharacterInfo/HBoxContainer/track_btn" to="." method="_on_track_btn_pressed"]
