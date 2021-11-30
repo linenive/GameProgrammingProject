@@ -156,6 +156,7 @@
     <ClCompile Include="PathFindService.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Stat.cpp" />
+    <ClCompile Include="StaticUnitManager.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="NativeLib.cpp" />
     <ClCompile Include="TileRepository.cpp" />
@@ -175,10 +176,12 @@
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="PathFindService.h" />
     <ClInclude Include="RandomRepository.h" />
+    <ClInclude Include="SerializableClass.h" />
     <ClInclude Include="SkillRepository.h" />
     <ClInclude Include="SkillService.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="StatField.h" />
+    <ClInclude Include="StaticUnitManager.h" />
     <ClInclude Include="StructureRepository.h" />
     <ClInclude Include="StructureType.cpp" />
     <ClInclude Include="StructureType.h" />

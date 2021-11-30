@@ -46,7 +46,8 @@ public:
 	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);
 
 	int CreateStructure(int type, Vector2 top_left_tile_position);
-
+	Array GetBuildingInfo(int buliding_id);
+	Array GetStructureInfo(int structure_id);
 
 	StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo);
 	StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_unit_id);

@@ -155,3 +155,13 @@ vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) 
 	}
 	return result;
 }
+
+Array StaticUnitService::GetBuildingInfo(int id) {
+	Building* building = GetBuildingById(id);
+	return building->Serialize();
+}
+
+Array StaticUnitService::GetStructureInfo(int id) {
+	Structure* structure = GetStructureById(id);
+	return structure->Serialize();
+}

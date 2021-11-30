@@ -9,7 +9,7 @@ private:
 	ObjectService* object_service;
 	TileService* tile_service;
 	VillageService* village_service;
-	ResidentService* resident_service; //temp
+	ResidentService* resident_service;
 	void LoadGameWorld();
 	bool IsCharacterNotExistError(int character_id) {
 		if (object_service->IsCharacterNotExist(character_id)) {
@@ -111,10 +111,6 @@ public:
 
 	int GetMoney() {
 		return village_service->GetMoney();
-	}
-
-	void AssignCharacterToHouse(int char_id, int building_id) {
-		resident_service->AssignResidentToHome(char_id, building_id);
 	}
 
 	void RecruitGuestAsResident(int char_id, int building_id) {

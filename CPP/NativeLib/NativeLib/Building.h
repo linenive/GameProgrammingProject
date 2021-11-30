@@ -47,4 +47,19 @@ public:
         Vector2 size = ocupation_area.get_size();
         return Vector2(position.x + size.x/2, position.y + size.y/2);
     }
+
+    virtual Array Serialize() { //id, name, character_slot_num, char1_id, char2_id, ...
+        Array serialized_data = StaticUnit::Serialize();
+        serialized_data.append(character_slot_num);
+        for (int i = 0; i < character_slot_num; i++) {
+            if (i < character_slots.size()) {
+                serialized_data.append(character_slots[i]->GetCharacterId());
+            }
+            else {
+                serialized_data.append(-1);
+            }
+        }
+        
+        return serialized_data;
+    }
 };

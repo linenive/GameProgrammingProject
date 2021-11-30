@@ -1,7 +1,8 @@
 #pragma once
 #include "GameTime.h"
+#include "SerializableClass.h"
 
-class EventLog {
+class EventLog : SerializableClass{
 private:
 	string event_name;
 	string event_description;
@@ -33,6 +34,20 @@ public:
 	}
 	GameTime GetOccurrenceTime() {
 		return occurrence_time;
+	}
+
+	virtual Array Serialize() {
+		Array serialized_event_log = Array();
+		serialized_event_log.append(String(event_name.c_str()));
+		serialized_event_log.append(String(event_description.c_str()));
+		serialized_event_log.append(occurrence_time.GetYear().val);
+		serialized_event_log.append(occurrence_time.GetMonth().val);
+		serialized_event_log.append(occurrence_time.GetDay().val);
+		serialized_event_log.append(occurrence_time.GetHour().val);
+		serialized_event_log.append(occurrence_time.GetMinute().val);
+		serialized_event_log.append(event_position);
+
+		return serialized_event_log;
 	}
 };
 

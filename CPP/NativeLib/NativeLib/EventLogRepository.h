@@ -29,22 +29,11 @@ public:
 		return logs;
 	}
 
-	Array GetSerialized_event_log() {
-		Array log_array = Array();
-		for (EventLog log : logs) {
-			Array serialized_event_log = Array();
-			serialized_event_log.append(String(log.GetEventName().c_str()));
-			serialized_event_log.append(String(log.GetEventDescription().c_str()));
-			serialized_event_log.append(log.GetOccurrenceTime().GetYear().val);
-			serialized_event_log.append(log.GetOccurrenceTime().GetMonth().val);
-			serialized_event_log.append(log.GetOccurrenceTime().GetDay().val);
-			serialized_event_log.append(log.GetOccurrenceTime().GetHour().val);
-			serialized_event_log.append(log.GetOccurrenceTime().GetMinute().val);
-			serialized_event_log.append(log.GetPosition());
-
-			log_array.append(serialized_event_log);
+	Array GetSerializedEventLogs() {
+		Array serialized_event_logs = Array();
+		for (auto log : logs) {
+			serialized_event_logs.append(log.Serialize());
 		}
-
-		return log_array;
+		return serialized_event_logs;
 	}
 };

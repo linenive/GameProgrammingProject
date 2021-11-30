@@ -5,6 +5,7 @@ var tile_scene
 var block_scene
 var character_scene
 var texture_db
+var static_unit_manager
 
 func _ready():	
 	world_manager = get_node("/root/Main/WorldManager")
@@ -12,6 +13,7 @@ func _ready():
 	tile_scene = load("res://Scene/Tile.tscn")
 	block_scene = load("res://Scene/Block.tscn")
 	character_scene = load("res://Scene/Character.tscn")
+	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
 	CreateTileMap()
 
@@ -97,4 +99,14 @@ func _on_Main_delete_character(ID):
 func _on_Button_pressed():
 	var character_id = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	var building_id = get_node("/root/Main/UIControl/HUD/y").get_line(0)
+
 	world_manager.RecruitGuestAsResident(character_id, building_id)
+	#temp
+	var building_info = static_unit_manager.GetBuildingInfo(building_id)
+	print(building_info.size())
+	print("building_id: " + String(building_info[0]))
+	print("building_name: " + String(building_info[1]))
+	var max_char_slot = building_info[2]
+	print("max_char_slot: " + String(max_char_slot))
+	for i in max_char_slot:
+		print("char"+String(i+1)+" id: " + String(building_info[i+3]))
