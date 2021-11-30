@@ -18,6 +18,7 @@ BuildingData::BuildingData(eBuildingType type) {
     case eBuildingType::LARGE_HOUSE:
         name = "large_house";
         building_role = eBuildingRole::HOUSE;
+
         slot_num = 4;
         blocks = {
             {ww, ww, ww, ww, ww, ww, ww},
