@@ -156,6 +156,7 @@
     <ClCompile Include="PathFindService.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Stat.cpp" />
+    <ClCompile Include="StatField.cpp" />
     <ClCompile Include="StaticUnitManager.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="NativeLib.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="CharacterName.h" />
     <ClInclude Include="CharacterSkill.h" />
     <ClInclude Include="CharacterSlot.h" />
+    <ClInclude Include="FileReader.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="NameGenerator.h" />
     <ClInclude Include="ObjectService.h" />

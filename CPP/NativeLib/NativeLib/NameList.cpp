@@ -7,7 +7,7 @@ using namespace std;
 static vector<string> family_name_list = {};
 static vector<string> man_name_list = {};
 static vector<string> woman_name_list = {};
-const string file_path = "data/character_name.csv";
+const string file_path = ".data/character_name.csv";
 
 static void LoadNameData() {
 	ifstream file(file_path);

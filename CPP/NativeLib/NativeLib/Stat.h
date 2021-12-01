@@ -8,10 +8,10 @@ using namespace std;
 class Stat {
 private:
     vector<StatField> list;
-    StatField *FindStatField(eStatFieldName name);
+    StatField *FindStatField(eStatFieldType name);
 public:
-    int GetStatFieldValue(eStatFieldName name);
-    void SetStatFieldValue(eStatFieldName name, int value);
-    void AddStatFieldValue(eStatFieldName name, int value);
+    int GetStatFieldValue(eStatFieldType name);
+    void SetStatFieldValue(eStatFieldType name, int value);
+    void AddStatFieldValue(eStatFieldType name, int value);
     Stat();
 };

@@ -38,7 +38,7 @@ void Example() {
 	cout << "hey" << endl;
 	CharacterSkill* picked_skill = skill_service.PickSkillByName("FastWalk1");
 	cout << picked_skill->GetSkillName() << endl;
-	cout << picked_skill->stat.GetStatFieldValue(BASE_MOVE_SPEED) << endl;
+	cout << picked_skill->stat.GetStatFieldValue(eStatFieldType::BASE_MOVE_SPEED) << endl;
 
 	CharacterSkill* random_skill = skill_service.PickRandomSkill();
 	cout << random_skill->GetSkillName() << endl;

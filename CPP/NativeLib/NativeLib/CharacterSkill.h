@@ -10,7 +10,7 @@ private:
 public:
 	CharacterSkill(string skill_name, Stat stat) : skill_name(skill_name), stat(stat) {}
 	string GetSkillName() { return skill_name; }
-	CharacterSkill& Add(eStatFieldName field_name, int field_value) {
+	CharacterSkill& Add(eStatFieldType field_name, int field_value) {
 		stat.AddStatFieldValue(field_name, field_value);
 		return *this;
 	}

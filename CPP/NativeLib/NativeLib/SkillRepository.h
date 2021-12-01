@@ -39,9 +39,10 @@ void SkillRepository::UnlockSkillWithEvent(eUnlockEvent event) {
 }
 
 SkillRepository::SkillRepository() {
-	NewSkill(Name("FastWalk1").Add(BASE_MOVE_SPEED, 5));
-	NewSkill(Name("FastWalk2").Add(BASE_MOVE_SPEED, 10), eUnlockEvent::PASS_ONE_YEAR);
-	NewSkill(Name("Carrier1").Add(MAX_WEIGHT, 20));
-	NewSkill(Name("Carrier2").Add(MAX_WEIGHT, 30).Add(MOVE_SPEED_ON_HEAVY, 3), eUnlockEvent::PASS_ONE_YEAR);
-	NewSkill(Name("SuperHuman").Add(BASE_MOVE_SPEED, 20).Add(BASE_WORK_SPEED, 10).Add(BASE_COMBAT_LEVEL, 5).Add(MAX_WEIGHT, 50).Add(CAN_WORK_UNTIL_MIDNIGHT, 1));
+	StatField::Init();
+	NewSkill(Name("FastWalk1").Add(eStatFieldType::BASE_MOVE_SPEED, 5));
+	NewSkill(Name("FastWalk2").Add(eStatFieldType::BASE_MOVE_SPEED, 10), eUnlockEvent::PASS_ONE_YEAR);
+	NewSkill(Name("Carrier1").Add(eStatFieldType::MAX_WEIGHT, 20));
+	NewSkill(Name("Carrier2").Add(eStatFieldType::MAX_WEIGHT, 30).Add(eStatFieldType::MOVE_SPEED_ON_HEAVY, 3), eUnlockEvent::PASS_ONE_YEAR);
+	NewSkill(Name("SuperHuman").Add(eStatFieldType::BASE_MOVE_SPEED, 20).Add(eStatFieldType::BASE_WORK_SPEED, 10).Add(eStatFieldType::BASE_COMBAT_LEVEL, 5).Add(eStatFieldType::MAX_WEIGHT, 50).Add(eStatFieldType::CAN_WORK_UNTIL_MIDNIGHT, 1));
 }
