@@ -1,15 +1,15 @@
 #pragma once
 #include "Item.h"
-
-enum class eEquipItemType {
-	ARMOR, WEAPON, POTION
-};
+#include "Stat.h"
 
 class EquipItem : public Item {
 
 private:
-	eEquipItemType equip_type;
+	Stat stat;
 public:
-	EquipItem(string name, eEquipItemType equip_type) :Item(name, "EquipItem"),equip_type(equip_type) {}
-	eEquipItemType GetEquipType() { return equip_type; }
+	EquipItem(string name, string type) :Item(name, type) { }
+
+	void AddStat(eStatFieldName field_name, int field_value) {
+		stat.AddStatFieldValue(field_name, field_value);
+	}
 };
