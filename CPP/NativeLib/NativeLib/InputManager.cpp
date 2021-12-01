@@ -171,7 +171,7 @@ void InputManager::LoadGameWorld() {
 }
 
 void InputManager::FetchInputQueue() {
-	// ÇöÀç »õ·Î °Ç¼³µÈ °Ç¹°¸¸ ÀÖÁö¸¸, ÀÌÈÄ ´Ù¸¥ °Íµé¿¡ ´ëÇØ¼­µµ Ãß°¡ÇÒ ¿¹Á¤ÀÓ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¼ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Íµé¿¡ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	queue<int>* new_building_ids = &(control_context_service->GetInputStatus()->new_building_ids);
 	if (!new_building_ids->empty()) {
 		ChangeStateToNormal();

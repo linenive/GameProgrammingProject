@@ -20,13 +20,3 @@ func GetEventLogExample():
 			String(single_log[4])+"일 "+ String(single_log[5])+":"+\
 			String(single_log[6]))
 
-func _on_Button2_pressed():
-	input_manager.ChangeStateToInstall(3)
-
-
-func _on_Button3_pressed():
-	input_manager.ChangeStateToInstall(1)
-
-
-func _on_Button4_pressed():
-	input_manager.ChangeStateToInstall(5)
