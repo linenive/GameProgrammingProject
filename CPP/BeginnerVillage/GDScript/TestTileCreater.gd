@@ -86,9 +86,12 @@ func _process(delta):
 		c.transform = transform3
 
 func _on_InputManager_build_building(ID):
-	CreateBuildingNodes(ID)
+	create_building_nodes(ID)
 
-func CreateBuildingNodes(building_id):
+func _on_InputManager_install_structure(ID):
+	create_structure(ID)
+
+func create_building_nodes(building_id):
 	for n in $Block.get_children():
 		$Block.remove_child(n)
 		n.queue_free()
@@ -123,4 +126,3 @@ func _on_Button_pressed():
 	var character_id = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	#var building_id = get_node("/root/Main/UIControl/HUD/y").get_line(0)
 	world_manager.RecruitGuestAsResident(character_id)
-

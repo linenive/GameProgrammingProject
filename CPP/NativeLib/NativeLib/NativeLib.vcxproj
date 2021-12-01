@@ -169,11 +169,14 @@
   <ItemGroup>
     <ClInclude Include="AIService.h" />
     <ClInclude Include="BuildingRole.h" />
+    <ClInclude Include="BuildState.h" />
     <ClInclude Include="CharacterName.h" />
     <ClInclude Include="CharacterSkill.h" />
     <ClInclude Include="CharacterSlot.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="ControlContextService.h" />
     <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="InstallState.h" />
     <ClInclude Include="NameGenerator.h" />
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="PathFindService.h" />
@@ -218,7 +221,6 @@
     <ClCompile Include="Structure.h" />
     <ClInclude Include="StaticUnit.h" />
     <ClInclude Include="StaticUnitService.h" />
-    <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="TaskReserveInfo.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Tile.h" />

@@ -39,9 +39,11 @@ private:
 public:
 	int CreateBuilding(int type, Vector2 top_left_tile_position);
 	Building* CreateBluePrintBuilding(int type);
+	Structure* CreateBluePrintStructure(int type);
 	Structure* GetStructureById(int id) { return structure_rep->GetStructureById(id); }
 	void RegisterBlueprintBlocks(vector< vector<eBlockType> >& blocks, Building* building);
 	bool IsPlacablePosition(int type, Vector2 top_left_tile_position);
+	bool IsStructurePlacablePosition(int type, Vector2 top_left_tile_position);
 	void DeleteUnitById(int id);
 	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);
 

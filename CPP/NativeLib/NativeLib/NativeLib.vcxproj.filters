@@ -132,6 +132,9 @@
     <Filter Include="소스 파일\Manager\StaticUnit">
       <UniqueIdentifier>{9b3e2aa1-16ed-40ae-9945-60c714572eac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Domain\State">
+      <UniqueIdentifier>{a0e04b60-30b2-437b-813a-b820b65a29d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.cpp">
@@ -257,9 +260,6 @@
       <Filter>소스 파일\Factory</Filter>
     </ClInclude>
     <ClInclude Include="TileFactory.h">
-      <Filter>소스 파일\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="StructureFactory.h">
       <Filter>소스 파일\Factory</Filter>
     </ClInclude>
     <ClInclude Include="CharacterFactory.h">
@@ -419,6 +419,15 @@
     </ClInclude>
     <ClInclude Include="FileReader.h">
       <Filter>소스 파일\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="InstallState.h">
+      <Filter>소스 파일\Service\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildState.h">
+      <Filter>소스 파일\Service\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlContextService.h">
+      <Filter>소스 파일\Service\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -21,4 +21,4 @@ func GetEventLogExample():
 			String(single_log[6]))
 
 func _on_Button2_pressed():
-	input_manager.ChangeStateToBuild(0)
+	input_manager.ChangeStateToInstall(0)

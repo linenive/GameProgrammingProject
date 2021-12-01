@@ -77,6 +77,19 @@ Building* StaticUnitService::CreateBluePrintBuilding(int type) {
 	return new_building;
 }
 
+Structure* StaticUnitService::CreateBluePrintStructure(int type) {
+	StructureData data = StructureData((eStructureType)type);
+
+	Structure* structure = new Structure(
+		-1,
+		(eStructureType)type,
+		data.name,
+		Rect2(0, 0, data.width, data.height)
+	);
+
+	return structure;
+}
+
 void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& blocks, Building* building) {
 	for (int i = 0; i < blocks.size(); i++) {
 		for (int j = 0; j < blocks[i].size(); j++) {
@@ -98,6 +111,12 @@ void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& bl
 bool StaticUnitService::IsPlacablePosition(int type, Vector2 top_left_tile_position) {
 	Coordinates left_top_coordinates = AbsolutePositionToCoordinates(top_left_tile_position);
 	BuildingData data = BuildingData(static_cast<eBuildingType>(type));
+	return IsPlacablePosition(left_top_coordinates.x, left_top_coordinates.y, data.blocks);
+}
+
+bool StaticUnitService::IsStructurePlacablePosition(int type, Vector2 top_left_tile_position) {
+	Coordinates left_top_coordinates = AbsolutePositionToCoordinates(top_left_tile_position);
+	StructureData data = StructureData(static_cast<eStructureType>(type));
 	return IsPlacablePosition(left_top_coordinates.x, left_top_coordinates.y, data.blocks);
 }
 

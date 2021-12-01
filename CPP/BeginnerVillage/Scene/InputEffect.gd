@@ -1,12 +1,16 @@
 extends Node2D
 var input_manager
+var static_unit_manager
 var block_scene
+var structure_scene
 var texture_db
 
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
+	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	texture_db = get_node("/root/Main/TextureDB")
 	block_scene = load("res://Scene/Block.tscn")
+	structure_scene = load("res://Scene/Object/Structure.tscn")
 
 func _process(_delta):
 	update()
@@ -41,6 +45,15 @@ func create_building_blueprint():
 		block_node.modulate.a = 0.5
 		$Blueprint.add_child(block_node)
 
+func create_structure_blueprint():
+	var data = input_manager.GetStructureBluePrint()
+	var structure_instance = structure_scene.instance()
+	var structure_type = data[0]
+	var position = data[1]
+	structure_instance.transform = Transform2D(0, position)
+	structure_instance.texture = texture_db.structure_texture[structure_type]
+	$Blueprint.add_child(structure_instance)
+
 func delete_building_blueprint():
 	for n in $Blueprint.get_children():
 		$Blueprint.remove_child(n)
@@ -51,3 +64,6 @@ func _on_InputManager_change_to_building_state():
 	
 func _on_InputManager_change_to_normal_state():
 	delete_building_blueprint()
+
+func _on_InputManager_change_to_install_state():
+	create_structure_blueprint()

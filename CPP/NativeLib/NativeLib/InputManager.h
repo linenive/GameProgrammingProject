@@ -17,8 +17,10 @@ private:
 	void LoadGameWorld();
 
 	void EmitStateSignalBuilding();
+	void EmitStateSignalInstall();
 	void EmitStateSignalNormal();
 	void EmitBuildSignal(int building_id);
+	void EmitStructureSignal(int building_id);
 	void FetchInputQueue();
 
 public:
@@ -37,7 +39,9 @@ public:
 	bool IsDragging();
 	bool IsBuilding();
 	Array GetBuildingBluePrint();
+	Array GetStructureBluePrint();
 	void ChangeStateToBuild(int building_type);
+	void ChangeStateToInstall(int structure_type);
 	void ChangeStateToNormal();
 	Rect2 GetDragRect();
 	bool IsTileHighlighting();
