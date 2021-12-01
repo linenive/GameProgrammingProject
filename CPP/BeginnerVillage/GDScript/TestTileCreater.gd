@@ -3,7 +3,8 @@ extends Node
 var world_manager
 var tile_scene
 var block_scene
-var character_scene
+var character1_scene
+var character2_scene
 var texture_db
 var static_unit_manager
 
@@ -12,7 +13,8 @@ func _ready():
 	texture_db = get_node("/root/Main/TextureDB")
 	tile_scene = load("res://Scene/Tile.tscn")
 	block_scene = load("res://Scene/Block.tscn")
-	character_scene = load("res://Scene/Character.tscn")
+	character1_scene = load("res://Scene/Object/Character1.tscn")
+	character2_scene = load("res://Scene/Object/Character2.tscn")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
 	CreateTileMap()
@@ -53,9 +55,16 @@ func tile_image_changer(tile_type_id):
 		texture = load("res://Image/tile_default.png")
 	return texture;
 
-# 위가 임시고 이게 정식 함수
-func create_character(id):
-	var character_instance = character_scene.instance()
+func create_man_character(id):
+	var character_instance = character1_scene.instance()
+	var transform2 = world_manager.GetCharacterTransform(id)
+	character_instance.transform = transform2
+	$Character.add_child(character_instance)
+	
+	character_instance.init_character(id)
+
+func create_woman_character(id):
+	var character_instance = character2_scene.instance()
 	var transform2 = world_manager.GetCharacterTransform(id)
 	character_instance.transform = transform2
 	$Character.add_child(character_instance)
@@ -91,7 +100,11 @@ func CreateBuildingNodes(building_id):
 			CreateBlocks(Vector2(i, j), coordinate)
 
 func _on_Main_create_character(ID):
-	create_character(ID)
+	var gender = world_manager.GetCharacterGender(ID)
+	if(gender == "Man"):
+		create_man_character(ID)
+	elif(gender == "Woman"):
+		create_woman_character(ID)
 	
 func _on_Main_delete_character(ID):
 	delete_character(ID)

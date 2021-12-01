@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Image/DefaultCharacter.png" type="Texture" id=1]
+[ext_resource path="res://Image/DefaultCharacter1.png" type="Texture" id=1]
+
 
 [node name="PeopleInfoUI" type="Button"]
 margin_right = 361.0
