@@ -465,7 +465,16 @@
     <ClInclude Include="EquipItem.h">
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
-    <ClInclude Include="UsableFurniture.h">
+    <ClInclude Include="OccupiedFurniture.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ID.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="IDRepository.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="IDService.h">
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
   </ItemGroup>

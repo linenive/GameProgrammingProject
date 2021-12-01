@@ -181,7 +181,10 @@
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="InstallState.h" />
     <ClInclude Include="NameGenerator.h" />
+    <ClInclude Include="IDRepository.h" />
+    <ClInclude Include="IDService.h" />
     <ClInclude Include="ObjectService.h" />
+    <ClInclude Include="OccupiedFurniture.h" />
     <ClInclude Include="PathFindService.h" />
     <ClInclude Include="RandomRepository.h" />
     <ClInclude Include="SerializableClass.h" />
@@ -236,7 +239,6 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIService.h" />
     <ClInclude Include="UnlockEvent.h" />
-    <ClInclude Include="UsableFurniture.h" />
     <ClInclude Include="Village.h" />
     <ClInclude Include="VillageRepository.h" />
     <ClInclude Include="ResidentService.h" />

@@ -1,13 +1,10 @@
 #pragma once
 #include "Furniture.h"
-#include "EquipItem.h"
-#include <map>
-#include <vector>
+#include <unordered_map>
 
 class DisplayStandItem : public FurnitureItem {
 private:
-	map<int, EquipItem*> display_slot;
-	vector<eEquipItemType> display_type;
+	unordered_map<int, Item*> display_slot;
 
 	int slot_current_count = 0;
 	int slot_max_count;
@@ -21,25 +18,22 @@ private:
 public:
 	~DisplayStandItem() {
 	}
-	DisplayStandItem(string name, int grade, int slot_count_max) : FurnitureItem(name, "DisplayStand", grade), slot_max_count(slot_max_count) {
-		for (int i = 0; i < slot_count_max; i++) {
+	DisplayStandItem(string name, string type, int grade, int _slot_count_max) : FurnitureItem(name, type, grade), slot_max_count(_slot_count_max) {
+		for (int i = 0; i < _slot_count_max; i++) {
 			display_slot.insert({ i, nullptr });
 		}
 	}
-	void SetDisplayType(eEquipItemType new_display_type) {
-		display_type.push_back(new_display_type);
-	}
-	EquipItem* SetSlotItem(EquipItem* new_item, int slot_index) {
+	Item* SetSlotItem(Item* new_item, int slot_index) {
 		if (IsFullSlot()) return nullptr;
 
-		EquipItem* last_item = display_slot[slot_index];
+		Item* last_item = display_slot[slot_index];
 		display_slot[slot_index] = new_item;
 		return last_item;
 	}
-	EquipItem* PopSlotItem(int slot_index) {
+	Item* PopSlotItem(int slot_index) {
 		if (CanDisplayItemByIndex(slot_index)) return nullptr;
 
-		EquipItem* pop_item = display_slot[slot_index];
+		Item* pop_item = display_slot[slot_index];
 		display_slot[slot_index] = nullptr;
 		slot_current_count--;
 
