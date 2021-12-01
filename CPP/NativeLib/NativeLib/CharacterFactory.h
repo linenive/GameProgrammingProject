@@ -49,7 +49,6 @@ public:
 		);
 		new_character->SetSchedule(new_schedule);
 		new_character->AddSkill(start_skill);
-		cout << start_skill->GetSkillName() << "\n";
 		return new_character;
 	}
 
