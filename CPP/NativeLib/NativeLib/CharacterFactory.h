@@ -39,7 +39,7 @@ private:
 
 public:
 
-	Guest* CreateNormalGuest(int character_id, Transform2D transform) {
+	Guest* CreateNormalGuest(int character_id, Transform2D transform, CharacterSkill *start_skill) {
 		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X - 1, 30));
 		srand((unsigned int)time(NULL));
 		eGender gender = static_cast<eGender>(rand() % 2);
@@ -48,7 +48,8 @@ public:
 			transform, Vector2(TILE_WIDTH, TILE_HEIGHT)
 		);
 		new_character->SetSchedule(new_schedule);
-
+		new_character->AddSkill(start_skill);
+		cout << start_skill->GetSkillName() << "\n";
 		return new_character;
 	}
 
@@ -59,6 +60,8 @@ public:
 			guest->GetPhysics()->GetTransform(), guest->GetPhysics()->GetScale()
 		);
 		new_resident->SetSchedule(new_schedule);
+		new_resident->CopyStat(&guest->base_stat);
+		new_resident->CopySkill(guest->skill_list);
 		return new_resident;
 	}
 

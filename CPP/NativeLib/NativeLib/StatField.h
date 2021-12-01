@@ -16,16 +16,15 @@ private:
 
     // data from csv files
     static map<eStatFieldType, string> name_map;
-    static vector<int> field_order;
 
 public:
-    StatField(eStatFieldType type, int value) : type(type), value(value) {};
+    static vector<int> field_order;
 
-    eStatFieldType GetName() { return type; }
+    StatField(eStatFieldType type, int value) : type(type), value(value) {};
+    eStatFieldType GetType() { return type; }
     void SetValue(int value) { this->value = value; }
     void AddValue(int value) { this->value += value; }
     int GetValue() { return value; }
-
     static string NameOf(eStatFieldType name) {
         return name_map[name];
     }

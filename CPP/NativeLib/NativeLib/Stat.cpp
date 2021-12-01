@@ -1,12 +1,20 @@
 #include "Stat.h"
 
 Stat::Stat() {
-   
+    for (int field_value : StatField::field_order) {
+        list.push_back(StatField(static_cast<eStatFieldType>(field_value),0));
+   }
+}
+
+Stat::Stat(Stat* other_stat) {
+    for (auto field : other_stat->list) {
+        list.push_back(field);
+    }
 }
 
 StatField* Stat::FindStatField(eStatFieldType name) {
     for (int i = 0; i < list.size(); i++) {
-        if (list[i].GetName() == name) {
+        if (list[i].GetType() == name) {
             return &list[i];
         }
     }

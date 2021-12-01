@@ -6,7 +6,7 @@ protected:
 	const Vector2 target;
 public:
 	Action(const Vector2 _target):target(_target){}
-	virtual void ExecuteAction(Physics* performer_physics) = 0;
+	virtual void ExecuteAction(Physics* performer_physics, int speed_factor) = 0;
 	virtual bool IsEndAction(Physics* performer_physics) = 0;
 };
 
@@ -22,8 +22,8 @@ private:
 public:
 	MoveAction(const Vector2 _target):Action(_target){
 	}
-	virtual void ExecuteAction(Physics* performer_physics) {
-		performer_physics->CalculateVelocity(target);
+	virtual void ExecuteAction(Physics* performer_physics, int speed_factor) {
+		performer_physics->CalculateVelocity(target, speed_factor);
 		performer_physics->UpdatePosition();
 	}
 	virtual bool IsEndAction(Physics* performer_physics) {
