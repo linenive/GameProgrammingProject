@@ -45,12 +45,6 @@ public:
         printf("building_id = %d, character_id = %d\n", id, resident_id);
     }
 
-    Vector2 GetCenterPosition() {
-        Vector2 position = ocupation_area.get_position();
-        Vector2 size = ocupation_area.get_size();
-        return Vector2(position.x + size.x/2, position.y + size.y/2);
-    }
-
     bool IsAssignable() {
         return character_slots.size() < character_slot_num;
     }

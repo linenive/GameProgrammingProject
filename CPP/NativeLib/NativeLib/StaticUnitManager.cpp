@@ -6,6 +6,9 @@ void StaticUnitManager::_register_methods() {
 	register_method("GetBuildingInfo", &StaticUnitManager::GetBuildingInfo);
 	register_method("_ready", &StaticUnitManager::_ready);
 	register_method("_init", &StaticUnitManager::_init);
+
+	register_method("GetStructureType", &StaticUnitManager::GetStructureType);
+	register_method("GetStructurePosition", &StaticUnitManager::GetStructurePosition);
 }
 
 void StaticUnitManager::_ready() {

@@ -52,6 +52,7 @@ int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left
 
 	Structure* new_structure = new Structure(
 		next_unit_id++,
+		type,
 		data.name,
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
 
@@ -167,3 +168,4 @@ Array StaticUnitService::GetStructureInfo(int id) {
 	Structure* structure = GetStructureById(id);
 	return structure->Serialize();
 }
+

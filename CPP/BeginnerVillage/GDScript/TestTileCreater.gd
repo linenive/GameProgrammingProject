@@ -3,8 +3,8 @@ extends Node
 var world_manager
 var tile_scene
 var block_scene
-var character1_scene
-var character2_scene
+var structure_scene
+var character_scene
 var texture_db
 var static_unit_manager
 
@@ -13,8 +13,8 @@ func _ready():
 	texture_db = get_node("/root/Main/TextureDB")
 	tile_scene = load("res://Scene/Tile.tscn")
 	block_scene = load("res://Scene/Block.tscn")
-	character1_scene = load("res://Scene/Object/Character1.tscn")
-	character2_scene = load("res://Scene/Object/Character2.tscn")
+	structure_scene = load("res://Scene/Structure.tscn")
+	character_scene = load("res://Scene/Object/Character1.tscn")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
 	CreateTileMap()
@@ -42,7 +42,7 @@ func CreateBlocks(tile_coord, transform):
 		block_node.transform = transform
 		block_node.texture = texture_db.block_texture[bt]
 		$Block.add_child(block_node)
-
+	
 func tile_image_changer(tile_type_id):
 	var texture;
 	if tile_type_id==1:
@@ -56,17 +56,19 @@ func tile_image_changer(tile_type_id):
 	return texture;
 
 func create_man_character(id):
-	var character_instance = character1_scene.instance()
+	var character_instance = character_scene.instance()
 	var transform2 = world_manager.GetCharacterTransform(id)
 	character_instance.transform = transform2
+	character_instance.texture = texture_db.character_texture[0]
 	$Character.add_child(character_instance)
 	
 	character_instance.init_character(id)
 
 func create_woman_character(id):
-	var character_instance = character2_scene.instance()
+	var character_instance = character_scene.instance()
 	var transform2 = world_manager.GetCharacterTransform(id)
 	character_instance.transform = transform2
+	character_instance.texture = texture_db.character_texture[1]
 	$Character.add_child(character_instance)
 	
 	character_instance.init_character(id)
@@ -99,6 +101,14 @@ func CreateBuildingNodes(building_id):
 			var coordinate = world_manager.GetSurfaceTransform(Vector2(i, j))
 			CreateBlocks(Vector2(i, j), coordinate)
 
+func create_structure(structure_id):
+	var structure_instance = structure_scene.instance()
+	var structure_type = static_unit_manager.GetStructureType(structure_id)
+	var position = static_unit_manager.GetStructurePosition(structure_id)
+	structure_instance.transform = Transform2D(0, position)
+	structure_instance.texture = texture_db.structure_texture[structure_type]
+	$Structure.add_child(structure_instance)
+
 func _on_Main_create_character(ID):
 	var gender = world_manager.GetCharacterGender(ID)
 	if(gender == "Man"):
@@ -113,12 +123,4 @@ func _on_Button_pressed():
 	var character_id = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	#var building_id = get_node("/root/Main/UIControl/HUD/y").get_line(0)
 	world_manager.RecruitGuestAsResident(character_id)
-	#temp
-	#var building_info = static_unit_manager.GetBuildingInfo(building_id)
-	#print(building_info.size())
-	#print("building_id: " + String(building_info[0]))
-	#print("building_name: " + String(building_info[1]))
-	#var max_char_slot = building_info[2]
-	#print("max_char_slot: " + String(max_char_slot))
-	#for i in max_char_slot:
-	#	print("char"+String(i+1)+" id: " + String(building_info[i+3]))
+

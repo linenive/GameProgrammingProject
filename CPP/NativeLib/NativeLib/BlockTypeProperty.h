@@ -8,7 +8,8 @@ enum class eBlockType {
     WOOD_DOOR,
     WOOD_FLOOR,
     WOOD_TABLE,
-    WOOD_CHAIR
+    WOOD_CHAIR,
+    STRUCTURE_BLOCK
 };
 
 class BlockTypeProperty {
