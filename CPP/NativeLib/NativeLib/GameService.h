@@ -12,6 +12,9 @@
 #include "AIService.h"
 #include "ResidentService.h"
 #include "SkillService.h"
+#include "IDService.h"
+#include "ItemDictionaryService.h"
+#include "ItemService.h"
 
 class GameService{
 
@@ -31,6 +34,9 @@ public:
 	AIService* ai_service;
 	ResidentService* resident_service;
 	SkillService* skill_service;
+	IDService* id_service;
+	ItemDictionaryService* item_dictionary_service;
+	ItemService* item_service;
 	
 	~GameService() {
 		delete object_service;
@@ -44,10 +50,11 @@ public:
 		delete ai_service;
 		delete resident_service;
 		delete skill_service;
+		delete item_dictionary_service;
 	}
 
 	GameService() {
-		// »ý¼º ½Ã repository¸¸ ÇÊ¿äÇÑ ¼­ºñ½ºµé
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ repositoryï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ñ½ºµï¿½
 		path_find_service = new PathFindService(&game_world.tile_repo);
 		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
@@ -61,7 +68,7 @@ public:
 			&game_world.skill_repo
 		);
 
-		// »ý¼º ½Ã ´Ù¸¥ ¼­ºñ½º¸¦ ¹Þ´Â ¼­ºñ½ºµé
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ñ½ºµï¿½
 		object_service = new ObjectService(
 			&game_world.object_repo,
 			skill_service
@@ -83,6 +90,8 @@ public:
 			object_service,
 			&game_world.object_repo, &game_world.building_repo
 		);
+		item_dictionary_service = new ItemDictionaryService(id_service);
+		item_service = new ItemService(item_dictionary_service);
 	};
 
 };

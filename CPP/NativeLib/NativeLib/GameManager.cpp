@@ -20,6 +20,14 @@ void GameManager::_init(){
 
 void GameManager::_ready(){
 	NewGame();
+
+	/*
+	Item* wood = GetGameService()->item_service->GetItemByName("wood");
+	FurnitureItem* chair = (FurnitureItem * )GetGameService()->item_service->GetItemByName("chair");
+	DisplayStandItem* weapon_display_stand = (DisplayStandItem* )GetGameService()->item_service->GetItemByName("weapon_display_stand");
+
+	printf("wood id %d, chair id %d, weapon_display_stand id %d", wood->GetID(), chair->GetID(), weapon_display_stand->GetID());
+	*/
 }
 
 void GameManager::_process(float delta){

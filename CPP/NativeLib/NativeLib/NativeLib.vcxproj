@@ -153,6 +153,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="NameGenerator.cpp" />
     <ClCompile Include="NameList.cpp" />
+    <ClCompile Include="ItemDictionaryService.cpp" />
     <ClCompile Include="PathFindService.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Stat.cpp" />
@@ -183,6 +184,8 @@
     <ClInclude Include="NameGenerator.h" />
     <ClInclude Include="IDRepository.h" />
     <ClInclude Include="IDService.h" />
+    <ClInclude Include="ItemDictionaryService.h" />
+    <ClInclude Include="ItemService.h" />
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="OccupiedFurniture.h" />
     <ClInclude Include="PathFindService.h" />
