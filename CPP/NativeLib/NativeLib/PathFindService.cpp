@@ -51,10 +51,11 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 				continue;
 
 			int next_distance = cur_distance;
+			float tile_pass_speed = GetTilePassSpeed(next_tile);
 			if (dx[i] == 0 || dy[i] == 0)
-				next_distance += weight_g_straight;
+				next_distance += weight_g_straight / tile_pass_speed;
 			else
-				next_distance += weight_g_diagonal;
+				next_distance += weight_g_diagonal / tile_pass_speed;
 
 			int next_score = next_distance + AstarH(next_tile, end_tile);
 			if (min_score_map[next_tile] == 0 || min_score_map[next_tile] > next_score) {
@@ -81,6 +82,10 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 
 bool PathFindService::IsPassableTile(Coordinates next_tile) {
 	return tile_map->IsPassableTile(next_tile.x, next_tile.y);
+}
+
+float PathFindService::GetTilePassSpeed(Coordinates next_tile) {
+	return tile_map->GetTilePassSpeed(next_tile.x, next_tile.y);
 }
 
 Vector2 PathFindService::CalcObstacleVector(Coordinates current_tile) {
