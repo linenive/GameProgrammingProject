@@ -7,8 +7,9 @@ enum class eBlockType {
     WOOD_WALL,
     WOOD_DOOR,
     WOOD_FLOOR,
-    WOOD_TABLE,
-    WOOD_CHAIR
+    STRUCTURE_LOW_BLOCK,
+    STRUCTURE_MID_BLOCK,
+    STRUCTURE_HIGH_BLOCK
 };
 
 class BlockTypeProperty {
@@ -34,18 +35,20 @@ public:
         name[static_cast<int>(eBlockType::WOOD_DOOR)] = "wood_door";
         pass_speed[static_cast<int>(eBlockType::WOOD_DOOR)] = 1.0;
 
-
         level[static_cast<int>(eBlockType::WOOD_FLOOR)] = 0;
         name[static_cast<int>(eBlockType::WOOD_FLOOR)] = "wood_floor";
         pass_speed[static_cast<int>(eBlockType::WOOD_FLOOR)] = 1.0;
 
-        level[static_cast<int>(eBlockType::WOOD_TABLE)] = 1;
-        name[static_cast<int>(eBlockType::WOOD_TABLE)] = "wood_table";
-        pass_speed[static_cast<int>(eBlockType::WOOD_TABLE)] = 0.2;
+        level[static_cast<int>(eBlockType::STRUCTURE_LOW_BLOCK)] = 1;
+        name[static_cast<int>(eBlockType::STRUCTURE_LOW_BLOCK)] = "low_block";
+        pass_speed[static_cast<int>(eBlockType::STRUCTURE_LOW_BLOCK)] = 0.8;
 
-        level[static_cast<int>(eBlockType::WOOD_CHAIR)] = 1;
-        name[static_cast<int>(eBlockType::WOOD_CHAIR)] = "wood_chair";
-        pass_speed[static_cast<int>(eBlockType::WOOD_CHAIR)] = 0.2;
+        level[static_cast<int>(eBlockType::STRUCTURE_MID_BLOCK)] = 1;
+        name[static_cast<int>(eBlockType::STRUCTURE_MID_BLOCK)] = "mid_block";
+        pass_speed[static_cast<int>(eBlockType::STRUCTURE_MID_BLOCK)] = 0.4;
 
+        level[static_cast<int>(eBlockType::STRUCTURE_HIGH_BLOCK)] = 1;
+        name[static_cast<int>(eBlockType::STRUCTURE_HIGH_BLOCK)] = "high_block";
+        pass_speed[static_cast<int>(eBlockType::STRUCTURE_HIGH_BLOCK)] = 0.0;
     }
 };

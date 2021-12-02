@@ -24,7 +24,6 @@ private:
 
 	Tile* GetTile(int pos_x, int pos_y) { return tile_repo->GetTile(pos_x, pos_y); };
 	Building* GetBuildingById(int id) { return building_repo->GetBuildingById(id); }
-	Structure* GetStructureById(int id) { return structure_rep->GetStructureById(id); }
 	void AddBuilding(Building* building) { building_repo->AddBuilding(building); }
 	void AddStructure(Structure* structure) { structure_rep->AddStructure(structure); }
 	void DeleteBuildingFromWorld(int id) { 
@@ -40,8 +39,11 @@ private:
 public:
 	int CreateBuilding(int type, Vector2 top_left_tile_position);
 	Building* CreateBluePrintBuilding(int type);
+	Structure* CreateBluePrintStructure(int type);
+	Structure* GetStructureById(int id) { return structure_rep->GetStructureById(id); }
 	void RegisterBlueprintBlocks(vector< vector<eBlockType> >& blocks, Building* building);
 	bool IsPlacablePosition(int type, Vector2 top_left_tile_position);
+	bool IsStructurePlacablePosition(int type, Vector2 top_left_tile_position);
 	void DeleteUnitById(int id);
 	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);
 
@@ -49,6 +51,8 @@ public:
 	Array GetBuildingInfo(int buliding_id);
 	Array GetStructureInfo(int structure_id);
 
-	StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo);
-	StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_unit_id);
+	StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
+		BuildingRepository* building_repo);
+	StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
+		BuildingRepository* building_repo, int start_unit_id);
 };

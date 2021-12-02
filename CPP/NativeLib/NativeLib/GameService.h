@@ -52,7 +52,7 @@ public:
 		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
 		static_unit_service = new StaticUnitService(
-			&game_world.tile_repo, &game_world.building_repo
+			&game_world.tile_repo, &game_world.structure_repo, &game_world.building_repo
 		);
 		ui_service = new UIService(
 			&game_world.time_repo, &game_world.event_log_repo

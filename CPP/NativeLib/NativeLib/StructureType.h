@@ -4,8 +4,14 @@
 #include "BlockTypeProperty.h"
 
 enum class eStructureType {
-    WOOD_TABLE,
-    WOOD_CHAIR
+    SINGLE_BED,
+    DOUBLE_BED,
+    BOX,
+    COOKING_TABLE,
+    POT,
+    TABLE,
+    COUNTER,
+    CHAIR
 };
 
 class StructureData {

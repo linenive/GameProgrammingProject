@@ -1,6 +1,9 @@
 #include "BuildingType.h"
 
 BuildingData::BuildingData(eBuildingType type) {
+    building_role = eBuildingRole::HOUSE;
+    slot_num = 1;
+
     switch (type)
     {
     case eBuildingType::SMALL_HOUSE:

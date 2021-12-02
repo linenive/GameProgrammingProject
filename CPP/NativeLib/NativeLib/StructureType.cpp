@@ -1,27 +1,65 @@
 #include "StructureType.h"
 
-#define wt eBlockType::WOOD_TABLE
-#define wc eBlockType::WOOD_CHAIR
+#define lb eBlockType::STRUCTURE_LOW_BLOCK
+#define mb eBlockType::STRUCTURE_MID_BLOCK
+#define hb eBlockType::STRUCTURE_HIGH_BLOCK
 
 StructureData::StructureData(eStructureType type) {
     switch (type)
     {
-    case eStructureType::WOOD_TABLE:
-        name = "wood_table";
+    case eStructureType::SINGLE_BED:
+        name = "single_bed";
         blocks = {
-            {wt, wt, wt},
-            {wt, wt, wt},
+            {mb},
+            {mb},
         };
         break;
-    case eStructureType::WOOD_CHAIR:
-        name = "wood_chair";
+    case eStructureType::DOUBLE_BED:
+        name = "double_bed";
         blocks = {
-            {wc}
+            {mb, mb},
+            {mb, mb},
+        };
+        break;
+    case eStructureType::BOX:
+        name = "box";
+        blocks = {
+            {lb}
+        };
+        break;
+    case eStructureType::COOKING_TABLE:
+        name = "cooking_table";
+        blocks = {
+            {mb, mb, mb}
+        };
+        break;
+    case eStructureType::POT:
+        name = "pot";
+        blocks = {
+            {lb}
+        };
+        break;
+    case eStructureType::TABLE:
+        name = "table";
+        blocks = {
+            {mb, mb}
+        };
+        break;
+    case eStructureType::COUNTER:
+        name = "counter";
+        blocks = {
+            {mb}
+        };
+        break;
+    case eStructureType::CHAIR:
+        name = "chair";
+        blocks = {
+            {lb}
         };
         break;
     default:
-        width = blocks[0].size();
-        height = blocks.size();
         break;
     }
+    width = blocks[0].size();
+    height = blocks.size();
 }

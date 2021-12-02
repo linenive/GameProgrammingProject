@@ -69,6 +69,8 @@ script = ExtResource( 9 )
 
 [node name="Block" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
+[node name="Structure" type="Node" parent="JanTestGDScript/TestTileCreater"]
+
 [node name="Character" type="Node" parent="JanTestGDScript/TestTileCreater"]
 
 [node name="GodotInput" type="Control" parent="."]
@@ -145,6 +147,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button4" type="Button" parent="UIControl/HUD"]
+anchor_left = 0.000651121
+anchor_right = 0.000651121
+margin_left = 851.815
+margin_top = 1.27887
+margin_right = 906.818
+margin_bottom = 51.2788
+rect_pivot_offset = Vector2( -83.4146, 49.4464 )
+custom_fonts/font = SubResource( 3 )
+text = "가구 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="UIControl/HUD"]
+anchor_left = 0.000651121
+anchor_right = 0.000651121
+margin_left = 909.078
+margin_top = 2.88689
+margin_right = 964.081
+margin_bottom = 52.8869
+rect_pivot_offset = Vector2( -83.4146, 49.4464 )
+custom_fonts/font = SubResource( 3 )
+text = "가구 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button2" type="Button" parent="UIControl/HUD"]
 anchor_left = 0.000651121
 anchor_right = 0.000651121
@@ -154,6 +184,9 @@ margin_right = 1021.67
 margin_bottom = 52.3333
 custom_fonts/font = SubResource( 3 )
 text = "가구 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CharacterMove" type="Button" parent="UIControl/HUD"]
 margin_left = 145.827
@@ -1201,8 +1234,12 @@ __meta__ = {
 [connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
 [connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
+[connection signal="change_to_install_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_install_state"]
 [connection signal="change_to_normal_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_normal_state"]
+[connection signal="install_structure" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_install_structure"]
 [connection signal="tree_exited" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_tree_exited"]
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
+[connection signal="pressed" from="UIControl/HUD/Button4" to="JanTestGDScript" method="_on_Button4_pressed"]
+[connection signal="pressed" from="UIControl/HUD/Button3" to="JanTestGDScript" method="_on_Button3_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
 [connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]

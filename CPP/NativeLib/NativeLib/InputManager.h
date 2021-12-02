@@ -17,8 +17,10 @@ private:
 	void LoadGameWorld();
 
 	void EmitStateSignalBuilding();
+	void EmitStateSignalInstall();
 	void EmitStateSignalNormal();
 	void EmitBuildSignal(int building_id);
+	void EmitStructureSignal(int building_id);
 	void FetchInputQueue();
 
 public:
@@ -36,8 +38,11 @@ public:
 	Vector2 GetNowMouseRightClickPoint() { return now_mouse_right_click_point; }
 	bool IsDragging();
 	bool IsBuilding();
+	bool IsInstalling();
 	Array GetBuildingBluePrint();
+	Array GetStructureBluePrint();
 	void ChangeStateToBuild(int building_type);
+	void ChangeStateToInstall(int structure_type);
 	void ChangeStateToNormal();
 	Rect2 GetDragRect();
 	bool IsTileHighlighting();

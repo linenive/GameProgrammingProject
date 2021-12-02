@@ -5,6 +5,7 @@
 #include "VillageRepository.h"
 #include "EventLogRepository.h"
 #include "BuildingRepository.h"
+#include "StructureRepository.h"
 #include "RandomRepository.h"
 #include "SkillRepository.h"
 
@@ -17,6 +18,7 @@ public:
 	VillageRepository village_repo;
 	EventLogRepository event_log_repo;
 	BuildingRepository building_repo;
+	StructureRepository structure_repo;
 	RandomRepository random_repo;
 	SkillRepository skill_repo;
 };

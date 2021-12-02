@@ -23,7 +23,11 @@ bool InputManager::IsDragging() {
 }
 
 bool InputManager::IsBuilding() {
-	return control_context_service->GetInputStatus()->is_building;
+	return control_context_service->GetInputStatus()->is_building_blueprint_ready;
+}
+
+bool InputManager::IsInstalling() {
+	return control_context_service->GetInputStatus()->is_structure_blueprint_ready;
 }
 
 Array InputManager::GetBuildingBluePrint() {
@@ -42,10 +46,24 @@ Array InputManager::GetBuildingBluePrint() {
 	return block_array;
 }
 
+Array InputManager::GetStructureBluePrint() {
+	Array structure_data = Array();
+	Structure* scheduled_structure = control_context_service->GetInputStatus()->scheduled_structure;
+	Vector2 structure_position = scheduled_structure->GetCenterPosition();
+	structure_data.append(static_cast<int>(scheduled_structure->type));
+	structure_data.append(structure_position);
+
+	return structure_data;
+}
 
 void InputManager::ChangeStateToBuild(int building_type) {
 	control_context_service->SwitchToBulidState(building_type);
 	EmitStateSignalBuilding();
+}
+
+void InputManager::ChangeStateToInstall(int structure_type){
+	control_context_service->SwitchToInstallState(structure_type);
+	EmitStateSignalInstall();
 }
 
 void InputManager::ChangeStateToNormal() {
@@ -89,12 +107,20 @@ void InputManager::EmitStateSignalBuilding(){
 	emit_signal(String("change_to_building_state"));
 }
 
+void InputManager::EmitStateSignalInstall() {
+	emit_signal(String("change_to_install_state"));
+}
+
 void InputManager::EmitStateSignalNormal() {
 	emit_signal(String("change_to_normal_state"));
 }
 
 void InputManager::EmitBuildSignal(int building_id) {
 	emit_signal(String("build_building"), building_id);
+}
+
+void InputManager::EmitStructureSignal(int building_id) {
+	emit_signal(String("install_structure"), building_id);
 }
 
 void InputManager::_register_methods() {
@@ -107,16 +133,21 @@ void InputManager::_register_methods() {
 	register_method("IsDragging", &InputManager::IsDragging);
 	register_method("GetDragRect", &InputManager::GetDragRect);
 	register_method("IsBuilding", &InputManager::IsBuilding);
+	register_method("IsInstalling", &InputManager::IsInstalling);
 	register_method("GetBuildingBluePrint", &InputManager::GetBuildingBluePrint);
+	register_method("GetStructureBluePrint", &InputManager::GetStructureBluePrint);
 	
 	register_method("ChangeStateToBuild", &InputManager::ChangeStateToBuild);
+	register_method("ChangeStateToInstall", &InputManager::ChangeStateToInstall);
 	register_method("IsTileHighlighting", &InputManager::IsTileHighlighting);
 	register_method("GetTileHighlight", &InputManager::GetTileHighlight);
 	register_method("MouseRightClick", &InputManager::MouseRightClick);
 	register_method("GetNowMouseRightClickPoint", &InputManager::GetNowMouseRightClickPoint);
 	register_signal<InputManager>(String("change_to_building_state"), Dictionary());
+	register_signal<InputManager>(String("change_to_install_state"), Dictionary());
 	register_signal<InputManager>(String("change_to_normal_state"), Dictionary());
 	register_signal<InputManager>(String("build_building"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<InputManager>(String("install_structure"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void InputManager::_init() {
@@ -149,6 +180,16 @@ void InputManager::FetchInputQueue() {
 		int new_id = new_building_ids->front();
 		new_building_ids->pop();
 		EmitBuildSignal(new_id);
+	}
+
+	queue<int>* new_structure_ids = &(control_context_service->GetInputStatus()->new_structure_ids);
+	if (!new_structure_ids->empty()) {
+		ChangeStateToNormal();
+	}
+	while (!new_structure_ids->empty()) {
+		int new_id = new_structure_ids->front();
+		new_structure_ids->pop();
+		EmitStructureSignal(new_id);
 	}
 	
 }

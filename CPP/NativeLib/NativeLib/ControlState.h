@@ -11,15 +11,17 @@ public:
 		delete scheduled_building;
 	}
 	Building* scheduled_building;
+	Structure* scheduled_structure;
 	bool is_dragging = false;
 	Vector2 drag_start_point;
 	Vector2 now_mouse_point;
 	bool is_area_highlighted = false;
 	Rect2 highlighted_area;
-	bool is_building = false;
+	bool is_building_blueprint_ready = false;
+	bool is_structure_blueprint_ready = false;
 
 	queue<int> new_building_ids;
-
+	queue<int> new_structure_ids;
 
 	void ResetDrag() {
 		is_dragging = false;
@@ -68,93 +70,5 @@ public:
 	void MouseRelease(Vector2 mouse_position) override {
 		Godot::print("[NormalState]Mouse Release: " + mouse_position);
 		EndDrag(mouse_position);
-	}
-};
-
-class BuildState : public ControlState {
-private:
-	StaticUnitService* static_unit_service;
-	eBuildingType scheduled_building_type = eBuildingType::SMALL_HOUSE;
-
-	void HighlightHoverdTile(Vector2 mouse_position) {
-		Coordinates hovered_tile_coord = GetTile(mouse_position);
-		if (hovered_tile_coord.x >= 0) {
-			Surface* hoverd_surface = tile_repo->GetSurface(hovered_tile_coord);
-		}
-		else {
-		}
-	}
-
-	bool CanBuiding(Vector2 mouse_position) {
-		if (input.is_building) {
-			return static_unit_service->IsPlacablePosition((int)scheduled_building_type, mouse_position);
-		}
-		return false;
-	}
-
-	void BuildBuilding(Vector2 mouse_position) {
-		int new_building_id;
-		new_building_id = static_unit_service->CreateBuilding((int)scheduled_building_type, mouse_position);
-		input.new_building_ids.push(new_building_id);
-	}
-
-public:
-	BuildState(TileRepository* t_repo, StaticUnitService* _static_unit_service)
-		: ControlState(t_repo), static_unit_service(_static_unit_service) {}
-
-	void MouseHover(Vector2 mouse_position) override {
-		HighlightHoverdTile(mouse_position);
-
-		if (input.is_building) {
-			input.scheduled_building->SetBluePrintPosition(
-				ClingToCloseCoordinate(mouse_position)
-			);
-		}
-	}
-
-	void MouseClick(Vector2 mouse_position) override {
-		if (CanBuiding(mouse_position)) {
-			BuildBuilding(mouse_position);
-		}
-		Godot::print("[BuildState]Mouse Click: " + mouse_position);
-	}
-
-	void MouseRelease(Vector2 mouse_position) override {
-		Godot::print("[BuildState]Mouse Release: " + mouse_position);
-	}
-
-	void SetScheduledBuildingType(int building_type) {
-		scheduled_building_type = (eBuildingType)building_type;
-		input.scheduled_building = static_unit_service->CreateBluePrintBuilding(building_type);
-		input.is_building = true;
-	}
-};
-
-class InstallState : public ControlState {
-private:
-	void HighlightHoverdTile(Vector2 mouse_position) {
-		Coordinates hovered_tile_coord = GetTile(mouse_position);
-		if (hovered_tile_coord.x >= 0) {
-			Surface* hoverd_surface = tile_repo->GetSurface(hovered_tile_coord);
-			input.is_area_highlighted = true;
-			input.highlighted_area = hoverd_surface->GetPhysics()->GetRect();
-		}
-		else {
-			input.is_area_highlighted = false;
-		}
-	}
-public:
-	InstallState(TileRepository* t_repo) : ControlState(t_repo) {}
-
-	void MouseHover(Vector2 mouse_position) override {
-		HighlightHoverdTile(mouse_position);
-	}
-
-	void MouseClick(Vector2 mouse_position) override {
-		Godot::print("[InstallState]Mouse Click: " + mouse_position);
-	}
-
-	void MouseRelease(Vector2 mouse_position) override {
-		Godot::print("[InstallState]Mouse Release: " + mouse_position);
 	}
 };
