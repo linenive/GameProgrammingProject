@@ -4,9 +4,12 @@ extends CanvasLayer
 export var imamge1 : Texture
 export var imamge2 : Texture
 
+export var image_furniture : Array
+
 var choice_button_ui = []
 var choice_button_count = 16;
 
+var choice_state
 var choice_result
 
 var input_manager
@@ -22,14 +25,12 @@ func _ready():
 	
 	close()
 
-func test():
-	var test_array = [["building1", imamge1, 0], ["building2", imamge2, 1]]
-	show_choice_buttons(test_array)
-
 # display choice buttons according to array
 # array = [[object_name, object_image, target_node, signal], ... ]
-func show_choice_buttons(array):
+func show_choice_buttons(choice_state, array):
 	open()
+	
+	self.choice_state = choice_state
 	
 	var array_size = array.size()
 	
@@ -44,7 +45,13 @@ func show_choice_buttons(array):
 func get_result_from_choice_button(choice_result):
 	self.choice_result = choice_result
 	print(self.choice_result)
-	input_manager.ChangeStateToBuild(choice_result[2])
+	
+	if choice_state == "Construction":
+		input_manager.ChangeStateToBuild(choice_result[2])
+	elif choice_state == "Install":
+		print("heyyy")
+		input_manager.ChangeStateToInstall(choice_result[2])
+		pass
 
 func close():
 	#input_manager.ChangeStateToNormal() #imsy for 2nd presentation
@@ -55,3 +62,16 @@ func open():
 
 func is_open():
 	return get_child(0).visible
+
+#button test
+func test_construction():
+	var test_array = [["building1", imamge1, 0], ["building2", imamge2, 1]]
+	show_choice_buttons("Construction", test_array)
+
+func test_furniture():
+	var test_array = []
+	
+	for i in range(8):
+		test_array.append(["furniture"+str(i+1), image_furniture[i], i])
+	
+	show_choice_buttons("Install", test_array)

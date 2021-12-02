@@ -18,6 +18,7 @@ func _ready():
 	
 	$HBoxContainer/ArchitectureBtn/Node/ConstructionBtn.connect("pressed", self, "construction_pressed")
 	$HBoxContainer/PeopleBtn/Node/ManageBtn.connect("pressed", self, "manage_pressed")
+	$HBoxContainer/ArchitectureBtn/Node/InstallBtn.connect("pressed", self, "furniture_pressed")
 
 func button_clicked(clicked_btn):
 	for btn in main_btns:
@@ -30,7 +31,6 @@ func button_clicked(clicked_btn):
 				unfold_menu(btn)
 		else:
 			fold_menu(btn)
-			pass
 
 #menu_index = 0(people), 1(architecture), 2(research), 3(menu)
 func fold_menu(btn):
@@ -51,20 +51,19 @@ func unfold_menu(btn):
 
 func memu_clicked():
 	print("menu")
-	pass
 
 func manage_pressed():
 	print("manage_pressed")
 	people_ui_control.open()
 	fold_all_menu()
-	pass
 
 func construction_pressed():
-	print("construction_pressed")
-	choice_button_control.test()
+	choice_button_control.test_construction()
 	fold_all_menu()
-	pass
+
+func furniture_pressed():
+	choice_button_control.test_furniture()
+	fold_all_menu()
 
 func research_clicked():
 	print("research")
-	pass
