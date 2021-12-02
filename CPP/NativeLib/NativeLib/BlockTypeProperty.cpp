@@ -9,6 +9,7 @@ int BlockTypeProperty::LevelOf(eBlockType type) {
     if (!is_initialized) {
         Init();
     }
+    //To-do: check "Is value is in array"
     return BlockTypeProperty::level[static_cast<int>(type)];
 }
 

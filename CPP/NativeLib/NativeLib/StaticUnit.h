@@ -25,6 +25,10 @@ public:
 		return Vector2(position.x + size.x / 2, position.y + size.y / 2);
 	}
 
+	Vector2 GetTopLeftBlockPosition() {
+		return blocks[0][0].GetPhysics()->GetPosition();
+	}
+
 	// 블루프린트에서 사용하기 위해 추가함. 2차발표후 보이는대로 알맞게 처리하기.
 	void SetBluePrintPosition(Vector2 position) {
 		ocupation_area.set_position(position);

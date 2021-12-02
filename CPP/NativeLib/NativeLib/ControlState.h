@@ -17,7 +17,8 @@ public:
 	Vector2 now_mouse_point;
 	bool is_area_highlighted = false;
 	Rect2 highlighted_area;
-	bool is_finished_setting = false;
+	bool is_building_blueprint_ready = false;
+	bool is_structure_blueprint_ready = false;
 
 	queue<int> new_building_ids;
 	queue<int> new_structure_ids;

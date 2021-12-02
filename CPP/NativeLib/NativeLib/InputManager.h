@@ -38,6 +38,7 @@ public:
 	Vector2 GetNowMouseRightClickPoint() { return now_mouse_right_click_point; }
 	bool IsDragging();
 	bool IsBuilding();
+	bool IsInstalling();
 	Array GetBuildingBluePrint();
 	Array GetStructureBluePrint();
 	void ChangeStateToBuild(int building_type);

@@ -1,9 +1,11 @@
 #include "StaticUnitService.h"
 
-StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo)
-	: StaticUnitService(tile_repo, building_repo, 1) {}
-StaticUnitService::StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_unit_id)
-	: tile_repo(tile_repo), building_repo(building_repo), next_unit_id(start_unit_id) {}
+StaticUnitService::StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
+	BuildingRepository* building_repo)
+	: StaticUnitService(tile_repo, structure_rep, building_repo, 1) {}
+StaticUnitService::StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
+	BuildingRepository* building_repo, int start_unit_id)
+	: tile_repo(tile_repo), structure_rep(structure_rep), building_repo(building_repo), next_unit_id(start_unit_id) {}
 
 int StaticUnitService::CreateBuilding(int type, Vector2 top_left_tile_position) {
 	return CreateBuilding(static_cast<eBuildingType>(type), AbsolutePositionToCoordinates(top_left_tile_position));
@@ -57,7 +59,6 @@ int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
 
 	RegisterBlocksToWorld(x, y, data.blocks, new_structure);
-
 	AddStructure(new_structure);
 	return new_structure->id;
 }
@@ -91,8 +92,8 @@ Structure* StaticUnitService::CreateBluePrintStructure(int type) {
 }
 
 void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& blocks, Building* building) {
-	for (int i = 0; i < blocks.size(); i++) {
-		for (int j = 0; j < blocks[i].size(); j++) {
+	for (int j = 0; j < blocks.size(); j++) {
+		for (int i = 0; i < blocks[j].size(); i++) {
 			eBlockType& block_type = blocks[j][i];
 
 			// To-do: Blueprint가 delete되는 경우, 등록한 Block에 대해 delete해야 함.
@@ -121,9 +122,13 @@ bool StaticUnitService::IsStructurePlacablePosition(int type, Vector2 top_left_t
 }
 
 bool StaticUnitService::IsPlacablePosition(int start_x, int start_y, vector< vector<eBlockType> >& blocks) {
-	for (int i = 0; i < blocks.size(); i++) {
-		for (int j = 0; j < blocks[i].size(); j++) {
+	for (int j = 0; j < blocks.size(); j++) {
+		for (int i = 0; i < blocks[j].size(); i++) {
 			Tile* tile = GetTile(start_x + i, start_y + j);
+			if (tile == nullptr) {
+				printf("WARNING: [StaticUnitService]Try to placable check but use invalid tile coordinate.\n");
+				return false;
+			}
 			int level = BlockTypeProperty::LevelOf(blocks[j][i]);
 
 			if (tile->IsEmptyLayer(level) == false) {
@@ -136,8 +141,8 @@ bool StaticUnitService::IsPlacablePosition(int start_x, int start_y, vector< vec
 }
 
 void StaticUnitService::RegisterBlocksToWorld(int start_x, int start_y, vector< vector<eBlockType> >& blocks, StaticUnit* staticUnit) {
-	for (int i = 0; i < blocks.size(); i++) {
-		for (int j = 0; j < blocks[i].size(); j++) {
+	for (int j = 0; j < blocks.size(); j++) {
+		for (int i = 0; i < blocks[j].size(); i++) {
 			Tile* tile = GetTile(start_x + i, start_y + j);
 			eBlockType& block_type = blocks[j][i];
 			Block* block = tile->GetBlock(BlockTypeProperty::LevelOf(block_type));

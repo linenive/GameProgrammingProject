@@ -29,6 +29,6 @@ public:
 	}
 
 	Vector2 GetStructurePosition(int id) {
-		return static_unit_service->GetStructureById(id)->GetCenterPosition();
+		return static_unit_service->GetStructureById(id)->GetTopLeftBlockPosition();
 	}
 };

@@ -23,7 +23,11 @@ bool InputManager::IsDragging() {
 }
 
 bool InputManager::IsBuilding() {
-	return control_context_service->GetInputStatus()->is_finished_setting;
+	return control_context_service->GetInputStatus()->is_building_blueprint_ready;
+}
+
+bool InputManager::IsInstalling() {
+	return control_context_service->GetInputStatus()->is_structure_blueprint_ready;
 }
 
 Array InputManager::GetBuildingBluePrint() {
@@ -129,6 +133,7 @@ void InputManager::_register_methods() {
 	register_method("IsDragging", &InputManager::IsDragging);
 	register_method("GetDragRect", &InputManager::GetDragRect);
 	register_method("IsBuilding", &InputManager::IsBuilding);
+	register_method("IsInstalling", &InputManager::IsInstalling);
 	register_method("GetBuildingBluePrint", &InputManager::GetBuildingBluePrint);
 	register_method("GetStructureBluePrint", &InputManager::GetStructureBluePrint);
 	

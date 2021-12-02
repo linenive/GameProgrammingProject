@@ -30,7 +30,14 @@ public:
 	}
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
-	Tile* GetTile(int x, int y) { return tile_map[y][x]; }
+	Tile* GetTile(int x, int y) { 
+		if (!IsInWorld(Coordinates(x, y))) {
+			printf("WARNING: [TileRepository]trying to get not exist tile! ");
+			printf("input coordinate: (%d, %d)\n", x, y);
+			return nullptr;
+		}
+		return tile_map[y][x];
+	}
 	Surface* GetSurface(int x, int y) { return tile_map[y][x]->GetSurface(); }
 	Surface* GetSurface(Coordinates coord) { return tile_map[coord.y][coord.x]->GetSurface();}
 

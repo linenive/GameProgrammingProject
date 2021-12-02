@@ -13,8 +13,8 @@ func _ready():
 	texture_db = get_node("/root/Main/TextureDB")
 	tile_scene = load("res://Scene/Tile.tscn")
 	block_scene = load("res://Scene/Block.tscn")
-	structure_scene = load("res://Scene/Structure.tscn")
-	character_scene = load("res://Scene/Object/Character1.tscn")
+	structure_scene = load("res://Scene/Object/Structure.tscn")
+	character_scene = load("res://Scene/Object/Character.tscn")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
 	CreateTileMap()
@@ -38,6 +38,8 @@ func CreateTileMap():
 func CreateBlocks(tile_coord, transform):
 	var block_types = world_manager.GetBlockTypes(tile_coord)
 	for bt in block_types:
+		if bt>=texture_db.block_texture.size():
+			continue;
 		var block_node = block_scene.instance()
 		block_node.transform = transform
 		block_node.texture = texture_db.block_texture[bt]
@@ -108,7 +110,7 @@ func create_structure(structure_id):
 	var structure_instance = structure_scene.instance()
 	var structure_type = static_unit_manager.GetStructureType(structure_id)
 	var position = static_unit_manager.GetStructurePosition(structure_id)
-	structure_instance.transform = Transform2D(0, position)
+	structure_instance.transform.origin = position
 	structure_instance.texture = texture_db.structure_texture[structure_type]
 	$Structure.add_child(structure_instance)
 

@@ -1,6 +1,8 @@
 #include "StructureType.h"
 
-#define sb eBlockType::STRUCTURE_BLOCK
+#define lb eBlockType::STRUCTURE_LOW_BLOCK
+#define mb eBlockType::STRUCTURE_MID_BLOCK
+#define hb eBlockType::STRUCTURE_HIGH_BLOCK
 
 StructureData::StructureData(eStructureType type) {
     switch (type)
@@ -8,50 +10,56 @@ StructureData::StructureData(eStructureType type) {
     case eStructureType::SINGLE_BED:
         name = "single_bed";
         blocks = {
-            {sb},
-            {sb},
+            {mb},
+            {mb},
         };
         break;
     case eStructureType::DOUBLE_BED:
         name = "double_bed";
         blocks = {
-            {sb, sb},
-            {sb, sb},
+            {mb, mb},
+            {mb, mb},
         };
         break;
     case eStructureType::BOX:
         name = "box";
         blocks = {
-            {sb}
+            {lb}
         };
+        break;
     case eStructureType::COOKING_TABLE:
         name = "cooking_table";
         blocks = {
-            {sb, sb, sb}
+            {mb, mb, mb}
         };
+        break;
     case eStructureType::POT:
         name = "pot";
         blocks = {
-            {sb}
+            {lb}
         };
+        break;
     case eStructureType::TABLE:
         name = "table";
         blocks = {
-            {sb}
+            {mb, mb}
         };
+        break;
     case eStructureType::COUNTER:
         name = "counter";
         blocks = {
-            {sb}
+            {mb}
         };
+        break;
     case eStructureType::CHAIR:
         name = "chair";
         blocks = {
-            {sb}
+            {lb}
         };
+        break;
     default:
-        width = blocks[0].size();
-        height = blocks.size();
         break;
     }
+    width = blocks[0].size();
+    height = blocks.size();
 }

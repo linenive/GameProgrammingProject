@@ -4,3 +4,5 @@
 
 [node name="Node2D" type="Sprite"]
 texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -16, -16 )

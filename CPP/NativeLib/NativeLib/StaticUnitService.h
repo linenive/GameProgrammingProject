@@ -51,6 +51,8 @@ public:
 	Array GetBuildingInfo(int buliding_id);
 	Array GetStructureInfo(int structure_id);
 
-	StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo);
-	StaticUnitService(TileRepository* tile_repo, BuildingRepository* building_repo, int start_unit_id);
+	StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
+		BuildingRepository* building_repo);
+	StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
+		BuildingRepository* building_repo, int start_unit_id);
 };

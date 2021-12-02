@@ -16,6 +16,8 @@ func _process(_delta):
 	update()
 	if input_manager.IsBuilding():
 		draw_building_blueprint()
+	if input_manager.IsInstalling():
+		draw_structure_blueprint()
 	
 func _draw():
 	if input_manager.IsDragging():
@@ -36,6 +38,11 @@ func draw_building_blueprint():
 		c.transform.origin = blocks[i][1]
 		i = i + 1
 
+func draw_structure_blueprint():
+	var blueprint_data = input_manager.GetStructureBluePrint()
+	if $Blueprint.get_child_count() > 0:
+		$Blueprint.get_child(0).transform.origin = blueprint_data[1]
+
 func create_building_blueprint():
 	var blocks = input_manager.GetBuildingBluePrint()
 	for b in blocks:
@@ -50,11 +57,12 @@ func create_structure_blueprint():
 	var structure_instance = structure_scene.instance()
 	var structure_type = data[0]
 	var position = data[1]
-	structure_instance.transform = Transform2D(0, position)
+	structure_instance.transform.origin = position
 	structure_instance.texture = texture_db.structure_texture[structure_type]
+	structure_instance.modulate.a = 0.5
 	$Blueprint.add_child(structure_instance)
 
-func delete_building_blueprint():
+func delete_blueprint():
 	for n in $Blueprint.get_children():
 		$Blueprint.remove_child(n)
 		n.queue_free()
@@ -63,7 +71,7 @@ func _on_InputManager_change_to_building_state():
 	create_building_blueprint()
 	
 func _on_InputManager_change_to_normal_state():
-	delete_building_blueprint()
+	delete_blueprint()
 
 func _on_InputManager_change_to_install_state():
 	create_structure_blueprint()
