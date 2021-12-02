@@ -34,6 +34,7 @@ private:
 
 	Vector2 CalcObstacleVector(Coordinates current_tile);
 	bool IsPassableTile(Coordinates next_tile);
+	float GetTilePassSpeed(Coordinates next_tile);
 
 public:
 	PathFindService(TileRepository* tile){
