@@ -93,6 +93,18 @@ public:
 		}
 	}
 
+	String GetCharacterSkillName(int character_id) {
+		if (IsCharacterNotExistError(character_id)) {
+			return " ";
+		}
+
+		return String(
+			object_service->GetCharacter(character_id)
+			->skill_list[0]
+			->GetSkillName().c_str()
+		);
+	}
+
 	Array GetCharacterItem(int character_id, int item_id);
 
 	int GetCharacterInventorySize(int character_id) {

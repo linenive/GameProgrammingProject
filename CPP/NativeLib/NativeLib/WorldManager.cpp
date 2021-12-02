@@ -24,6 +24,7 @@ void WorldManager::_register_methods() {
 	register_method("GetCharacterGender", &WorldManager::GetCharacterGender);
 	register_method("GetCharacterItem", &WorldManager::GetCharacterItem);
 	register_method("GetCharacterInventorySize", &WorldManager::GetCharacterInventorySize);
+	register_method("GetCharacterSkillName", &WorldManager::GetCharacterSkillName);
 
 	register_method("GetWorldSize", &WorldManager::GetWorldSize);
 

@@ -1,4 +1,6 @@
 #pragma once
+#pragma execution_character_set("utf-8")
+
 #include "CharacterSkill.h"
 #include "UnlockEvent.h"
 #include <string>
@@ -21,27 +23,3 @@ public:
 	SkillRepository();
 	void UnlockSkillWithEvent(eUnlockEvent event);
 };
-
-void SkillRepository::NewSkill(CharacterSkill skill) {
-	all_skill_list.push_back(skill);
-	available_skill_list.push_back(skill);
-}
-
-void SkillRepository::NewSkill(CharacterSkill skill, eUnlockEvent event) {
-	all_skill_list.push_back(skill);
-	event_skill_map[event].push_back(skill);
-}
-
-void SkillRepository::UnlockSkillWithEvent(eUnlockEvent event) {
-	for (CharacterSkill skill : event_skill_map[event]) {
-		available_skill_list.push_back(skill);
-	}
-}
-
-SkillRepository::SkillRepository() {
-	NewSkill(Name("FastWalk1").Add(BASE_MOVE_SPEED, 5));
-	NewSkill(Name("FastWalk2").Add(BASE_MOVE_SPEED, 10), eUnlockEvent::PASS_ONE_YEAR);
-	NewSkill(Name("Carrier1").Add(MAX_WEIGHT, 20));
-	NewSkill(Name("Carrier2").Add(MAX_WEIGHT, 30).Add(MOVE_SPEED_ON_HEAVY, 3), eUnlockEvent::PASS_ONE_YEAR);
-	NewSkill(Name("SuperHuman").Add(BASE_MOVE_SPEED, 20).Add(BASE_WORK_SPEED, 10).Add(BASE_COMBAT_LEVEL, 5).Add(MAX_WEIGHT, 50).Add(CAN_WORK_UNTIL_MIDNIGHT, 1));
-}

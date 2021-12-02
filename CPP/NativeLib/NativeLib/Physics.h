@@ -51,7 +51,7 @@ public:
 		);
 	}
 
-	void CalculateVelocity(Vector2 target) {
+	void CalculateVelocity(Vector2 target, int speed_factor) {
 		Vector2 desired_velocity = UpdateVelocityBySeek(target);
 		Vector2 steering = desired_velocity - velocity;
 
@@ -59,6 +59,8 @@ public:
 		steering = steering / mass;
 
 		velocity = Truncate(velocity + steering, CHARACTER_MAX_VELOCITY);
+		velocity *= speed_factor;
+		velocity /= 100;
 	}
 
 	void UpdatePosition() {

@@ -17,12 +17,12 @@ public:
 	virtual void NextAction() = 0;
 	bool HasAction() { return current_action != nullptr; }
 
-	void Execute(Physics* performer_physics) {
+	void Execute(Physics* performer_physics, int speed_factor) {
 		if (current_action->IsEndAction(performer_physics)) {
 			NextAction();
 			if (!HasAction()) return;
 		}
-		current_action->ExecuteAction(performer_physics);
+		current_action->ExecuteAction(performer_physics, speed_factor);
 	}
 
 	virtual const eTaskType GetType() = 0;

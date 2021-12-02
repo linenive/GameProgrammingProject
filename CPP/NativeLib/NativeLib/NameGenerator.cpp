@@ -4,7 +4,7 @@
 #include <random>
 
 NameGenerator::NameGenerator(){
-    load_name_data();
+    LoadNameData();
     FillFamilyNameQueue(family_name_list);
     FillManNameQueue(man_name_list);
     FillWomanNameQueue(woman_name_list);

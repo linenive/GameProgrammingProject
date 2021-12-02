@@ -6,7 +6,7 @@
 #include "EventLogRepository.h"
 #include "BuildingRepository.h"
 #include "RandomRepository.h"
-
+#include "SkillRepository.h"
 
 class GameWorld {
 
@@ -18,5 +18,5 @@ public:
 	EventLogRepository event_log_repo;
 	BuildingRepository building_repo;
 	RandomRepository random_repo;
-
+	SkillRepository skill_repo;
 };

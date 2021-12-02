@@ -62,8 +62,8 @@ public:
 		return !task->HasAction();
 	}
 
-	void ExecuteTask(Physics* performer_physics) {
-		task->Execute(performer_physics);
+	void ExecuteTask(Physics* performer_physics, int speed_factor) {
+		task->Execute(performer_physics, speed_factor);
 	}
 
 	bool IsPauseForDequeue() { return is_pause_for_dequeue; }

@@ -203,6 +203,9 @@
     <ClCompile Include="StaticUnitManager.cpp">
       <Filter>소스 파일\Manager\StaticUnit</Filter>
     </ClCompile>
+    <ClCompile Include="StatField.cpp">
+      <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTime.h">
@@ -413,6 +416,9 @@
     </ClInclude>
     <ClInclude Include="BuildingRole.h">
       <Filter>소스 파일\Domain\StaticUnit\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="FileReader.h">
+      <Filter>소스 파일\Library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -25,7 +25,7 @@ public:
 			return;
 		}
 		else if (!schedule->IsTaskEnd()) {
-			schedule->ExecuteTask(character->GetPhysics());
+			schedule->ExecuteTask(character->GetPhysics(), character->GetStatValue(eStatFieldType::BASE_MOVE_SPEED));
 		}
 		else {
 			EndTask(character);
