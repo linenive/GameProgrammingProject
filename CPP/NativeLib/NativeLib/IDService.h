@@ -22,7 +22,7 @@ public:
 		type_list["DisplayStand"] = 3;
 		
 		for (auto elem : type_list) {
-			id_list[elem.second] = IDRepository(elem.second);
+			id_list.insert(make_pair(elem.second,IDRepository(elem.second)));
 		}
 	}
 	int SetNewID(string type) {
@@ -30,7 +30,7 @@ public:
 
 		int type_key = type_list[type];
 		if (HasKeyInIDList(type_key)) 
-			return id_list[type_key].GetNewID();
+			return (id_list.find(type_key)->second).GetNewID();
 
 		return -1;
 	}

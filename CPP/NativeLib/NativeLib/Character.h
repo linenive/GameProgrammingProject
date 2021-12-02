@@ -52,8 +52,6 @@ public:
 		: id(_id), full_name(_name), gender(_gender),
 		WorldObject(_name.GetFullname(), transform, scale) {
 		inventory = new Inventory();
-		inventory->Get(new MaterialItem("Wood"));
-		SetBaseStat();
 	}
 	Schedule* GetSchedule() { return schedule; }
 	void SetSchedule(Schedule* new_schedule){
