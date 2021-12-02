@@ -18,7 +18,7 @@ void GameManager::_init(){
 }
 
 void GameManager::_ready(){
-	
+	NewGame();
 }
 
 void GameManager::_process(float delta){

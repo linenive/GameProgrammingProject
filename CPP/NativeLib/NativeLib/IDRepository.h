@@ -10,6 +10,14 @@ public:
 	IDRepository(int _type_id) :type_id(_type_id) {
 		current_count = 0;
 	}
+	bool operator==(const IDRepository& other) const {
+		if (type_id == other.type_id) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	int GetNewID() {
 		return type_id * ID_CODE_DIGIT + (current_count++);
 	}

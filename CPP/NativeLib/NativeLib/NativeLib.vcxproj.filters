@@ -134,6 +134,8 @@
     </Filter>
     <Filter Include="소스 파일\Domain\State">
       <UniqueIdentifier>{a0e04b60-30b2-437b-813a-b820b65a29d0}</UniqueIdentifier>
+    <Filter Include="소스 파일\Service\Item">
+      <UniqueIdentifier>{01ffb668-7fcc-47ae-8658-3fd182ecec56}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Service\Item">
       <UniqueIdentifier>{d05e4c48-0073-4793-bd8b-130ca471c84b}</UniqueIdentifier>
@@ -214,6 +216,8 @@
     </ClCompile>
     <ClCompile Include="StatField.cpp">
       <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
+    <ClCompile Include="ItemDictionaryService.cpp">
+      <Filter>소스 파일\Service\Item</Filter>
     </ClCompile>
     <ClCompile Include="ItemDictionary.cpp">
       <Filter>소스 파일\Service\Item</Filter>
@@ -505,6 +509,12 @@
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
     <ClInclude Include="IDService.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemDictionaryService.h">
+      <Filter>소스 파일\Domain\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemService.h">
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
   </ItemGroup>
