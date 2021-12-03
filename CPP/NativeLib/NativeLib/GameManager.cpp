@@ -20,6 +20,9 @@ void GameManager::_init(){
 
 void GameManager::_ready(){
 	NewGame();
+
+	StatItem* iron_armor = (StatItem*)GetGameService()->item_service->GetItemByName("iron_armor");
+	printf("iron armor price : %d", iron_armor->GetPrice());
 }
 
 void GameManager::_process(float delta){
