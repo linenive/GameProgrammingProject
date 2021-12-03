@@ -3,7 +3,8 @@
 
 #include "IDService.h"
 #include "DisplayStand.h"
-#include "EquipItem.h"
+#include "Material.h"
+#include "StatItem.h"
 
 class ItemDictionaryService {
 private:
@@ -17,7 +18,7 @@ public:
 	}
 	void SetDictionary();
 	Item* MakeItem(string type, vector<string> sub_line_list);
-	void StatParsing(EquipItem* item, vector<string> sub_line_list);
+	void StatParsing(StatItem* item, vector<string> sub_line_list);
 
 	int GetIDByName(string name);
 	Item* GetItemByID(string name);
