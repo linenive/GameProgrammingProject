@@ -20,6 +20,9 @@ func _ready():
 	#tween_fade_in()	
 
 func set_camera_position(position):
+	if camera_manager.GetCurrentCameraStateInString() == "TRACE":
+		camera_manager.SetCameraSetting_Default()
+	
 	camera_manager.SetCameraPosition(position)
 
 func show_new_log(single_log):

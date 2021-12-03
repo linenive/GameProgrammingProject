@@ -32,20 +32,19 @@ func show_popup(node, type, info, window_position:Vector2):
 	var btn = get_close_button()
 	btn.connect("pressed", self, "close_button_pressed")
 	
-	show_info_by_type(node, type, info)
+	show_info_by_type(info)
 	
 	show()
 
-func show_info_by_type(node, type, info):
-	if(type == "Character"):
-		window_setting_character_info(node, info)
+func show_info_by_type(info):
+	if(target_type == "Character"):
+		window_setting_character_info(target_node, info)
 	#elif():
-		
 
 func _process(delta):
-	if(is_visible_in_tree()):
-		show_info_by_type(target_node, target_type, uicontrol.get_character_info(target_node))
-	pass
+	if uicontrol.is_used_popup(self):
+		if target_type == "Character":
+			show_info_by_type(uicontrol.get_character_info(target_node))
 
 func init_popup():
 	target_node_id = 0
@@ -61,12 +60,6 @@ func setting_popup(node, type):
 func close_button_pressed():
 	init_popup()
 	uicontrol.close_info_popup(self)
-
-func get_target_object_id():
-	return target_node_id
-
-func set_target_object_id(oid):
-	target_node_id = oid
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
@@ -122,9 +115,21 @@ func window_setting_resident_info():
 		ui.visible = true
 
 func _on_track_btn_pressed():
-	uicontrol.popup_ui_track_btn_pressed(target_node.get_position())
+	uicontrol.popup_ui_track_btn_pressed(target_node.get_path())
 
 func _on_recruit_btn_pressed():
 	if static_unit_manager.RecruitGuestAsResident(target_object_id):
 		close_button_pressed()
 		hide()
+
+func get_target_node():
+	return target_node
+
+func get_target_node_id():
+	return target_node_id
+
+func set_target_node_id(node_id):
+	target_node_id = node_id
+
+func get_target_object_id():
+	return target_object_id
