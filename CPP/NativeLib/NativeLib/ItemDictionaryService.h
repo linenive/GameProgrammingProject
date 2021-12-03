@@ -4,6 +4,7 @@
 #include "IDService.h"
 #include "DisplayStand.h"
 #include "OccupiedFurniture.h"
+#include "EquipItem.h"
 
 class ItemDictionaryService {
 private:
@@ -15,10 +16,8 @@ public:
 	ItemDictionaryService(IDService* id_service):id_maker(id_service){
 		SetDictionary();
 	}
-	void AddDictionary(string name, string type);
-	void AddDictionaryFurniture(string name, string type, int grade);
-	void AddDictionaryDisplayStand(string name, string type, int grade, int slot_max_count);
 	void SetDictionary();
+	Item* MakeItem(string type, vector<string> sub_line_list);
 
 	int GetIDByName(string name);
 	Item* GetItemByID(string name);

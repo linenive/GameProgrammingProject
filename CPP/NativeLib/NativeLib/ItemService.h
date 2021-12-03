@@ -13,8 +13,4 @@ public:
 	Item* GetItemByName(string name) {
 		return item_dictionary->GetItemByName(name);
 	}
-	FurnitureItem* GetFurnitureItemByName(string name) {
-		FurnitureItem* new_furniture_item = (FurnitureItem *)item_dictionary->GetItemByName(name);
-		return new_furniture_item;
-	}
 };

@@ -56,5 +56,5 @@ const float ASSIGN_TASK_INTERVAL_TIME = 3.0;
 const float EXECUTE_TASK_INTERVAL_TIME = 0.02;
 
 //ID
-const int ID_CODE_DIGIT = 1000000;
+const int ID_CODE_DIGIT = 100000;
 
