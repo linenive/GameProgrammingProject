@@ -9,7 +9,7 @@ private:
 public:
 	EquipItem(string name, string type) :Item(name, type) { }
 
-	void AddStat(eStatFieldName field_name, int field_value) {
+	void AddStat(eStatFieldType field_name, int field_value) {
 		stat.AddStatFieldValue(field_name, field_value);
 	}
 };
