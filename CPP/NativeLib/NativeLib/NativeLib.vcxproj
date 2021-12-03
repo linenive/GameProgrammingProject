@@ -174,9 +174,9 @@
     <ClInclude Include="CharacterName.h" />
     <ClInclude Include="CharacterSkill.h" />
     <ClInclude Include="CharacterSlot.h" />
+    <ClInclude Include="DisplayStand.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="ControlContextService.h" />
-    <ClInclude Include="DisplayStand.h" />
     <ClInclude Include="EquipItem.h" />
     <ClInclude Include="Furniture.h" />
     <ClInclude Include="GameWorld.h" />
@@ -187,7 +187,6 @@
     <ClInclude Include="ItemDictionaryService.h" />
     <ClInclude Include="ItemService.h" />
     <ClInclude Include="ObjectService.h" />
-    <ClInclude Include="OccupiedFurniture.h" />
     <ClInclude Include="PathFindService.h" />
     <ClInclude Include="RandomRepository.h" />
     <ClInclude Include="SerializableClass.h" />

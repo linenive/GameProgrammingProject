@@ -19,7 +19,7 @@ vector<string> split(string input, char delimiter) {
 }
 void ItemDictionaryService::SetDictionary(){
 
-	ifstream file("ItemDictionary.csv");
+	ifstream file(".data/Item_dictionary.csv");
 	string line;
 	int new_id;
 	vector<string> sub_line;
@@ -49,17 +49,30 @@ void ItemDictionaryService::SetDictionary(){
 Item* ItemDictionaryService::MakeItem(string type, vector<string> sub_line_list){
 	switch (HashCode(type.c_str())) {
 		case HashCode("Material"):
-			return new Item(sub_line_list[0], sub_line_list[1]);
+			return new Item(sub_line_list[1], sub_line_list[0]);
 		case HashCode("Furniture"):
-			return new FurnitureItem(sub_line_list[0], sub_line_list[1], stoi(sub_line_list[2]));
-		case HashCode("DisplayStand"):
-			return new DisplayStandItem(sub_line_list[0], sub_line_list[1], stoi(sub_line_list[2]), stoi(sub_line_list[3]));
-		case HashCode("Weapon"):
-			return new EquipItem(sub_line_list[0], sub_line_list[1]);
 		case HashCode("Bed"):
-			return new OccupiedFurnitureItem(sub_line_list[0], sub_line_list[1], stoi(sub_line_list[2]));
+			return new FurnitureItem(sub_line_list[1], sub_line_list[0], stoi(sub_line_list[2]));
+		case HashCode("DisplayStand"):
+			return new DisplayStandItem(sub_line_list[1], sub_line_list[0], stoi(sub_line_list[2]), stoi(sub_line_list[3]));
+		case HashCode("Weapon"):
+		case HashCode("Armor"):
+		case HashCode("Potion"):
+			EquipItem* new_item = new EquipItem(sub_line_list[1], sub_line_list[0]);
+			StatParsing(new_item, sub_line_list);
+			return new_item;
 	}
 	return nullptr;
+}
+
+void ItemDictionaryService::StatParsing(EquipItem* item, vector<string> sub_line_list){
+	int size = sub_line_list.size();
+	for (int i = 2; i < size; i+=2) {
+		if (sub_line_list[i].empty()) break;
+		if (i + 1 >= size || sub_line_list[i + 1].empty()) break;
+		//printf("%s :: add stat %s, %d\n", item->GetName().c_str(), sub_line_list[i].c_str(), stoi(sub_line_list[i + 1]));
+		item->AddStat((eStatFieldType)stoi(sub_line_list[i]), stoi(sub_line_list[i + 1]));
+	}
 }
 
 int ItemDictionaryService::GetIDByName(string name){
