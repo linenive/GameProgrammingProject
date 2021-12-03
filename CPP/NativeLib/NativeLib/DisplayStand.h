@@ -24,11 +24,6 @@ public:
 		}
 	}
 	Item* SetSlotItem(Item* new_item, int slot_index) {
-		if (IsFullSlot()) {
-			printf("slot is full\n");
-			return nullptr;
-		}
-
 		Item* last_item = display_slot[slot_index];
 		if (last_item == nullptr)	slot_current_count++;
 		display_slot[slot_index] = new_item;
@@ -46,6 +41,14 @@ public:
 	bool HasItem(string item_name) {
 		for (int i = 0; i < slot_current_count; i++) {
 			if (display_slot[i] != nullptr && display_slot[i]->GetName() == item_name) {
+				return true;
+			}
+		}
+		return false;
+	}
+	bool HasItem(int item_id) {
+		for (int i = 0; i < slot_current_count; i++) {
+			if (display_slot[i] != nullptr && display_slot[i]->GetID() == item_id) {
 				return true;
 			}
 		}

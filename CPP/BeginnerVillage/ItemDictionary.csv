@@ -1,9 +1,8 @@
-﻿type,name,,
+﻿type,name,grade,
 Material,wood,,
 Material,stone,,
 Furniture,simple_chair,1,
 Bed,simple_bed,2,
-Bed,double_bed,3,2
 DisplayStand,weapon_display_stand,1,2
 DisplayStand,armor_display_stand,1,2
 DisplayStand,potion_display_stand,1,2
