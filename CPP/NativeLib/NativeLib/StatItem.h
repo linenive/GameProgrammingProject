@@ -1,8 +1,8 @@
 #pragma once
-#include "Item.h"
+#include "SaleItem.h"
 #include "Stat.h"
 
-class StatItem : public Item {
+class StatItem : public SaleItem {
 
 private:
 	Stat stat;
