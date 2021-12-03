@@ -24,10 +24,10 @@ func _ready():
 		available_popups.append(popup)
 
 func show_info_popup(node, type):
-	var object_id = node.get_instance_id()
+	var node_id = node.get_instance_id()
 	
-	if is_already_shown(object_id):
-		set_ui_top(get_popup_by_object_id(object_id))
+	if is_already_shown(node_id):
+		set_ui_top(get_popup_by_node_id(node_id))
 		return
 	
 	var instantiate_pos = get_instantiate_pos()
@@ -42,6 +42,24 @@ func get_object_info(node, type):
 		info = get_character_info(node)
 		
 	return info
+
+func get_character_info(node):
+	var inventory_size : int
+	var item_info_array : Array
+	
+	var character_id = node.get_id()
+	var character_info = {}
+	
+	character_info["first_name"] = world_manager.GetCharacterFirstName(character_id)
+	character_info["last_name"] = world_manager.GetCharacterLastName(character_id)
+	character_info["gender"] = world_manager.GetCharacterGender(character_id)
+	inventory_size = world_manager.GetCharacterInventorySize(character_id)
+			
+	for j in inventory_size:
+		item_info_array = world_manager.GetCharacterItem(character_id, j);
+		character_info["item" + str(j+1)] = item_info_array
+	
+	return character_info
 
 func get_available_popup():
 	if available_popups.empty():
@@ -76,41 +94,48 @@ func set_ui_top(popup):
 	used_popups.push_back(popup)
 	popup.get_parent().move_child(popup, 9)
 
-func get_popup_by_object_id(object_id):
+func get_popup_by_node_id(node_id):
 	for popup in used_popups:
-		if popup.get_target_object_id() == object_id:
+		if popup.get_target_node_id() == node_id:
 			return popup
 	return null
 
 func is_already_shown(object_id):
-	if get_popup_by_object_id(object_id) != null:
+	if get_popup_by_node_id(object_id) != null:
 		return true
+	
+	return false
+
+func is_used_popup(popup_):
+	for popup in used_popups:
+		if popup == popup_:
+			return true
 	
 	return false
 
 func MouseRightClickLabelUpdate(new_click_position):
 	clicked_position_label.text = str(new_click_position)
-	
+
+func popup_ui_track_btn_pressed(character_path):
+	$HUD/StopTracingBtn.visible = true
+	camera_manager.SetCameraSetting_Trace(character_path)
+
 func _on_CharacterMove_pressed():
 	var game_manager = get_node("/root/Main").AIClickUpdate(input_manager.GetNowMouseRightClickPoint())
 
-func popup_ui_track_btn_pressed(event_triggered_position):
-	camera_manager.SetCameraPosition(event_triggered_position)
+func _on_StopTracingBtn_pressed():
+	$HUD/StopTracingBtn.visible = false
+	camera_manager.SetCameraSetting_Default()
 
-func get_character_info(node):
-	var inventory_size : int
-	var item_info_array : Array
+func _on_Main_delete_character(ID):
+	var popup_target_node
 	
-	var character_id = node.get_id()
-	var character_info = {}
-	
-	character_info["first_name"] = world_manager.GetCharacterFirstName(character_id)
-	character_info["last_name"] = world_manager.GetCharacterLastName(character_id)
-	character_info["gender"] = world_manager.GetCharacterGender(character_id)
-	inventory_size = world_manager.GetCharacterInventorySize(character_id)
+	for popup in used_popups:
+		if popup.get_target_object_id() == ID:
+			popup_target_node = popup.get_target_node()
+			popup.hide()
+			close_info_popup(popup)
 			
-	for j in inventory_size:
-		item_info_array = world_manager.GetCharacterItem(character_id, j);
-		character_info["item" + str(j+1)] = item_info_array
-	
-	return character_info
+			if camera_manager.GetCurrentCameraStateInString() == "TRACE" and camera_manager.IsTargetNode(popup_target_node):
+				_on_StopTracingBtn_pressed()
+			break

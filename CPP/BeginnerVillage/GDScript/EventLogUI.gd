@@ -12,6 +12,9 @@ func _ready():
 	pass
 
 func set_camera_position(position):
+	if camera_manager.GetCurrentCameraStateInString() == "TRACE":
+		camera_manager.SetCameraSetting_Default()
+	
 	camera_manager.SetCameraPosition(position)
 
 func show_log(single_log):

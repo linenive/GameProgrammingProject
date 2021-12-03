@@ -216,6 +216,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StopTracingBtn" type="Button" parent="UIControl/HUD"]
+visible = false
+margin_left = 3.74237
+margin_top = 568.611
+margin_right = 105.742
+margin_bottom = 596.611
+text = "Stop Tracing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ObjectInfoUI" type="Node" parent="UIControl"]
 
 [node name="PopupUI1" parent="UIControl/ObjectInfoUI" instance=ExtResource( 11 )]
@@ -1248,7 +1259,9 @@ __meta__ = {
 [node name="BuildingInfoUI" parent="UIControl/BuildingUIControl" instance=ExtResource( 28 )]
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
+[connection signal="delete_character" from="." to="." method="_on_Main_delete_character"]
 [connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
+[connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
 [connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
 [connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
 [connection signal="change_to_install_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_install_state"]
@@ -1260,3 +1273,4 @@ __meta__ = {
 [connection signal="pressed" from="UIControl/HUD/Button3" to="JanTestGDScript" method="_on_Button3_pressed"]
 [connection signal="pressed" from="UIControl/HUD/Button2" to="JanTestGDScript" method="_on_Button2_pressed"]
 [connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]
+[connection signal="pressed" from="UIControl/HUD/StopTracingBtn" to="UIControl" method="_on_StopTracingBtn_pressed"]
