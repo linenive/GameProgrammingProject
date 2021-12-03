@@ -57,10 +57,11 @@ Item* ItemDictionaryService::MakeItem(string type, vector<string> sub_line_list)
 			return new DisplayStandItem(sub_line_list[1], sub_line_list[0], stoi(sub_line_list[2]), stoi(sub_line_list[3]));
 		case HashCode("Weapon"):
 		case HashCode("Armor"):
-		case HashCode("Potion"):
-			StatItem* new_item = new StatItem(sub_line_list[1], sub_line_list[0]);
+		case HashCode("Potion"): {
+			StatItem* new_item = new StatItem(sub_line_list[1], sub_line_list[0], stoi(sub_line_list[2]));
 			StatParsing(new_item, sub_line_list);
 			return new_item;
+		}
 		default:
 			return new Item(sub_line_list[1], sub_line_list[0]);
 	}
@@ -69,7 +70,7 @@ Item* ItemDictionaryService::MakeItem(string type, vector<string> sub_line_list)
 
 void ItemDictionaryService::StatParsing(StatItem* item, vector<string> sub_line_list){
 	int size = sub_line_list.size();
-	for (int i = 2; i < size; i+=2) {
+	for (int i = 3; i < size; i += 2) {
 		if (sub_line_list[i].empty()) break;
 		if (i + 1 >= size || sub_line_list[i + 1].empty()) break;
 		//printf("%s :: add stat %s, %d\n", item->GetName().c_str(), sub_line_list[i].c_str(), stoi(sub_line_list[i + 1]));

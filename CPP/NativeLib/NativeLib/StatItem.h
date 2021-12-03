@@ -1,13 +1,13 @@
 #pragma once
-#include "Item.h"
+#include "SaleItem.h"
 #include "Stat.h"
 
-class StatItem : public Item {
+class StatItem : public SaleItem {
 
 private:
 	Stat stat;
 public:
-	StatItem(string name, string type) :Item(name, type) { }
+	StatItem(string _name, string _type,int _price) :SaleItem(_name, _type, _price) { }
 
 	Stat GetStat() { return stat; }
 	void AddStat(eStatFieldType field_name, int field_value) {
