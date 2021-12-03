@@ -134,8 +134,6 @@
     </Filter>
     <Filter Include="소스 파일\Domain\State">
       <UniqueIdentifier>{a0e04b60-30b2-437b-813a-b820b65a29d0}</UniqueIdentifier>
-    <Filter Include="소스 파일\Service\Item">
-      <UniqueIdentifier>{01ffb668-7fcc-47ae-8658-3fd182ecec56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -210,8 +208,6 @@
     </ClCompile>
     <ClCompile Include="StatField.cpp">
       <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
-    <ClCompile Include="ItemDictionaryService.cpp">
-      <Filter>소스 파일\Service\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -458,35 +454,6 @@
     </ClInclude>
     <ClInclude Include="ResidentService.h">
       <Filter>소스 파일\Service\WorldObject</Filter>
-    <ClInclude Include="Furniture.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="DisplayStand.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="StoreItem.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="EquipItem.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="OccupiedFurniture.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ID.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="IDRepository.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="IDService.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemDictionaryService.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemService.h">
-      <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
