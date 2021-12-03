@@ -1,11 +1,6 @@
 
 extends CanvasLayer
 
-export var imamge1 : Texture
-export var imamge2 : Texture
-
-export var image_furniture : Array
-
 var choice_button_ui = []
 var choice_button_count = 16;
 
@@ -13,10 +8,12 @@ var choice_state
 var choice_result
 
 var input_manager
+var choice_button_data_maker
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
+	choice_button_data_maker = get_node("/root/Main/UIControl/ChoiceButtonControl/ChoiceButtonDataMaker")
 	var hbox_containers = [$VBoxContainer/HBoxContainer, $VBoxContainer/HBoxContainer2]
 	
 	for hbox_container in hbox_containers:
@@ -65,13 +62,7 @@ func is_open():
 
 #button test
 func test_construction():
-	var test_array = [["building1", imamge1, 0], ["building2", imamge2, 1]]
-	show_choice_buttons("Construction", test_array)
+	show_choice_buttons("Construction", choice_button_data_maker.get_building_data_array())
 
 func test_furniture():
-	var test_array = []
-	
-	for i in range(8):
-		test_array.append(["furniture"+str(i+1), image_furniture[i], i])
-	
-	show_choice_buttons("Install", test_array)
+	show_choice_buttons("Install", choice_button_data_maker.get_furniture_data_array())
