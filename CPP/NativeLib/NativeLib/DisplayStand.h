@@ -10,4 +10,5 @@ public:
 	}
 	DisplayStandItem(string name, string type, int grade, int _slot_count_max) : FurnitureItem(name, type, grade), slot_max_count(_slot_count_max) {
 	}
+	int GetSlotMaxCount() { return slot_max_count; }
 };

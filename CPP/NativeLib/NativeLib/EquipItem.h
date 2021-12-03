@@ -16,6 +16,7 @@ public:
 	int GetStatValue(eStatFieldType stat_type) {
 		StatField* stat_field = stat.FindStatField(stat_type);
 		if (stat_field == nullptr) return -999;
+
 		return stat_field->GetValue();
 	}
 };
