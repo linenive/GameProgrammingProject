@@ -91,6 +91,7 @@ public:
 		ai_service = new AIService(
 			object_service, task_service, static_unit_service, resident_service
 		);
+		id_service = new IDService();
 		item_dictionary_service = new ItemDictionaryService(id_service);
 		item_service = new ItemService(item_dictionary_service);
 	};

@@ -4,11 +4,14 @@
 
 class OccupiedFurnitureItem : public FurnitureItem {
 private:
-	Character* current_use_character = nullptr;
+	Character* current_use_character;
 
 public:
 	~OccupiedFurnitureItem() {
 		delete current_use_character;
+	}
+	OccupiedFurnitureItem(string _name, string _type, int _grade) :FurnitureItem(_name, _type, _grade) {
+		current_use_character = nullptr;
 	}
 	bool IsVacant() {
 		return current_use_character == nullptr;
@@ -27,5 +30,8 @@ public:
 		current_use_character = nullptr;
 
 		return last_character;
+	}
+	Character* GetOccupiedCharacter() {
+		return current_use_character;
 	}
 };

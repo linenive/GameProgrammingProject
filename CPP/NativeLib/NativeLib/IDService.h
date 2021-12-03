@@ -17,9 +17,10 @@ private:
 public:
 	IDService(){
 		type_list["Material"] = 0;
-		type_list["Furnitual"] = 1;
+		type_list["Furniture"] = 1;
 		type_list["Bed"] = 2;
 		type_list["DisplayStand"] = 3;
+		type_list["Weapon"] = 4;
 		
 		for (auto elem : type_list) {
 			id_list.insert(make_pair(elem.second,IDRepository(elem.second)));

@@ -10,7 +10,7 @@ private:
 	int slot_max_count;
 
 	bool IsFullSlot() {
-		return display_slot.size() == slot_max_count;
+		return slot_current_count == slot_max_count;
 	}
 	bool CanDisplayItemByIndex(int slot_index) {
 		return display_slot.find(slot_index) == display_slot.end();
@@ -24,9 +24,13 @@ public:
 		}
 	}
 	Item* SetSlotItem(Item* new_item, int slot_index) {
-		if (IsFullSlot()) return nullptr;
+		if (IsFullSlot()) {
+			printf("slot is full\n");
+			return nullptr;
+		}
 
 		Item* last_item = display_slot[slot_index];
+		if (last_item == nullptr)	slot_current_count++;
 		display_slot[slot_index] = new_item;
 		return last_item;
 	}
