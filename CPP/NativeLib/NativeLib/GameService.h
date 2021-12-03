@@ -90,6 +90,7 @@ public:
 			object_service,
 			&game_world.object_repo, &game_world.building_repo
 		);
+		id_service = new IDService();
 		item_dictionary_service = new ItemDictionaryService(id_service);
 		item_service = new ItemService(item_dictionary_service);
 	};

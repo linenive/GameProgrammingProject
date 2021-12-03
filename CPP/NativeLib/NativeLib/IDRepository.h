@@ -19,6 +19,8 @@ public:
 		}
 	}
 	int GetNewID() {
-		return type_id * ID_CODE_DIGIT + (current_count++);
+		int new_id = type_id * ID_CODE_DIGIT + current_count;
+		current_count++;
+		return new_id;
 	}
 };

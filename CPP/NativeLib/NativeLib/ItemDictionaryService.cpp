@@ -1,41 +1,65 @@
 #pragma once
 #include <vector>
+#include <fstream>
+#include <sstream>
 #include "ItemDictionaryService.h"
 
+constexpr unsigned int HashCode(const char* str)
+{
+	return str[0] ? static_cast<unsigned int>(str[0]) + 0xEDB8832Full * HashCode(str + 1) : 8603;
+}
+vector<string> split(string input, char delimiter) {
+	vector<string> answer;
+	stringstream ss(input);
+	string tmp;
+	while (getline(ss, tmp, delimiter)) {
+		answer.push_back(tmp);
+	}
+	return answer;
+}
 void ItemDictionaryService::SetDictionary(){
 
-	//to do -> csv file read
-	AddDictionary("wood", "Material");
-	AddDictionaryFurniture("chair", "Furniture",3);
-	AddDictionaryDisplayStand("weapon_display_stand", "DisplayStand",3,2);
+	ifstream file("ItemDictionary.csv");
+	string line;
+	int new_id;
+	vector<string> sub_line;
+	if (!file.is_open()) {
+		printf("file error\n");
+		return;
+	}
+	getline(file,line);
+	while (getline(file, line)) {
+		sub_line = split(line, ',');
+		if (sub_line.empty()) break;
 
+		new_id = id_maker->SetNewID(sub_line[0]);
+		
+		Item* new_item = MakeItem(sub_line[0], sub_line);	
+		if (new_item == nullptr)	break;
+
+		new_item->SetID(new_id);
+		id_item_list[new_id] = new_item;
+		name_item_list[sub_line[1]] = new_item;
+
+		//printf("new item [%s , %s] key : %d\n", sub_line[1].c_str(), sub_line[0].c_str(), new_id);
+	}
+	file.close();
 }
-void ItemDictionaryService::AddDictionary(string name, string type){
-	int new_id = id_maker->SetNewID(type);
-	Item new_item = Item(name, type);
-	new_item.SetID(new_id);
-	id_item_list[new_id] = &new_item;
 
-	name_item_list[name] = &new_item;
-	printf("new item %s key : %f",name, new_id);
-}
-void ItemDictionaryService::AddDictionaryFurniture(string name, string type, int grade) {
-	int new_id = id_maker->SetNewID(type);
-	FurnitureItem new_item = FurnitureItem(name, type,grade);
-	new_item.SetID(new_id);
-	id_item_list[new_id] = &new_item;
-
-	name_item_list[name] = &new_item;
-	printf("new furniture item %s key : %f", name, new_id);
-}
-void ItemDictionaryService::AddDictionaryDisplayStand(string name, string type, int grade, int slot_max_count) {
-	int new_id = id_maker->SetNewID(type);
-	DisplayStandItem new_item = DisplayStandItem(name, type, grade, slot_max_count);
-	new_item.SetID(new_id);
-	id_item_list[new_id] = &new_item;
-
-	name_item_list[name] = &new_item;
-	printf("new display stand item %s key : %f", name, new_id);
+Item* ItemDictionaryService::MakeItem(string type, vector<string> sub_line_list){
+	switch (HashCode(type.c_str())) {
+		case HashCode("Material"):
+			return new Item(sub_line_list[0], sub_line_list[1]);
+		case HashCode("Furniture"):
+			return new FurnitureItem(sub_line_list[0], sub_line_list[1], stoi(sub_line_list[2]));
+		case HashCode("DisplayStand"):
+			return new DisplayStandItem(sub_line_list[0], sub_line_list[1], stoi(sub_line_list[2]), stoi(sub_line_list[3]));
+		case HashCode("Weapon"):
+			return new EquipItem(sub_line_list[0], sub_line_list[1]);
+		case HashCode("Bed"):
+			return new OccupiedFurnitureItem(sub_line_list[0], sub_line_list[1], stoi(sub_line_list[2]));
+	}
+	return nullptr;
 }
 
 int ItemDictionaryService::GetIDByName(string name){
