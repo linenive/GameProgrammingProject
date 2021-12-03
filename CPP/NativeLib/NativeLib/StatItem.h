@@ -2,12 +2,12 @@
 #include "Item.h"
 #include "Stat.h"
 
-class EquipItem : public Item {
+class StatItem : public Item {
 
 private:
 	Stat stat;
 public:
-	EquipItem(string name, string type) :Item(name, type) { }
+	StatItem(string name, string type) :Item(name, type) { }
 
 	Stat GetStat() { return stat; }
 	void AddStat(eStatFieldType field_name, int field_value) {
