@@ -49,7 +49,7 @@ void ItemDictionaryService::SetDictionary(){
 Item* ItemDictionaryService::MakeItem(string type, vector<string> sub_line_list){
 	switch (HashCode(type.c_str())) {
 		case HashCode("Material"):
-			return new Item(sub_line_list[1], sub_line_list[0]);
+			return new MaterialItem(sub_line_list[1]);
 		case HashCode("Furniture"):
 		case HashCode("Bed"):
 			return new FurnitureItem(sub_line_list[1], sub_line_list[0], stoi(sub_line_list[2]));
@@ -58,14 +58,16 @@ Item* ItemDictionaryService::MakeItem(string type, vector<string> sub_line_list)
 		case HashCode("Weapon"):
 		case HashCode("Armor"):
 		case HashCode("Potion"):
-			EquipItem* new_item = new EquipItem(sub_line_list[1], sub_line_list[0]);
+			StatItem* new_item = new StatItem(sub_line_list[1], sub_line_list[0]);
 			StatParsing(new_item, sub_line_list);
 			return new_item;
+		default:
+			return new Item(sub_line_list[1], sub_line_list[0]);
 	}
 	return nullptr;
 }
 
-void ItemDictionaryService::StatParsing(EquipItem* item, vector<string> sub_line_list){
+void ItemDictionaryService::StatParsing(StatItem* item, vector<string> sub_line_list){
 	int size = sub_line_list.size();
 	for (int i = 2; i < size; i+=2) {
 		if (sub_line_list[i].empty()) break;
