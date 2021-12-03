@@ -6,78 +6,65 @@
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
-#include "ResidentService.h"
 
 class AIService {
 
 private:
 	ObjectService* object_service;
 	TaskService* task_service;
-	ResidentService* resident_service;
-
-	map<int, Character*>* characters;
-	map<int, Guest*>* guests;
-	map<int, Resident*>* residents;
 	AIExecuter ai_executer;
-	
+
+	list<pair<int, Task*>> task_list; 
+
 	Timer task_assign_timer;
 	Timer task_execute_timer;
 
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
-	void AddSeekTask(Character* character, Vector2 leave_point) {
-		Task* new_task = task_service->CreateSeekTask(character, leave_point);
-		character->GetSchedule()->SetTask(new_task);
-	}
-	void AddSeekTaskToHome(Character* character) {
-		Vector2 home_pos = resident_service->GetResidentHomePosition(character->GetId());
-		AddSeekTask(character, home_pos);
-	}
-	void AddLeaveVillageTask(Guest* character) {
-		Task* new_task = task_service->CreateLeaveVillageTask(character);
-		character->GetSchedule()->SetTask(new_task);
-	}
-	void AddIdleTask(Character* performer) {
-		Task* new_task = task_service->CreateWanderTask(performer);
-		performer->GetSchedule()->SetTask(new_task);
-	}
-	void FindNewTaskToResident(Character* resident) {
-		AddSeekTaskToHome(resident);
-		//AddIdleTask(resident);
+
+	Task* FindNewTaskToResident(Character* resident) {
+		return task_service->CreateSeekTaskToHome(resident);
 	}
 	// To-do: hard coding -> algorithm which use DB
-	void FindNewTaskToGuest(Guest* guest) {
-		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(guest->GetSchedule()))->GetPurposOfVisit();
+	Task* FindNewTaskToGuest(Guest* performer) {
+		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(performer->GetSchedule()))->GetPurposOfVisit();
 		for (PurposeOfVisit* p : purposes) {
 			if (p->CanExecute()) {
 				// To-do: 
-				AddIdleTask(guest);
-				return;
+				return task_service->CreateWanderTask(performer);
 			}
 		}
-		AddLeaveVillageTask(guest);
-		//AddIdleTask(guest);
-	}
-	void AssignTaskToResidents() {
-		// To-do: task allocator for task priority
-		for (auto &kv : *residents) {
-			if (!kv.second->GetSchedule()->HasTask())
-				FindNewTaskToResident(kv.second);
-		}
-	}
-	void AssignTaskToGuests() {
-		// To-do: task allocator for task priority
-		for (auto& kv : *guests) {
-			if (!kv.second->GetSchedule()->HasTask())
-				FindNewTaskToGuest(kv.second);
-		}
+		return task_service->CreateLeaveVillageTask(performer);
 	}
 	void AssignTaskToWholeCharacter() {
-		AssignTaskToResidents();
-		AssignTaskToGuests();
+		// To-do: task allocator for task priority
+		Character* performer;
+		auto it = task_list.begin();
+		while (it != task_list.end()) {
+			performer = object_service->GetCharacter(it->first);
+			if (performer == nullptr) {
+				task_list.erase(it);
+				continue;
+			}
+			// To-do: 우선순위 비교하여 변동 없을 시 무시하기.
+			delete it->second;
+			if (performer->IsGuest())
+				it->second = FindNewTaskToGuest((Guest*)performer);
+			else
+				it->second = FindNewTaskToResident((Resident*)performer);
+			++it;
+		}
 	}
-	void ExecuteCharactersTask() {
-		for (auto& kv : *characters) {
-			ai_executer.ExecuteCharacterTask(kv.second);
+	void ExecuteCharactersTask(){
+		Character* performer;
+		auto it = task_list.begin();
+		while (it != task_list.end()) {
+			performer = object_service->GetCharacter(it->first);
+			if (performer == nullptr) {
+				task_list.erase(it);
+			}
+			ai_executer.ExecuteCharacterTask(performer, it->second);
+
+			++it;
 		}
 	}
 
@@ -94,13 +81,19 @@ public:
 	~AIService() {
 		delete task_service;
 	}
-	AIService(ObjectService* _object_service, TaskService* _task_service, ResidentService* _resident_service)
-		: object_service(_object_service), task_service(_task_service), resident_service(_resident_service),
+	AIService(ObjectService* _object_service, TaskService* _task_service)
+		: object_service(_object_service), task_service(_task_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
-		characters = object_service->GetCharacters();
-		guests = object_service->GetGuests();
-		residents = object_service->GetResidents();
+		map<int, Character*>* characters = object_service->GetCharacters();
+		for (auto &kv : *characters) {
+			task_list.push_back({ kv.first, nullptr});
+		}
 	}
+
+	void AddNewGuest(int id) {
+		task_list.push_back({ id, FindNewTaskToGuest((Guest*)object_service->GetCharacter(id)) });
+	}
+
 	void Update(float delta) {
 		task_assign_timer.TimeGo(delta);
 		int task_assign_number = task_assign_timer.GetPassNumberAndReset();

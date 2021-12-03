@@ -371,7 +371,6 @@
       <Filter>소스 파일\Service\Village</Filter>
     </ClInclude>
     <ClInclude Include="ControlState.h" />
-    <ClInclude Include="StructureFactory.h" />
     <ClInclude Include="RandomRepository.h">
       <Filter>소스 파일\Repository\Event</Filter>
     </ClInclude>

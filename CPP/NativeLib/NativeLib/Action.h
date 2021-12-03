@@ -1,16 +1,16 @@
 #pragma once
+#include "Character.h"
 #include "WorldObject.h"
 
 class Action{
-protected:
-	const Vector2 target;
 public:
-	Action(const Vector2 _target):target(_target){}
-	virtual void ExecuteAction(Physics* performer_physics, int speed_factor) = 0;
-	virtual bool IsEndAction(Physics* performer_physics) = 0;
+	virtual void ExecuteAction(Character* performer) = 0;
+	virtual bool IsEndAction(Character* performer) = 0;
 };
 
 class MoveAction : public Action {
+protected:
+	const Vector2 target;
 private:
 	bool CheckArriveCurrentTarget(Vector2 current_position) {
 		Vector2 current_distance = target - current_position;
@@ -20,13 +20,23 @@ private:
 	}
 
 public:
-	MoveAction(const Vector2 _target):Action(_target){
+	MoveAction(const Vector2 _target):target(_target){
 	}
-	virtual void ExecuteAction(Physics* performer_physics, int speed_factor) {
-		performer_physics->CalculateVelocity(target, speed_factor);
-		performer_physics->UpdatePosition();
+	virtual void ExecuteAction(Character* performer) {
+		performer->GetPhysics()->CalculateVelocity(target, performer->GetStatValue(eStatFieldType::BASE_MOVE_SPEED));
+		performer->GetPhysics()->UpdatePosition();
 	}
-	virtual bool IsEndAction(Physics* performer_physics) {
-		return CheckArriveCurrentTarget(performer_physics->GetPosition());
+	virtual bool IsEndAction(Character* performer) {
+		return CheckArriveCurrentTarget(performer->GetPhysics()->GetPosition());
+	}
+};
+
+class PauseAction : public Action {
+public:
+	virtual void ExecuteAction(Character* performer) {
+
+	}
+	virtual bool IsEndAction(Character* performer) {
+		return false;
 	}
 };

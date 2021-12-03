@@ -1,17 +1,24 @@
 #pragma once
 #include "Task.h"
+#include "ResidentService.h"
 
 class TaskService {
 private:
 	TileRepository* tile_repo;
 	PathFindService* path_finder;
+	ResidentService* resident_service;
 	queue<Vector2>* CreatePath(Vector2 start_position, Vector2 target_position) {
 		return path_finder->PathFinding(start_position, target_position);
 	}
 public:
-	TaskService(TileRepository* _tile_repo, PathFindService* _path_finder)
-		: tile_repo(_tile_repo), path_finder(_path_finder) {}
+	TaskService(TileRepository* _tile_repo, PathFindService* _path_finder,
+		ResidentService* _resident_service)
+		: tile_repo(_tile_repo), path_finder(_path_finder), resident_service(_resident_service){}
 
+	Task* CreateSeekTaskToHome(Character* character) {
+		Vector2 home_pos = resident_service->GetResidentHomePosition(character->GetId());
+		return CreateSeekTask(character, home_pos);
+	}
 	Task* CreateSeekTask(Character* c, Vector2 seek_target) {
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), seek_target);
 		return new SeekTask(paths);

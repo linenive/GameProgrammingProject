@@ -3,32 +3,25 @@
 
 class AIExecuter {
 private:
-	void EndTask(Character* character) {
-		Schedule* schedule = character->GetSchedule();
-		if (schedule->GetTaskType()== eTaskType::LEAVE_VILLAGE) {
-			schedule->PauseForDequeue();
+	void EndTask(Character* character, Task* task) {
+		if (task->GetType()== eTaskType::LEAVE_VILLAGE) {
 			village_leavers.push(character->GetId());
 			return;
 		}
-		character->GetSchedule()->DeleteTask();
+		delete task;
+		task = nullptr;
 	}
 
 public:
 	queue<int> village_leavers;
 
-	void ExecuteCharacterTask(Character* character) {
-		Schedule* schedule = character->GetSchedule();
-
-		if (!schedule->HasTask()) { return; }
-
-		if (schedule->IsPauseForDequeue()) {
-			return;
-		}
-		else if (!schedule->IsTaskEnd()) {
-			schedule->ExecuteTask(character->GetPhysics(), character->GetStatValue(eStatFieldType::BASE_MOVE_SPEED));
+	void ExecuteCharacterTask(Character* character, Task* task) {
+		if (task==nullptr) { return; }
+		else if (task->HasAction()) {
+			task->Execute(character);
 		}
 		else {
-			EndTask(character);
+			EndTask(character, task);
 		}
 	}
 

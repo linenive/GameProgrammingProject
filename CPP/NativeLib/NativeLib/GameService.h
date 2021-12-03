@@ -67,7 +67,7 @@ public:
 			skill_service
 		);
 		task_service = new TaskService(
-			&game_world.tile_repo, path_find_service
+			&game_world.tile_repo, path_find_service, resident_service
 		);
 		control_context_service = new ControlContextService(
 			&game_world.tile_repo, static_unit_service
@@ -77,7 +77,7 @@ public:
 			&game_world.time_repo, &game_world.event_log_repo
 		);
 		ai_service = new AIService(
-			object_service, task_service, resident_service
+			object_service, task_service
 		);
 		resident_service = new ResidentService(
 			object_service,

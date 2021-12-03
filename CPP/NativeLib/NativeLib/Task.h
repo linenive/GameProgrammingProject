@@ -17,12 +17,12 @@ public:
 	virtual void NextAction() = 0;
 	bool HasAction() { return current_action != nullptr; }
 
-	void Execute(Physics* performer_physics, int speed_factor) {
-		if (current_action->IsEndAction(performer_physics)) {
+	void Execute(Character* performer) {
+		if (current_action->IsEndAction(performer)) {
 			NextAction();
 			if (!HasAction()) return;
 		}
-		current_action->ExecuteAction(performer_physics, speed_factor);
+		current_action->ExecuteAction(performer);
 	}
 
 	virtual const eTaskType GetType() = 0;
@@ -61,6 +61,7 @@ public:
 };
 
 class LeaveVillageTask : public SeekTask {
+private:
 
 public:
 	~LeaveVillageTask () {
@@ -68,6 +69,19 @@ public:
 	}
 	LeaveVillageTask(queue<Vector2>* _paths) : SeekTask(_paths) {
 		NextAction();
+	}
+
+	virtual void NextAction() {
+		delete current_action;
+		current_action = nullptr;
+
+		if (!paths->empty()) {
+			current_action = new MoveAction(paths->front());
+			paths->pop();
+		}
+		else {
+			current_action = new PauseAction();
+		}
 	}
 
 	// To-do: 수행 도중 갈 수 없게 된 경우 태스크 삭제하고 다시 새로운 Task로 시작됨

@@ -21,13 +21,14 @@ private:
 		emit_signal(String("delete_character"), character_id);
 	}
 
-	void FetchQueueAndSignalToGodot() {
+	void FetchQueueAndSignal() {
 		queue<int>* new_character_ids = &(game_service.object_service->new_character_ids);
 		queue<int>* deleted_character_ids = &(game_service.object_service->deleted_character_ids);
 		while (!new_character_ids->empty()) {
 			int new_id = new_character_ids->front();
 			new_character_ids->pop();
 			EmitNewCharacter(new_id);
+			game_service.ai_service->AddNewGuest(new_id);
 		}
 		while (!deleted_character_ids->empty()) {
 			int del_id = deleted_character_ids->front();
