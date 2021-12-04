@@ -149,9 +149,6 @@
     <ClCompile Include="NativeLib.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
-    <ClCompile Include="TileRepository.cpp">
-      <Filter>소스 파일\Repository\World</Filter>
-    </ClCompile>
     <ClCompile Include="CoordinatesSystem.cpp">
       <Filter>소스 파일\Library</Filter>
     </ClCompile>
@@ -355,9 +352,6 @@
     <ClInclude Include="Tile.h">
       <Filter>소스 파일\Domain\WorldObject</Filter>
     </ClInclude>
-    <ClInclude Include="TileRepository.h">
-      <Filter>소스 파일\Repository\WorldObject</Filter>
-    </ClInclude>
     <ClInclude Include="ProgressService.h">
       <Filter>소스 파일\Service\Rule</Filter>
     </ClInclude>
@@ -445,6 +439,12 @@
     </ClInclude>
     <ClInclude Include="ItemDictionary.h">
       <Filter>소스 파일\Service\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="TileRepository.h">
+      <Filter>소스 파일\Repository\World</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCreateService.h">
+      <Filter>소스 파일\Service\WorldObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
