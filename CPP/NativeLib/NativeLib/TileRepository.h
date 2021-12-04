@@ -25,9 +25,7 @@ private:
 	}
 
 public:
-	TileRepository() :tile_size_x(DEFAULT_TILE_NUMBER_X), tile_size_y(DEFAULT_TILE_NUMBER_Y) {
-		CreateTileMapTemp();
-	}
+	TileRepository() :tile_size_x(DEFAULT_TILE_NUMBER_X), tile_size_y(DEFAULT_TILE_NUMBER_Y) {	}
 	int GetTileSizeX() { return tile_size_x; }
 	int GetTileSizeY() { return tile_size_y; }
 	Tile* GetTile(int x, int y) { 
@@ -37,6 +35,12 @@ public:
 			return nullptr;
 		}
 		return tile_map[y][x];
+	}
+	void InitTile(int x, int y, SurfaceType type, Vector2 position) {
+		tile_map[y][x] = new Tile(type, position);
+	}
+	void UpdateTileType(int x, int y, SurfaceType type) {
+		tile_map[y][x]->SetSurfaceType(type);
 	}
 	Surface* GetSurface(int x, int y) { return tile_map[y][x]->GetSurface(); }
 	Surface* GetSurface(Coordinates coord) { return tile_map[coord.y][coord.x]->GetSurface();}

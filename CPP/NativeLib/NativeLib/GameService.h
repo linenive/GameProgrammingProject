@@ -13,6 +13,7 @@
 #include "ResidentService.h"
 #include "SkillService.h"
 #include "ItemDictionary.h"
+#include "MapCreateService.h"
 
 class GameService{
 
@@ -32,6 +33,7 @@ public:
 	AIService* ai_service;
 	ResidentService* resident_service;
 	SkillService* skill_service;
+	MapCreateService* map_create_service;
 	
 	~GameService() {
 		delete object_service;
@@ -45,10 +47,12 @@ public:
 		delete ai_service;
 		delete resident_service;
 		delete skill_service;
+		delete map_create_service;
 	}
 
 	GameService() {
 		// 생성 시 repository만 필요한 서비스들
+		map_create_service = new MapCreateService(&game_world.tile_repo);
 		path_find_service = new PathFindService(&game_world.tile_repo);
 		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
