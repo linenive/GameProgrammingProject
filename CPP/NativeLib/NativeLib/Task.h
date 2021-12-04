@@ -55,6 +55,7 @@ public:
 			paths->pop();
 		}
 		else {
+			// To-do: 이걸 빼면 에러가 나는 이유 찾기
 			current_action = new PauseAction();
 		}
 	}
