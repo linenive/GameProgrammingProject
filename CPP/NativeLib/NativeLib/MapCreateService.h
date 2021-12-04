@@ -1,8 +1,10 @@
 #pragma once
 #include "TileRepository.h"
+#include "StaticUnitService.h"
 
 class MapCreateService {
 private:
+	StaticUnitService* static_unit_service;
 	TileRepository* tile_repo;
 	void CreateTileMapTemp() {
 		printf("createTileMap start\n");
@@ -28,11 +30,24 @@ private:
 		}
 		printf("createTileMap done\n");
 	}
+
+	void CreateTrees() {
+		int i, j;
+		for (j = 30; j < 40; j++) {
+			for (i = 35; i < 42; i++) {
+				static_unit_service->CreateStructure(
+					eStructureType::TREE, Coordinates(i, j)
+				);
+			}
+		}
+	}
 public:
-	MapCreateService(TileRepository* _tile_repo) : tile_repo(_tile_repo) {
+	MapCreateService(StaticUnitService* _static_unit_service, TileRepository* _tile_repo)
+		: static_unit_service(_static_unit_service), tile_repo(_tile_repo) {
 		CreateRandomMap();
 	};
 	void CreateRandomMap() {
 		CreateTileMapTemp();
+		CreateTrees();
 	}
 };

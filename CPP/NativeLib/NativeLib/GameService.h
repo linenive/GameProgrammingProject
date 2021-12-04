@@ -65,8 +65,10 @@ public:
 		skill_service = new SkillService(
 			&game_world.skill_repo
 		);
-
 		// 생성 시 다른 서비스를 받는 서비스들 (인자 바꿀 시 생성 순서에 유의)
+		map_create_service = new MapCreateService(
+			static_unit_service, &game_world.tile_repo
+		);
 		object_service = new ObjectService(
 			&game_world.object_repo,
 			skill_service

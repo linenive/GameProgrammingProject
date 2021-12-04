@@ -22,6 +22,7 @@ func load_db():
 	structure_texture.append(load("res://Image/furniture_6.png"))
 	structure_texture.append(load("res://Image/furniture_7.png"))
 	structure_texture.append(load("res://Image/furniture_8.png"))
+	structure_texture.append(load("res://Image/tree_1.png"))
 
 func _ready():
 	load_db()

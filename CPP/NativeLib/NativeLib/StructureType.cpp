@@ -57,6 +57,12 @@ StructureData::StructureData(eStructureType type) {
             {lb}
         };
         break;
+    case eStructureType::TREE:
+        name = "tree";
+        blocks = {
+            {mb}
+        };
+        break;
     default:
         break;
     }

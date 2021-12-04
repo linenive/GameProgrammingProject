@@ -50,6 +50,10 @@ public:
 
 	Array GetBlockTypes(Vector2 coordinate);
 
+	int GetStructureID(Vector2 coordinate) {
+		return tile_service->GetTile(coordinate.x, coordinate.y)->GetBlock(1)->owner_id;
+	}
+
 	int GetCharacterNumber() {
 		return object_service->GetCharacterNumber();
 	}
