@@ -55,7 +55,7 @@ public:
 	}
 	Transform2D GetCharacterTransform(int character_id) {
 		if (IsCharacterNotExistError(character_id)) {
-			return Transform2D(0, 0, 0, 0, 0, 0);
+			return Transform2D(0, Vector2(-1, -1));
 		}
 		return object_service->GetCharacter(character_id)->GetPhysics()->GetTransform();
 	}

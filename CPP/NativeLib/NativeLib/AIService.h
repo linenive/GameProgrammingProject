@@ -21,7 +21,7 @@ private:
 
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 
-	Task* FindNewTaskToResident(Character* resident) {
+	Task* FindNewTaskToResident(Resident* resident) {
 		return task_service->CreateSeekTaskToHome(resident);
 	}
 	// To-do: hard coding -> algorithm which use DB
@@ -42,11 +42,14 @@ private:
 		while (it != task_list.end()) {
 			performer = object_service->GetCharacter(it->first);
 			if (performer == nullptr) {
+				
 				task_list.erase(it);
+				
 				continue;
 			}
 			// To-do: 우선순위 비교하여 변동 없을 시 무시하기.
 			delete it->second;
+			it->second = nullptr;
 			if (performer->IsGuest())
 				it->second = FindNewTaskToGuest((Guest*)performer);
 			else
@@ -60,10 +63,10 @@ private:
 		while (it != task_list.end()) {
 			performer = object_service->GetCharacter(it->first);
 			if (performer == nullptr) {
-				task_list.erase(it);
+				it = task_list.erase(it);
+				continue;
 			}
 			ai_executer.ExecuteCharacterTask(performer, it->second);
-
 			++it;
 		}
 	}
@@ -90,8 +93,12 @@ public:
 		}
 	}
 
-	void AddNewGuest(int id) {
-		task_list.push_back({ id, FindNewTaskToGuest((Guest*)object_service->GetCharacter(id)) });
+	void AddNewCharacter(int id) {
+		Character* new_character = object_service->GetCharacter(id);
+		if(new_character->IsGuest())
+			task_list.push_back({ id, FindNewTaskToGuest((Guest*)new_character)});
+		else
+			task_list.push_back({ id, FindNewTaskToResident((Resident*)new_character)});
 	}
 
 	void Update(float delta) {
@@ -101,7 +108,6 @@ public:
 			AssignTaskToWholeCharacter();
 			task_assign_number--;
 		}
-
 		task_execute_timer.TimeGo(delta);
 		int task_execute_number = task_execute_timer.GetPassNumberAndReset();
 		while (task_execute_number > 0) {

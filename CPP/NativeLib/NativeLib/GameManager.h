@@ -28,7 +28,7 @@ private:
 			int new_id = new_character_ids->front();
 			new_character_ids->pop();
 			EmitNewCharacter(new_id);
-			game_service.ai_service->AddNewGuest(new_id);
+			game_service.ai_service->AddNewCharacter(new_id);
 		}
 		while (!deleted_character_ids->empty()) {
 			int del_id = deleted_character_ids->front();

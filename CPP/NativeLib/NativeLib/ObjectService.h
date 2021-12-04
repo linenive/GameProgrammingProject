@@ -55,9 +55,9 @@ public:
 	}
 
 	void DeleteCharacter(int character_id) {
+		deleted_character_ids.push(character_id);
 		factory.ReturnCharacterName(object_repo->GetCharacter(character_id)->GetFullName());
 		object_repo->DeleteCharacter(character_id);
-		deleted_character_ids.push(character_id);
 	}
 
 	bool IsCharacterNotExist(int character_id) {

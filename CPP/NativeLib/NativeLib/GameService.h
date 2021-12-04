@@ -61,10 +61,14 @@ public:
 			&game_world.skill_repo
 		);
 
-		// 생성 시 다른 서비스를 받는 서비스들
+		// 생성 시 다른 서비스를 받는 서비스들 (인자 바꿀 시 생성 순서에 유의)
 		object_service = new ObjectService(
 			&game_world.object_repo,
 			skill_service
+		);
+		resident_service = new ResidentService(
+			object_service,
+			&game_world.object_repo, &game_world.building_repo
 		);
 		task_service = new TaskService(
 			&game_world.tile_repo, path_find_service, resident_service
@@ -78,10 +82,6 @@ public:
 		);
 		ai_service = new AIService(
 			object_service, task_service
-		);
-		resident_service = new ResidentService(
-			object_service,
-			&game_world.object_repo, &game_world.building_repo
 		);
 	};
 
