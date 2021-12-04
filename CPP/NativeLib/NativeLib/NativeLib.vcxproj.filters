@@ -138,9 +138,6 @@
     <Filter Include="소스 파일\Service\Item">
       <UniqueIdentifier>{d05e4c48-0073-4793-bd8b-130ca471c84b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Repository\ID">
-      <UniqueIdentifier>{70bbdffc-1db6-4d73-b497-9665699f82de}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Service\ID">
       <UniqueIdentifier>{4a838793-f079-42c1-bd4e-7ac599041732}</UniqueIdentifier>
     </Filter>
@@ -218,7 +215,7 @@
     <ClCompile Include="StatField.cpp">
       <Filter>소스 파일\Domain\CharacterStatus\Stat</Filter>
     </ClCompile>
-    <ClCompile Include="ItemDictionaryService.cpp">
+    <ClCompile Include="ItemDictionary.cpp">
       <Filter>소스 파일\Service\Item</Filter>
     </ClCompile>
   </ItemGroup>
@@ -440,26 +437,14 @@
     <ClInclude Include="ControlContextService.h">
       <Filter>소스 파일\Service\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Furniture.h">
+    <ClInclude Include="StatItem.h">
       <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
-    <ClInclude Include="EquipItem.h">
-      <Filter>소스 파일\Domain\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="IDRepository.h">
-      <Filter>소스 파일\Repository\ID</Filter>
-    </ClInclude>
-    <ClInclude Include="IDService.h">
+    <ClInclude Include="IDGenerator.h">
       <Filter>소스 파일\Service\ID</Filter>
     </ClInclude>
-    <ClInclude Include="ItemDictionaryService.h">
+    <ClInclude Include="ItemDictionary.h">
       <Filter>소스 파일\Service\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemService.h">
-      <Filter>소스 파일\Service\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="DisplayStand.h">
-      <Filter>소스 파일\Domain\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

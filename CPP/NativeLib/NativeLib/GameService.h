@@ -12,9 +12,7 @@
 #include "AIService.h"
 #include "ResidentService.h"
 #include "SkillService.h"
-#include "IDService.h"
-#include "ItemDictionaryService.h"
-#include "ItemService.h"
+#include "ItemDictionary.h"
 
 class GameService{
 
@@ -34,9 +32,6 @@ public:
 	AIService* ai_service;
 	ResidentService* resident_service;
 	SkillService* skill_service;
-	IDService* id_service;
-	ItemDictionaryService* item_dictionary_service;
-	ItemService* item_service;
 	
 	~GameService() {
 		delete object_service;
@@ -50,7 +45,6 @@ public:
 		delete ai_service;
 		delete resident_service;
 		delete skill_service;
-		delete item_dictionary_service;
 	}
 
 	GameService() {
@@ -90,9 +84,6 @@ public:
 		ai_service = new AIService(
 			object_service, task_service
 		);
-		id_service = new IDService();
-		item_dictionary_service = new ItemDictionaryService(id_service);
-		item_service = new ItemService(item_dictionary_service);
 	};
 
 };
