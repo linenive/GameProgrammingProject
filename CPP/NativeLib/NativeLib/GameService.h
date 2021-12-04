@@ -14,7 +14,6 @@
 #include "SkillService.h"
 #include "ItemDictionary.h"
 #include "MapCreateService.h"
-
 class GameService{
 
 private:
@@ -48,7 +47,6 @@ public:
 		delete resident_service;
 		delete skill_service;
 		delete map_create_service;
-
 		delete(ItemDictionary::GetInstance());
 	}
 
@@ -91,9 +89,6 @@ public:
 		ai_service = new AIService(
 			object_service, task_service, static_unit_service, resident_service
 		);
-		id_service = new IDService();
-		item_dictionary_service = new ItemDictionaryService(id_service);
-		item_service = new ItemService(item_dictionary_service);
 	};
 
 };
