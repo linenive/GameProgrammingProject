@@ -12,9 +12,7 @@
 #include "AIService.h"
 #include "ResidentService.h"
 #include "SkillService.h"
-#include "IDService.h"
-#include "ItemDictionaryService.h"
-#include "ItemService.h"
+#include "ItemDictionary.h"
 
 class GameService{
 
@@ -34,9 +32,6 @@ public:
 	AIService* ai_service;
 	ResidentService* resident_service;
 	SkillService* skill_service;
-	IDService* id_service;
-	ItemDictionaryService* item_dictionary_service;
-	ItemService* item_service;
 	
 	~GameService() {
 		delete object_service;
@@ -50,11 +45,10 @@ public:
 		delete ai_service;
 		delete resident_service;
 		delete skill_service;
-		delete item_dictionary_service;
 	}
 
 	GameService() {
-		// ���� �� repository�� �ʿ��� ���񽺵�
+		// 생성 시 repository만 필요한 서비스들
 		path_find_service = new PathFindService(&game_world.tile_repo);
 		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
@@ -68,7 +62,7 @@ public:
 			&game_world.skill_repo
 		);
 
-		// ���� �� �ٸ� ���񽺸� �޴� ���񽺵�
+		// 생성 시 다른 서비스를 받는 서비스들
 		object_service = new ObjectService(
 			&game_world.object_repo,
 			skill_service
@@ -90,9 +84,6 @@ public:
 			object_service,
 			&game_world.object_repo, &game_world.building_repo
 		);
-		id_service = new IDService();
-		item_dictionary_service = new ItemDictionaryService(id_service);
-		item_service = new ItemService(item_dictionary_service);
 	};
 
 };

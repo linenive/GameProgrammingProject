@@ -1,6 +1,5 @@
 #include "GameManager.h"
 #include "SkillService.h"
-
 void GameManager::NewGame() {
 	
 }
