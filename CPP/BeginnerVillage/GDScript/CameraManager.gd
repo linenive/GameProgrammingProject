@@ -53,8 +53,7 @@ func DetectCameraMoveObj():
 		
 func HasTraceNode():
 	if get_node_or_null(g_nowtarget_path) == null:
-		SetCameraPosition($Camera2D.position)
-		SetCameraSetting_Default()
+		StopTracing()
 		return false
 	return true
 	
@@ -81,7 +80,6 @@ func SetCameraSetting_Default():
 	g_nowtarget_path = ""
 	targetNode = null
 	
-	
 # 사용법 : get_node("/root/Main/CameraManager").SetCameraSetting_Trace(mypath)
 func SetCameraSetting_Trace(newtracing_path):
 	g_nowcamerastate = eCameraState.TRACE
@@ -89,9 +87,13 @@ func SetCameraSetting_Trace(newtracing_path):
 	targetNode = get_node(g_nowtarget_path)
 	#Zoom(kzoom_in)
 
+func StopTracing():
+	SetCameraPosition($Camera2D.position)
+	SetCameraSetting_Default()
+	
 func DetectZoomScrollKey():
-	if g_nowcamerastate == eCameraState.DEFAULT:
-		ZoomScroll()
+	#if g_nowcamerastate == eCameraState.DEFAULT:
+	ZoomScroll()
 		
 func ZoomScroll():
 	if Input.is_action_just_released("wheel_down"):

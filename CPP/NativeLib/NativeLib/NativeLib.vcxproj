@@ -153,6 +153,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="NameGenerator.cpp" />
     <ClCompile Include="NameList.cpp" />
+    <ClCompile Include="ItemDictionary.cpp" />
     <ClCompile Include="PathFindService.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Stat.cpp" />
@@ -175,9 +176,12 @@
     <ClInclude Include="CharacterSlot.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="ControlContextService.h" />
+    <ClInclude Include="StatItem.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="InstallState.h" />
     <ClInclude Include="NameGenerator.h" />
+    <ClInclude Include="IDGenerator.h" />
+    <ClInclude Include="ItemDictionary.h" />
     <ClInclude Include="ObjectService.h" />
     <ClInclude Include="PathFindService.h" />
     <ClInclude Include="RandomRepository.h" />

@@ -12,6 +12,7 @@
 #include "AIService.h"
 #include "ResidentService.h"
 #include "SkillService.h"
+#include "ItemDictionary.h"
 
 class GameService{
 
@@ -47,7 +48,7 @@ public:
 	}
 
 	GameService() {
-		// »ı¼º ½Ã repository¸¸ ÇÊ¿äÇÑ ¼­ºñ½ºµé
+		// ìƒì„± ì‹œ repositoryë§Œ í•„ìš”í•œ ì„œë¹„ìŠ¤ë“¤
 		path_find_service = new PathFindService(&game_world.tile_repo);
 		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
@@ -61,7 +62,7 @@ public:
 			&game_world.skill_repo
 		);
 
-		// »ı¼º ½Ã ´Ù¸¥ ¼­ºñ½º¸¦ ¹Ş´Â ¼­ºñ½ºµé (ÀÎÀÚ ¹Ù²Ü ½Ã »ı¼º ¼ø¼­¿¡ À¯ÀÇ)
+		// ìƒì„± ì‹œ ë‹¤ë¥¸ ì„œë¹„ìŠ¤ë¥¼ ë°›ëŠ” ì„œë¹„ìŠ¤ë“¤ (ì¸ì ë°”ê¿€ ì‹œ ìƒì„± ìˆœì„œì— ìœ ì˜)
 		object_service = new ObjectService(
 			&game_world.object_repo,
 			skill_service
