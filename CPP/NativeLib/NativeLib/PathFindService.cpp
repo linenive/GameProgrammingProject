@@ -81,11 +81,11 @@ queue<Vector2>* PathFindService::PathFinding(Vector2 start_pos, Vector2 target_p
 }
 
 bool PathFindService::IsPassableTile(Coordinates next_tile) {
-	return tile_map->IsPassableTile(next_tile.x, next_tile.y);
+	return tile_service->IsPassableTile(next_tile);
 }
 
 float PathFindService::GetTilePassSpeed(Coordinates next_tile) {
-	return tile_map->GetTilePassSpeed(next_tile.x, next_tile.y);
+	return tile_service->GetTilePassSpeed(next_tile);
 }
 
 Vector2 PathFindService::CalcObstacleVector(Coordinates current_tile) {

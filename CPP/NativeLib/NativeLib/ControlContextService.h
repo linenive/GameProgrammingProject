@@ -11,10 +11,10 @@ private:
 	InstallState* install_state;
 
 public:
-	ControlContextService(TileRepository* t_repo, StaticUnitService* static_unit_service) {
-		normal_state = new NormalState(t_repo);
-		build_state = new BuildState(t_repo, static_unit_service);
-		install_state = new InstallState(t_repo, static_unit_service);
+	ControlContextService(TileService* tile_service, StaticUnitService* static_unit_service) {
+		normal_state = new NormalState(tile_service);
+		build_state = new BuildState(tile_service, static_unit_service);
+		install_state = new InstallState(tile_service, static_unit_service);
 		current_state = normal_state;
 	}
 	~ControlContextService() {

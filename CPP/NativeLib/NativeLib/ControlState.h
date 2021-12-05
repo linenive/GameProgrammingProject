@@ -32,7 +32,19 @@ public:
 class ControlState {
 protected:
 	InputStatus input;
-	TileRepository* tile_repo;
+	TileService* tile_service;
+
+	void HighlightHoverdTile(Vector2 mouse_position) {
+		Coordinates hovered_tile_coord = tile_service->GetTileCoordinate(mouse_position);
+		if (hovered_tile_coord.x >= 0) {
+			Surface* hoverd_surface = tile_service->GetSurface(hovered_tile_coord);
+			input.is_area_highlighted = true;
+			input.highlighted_area = hoverd_surface->GetPhysics()->GetRect();
+		}
+		else {
+			input.is_area_highlighted = false;
+		}
+	}
 
 	void StartDrag(Vector2 start_pos) {
 		input.drag_start_point = start_pos;
@@ -44,11 +56,11 @@ protected:
 	}
 
 	Coordinates GetTile(Vector2 mouse_position) {
-		return tile_repo->GetTileCoordinate(mouse_position);
+		return tile_service->GetTileCoordinate(mouse_position);
 	}
 
 public:
-	ControlState(TileRepository* t_repo) : tile_repo(t_repo) {}
+	ControlState(TileService* _tile_service) : tile_service(_tile_service) {}
 	virtual void MouseHover(Vector2 position) = 0;
 	virtual void MouseClick(Vector2 position) = 0;
 	virtual void MouseRelease(Vector2 position) = 0;
@@ -57,7 +69,7 @@ public:
 
 class NormalState : public ControlState {
 public:
-	NormalState(TileRepository* t_repo) : ControlState(t_repo) {}
+	NormalState(TileService* tile_service) : ControlState(tile_service) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 	}

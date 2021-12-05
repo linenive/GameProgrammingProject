@@ -19,14 +19,14 @@ private:
 		}
 
 		for (i = 227; i < 232; i++) {
-			tile_repo->UpdateTileType(i / DEFAULT_TILE_NUMBER_X, i % DEFAULT_TILE_NUMBER_X, SurfaceType(SURFACE_RIVER));
+			tile_repo->UpdateTileType(Coordinates(i / DEFAULT_TILE_NUMBER_X, i % DEFAULT_TILE_NUMBER_X), SurfaceType(SURFACE_RIVER));
 		}
 
-		tile_repo->UpdateTileType(10, 10, SurfaceType(SURFACE_RIVER));
-		tile_repo->UpdateTileType(20, 30, SurfaceType(SURFACE_RIVER));
+		tile_repo->UpdateTileType(Coordinates(10, 10), SurfaceType(SURFACE_RIVER));
+		tile_repo->UpdateTileType(Coordinates(20, 30), SurfaceType(SURFACE_RIVER));
 
 		for (i = 900; i < 1004; i++) {
-			tile_repo->UpdateTileType(i / DEFAULT_TILE_NUMBER_X, i % DEFAULT_TILE_NUMBER_X, SurfaceType(SURFACE_OCEAN));
+			tile_repo->UpdateTileType(Coordinates(i / DEFAULT_TILE_NUMBER_X, i % DEFAULT_TILE_NUMBER_X), SurfaceType(SURFACE_OCEAN));
 		}
 		printf("createTileMap done\n");
 	}
