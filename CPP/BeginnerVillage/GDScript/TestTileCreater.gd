@@ -113,10 +113,8 @@ func create_building_nodes(building_id):
 
 func create_all_structure():
 	var structures_data = static_unit_manager.GetStructuresInfo()
-	print("Data Size: "+String(structures_data.size()))
 	for data in structures_data:
 		var id = data[0]
-		print("ID: "+String(id))
 		create_structure(id)
 
 func create_structure(structure_id):
