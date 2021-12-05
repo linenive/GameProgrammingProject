@@ -6,7 +6,7 @@ class MaterialItem : public Item {
 
 private:
 	int item_count_now = 0;
-	int item_count_max = ITEM_STACK_MAX;
+	int item_count_max = MAX_ITEM_STACK;
 
 public:
 	MaterialItem(string name) : Item(name, "Material") {

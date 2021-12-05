@@ -52,7 +52,7 @@ public:
 		: id(_id), full_name(_name), gender(_gender),
 		WorldObject(_name.GetFullname(), transform, scale) {
 		inventory = new Inventory();
-		inventory->Get(new MaterialItem("Wood"));
+		inventory->AddItem(MaterialItem("Wood"));
 		SetBaseStat();
 	}
 	Schedule* GetSchedule() { return schedule; }
@@ -96,7 +96,7 @@ public:
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
 		inventory = new Inventory();
-		inventory->Get(new MaterialItem("Wood"));
+		inventory->AddItem(MaterialItem("Wood"));
 	}
 
 	GuestSchedule* GetSchedule() { return (GuestSchedule*)schedule; }
@@ -110,7 +110,7 @@ public:
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
 		inventory = new Inventory();
-		inventory->Get(new MaterialItem("Wood"));
+		inventory->AddItem(MaterialItem("Wood"));
 	}
 	
 	ResidentSchedule* GetSchedule() { return (ResidentSchedule*)schedule; }

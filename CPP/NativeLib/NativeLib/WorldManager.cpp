@@ -80,7 +80,7 @@ Array WorldManager::GetCharacterItem(int character_id, int item_id) {
 		return Array();
 	}
 	Array result = Array();
-	Item item = object_service->GetCharacter(character_id)->GetInventory()->GetItem(item_id);
+	Item item = object_service->GetCharacter(character_id)->GetInventory()->GetItemByIndex(item_id);
 
 	result.push_back(item.GetName().c_str());
 	result.push_back(item.GetType().c_str());
