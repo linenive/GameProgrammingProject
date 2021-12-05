@@ -11,7 +11,8 @@ enum class eStructureType {
     POT,
     TABLE,
     COUNTER,
-    CHAIR
+    CHAIR,
+    TREE
 };
 
 class StructureData {

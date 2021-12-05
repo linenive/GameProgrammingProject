@@ -4,6 +4,7 @@ var world_manager
 var tile_scene
 var block_scene
 var structure_scene
+var tree_scene
 var character_scene
 var texture_db
 var static_unit_manager
@@ -14,6 +15,7 @@ func _ready():
 	tile_scene = load("res://Scene/Tile.tscn")
 	block_scene = load("res://Scene/Block.tscn")
 	structure_scene = load("res://Scene/Object/Structure.tscn")
+	tree_scene = load("res://Scene/Object/Tree.tscn")
 	character_scene = load("res://Scene/Object/Character.tscn")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
@@ -34,6 +36,7 @@ func CreateTileMap():
 			var transform = world_manager.GetSurfaceTransform(Vector2(i, j))
 			CreateSurface(Vector2(i, j), transform)
 			CreateBlocks(Vector2(i, j), transform)
+	create_all_structure()
 
 func CreateBlocks(tile_coord, transform):
 	var block_types = world_manager.GetBlockTypes(tile_coord)
@@ -108,9 +111,22 @@ func create_building_nodes(building_id):
 			var coordinate = world_manager.GetSurfaceTransform(Vector2(i, j))
 			CreateBlocks(Vector2(i, j), coordinate)
 
+func create_all_structure():
+	var structures_data = static_unit_manager.GetStructuresInfo()
+	for data in structures_data:
+		var id = data[0]
+		create_structure(id)
+
 func create_structure(structure_id):
-	var structure_instance = structure_scene.instance()
+	var tree_type = 8;
+	var structure_instance
+	if(structure_id == -1):
+		return;
 	var structure_type = static_unit_manager.GetStructureType(structure_id)
+	if structure_type == tree_type:
+		structure_instance = tree_scene.instance()
+	else:
+		structure_instance = structure_scene.instance()
 	var position = static_unit_manager.GetStructurePosition(structure_id)
 	structure_instance.transform.origin = position
 	structure_instance.texture = texture_db.structure_texture[structure_type]

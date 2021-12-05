@@ -33,7 +33,8 @@ private:
 	SurfaceType surface_type;
 public:
 	Surface(SurfaceType tile_type, Transform2D transform, Vector2 new_scale) : WorldObject(tile_type.GetName(),
-		transform, new_scale), surface_type(tile_type) {}
+		transform, new_scale), surface_type(tile_type) {
+	}
 
 	void SetSurfaceType(SurfaceType type) {
 		surface_type = type;
@@ -43,7 +44,10 @@ public:
 	SurfaceType GetSurfaceType() { return surface_type; }
 
 	float GetPassSpeed() {
-		return pass_speed;
+		if (surface_type.type == SURFACE_RIVER || surface_type.type == SURFACE_OCEAN) {
+			return 0.0;
+		}
+		else return 1.0;
 	}
 
 	void SetPassSpeed(float _pass_speed) {

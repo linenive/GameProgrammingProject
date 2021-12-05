@@ -8,7 +8,7 @@ class Block : public WorldObject {
 private:
 
 public:
-	int owner_id;
+	int owner_id = -1;
 	bool is_exist;
 	eBlockType block_type;
 	Block(string _name, Transform2D _new_transform, Vector2 _new_scale, int _owner_id)

@@ -33,7 +33,6 @@ private:
 		structure_rep->DeleteStructureById(id); 
 	}
 
-	int CreateStructure(eStructureType type, Coordinates top_left_coordinates);
 	Rect2 ConvertToOccupationArea(Coordinates top_left_coordinates, int width, int height);
 
 public:
@@ -47,9 +46,11 @@ public:
 	void DeleteUnitById(int id);
 	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);
 
+	int CreateStructure(eStructureType type, Coordinates top_left_coordinates);
 	int CreateStructure(int type, Vector2 top_left_tile_position);
 	Array GetBuildingInfo(int buliding_id);
 	Array GetStructureInfo(int structure_id);
+	Array GetStructuresInfo();
 
 	StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
 		BuildingRepository* building_repo);

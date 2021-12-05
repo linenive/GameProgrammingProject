@@ -161,7 +161,6 @@
     <ClCompile Include="StaticUnitManager.cpp" />
     <ClCompile Include="StaticUnitService.cpp" />
     <ClCompile Include="NativeLib.cpp" />
-    <ClCompile Include="TileRepository.cpp" />
     <ClCompile Include="TileService.h" />
     <ClCompile Include="TimeSystem.cpp" />
     <ClCompile Include="UIManager.cpp" />
@@ -179,6 +178,7 @@
     <ClInclude Include="StatItem.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="InstallState.h" />
+    <ClInclude Include="MapCreateService.h" />
     <ClInclude Include="NameGenerator.h" />
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="ItemDictionary.h" />

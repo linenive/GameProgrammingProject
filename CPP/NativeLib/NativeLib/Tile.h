@@ -8,9 +8,8 @@ private:
 	Block* layer[MAX_TILE_LAYER];
 	Surface* surface;
 
-	Transform2D CreateTransform2D(float x, float y) {
+	Transform2D CreateTransform2D(Vector2 position) {
 		real_t rotation = real_t(.0);
-		Vector2 position = Vector2(real_t(x), real_t(y));
 		return Transform2D(rotation, position);
 	}
 
@@ -19,11 +18,11 @@ private:
 	}
 
 public:
-	Tile(SurfaceType _surfaceType, float _pos_x, float _pos_y) {
-		surface = new Surface(_surfaceType, CreateTransform2D(_pos_x, _pos_y), CreateScale());
+	Tile(SurfaceType _surfaceType, Vector2 position) {
+		surface = new Surface(_surfaceType, CreateTransform2D(position), CreateScale());
 		surface->SetPassSpeed(1.0); //To-do not hard coding
 		for (int i = 0; i < MAX_TILE_LAYER; i++) {
-			layer[i] = new Block("base_block", CreateTransform2D(_pos_x, _pos_y), CreateScale());
+			layer[i] = new Block("base_block", CreateTransform2D(position), CreateScale());
 		}
 	}
 

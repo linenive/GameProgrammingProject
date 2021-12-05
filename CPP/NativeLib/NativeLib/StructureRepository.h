@@ -42,4 +42,8 @@ public:
     bool IsExistId(int id) {
         return structure_map.find(id) != structure_map.end();
     }
+
+    map<int, Structure*>* GetStructureMap() {
+        return &structure_map;
+    }
 };

@@ -13,6 +13,7 @@
 #include "ResidentService.h"
 #include "SkillService.h"
 #include "ItemDictionary.h"
+#include "MapCreateService.h"
 
 class GameService{
 
@@ -32,6 +33,7 @@ public:
 	AIService* ai_service;
 	ResidentService* resident_service;
 	SkillService* skill_service;
+	MapCreateService* map_create_service;
 	
 	~GameService() {
 		delete object_service;
@@ -45,6 +47,7 @@ public:
 		delete ai_service;
 		delete resident_service;
 		delete skill_service;
+		delete map_create_service;
 	}
 
 	GameService() {
@@ -61,8 +64,10 @@ public:
 		skill_service = new SkillService(
 			&game_world.skill_repo
 		);
-
 		// 생성 시 다른 서비스를 받는 서비스들 (인자 바꿀 시 생성 순서에 유의)
+		map_create_service = new MapCreateService(
+			static_unit_service, &game_world.tile_repo
+		);
 		object_service = new ObjectService(
 			&game_world.object_repo,
 			skill_service
