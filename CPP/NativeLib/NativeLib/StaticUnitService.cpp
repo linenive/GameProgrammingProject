@@ -193,3 +193,13 @@ Array StaticUnitService::GetStructureInfo(int id) {
 	return structure->Serialize();
 }
 
+Array StaticUnitService::GetStructuresInfo(){
+	Array new_array = Array();
+	map<int, Structure*>* structure_map = structure_rep->GetStructureMap();
+	printf("size: %d\n", (*structure_map).size());
+	for (auto &iter : *structure_map) {
+		new_array.append(iter.second->Serialize());
+	}
+	return new_array;
+}
+

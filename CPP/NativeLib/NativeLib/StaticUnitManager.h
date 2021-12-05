@@ -31,4 +31,8 @@ public:
 	Vector2 GetStructurePosition(int id) {
 		return static_unit_service->GetStructureById(id)->GetTopLeftBlockPosition();
 	}
+
+	Array GetStructuresInfo() {
+		return static_unit_service->GetStructuresInfo();
+	}
 };

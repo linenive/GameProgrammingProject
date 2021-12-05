@@ -50,6 +50,7 @@ public:
 	int CreateStructure(int type, Vector2 top_left_tile_position);
 	Array GetBuildingInfo(int buliding_id);
 	Array GetStructureInfo(int structure_id);
+	Array GetStructuresInfo();
 
 	StaticUnitService(TileRepository* tile_repo, StructureRepository* structure_rep,
 		BuildingRepository* building_repo);

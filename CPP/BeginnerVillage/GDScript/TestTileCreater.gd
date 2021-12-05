@@ -36,7 +36,7 @@ func CreateTileMap():
 			var transform = world_manager.GetSurfaceTransform(Vector2(i, j))
 			CreateSurface(Vector2(i, j), transform)
 			CreateBlocks(Vector2(i, j), transform)
-			create_structure(world_manager.GetStructureID(Vector2(i, j)))
+	create_all_structure()
 
 func CreateBlocks(tile_coord, transform):
 	var block_types = world_manager.GetBlockTypes(tile_coord)
@@ -110,6 +110,14 @@ func create_building_nodes(building_id):
 		for i in range(tile_size_x):
 			var coordinate = world_manager.GetSurfaceTransform(Vector2(i, j))
 			CreateBlocks(Vector2(i, j), coordinate)
+
+func create_all_structure():
+	var structures_data = static_unit_manager.GetStructuresInfo()
+	print("Data Size: "+String(structures_data.size()))
+	for data in structures_data:
+		var id = data[0]
+		print("ID: "+String(id))
+		create_structure(id)
 
 func create_structure(structure_id):
 	var tree_type = 8;
