@@ -1252,9 +1252,9 @@ __meta__ = {
 [node name="BuildingInfoUI" parent="UIControl/BuildingUIControl" instance=ExtResource( 28 )]
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
-[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
-[connection signal="delete_character" from="." to="." method="_on_Main_delete_character"]
 [connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
+[connection signal="delete_character" from="." to="." method="_on_Main_delete_character"]
+[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
 [connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
 [connection signal="change_to_install_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_install_state"]
