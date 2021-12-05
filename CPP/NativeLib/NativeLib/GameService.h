@@ -52,7 +52,6 @@ public:
 
 	GameService() {
 		// 생성 시 repository만 필요한 서비스들
-		map_create_service = new MapCreateService(&game_world.tile_repo);
 		path_find_service = new PathFindService(&game_world.tile_repo);
 		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
