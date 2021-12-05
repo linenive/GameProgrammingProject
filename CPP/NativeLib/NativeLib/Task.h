@@ -9,20 +9,26 @@ enum class eTaskType {
 class Task{
 protected:
 	Action* current_action = nullptr;
+	bool is_task_done = false;
 	
 public:
 	~Task() {
 		delete current_action;
 		current_action = nullptr;
 	}
+	
 	virtual void NextAction() = 0;
 	bool HasAction() { return current_action != nullptr; }
+	bool IsTaskDone() { return is_task_done; }
 
 	void Execute(Character* performer) {
 		
 		if (current_action->IsEndAction(performer)) {
 			NextAction();
-			if (!HasAction()) { return; }
+			if (!HasAction()) { 
+				is_task_done = true;
+				return; 
+			}
 		}
 		current_action->ExecuteAction(performer);
 	}
@@ -55,8 +61,7 @@ public:
 			paths->pop();
 		}
 		else {
-			// To-do: 이걸 빼면 에러가 나는 이유 찾기
-			current_action = new PauseAction();
+			is_task_done = true;
 		}
 	}
 	// To-do: 수행 도중 갈 수 없게 된 경우 태스크 삭제하고 다시 새로운 Task로 시작됨
@@ -86,6 +91,7 @@ public:
 			paths->pop();
 		}
 		else {
+			is_task_done = true;
 			current_action = new PauseAction();
 		}
 	}

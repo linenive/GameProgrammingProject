@@ -8,8 +8,6 @@ private:
 			village_leavers.push(character->GetId());
 			return;
 		}
-		delete task;
-		task = nullptr;
 	}
 
 public:
@@ -17,15 +15,11 @@ public:
 
 	void ExecuteCharacterTask(Character* character, Task* task) {
 		if (task==nullptr) { return; }
-		else if (task->HasAction()) {
+		else if (!task->IsTaskDone() && task->HasAction()) {
 			task->Execute(character);
 		}
 		else {
 			EndTask(character, task);
 		}
 	}
-
-	
-
-	
 };

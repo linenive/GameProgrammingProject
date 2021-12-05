@@ -55,9 +55,14 @@ public:
 	}
 
 	void DeleteCharacter(int character_id) {
-		deleted_character_ids.push(character_id);
+		if (object_repo->IsNotExistId(character_id)) {
+			printf("WARNING: [ObjectService] Trying to delete not exist character. ");
+			printf("id:% d\n", character_id);
+			return;
+		}
 		factory.ReturnCharacterName(object_repo->GetCharacter(character_id)->GetFullName());
-		object_repo->DeleteCharacter(character_id);
+		deleted_character_ids.push(character_id);
+		bool result = object_repo->DeleteCharacter(character_id);
 	}
 
 	bool IsCharacterNotExist(int character_id) {
