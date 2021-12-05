@@ -39,6 +39,7 @@ func InitCameraSetting():
 	$CameraCPP.g_zoom_max = kzoom_max
 	$CameraCPP.g_zoom_min = kzoom_min
 	SetCameraSetting_Default()
+	Zoom(kzoom_default)
 
 func SetCameraPosition(new_position):
 	$CameraCPP.SetCurrentCameraPosition(new_position)
@@ -47,8 +48,16 @@ func DetectCameraMoveObj():
 	if g_nowcamerastate == eCameraState.DEFAULT:
 		MoveCameraDefault()
 	else:
-		$Camera2D.position = targetNode.position	
+		if HasTraceNode():
+			$Camera2D.position = targetNode.position	
 		
+func HasTraceNode():
+	if get_node_or_null(g_nowtarget_path) == null:
+		SetCameraPosition($Camera2D.position)
+		SetCameraSetting_Default()
+		return false
+	return true
+	
 func MoveCameraDefault():
 	DetectKeyPress()
 	$CameraCPP.CameraMoveWithKey(g_velocity)
@@ -71,7 +80,7 @@ func SetCameraSetting_Default():
 	g_nowcamerastate = eCameraState.DEFAULT
 	g_nowtarget_path = ""
 	targetNode = null
-	Zoom(kzoom_default)
+	
 	
 # 사용법 : get_node("/root/Main/CameraManager").SetCameraSetting_Trace(mypath)
 func SetCameraSetting_Trace(newtracing_path):
