@@ -1,7 +1,5 @@
 #pragma once
-#include "Task.h"
 #include "CoordinatesSystem.h"
-#include "Physics.h"
 
 // Todo: load DB
 enum class ePurposeOfVisitType {
@@ -30,46 +28,6 @@ public:
 
 
 class Schedule {
-protected:
-	Task* task = nullptr;
-
-	bool is_pause_for_dequeue = false;
-
-public:
-	~Schedule() {
-		delete task;
-	}
-
-	bool HasTask() {
-		return task != nullptr;
-	}
-
-	void SetTask(Task* new_task) {
-		delete(task);
-		task = new_task;
-	}
-
-	void DeleteTask() {
-		delete task;
-		task = nullptr;
-	}
-
-	eTaskType GetTaskType() {
-		return task->GetType();
-	}
-
-	bool IsTaskEnd() {
-		return !task->HasAction();
-	}
-
-	void ExecuteTask(Physics* performer_physics, int speed_factor) {
-		task->Execute(performer_physics, speed_factor);
-	}
-
-	bool IsPauseForDequeue() { return is_pause_for_dequeue; }
-
-	void PauseForDequeue() { is_pause_for_dequeue = true; }
-	
 };
 
 class GuestSchedule : public Schedule {

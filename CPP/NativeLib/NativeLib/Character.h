@@ -25,7 +25,6 @@ protected:
 	Inventory* inventory;
     eLevel level;
     eGender gender;
-    Task* current_task;
 
     void SetRandomSkill();
     void SwitchSkill(int old_skill_index, CharacterSkill new_skill);
@@ -88,6 +87,7 @@ public:
 		skill_list.push_back(new_skill);
 	}
 
+	virtual bool IsGuest() = 0;
 };
 
 class Guest : public Character {
@@ -100,6 +100,8 @@ public:
 	}
 
 	GuestSchedule* GetSchedule() { return (GuestSchedule*)schedule; }
+
+	virtual bool IsGuest() { return true; }
 };
 
 class Resident : public Character {
@@ -112,4 +114,6 @@ public:
 	}
 	
 	ResidentSchedule* GetSchedule() { return (ResidentSchedule*)schedule; }
+
+	virtual bool IsGuest() { return false; }
 };
