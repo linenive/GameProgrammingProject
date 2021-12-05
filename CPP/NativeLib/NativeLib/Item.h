@@ -11,7 +11,7 @@ private:
 	int id;
 
 protected:
-	unordered_map<string, int> par_list;
+	unordered_map<string, int> param_list;
 
 public:
 	string GetName() { return name; }
@@ -25,11 +25,11 @@ public:
 
 	Item() {}
 	Item(string name, string type) : name(name), type(type) {}
-	Item(string name, string type, unordered_map<string, int> par_list) : name(name), type(type), par_list(par_list){}
+	Item(string name, string type, unordered_map<string, int> param_list) : name(name), type(type), param_list(param_list){}
 
 	int GetParameter(string key) {
-		if (par_list.find(key) != par_list.end()) {
-			return par_list[key];
+		if (param_list.find(key) != param_list.end()) {
+			return param_list[key];
 		}
 		return -999;
 	}
