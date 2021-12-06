@@ -123,7 +123,7 @@ public:
 				item_count -= add_count;
 			}
 			else {
-				//To-do make action when cannot some all items.
+				//To-do make action when cannot add some items.
 				return;
 			}
 		}
@@ -131,7 +131,7 @@ public:
 
 	void PopItemById(int id, int item_count) {
 		Coordinates pos = GetItemPosByItemId(id);
-		if (IsValidPos(pos) > 0) {
+		if (IsValidPos(pos)) {
 			PopItemByPos(pos, item_count);
 		}
 	}
