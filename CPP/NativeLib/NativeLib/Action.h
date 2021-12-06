@@ -63,6 +63,9 @@ public:
 		left_time -= work_speed / 100; //To-do not 100 always maybe
 		if (IsEndAction()) {
 			printf("Got Item\n");
+			Item item = *ItemDictionary::GetInstance()->GetItemByName(
+				WorkType::ItemNameOf(work_type)
+			);
 			performer->AddItem(
 				*ItemDictionary::GetInstance()->GetItemByName(
 					WorkType::ItemNameOf(work_type)

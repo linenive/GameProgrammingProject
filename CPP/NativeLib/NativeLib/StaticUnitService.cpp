@@ -58,9 +58,48 @@ int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left
 		data.name,
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
 
+	if (data.has_inventory)
+		new_structure->CreateInventory();
+
 	RegisterBlocksToWorld(x, y, data.blocks, new_structure);
 	AddStructure(new_structure);
+	AddStructureToBuilding(new_structure);
 	return new_structure->id;
+}
+
+void StaticUnitService::AddStructureToBuilding(Structure* structure) {
+	Building* owner_buliding = building_repo->GetBuildingByArea(structure->ocupation_area);
+	if (owner_buliding != nullptr) {
+		owner_buliding->AddStructureId(structure->id);
+	}
+}
+
+bool StaticUnitService::HasInventoryStructureInBuildingById(int id) {
+	Building* building = GetBuildingById(id);
+	return HasInventoryStructureInBuilding(building);
+}
+
+bool StaticUnitService::HasInventoryStructureInBuilding(Building* building) {
+	for (auto id : building->inside_structures_list) {
+		Structure* inside_structure = GetStructureById(id);
+		if (inside_structure->HasInventory())
+			return true;
+	}
+	return false;
+}
+
+Inventory* StaticUnitService::GetFirstInventoryInBuildingById(int id) {
+	Building* building = GetBuildingById(id);
+	return GetFirstInventoryInBuilding(building);
+}
+
+Inventory* StaticUnitService::GetFirstInventoryInBuilding(Building* building) {
+	for (auto id : building->inside_structures_list) {
+		Structure* inside_structure = GetStructureById(id);
+		if (inside_structure->HasInventory())
+			return inside_structure->GetInventory();
+	}
+	return nullptr;
 }
 
 Building* StaticUnitService::CreateBluePrintBuilding(int type) {

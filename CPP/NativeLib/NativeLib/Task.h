@@ -123,7 +123,7 @@ private:
 	unsigned int left_action;
 public:
 	WorkTask(eWorkType type, unsigned int action_num) : work_type(type), left_action(action_num) {
-		current_action = new WorkAction(type, 3); //takes 3 seconds
+		current_action = new WorkAction(type, 100); // takes 2 second
 	}
 
 	virtual void NextAction() {

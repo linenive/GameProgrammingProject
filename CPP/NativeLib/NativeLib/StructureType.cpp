@@ -26,30 +26,35 @@ StructureData::StructureData(eStructureType type) {
         blocks = {
             {lb}
         };
+        has_inventory = true;
         break;
     case eStructureType::COOKING_TABLE:
         name = "cooking_table";
         blocks = {
             {mb, mb, mb}
         };
+        has_inventory = true;
         break;
     case eStructureType::POT:
         name = "pot";
         blocks = {
             {lb}
         };
+        has_inventory = true;
         break;
     case eStructureType::TABLE:
         name = "table";
         blocks = {
             {mb, mb}
         };
+        has_inventory = true;
         break;
     case eStructureType::COUNTER:
         name = "counter";
         blocks = {
             {mb}
         };
+        has_inventory = true;
         break;
     case eStructureType::CHAIR:
         name = "chair";

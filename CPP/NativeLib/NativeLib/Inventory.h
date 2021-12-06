@@ -161,8 +161,8 @@ public:
 	int GetItemCountByItemId(int id) {
 		Coordinates pos = GetItemPosByItemId(id);
 		if (IsValidPos(pos))
-			return 0;
-		return GetItemCount(pos);
+			return GetItemCount(pos);
+		return 0;
 	}
 
 	int GetSize() {

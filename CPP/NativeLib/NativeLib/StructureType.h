@@ -22,4 +22,5 @@ public:
     int width;
     int height;
     vector< vector<eBlockType> > blocks;
+    bool has_inventory = false;
 };
