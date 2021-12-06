@@ -44,7 +44,7 @@ func show_info_by_type(info):
 func _process(delta):
 	if uicontrol.is_used_popup(self):
 		if target_type == "Character":
-			show_info_by_type(uicontrol.get_character_info(target_node))
+			show_info_by_type(uicontrol.get_character_info(target_node.get_id()))
 
 func init_popup():
 	target_node_id = 0

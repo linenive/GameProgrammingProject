@@ -32,7 +32,6 @@ size = 14
 font_data = ExtResource( 2 )
 
 [node name="PopupUI" type="WindowDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

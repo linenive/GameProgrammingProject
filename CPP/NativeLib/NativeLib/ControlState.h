@@ -20,6 +20,9 @@ public:
 	bool is_building_blueprint_ready = false;
 	bool is_structure_blueprint_ready = false;
 
+	queue<int> clicked_character_ids;
+	queue<int> clicked_block_ids;
+
 	queue<int> new_building_ids;
 	queue<int> new_structure_ids;
 
@@ -68,19 +71,33 @@ public:
 };
 
 class NormalState : public ControlState {
+private:
+	ObjectService* object_service;
+	StaticUnitService* static_unit_service;
+
+	void ClickWorldObject(Vector2 position) {
+		int clicked_character_id = object_service->GetCharacterId(position);
+		if (clicked_character_id != -1) {
+			input.clicked_character_ids.push(clicked_character_id);
+			return;
+		}
+	}
+
 public:
-	NormalState(TileService* tile_service) : ControlState(tile_service) {}
+	NormalState(TileService* tile_service, ObjectService* _object_service,
+		StaticUnitService* _static_unit_service) : ControlState(tile_service),
+		object_service(_object_service), static_unit_service(_static_unit_service){}
 
 	void MouseHover(Vector2 mouse_position) override {
 	}
 
 	void MouseClick(Vector2 mouse_position) override {
-		Godot::print("[NormalState]Mouse Click: " + mouse_position);
+		ClickWorldObject(mouse_position);
+
 		StartDrag(mouse_position);
 	}
 
 	void MouseRelease(Vector2 mouse_position) override {
-		Godot::print("[NormalState]Mouse Release: " + mouse_position);
 		EndDrag(mouse_position);
 	}
 };

@@ -5,12 +5,16 @@ var camera_manager
 var tile_info_label
 var uicontrol
 
+var character_node_parent
+
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
 	world_manager = get_node("/root/Main/WorldManager")
 	camera_manager = get_node("/root/Main/CameraManager/CameraCPP")
 	tile_info_label = get_node("/root/Main/UIControl/HUD/TileInfoTest")
 	uicontrol = get_node("/root/Main/UIControl");
+	
+	character_node_parent = get_node("/root/Main/JanTestGDScript/TestTileCreater/Character")
 
 func _input(event):
 	input_process_for_ui(event)
@@ -74,3 +78,12 @@ func update_tile_info(mouse_vector):
 			+ String(world_manager.GetTilePassSpeed(tile_coord))
 	else:
 		tile_info_label.text = ""
+
+
+func _on_InputManager_click_character(ID):
+	var children = character_node_parent.get_children();
+	for child in children:
+		if child.get_id() == ID:
+			uicontrol.show_info_popup(child, "Character")
+	#camera_manager.SetCameraSetting_Trace(character_path)
+

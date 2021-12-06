@@ -1258,6 +1258,7 @@ __meta__ = {
 [connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
 [connection signal="change_to_install_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_install_state"]
 [connection signal="change_to_normal_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_normal_state"]
+[connection signal="click_character" from="InputManager" to="GodotInput" method="_on_InputManager_click_character"]
 [connection signal="install_structure" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_install_structure"]
 [connection signal="tree_exited" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_tree_exited"]
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]

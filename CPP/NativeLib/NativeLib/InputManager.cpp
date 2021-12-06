@@ -123,6 +123,14 @@ void InputManager::EmitStructureSignal(int building_id) {
 	emit_signal(String("install_structure"), building_id);
 }
 
+void InputManager::EmitClickCharacter(int character_id) {
+	emit_signal(String("click_character"), character_id);
+}
+
+void InputManager::EmitClickBlock(int block_id) {
+	emit_signal(String("click_block"), block_id);
+}
+
 void InputManager::_register_methods() {
 	register_method("_init", &InputManager::_init);
 	register_method("_ready", &InputManager::_ready);
@@ -148,6 +156,8 @@ void InputManager::_register_methods() {
 	register_signal<InputManager>(String("change_to_normal_state"), Dictionary());
 	register_signal<InputManager>(String("build_building"), "ID", GODOT_VARIANT_TYPE_INT);
 	register_signal<InputManager>(String("install_structure"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<InputManager>(String("click_character"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<InputManager>(String("click_block"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void InputManager::_init() {
@@ -190,6 +200,20 @@ void InputManager::FetchInputQueue() {
 		int new_id = new_structure_ids->front();
 		new_structure_ids->pop();
 		EmitStructureSignal(new_id);
+	}
+
+	queue<int>* clicked_character_ids = &(control_context_service->GetInputStatus()->clicked_character_ids);
+	if (!clicked_character_ids->empty()) {
+		int clicked_id = clicked_character_ids->front();
+		clicked_character_ids->pop();
+		EmitClickCharacter(clicked_id);
+	}
+
+	queue<int>* clicked_block_ids = &(control_context_service->GetInputStatus()->clicked_block_ids);
+	if (!clicked_block_ids->empty()) {
+		int clicked_id = clicked_block_ids->front();
+		clicked_block_ids->pop();
+		EmitClickCharacter(clicked_id);
 	}
 	
 }

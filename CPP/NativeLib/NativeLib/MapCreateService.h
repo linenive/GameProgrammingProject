@@ -7,7 +7,6 @@ private:
 	StaticUnitService* static_unit_service;
 	TileRepository* tile_repo;
 	void CreateTileMapTemp() {
-		printf("createTileMap start\n");
 		int i, j;
 		for (j = 0; j < tile_repo->GetTileSizeY(); j++) {
 			for (i = 0; i < tile_repo->GetTileSizeX(); i++) {
@@ -28,7 +27,6 @@ private:
 		for (i = 900; i < 1004; i++) {
 			tile_repo->UpdateTileType(Coordinates(i / DEFAULT_TILE_NUMBER_X, i % DEFAULT_TILE_NUMBER_X), SurfaceType(SURFACE_OCEAN));
 		}
-		printf("createTileMap done\n");
 	}
 
 	void CreateTrees() {

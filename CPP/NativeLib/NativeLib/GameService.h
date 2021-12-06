@@ -80,7 +80,7 @@ public:
 			tile_service, path_find_service, resident_service
 		);
 		control_context_service = new ControlContextService(
-			tile_service, static_unit_service
+			tile_service, object_service, static_unit_service
 		);
 		progress_service = new ProgressService(
 			object_service, &game_world.random_repo,
