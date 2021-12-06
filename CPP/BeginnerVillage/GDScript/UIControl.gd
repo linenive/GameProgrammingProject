@@ -119,15 +119,15 @@ func MouseRightClickLabelUpdate(new_click_position):
 	clicked_position_label.text = str(new_click_position)
 
 func popup_ui_track_btn_pressed(character_path):
-	$HUD/StopTracingBtn.visible = true
+	#$HUD/StopTracingBtn.visible = true
 	camera_manager.SetCameraSetting_Trace(character_path)
 
 func _on_CharacterMove_pressed():
 	var game_manager = get_node("/root/Main").AIClickUpdate(input_manager.GetNowMouseRightClickPoint())
 
 func _on_StopTracingBtn_pressed():
-	$HUD/StopTracingBtn.visible = false
-	camera_manager.SetCameraSetting_Default()
+	#$HUD/StopTracingBtn.visible = false
+	camera_manager.StopTracing()
 
 """
 func _on_Main_delete_character(ID):
@@ -143,3 +143,9 @@ func _on_Main_delete_character(ID):
 				_on_StopTracingBtn_pressed()
 			break
 """
+func _on_CameraManager_start_trace():
+	$HUD/StopTracingBtn.visible = true
+
+func _on_CameraManager_stop_trace():
+	$HUD/StopTracingBtn.visible = false
+
