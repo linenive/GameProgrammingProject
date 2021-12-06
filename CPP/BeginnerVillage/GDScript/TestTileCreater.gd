@@ -82,9 +82,11 @@ func delete_character(id):
 			return
 
 func _process(delta):
-	var character_num = world_manager.GetCharacterNumber()
 	for c in $Character.get_children():
 		var transform3 = world_manager.GetCharacterTransform(c.character_id)
+		if transform3.origin.x == -1:
+			print("[TestTileCreater]There's no character transform data. id:" + String( c.character_id))
+			continue
 		c.transform = transform3
 
 func _on_InputManager_build_building(ID):
@@ -127,4 +129,4 @@ func _on_Main_delete_character(ID):
 func _on_Button_pressed():
 	var character_id = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	#var building_id = get_node("/root/Main/UIControl/HUD/y").get_line(0)
-	world_manager.RecruitGuestAsResident(character_id)
+	static_unit_manager.RecruitGuestAsResident(character_id)

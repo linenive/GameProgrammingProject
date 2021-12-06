@@ -24,7 +24,7 @@ void GameManager::_ready(){
 void GameManager::_process(float delta){
 	game_service.ai_service->Update(delta);
 	game_service.progress_service->Update(delta);
-	FetchQueueAndSignalToGodot();
+	FetchQueueAndSignal();
 }
 
 void GameManager::_physics_process(float delta){
