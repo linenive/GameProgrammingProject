@@ -107,10 +107,6 @@ private:
 		}
 	}
 public:
-	void AddItem(Item item) {
-		AddItem(item, 1);
-	}
-
 	void AddItem(Item item, int item_count) {
 		while (item_count > 0) {
 			Coordinates pos = GetItemPosToBeInserted(item.GetID());

@@ -109,6 +109,64 @@ void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& bl
 	}
 }
 
+vector<int> StaticUnitService::GetBuildingInAreaList(Coordinates a, Coordinates b) {
+	int small_x = min(a.x, b.x);
+	int big_x = max(a.x, b.x);
+	int small_y = min(a.y, b.y);
+	int big_y = max(a.y, b.y);
+
+	set<int> building_id_set;
+
+	for (int i = small_x; i <= big_x; i++) {
+		for (int j = small_y; j <= big_y; j++) {
+			Tile* tile = GetTile(i, j);
+			for (int k = 0; k < MAX_TILE_LAYER; k++) {
+				if (!tile->IsEmptyLayer(k)) {
+					int id = tile->GetBlock(k)->owner_id;
+					if (IsBuilding(id)) {
+						building_id_set.insert(id);
+					}
+				}
+			}
+		}
+	}
+
+	vector<int> result;
+	for (auto id : building_id_set) {
+		result.push_back(id);
+	}
+	return result;
+}
+vector<int> StaticUnitService::GetStructureInAreaList(Coordinates a, Coordinates b) {
+	int small_x = min(a.x, b.x);
+	int big_x = max(a.x, b.x);
+	int small_y = min(a.y, b.y);
+	int big_y = max(a.y, b.y);
+
+	set<int> structure_id_set;
+
+	for (int i = small_x; i <= big_x; i++) {
+		for (int j = small_y; j <= big_y; j++) {
+			Tile* tile = GetTile(i, j);
+			for (int k = 0; k < MAX_TILE_LAYER; k++) {
+				if (!tile->IsEmptyLayer(k)) {
+					int id = tile->GetBlock(k)->owner_id;
+					if (IsStructue(id)) {
+						structure_id_set.insert(id);
+					}
+				}
+			}
+		}
+	}
+
+	vector<int> result;
+	for (auto id : structure_id_set) {
+		result.push_back(id);
+	}
+	return result;
+}
+
+
 bool StaticUnitService::IsPlacablePosition(int type, Vector2 top_left_tile_position) {
 	Coordinates left_top_coordinates = AbsolutePositionToCoordinates(top_left_tile_position);
 	BuildingData data = BuildingData(static_cast<eBuildingType>(type));
@@ -181,6 +239,11 @@ vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) 
 		);
 	}
 	return result;
+}
+
+Vector2 StaticUnitService::GetNearestStructurePos(Coordinates cur_position, eStructureType type) {
+	//To-do
+	return structure_rep->GetStructureById(1)->GetCenterPosition();
 }
 
 Array StaticUnitService::GetBuildingInfo(int id) {

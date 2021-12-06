@@ -1,6 +1,7 @@
 #pragma once
 #include "Character.h"
 #include "WorldObject.h"
+#include "WorkType.h"
 
 class Action{
 public:
@@ -38,5 +39,43 @@ public:
 	}
 	virtual bool IsEndAction(Character* performer) {
 		return false;
+	}
+};
+
+class WorkAction : public Action {
+private:
+	float left_time;
+	eWorkType work_type;
+
+	bool IsEndAction() {
+		return left_time <= 0;
+	}
+public:
+	WorkAction(eWorkType _work_type, float time_to_finish)
+		: left_time(time_to_finish), work_type(_work_type) {
+	}
+	virtual void ExecuteAction(Character* performer) {
+		if (IsEndAction()) {
+			printf("WARNING: [WorkAction] IsEndAction had not been checked before execution\n");
+			return;
+		}
+		int work_speed = performer->GetStatValue(WorkType::ToStatFieldType(work_type));
+		left_time -= work_speed / 100; //To-do not 100 always maybe
+		if (IsEndAction()) {
+			printf("Got Item\n");
+			performer->AddItem(
+				*ItemDictionary::GetInstance()->GetItemByName(
+					WorkType::ItemNameOf(work_type)
+				)
+			);
+		}
+	}
+
+	virtual bool IsEndAction(Character* performer) {
+		return IsEndAction();
+	}
+
+	float GetLeftTime() {
+		return left_time;
 	}
 };

@@ -141,6 +141,9 @@
     <Filter Include="소스 파일\Service\ID">
       <UniqueIdentifier>{4a838793-f079-42c1-bd4e-7ac599041732}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Domain\Task\Work">
+      <UniqueIdentifier>{a3e4a989-9fe3-4487-950b-f5c2d21f9cb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.cpp">
@@ -445,6 +448,12 @@
     </ClInclude>
     <ClInclude Include="MapCreateService.h">
       <Filter>소스 파일\Service\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkPriority.h">
+      <Filter>소스 파일\Domain\Task\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkType.h">
+      <Filter>소스 파일\Domain\Task\Work</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

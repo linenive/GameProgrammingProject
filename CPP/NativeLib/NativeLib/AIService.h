@@ -12,6 +12,7 @@ class AIService {
 private:
 	ObjectService* object_service;
 	TaskService* task_service;
+	StaticUnitService* static_unit_service;
 	AIExecuter ai_executer;
 
 	list<pair<int, Task*>> task_list; 
@@ -21,8 +22,37 @@ private:
 
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 
+	bool HasEnoughItem(Resident* resident) {
+		return resident->GetInventory()->GetItemCount(Coordinates(0, 0)) >= 10;
+	}
+
+	bool HasSamePosition(Resident* resident, Vector2 target_pos) {
+		return AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition())
+			== AbsolutePositionToCoordinates(target_pos);
+	}
+
 	Task* FindNewTaskToResident(Resident* resident) {
-		return task_service->CreateSeekTaskToHome(resident);
+		if (resident->GetGender() == WOMAN) {
+			if (HasEnoughItem(resident)) {
+				return task_service->CreateSeekTaskToHome(resident);
+			}
+			else {
+				Vector2 tree_pos = static_unit_service->GetNearestStructurePos(
+					AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition()),
+					eStructureType::TREE
+				);
+
+				if (HasSamePosition(resident, tree_pos)) {
+					return task_service->CreateWorkTask(eWorkType::COLLECT_WOOD);
+				}
+				else {
+					return task_service->CreateSeekTask(resident, tree_pos);
+				}
+			}
+		}
+		else {
+			return task_service->CreateSeekTaskToHome(resident);
+		}
 	}
 	// To-do: hard coding -> algorithm which use DB
 	Task* FindNewTaskToGuest(Guest* performer) {
@@ -84,8 +114,8 @@ public:
 	~AIService() {
 		delete task_service;
 	}
-	AIService(ObjectService* _object_service, TaskService* _task_service)
-		: object_service(_object_service), task_service(_task_service),
+	AIService(ObjectService* _object_service, TaskService* _task_service, StaticUnitService* _static_unit_service)
+		: object_service(_object_service), task_service(_task_service), static_unit_service(_static_unit_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
 		map<int, Character*>* characters = object_service->GetCharacters();
 		for (auto &kv : *characters) {

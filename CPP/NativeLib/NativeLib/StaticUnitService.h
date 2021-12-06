@@ -32,6 +32,12 @@ private:
 	void DeleteStructureFromWorld(int id) { 
 		structure_rep->DeleteStructureById(id); 
 	}
+	bool IsBuilding(int id) {
+		return building_repo->IsExistId(id);
+	}
+	bool IsStructue(int id) {
+		return !IsBuilding(id);
+	}
 
 	Rect2 ConvertToOccupationArea(Coordinates top_left_coordinates, int width, int height);
 
@@ -48,6 +54,9 @@ public:
 
 	int CreateStructure(eStructureType type, Coordinates top_left_coordinates);
 	int CreateStructure(int type, Vector2 top_left_tile_position);
+	vector<int> GetBuildingInAreaList(Coordinates position1, Coordinates position2);
+	vector<int> GetStructureInAreaList(Coordinates position1, Coordinates position2);
+	Vector2 GetNearestStructurePos(Coordinates cur_position, eStructureType type);
 	Array GetBuildingInfo(int buliding_id);
 	Array GetStructureInfo(int structure_id);
 	Array GetStructuresInfo();
