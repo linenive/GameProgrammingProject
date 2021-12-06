@@ -8,8 +8,6 @@
 using namespace std;
 
 class Building : public StaticUnit {
-private:
-    bool is_house = true; //To-do
 public:
     int character_slot_num;
     vector<CharacterSlot*> character_slots;
@@ -53,7 +51,7 @@ public:
     }
 
     bool IsHouse() {
-        return is_house;
+        return building_role == eBuildingRole::HOUSE;
     }
 
     bool IsWorkSpace() {

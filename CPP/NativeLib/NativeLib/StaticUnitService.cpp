@@ -26,7 +26,6 @@ int StaticUnitService::CreateBuilding(eBuildingType type, Coordinates top_left_c
 		data.slot_num,
 		data.building_role);
 	RegisterBlocksToWorld(x, y, data.blocks, new_building);
-
 	AddBuilding(new_building);
 	return new_building->id;
 }
