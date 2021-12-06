@@ -40,6 +40,8 @@ func get_object_info(node, type):
 	
 	if type == "Character":
 		info = get_character_info(node)
+	elif type == "Building":
+		info = get_building_info(node)
 		
 	return info
 
@@ -60,6 +62,9 @@ func get_character_info(node):
 		character_info["item" + str(j+1)] = item_info_array
 	
 	return character_info
+
+func get_building_info(node):
+	pass
 
 func get_available_popup():
 	if available_popups.empty():
@@ -127,11 +132,12 @@ func _on_StopTracingBtn_pressed():
 	$HUD/StopTracingBtn.visible = false
 	camera_manager.SetCameraSetting_Default()
 
+"""
 func _on_Main_delete_character(ID):
 	var popup_target_node
 	
 	for popup in used_popups:
-		if popup.get_target_object_id() == ID:
+		if popup..get_target_object_id() == ID:
 			popup_target_node = popup.get_target_node()
 			popup.hide()
 			close_info_popup(popup)
@@ -139,3 +145,4 @@ func _on_Main_delete_character(ID):
 			if camera_manager.GetCurrentCameraStateInString() == "TRACE" and camera_manager.IsTargetNode(popup_target_node):
 				_on_StopTracingBtn_pressed()
 			break
+"""

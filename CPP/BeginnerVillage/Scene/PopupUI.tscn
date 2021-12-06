@@ -1,9 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://GDScript/PopupUI.gd" type="Script" id=1]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scene/EmployeeInfoButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Image/tile_earth.png" type="Texture" id=4]
 [ext_resource path="res://Image/furniture_1.png" type="Texture" id=5]
+[ext_resource path="res://GDScript/PopupCharacterInfo.gd" type="Script" id=6]
+[ext_resource path="res://GDScript/PopupBuildingInfo.gd" type="Script" id=7]
+[ext_resource path="res://Image/DefaultCharacter1.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -31,8 +35,32 @@ font_data = ExtResource( 2 )
 size = 14
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=8]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 23
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=13]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 2 )
+
 [node name="PopupUI" type="WindowDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -48,12 +76,14 @@ __meta__ = {
 }
 
 [node name="CharacterInfo" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -417,5 +447,236 @@ position = Vector2( 258.904, 56.8637 )
 scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 5 )
 
-[connection signal="pressed" from="CharacterInfo/HBoxContainer/track_btn" to="." method="_on_track_btn_pressed"]
-[connection signal="pressed" from="CharacterInfo/HBoxContainer/GuestInfo/recruit_btn" to="." method="_on_recruit_btn_pressed"]
+[node name="BuildingInfo" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+test_character_sprite = ExtResource( 8 )
+
+[node name="Container" type="Container" parent="BuildingInfo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BuildingInfo/Container"]
+margin_right = 281.0
+margin_bottom = 306.0
+custom_constants/separation = 15
+
+[node name="PanelContainer" type="PanelContainer" parent="BuildingInfo/Container/VBoxContainer"]
+margin_right = 281.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="BuildingInfo/Container/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 274.0
+margin_bottom = 43.0
+split_offset = 450
+dragger_visibility = 1
+
+[node name="building_name_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer"]
+margin_top = 2.0
+margin_right = 218.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 8 )
+text = "Building_Name"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="building_name_text_edit" type="TextEdit" parent="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_label"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="building_name_edit_button" type="Button" parent="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer"]
+margin_left = 230.0
+margin_right = 267.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 30, 30 )
+text = "edit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="building_type_label" type="Label" parent="BuildingInfo/Container/VBoxContainer"]
+margin_top = 65.0
+margin_right = 281.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 10 )
+text = "상점"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BuildingInfo/Container/VBoxContainer"]
+margin_top = 104.0
+margin_right = 281.0
+margin_bottom = 140.0
+
+[node name="monthly_guest_count_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer"]
+margin_right = 281.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 11 )
+text = "이번 달 다녀간 손님 수 : 100명"
+
+[node name="cumulation_guest_count" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 281.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 11 )
+text = "누적 손님 수 : 201명"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BuildingInfo/Container/VBoxContainer"]
+margin_top = 155.0
+margin_right = 281.0
+margin_bottom = 306.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2"]
+margin_right = 281.0
+margin_bottom = 22.0
+split_offset = 400
+
+[node name="employee_info_title_lable" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/HSplitContainer"]
+margin_top = 1.0
+margin_right = 197.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 12 )
+text = "[직원]"
+valign = 1
+
+[node name="recruit_button" type="Button" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/HSplitContainer"]
+margin_left = 209.0
+margin_right = 281.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 13 )
+toggle_mode = true
+text = "고용하기"
+
+[node name="employee_info_panel" type="Panel" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 281.0
+margin_bottom = 151.0
+rect_min_size = Vector2( 0, 125 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -4.0
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer"]
+margin_right = 510.0
+margin_bottom = 100.0
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="employee_info_ui_button8" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+
+[node name="employee_info_ui_button9" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 86.0
+margin_right = 166.0
+
+[node name="employee_info_ui_button10" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 172.0
+margin_right = 252.0
+
+[node name="employee_info_ui_button11" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 258.0
+margin_right = 338.0
+
+[node name="employee_info_ui_button12" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 344.0
+margin_right = 424.0
+
+[node name="employee_info_ui_button13" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 430.0
+margin_right = 510.0
+
+[node name="available_resident_list_panel" type="PanelContainer" parent="BuildingInfo"]
+margin_left = 217.082
+margin_top = 188.798
+margin_right = 322.082
+margin_bottom = 246.798
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="available_resident_list" type="VBoxContainer" parent="BuildingInfo/available_resident_list_panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 98.0
+margin_bottom = 185.0
+
+[node name="resident_button" type="Button" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+margin_right = 91.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 14 )
+text = "메롱 메롱"
+
+[node name="resident_button2" type="Button" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+margin_top = 26.0
+margin_right = 91.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 14 )
+text = "메롱 메롱"
+
+[node name="resident_button3" type="Button" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+margin_top = 52.0
+margin_right = 91.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 14 )
+text = "메롱 메롱"
+
+[node name="resident_button4" type="Button" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+margin_top = 78.0
+margin_right = 91.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 14 )
+text = "메롱 메롱"
+
+[node name="resident_button5" type="Button" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+margin_top = 104.0
+margin_right = 91.0
+margin_bottom = 126.0
+custom_fonts/font = SubResource( 14 )
+text = "메롱 메롱"
+
+[node name="resident_button6" type="Button" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+margin_top = 130.0
+margin_right = 91.0
+margin_bottom = 152.0
+custom_fonts/font = SubResource( 14 )
+text = "메롱 메롱"
+
+[node name="resident_button7" type="Button" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+margin_top = 156.0
+margin_right = 91.0
+margin_bottom = 178.0
+custom_fonts/font = SubResource( 14 )
+text = "메롱 메롱"
+
+[connection signal="pressed" from="CharacterInfo/HBoxContainer/track_btn" to="CharacterInfo" method="_on_track_btn_pressed"]
+[connection signal="pressed" from="CharacterInfo/HBoxContainer/GuestInfo/recruit_btn" to="CharacterInfo" method="_on_recruit_btn_pressed"]
+[connection signal="pressed" from="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_edit_button" to="BuildingInfo" method="_on_building_name_edit_button_pressed"]
+[connection signal="toggled" from="BuildingInfo/Container/VBoxContainer/VBoxContainer2/HSplitContainer/recruit_button" to="BuildingInfo" method="_on_recruit_button_toggled"]

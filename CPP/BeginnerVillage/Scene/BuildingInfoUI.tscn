@@ -1,14 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://GDScript/PopupBuildingInfo.gd" type="Script" id=2]
+[ext_resource path="res://Scene/EmployeeInfoButton.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
 size = 30
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 23
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 1 )
+
 [node name="BuildingInfoUI" type="WindowDialog"]
-margin_right = 428.0
-margin_bottom = 542.0
+margin_left = 119.0
+margin_top = 155.0
+margin_right = 547.0
+margin_bottom = 480.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,7 +42,7 @@ anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
-margin_bottom = -10.0
+margin_bottom = -4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,56 +50,147 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Container"]
 margin_right = 40.0
 margin_bottom = 40.0
+custom_constants/separation = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container/VBoxContainer"]
-margin_right = 252.0
-margin_bottom = 31.0
+[node name="PanelContainer" type="PanelContainer" parent="Container/VBoxContainer"]
+margin_right = 408.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 50 )
 
-[node name="building_name_label" type="Label" parent="Container/VBoxContainer/HBoxContainer"]
-margin_right = 218.0
-margin_bottom = 31.0
+[node name="HSplitContainer" type="HSplitContainer" parent="Container/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 401.0
+margin_bottom = 43.0
+split_offset = 450
+dragger_visibility = 1
+
+[node name="building_name_label" type="Label" parent="Container/VBoxContainer/PanelContainer/HSplitContainer"]
+margin_right = 345.0
+margin_bottom = 36.0
 custom_fonts/font = SubResource( 1 )
 text = "Building_Name"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="building_name_text_edit" type="TextEdit" parent="Container/VBoxContainer/HBoxContainer/building_name_label"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
-text = "New_Shop_NAME"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="Container/VBoxContainer/HBoxContainer"]
-margin_left = 222.0
-margin_right = 252.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 30, 30 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Container/VBoxContainer/HBoxContainer/Button"]
-margin_left = 0.66748
-margin_top = 3.67081
-margin_right = 32.6675
-margin_bottom = 22.6708
-text = "edit"
-align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="monthly_guest_count_label" type="Label" parent="Container/VBoxContainer"]
-margin_top = 35.0
-margin_right = 252.0
-margin_bottom = 49.0
+[node name="building_name_text_edit" type="TextEdit" parent="Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_label"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "New_Shop_NAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="cumulation_guest_count" type="Label" parent="Container/VBoxContainer"]
-margin_top = 53.0
+[node name="building_name_edit_button" type="Button" parent="Container/VBoxContainer/PanelContainer/HSplitContainer"]
+margin_left = 357.0
+margin_right = 394.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 30, 30 )
+text = "edit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="building_type_label" type="Label" parent="Container/VBoxContainer"]
+margin_top = 65.0
+margin_right = 408.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 3 )
+text = "상점"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/VBoxContainer"]
+margin_top = 104.0
+margin_right = 408.0
+margin_bottom = 140.0
+
+[node name="monthly_guest_count_label" type="Label" parent="Container/VBoxContainer/VBoxContainer"]
+margin_right = 408.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 4 )
+text = "이번 달 다녀간 손님 수 : 100명"
+
+[node name="cumulation_guest_count" type="Label" parent="Container/VBoxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 408.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 4 )
+text = "누적 손님 수 : 201명"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Container/VBoxContainer"]
+margin_top = 155.0
+margin_right = 408.0
+margin_bottom = 306.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Container/VBoxContainer/VBoxContainer2"]
+margin_right = 408.0
+margin_bottom = 22.0
+
+[node name="employee_info_title_lable" type="Label" parent="Container/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 332.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 332, 0 )
+custom_fonts/font = SubResource( 5 )
+text = "[직원]"
+valign = 1
+
+[node name="recruit_button" type="Button" parent="Container/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+margin_left = 336.0
+margin_right = 408.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 6 )
+text = "고용하기"
+
+[node name="employee_info_panel" type="Panel" parent="Container/VBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 408.0
+margin_bottom = 151.0
+rect_min_size = Vector2( 408, 125 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -4.0
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer"]
+margin_right = 510.0
+margin_bottom = 100.0
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="employee_info_ui_button8" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+
+[node name="employee_info_ui_button9" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 86.0
+margin_right = 166.0
+
+[node name="employee_info_ui_button10" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 172.0
 margin_right = 252.0
-margin_bottom = 67.0
+
+[node name="employee_info_ui_button11" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 258.0
+margin_right = 338.0
+
+[node name="employee_info_ui_button12" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 344.0
+margin_right = 424.0
+
+[node name="employee_info_ui_button13" parent="Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 430.0
+margin_right = 510.0
+
+[connection signal="pressed" from="Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_edit_button" to="." method="_on_building_name_edit_button_pressed"]
