@@ -34,9 +34,9 @@ const float UPDATE_INTERVAL_TIME = .5;
 const float CHARACTER_MAX_VELOCITY = 2.0;
 
 // Inventory
-const int INVENTORY_X = 1;
-const int INVENTORY_Y = 1;
-const int ITEM_STACK_MAX = 10;
+const int INVENTORY_X = 3;
+const int INVENTORY_Y = 3;
+const int MAX_ITEM_STACK = 10;
 
 // Camera Move
 const float CAMERA_MOVING_SPEED = 4.0;

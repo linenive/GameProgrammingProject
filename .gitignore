@@ -7,4 +7,8 @@ CPP/NativeLib/NativeLib/x64/Debug/NativeLib.log
 *.obj~87ca3a2c9bf89a538bb7ae5af917693352440899
 *.md5
 *.lastbuildstate
+libgdexample.dll
+libgdexample.exp
+libgdexample.lib
+
 CPP/NativeLib/NativeLib/x64/Debug/NativeLib.log
