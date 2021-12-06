@@ -87,3 +87,13 @@ func _on_InputManager_click_character(ID):
 			uicontrol.show_info_popup(child, "Character")
 	#camera_manager.SetCameraSetting_Trace(character_path)
 
+func _on_InputManager_click_structure(ID):
+	print("Structrue click: "+ String(ID))
+	# show_info_popup
+	pass
+
+func _on_InputManager_click_building(ID):
+	print("Building click: "+ String(ID))
+	# show_info_popup
+	pass
+

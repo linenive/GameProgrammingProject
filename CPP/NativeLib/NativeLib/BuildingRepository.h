@@ -68,4 +68,8 @@ public:
             delete(item.second);
         }
     }
+
+    map<int, Building*>* GetBuildingMap() {
+        return &building_map;
+    }
 };

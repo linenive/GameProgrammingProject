@@ -36,6 +36,8 @@ private:
 	Rect2 ConvertToOccupationArea(Coordinates top_left_coordinates, int width, int height);
 
 public:
+	int GetBuildingId(Vector2 position);
+	int GetStructureId(Vector2 position);
 	int CreateBuilding(int type, Vector2 top_left_tile_position);
 	Building* CreateBluePrintBuilding(int type);
 	Structure* CreateBluePrintStructure(int type);

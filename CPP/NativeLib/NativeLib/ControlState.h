@@ -21,7 +21,8 @@ public:
 	bool is_structure_blueprint_ready = false;
 
 	queue<int> clicked_character_ids;
-	queue<int> clicked_block_ids;
+	queue<int> clicked_structure_ids;
+	queue<int> clicked_building_ids;
 
 	queue<int> new_building_ids;
 	queue<int> new_structure_ids;
@@ -79,6 +80,18 @@ private:
 		int clicked_character_id = object_service->GetCharacterId(position);
 		if (clicked_character_id != -1) {
 			input.clicked_character_ids.push(clicked_character_id);
+			return;
+		}
+
+		int clicked_structure_id = static_unit_service->GetStructureId(position);
+		if (clicked_structure_id != -1) {
+			input.clicked_structure_ids.push(clicked_structure_id);
+			return;
+		}
+
+		int clicked_building_id = static_unit_service->GetBuildingId(position);
+		if (clicked_building_id != -1) {
+			input.clicked_building_ids.push(clicked_building_id);
 			return;
 		}
 	}
