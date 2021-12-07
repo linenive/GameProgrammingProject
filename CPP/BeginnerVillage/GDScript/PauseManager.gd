@@ -1,28 +1,23 @@
 extends Node
 
-var is_pause
 func _ready():
 	print("pause manager called")
-	is_pause = false
-	set_pause_scene_visible(false)
+	$PauseScene.SetPanelPause(false)
 
-func _process(delta):
-	if Input.is_action_just_pressed("pause"):
-		if is_pause:
+func _input(event):
+	if event.is_action_pressed("pause"):
+		if $PauseScene.is_paused:
 			restart_game()
 		else:	
 			pause_game()
 
 func restart_game():
-	set_pause_scene_visible(false)
-	is_pause=false
+	$PauseScene.SetPanelPause(false)
+	#get_tree().paused = false
 	
 func pause_game():
-	is_pause = true
-	set_pause_scene_visible(true)
-	
-func set_pause_scene_visible(active):
-	$PauseScene/TitleCanvas/TitlePanel.visible = active
-	$PauseScene/ButtonCanvas/Control.visible = active
+	#get_tree().paused = true
+	$PauseScene.SetPanelPause(true)
+
 	
 	
