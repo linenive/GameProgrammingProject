@@ -8,9 +8,15 @@ func _ready():
 
 func _on_GoTitle_pressed():
 	if DetectButtonClicked():
-		#SetPanelPause(false)
+		SetPanelPause(false)
 		is_pressed = false
-		get_tree().change_scene("res://Scene/Title.tscn")
+		var err = get_tree().change_scene("res://Scene/Title.tscn")
+		if err == OK:
+			pass
+		elif err == ERR_CANT_CREATE:
+			breakpoint
+		elif err == ERR_CANT_OPEN:
+			breakpoint
 
 func _on_Exit_pressed():
 	if DetectButtonClicked():
@@ -32,3 +38,4 @@ func SetPanelPause(active):
 	$ButtonCanvas/Control.visible = active
 	get_tree().paused = active
 	is_paused = active
+

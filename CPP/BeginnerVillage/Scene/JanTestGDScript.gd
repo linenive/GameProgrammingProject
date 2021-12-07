@@ -19,3 +19,4 @@ func GetEventLogExample():
 		print(String(single_log[2])+"년 "+String(single_log[3])+"월 "+\
 			String(single_log[4])+"일 "+ String(single_log[5])+":"+\
 			String(single_log[6]))
+

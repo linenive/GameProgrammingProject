@@ -2,7 +2,7 @@ extends Node2D
 
 var is_pressed
 func _ready():
-	get_tree().paused=false
+	print("title manager")
 	is_pressed = false
 
 func _on_NewGame_pressed():
@@ -18,3 +18,4 @@ func DetectButtonClicked():
 		is_pressed = true
 		return true
 	return false
+

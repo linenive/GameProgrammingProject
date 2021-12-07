@@ -10,6 +10,7 @@ size = 70
 font_data = ExtResource( 2 )
 
 [node name="PauseScene" type="Node2D"]
+pause_mode = 2
 visible = false
 script = ExtResource( 4 )
 
@@ -45,29 +46,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GoTitle" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-text_btn = "타이틀로"
-
 [node name="Save" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 55.0
-margin_bottom = 110.0
+margin_top = 21.3642
+margin_bottom = 76.3642
 text_btn = "저장하기"
 
 [node name="Settings" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 110.0
-margin_bottom = 165.0
+margin_top = 76.3642
+margin_bottom = 131.364
 text_btn = "설정"
 
 [node name="Exit" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 165.0
-margin_bottom = 220.0
+margin_top = 131.364
+margin_bottom = 186.364
 text_btn = "종료"
 
 [node name="Close" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 220.0
-margin_bottom = 275.0
+margin_top = 186.364
+margin_bottom = 241.364
 text_btn = "닫기"
 
-[connection signal="pressed" from="ButtonCanvas/Control/GoTitle" to="." method="_on_GoTitle_pressed"]
 [connection signal="pressed" from="ButtonCanvas/Control/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="ButtonCanvas/Control/Close" to="." method="_on_Close_pressed"]
