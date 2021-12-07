@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://GDScript/MenuUI.gd" type="Script" id=19]
 [ext_resource path="res://Scene/ChoiceButtonUI.tscn" type="PackedScene" id=20]
 [ext_resource path="res://GDScript/ChoiceButtonControl.gd" type="Script" id=21]
+[ext_resource path="res://GDScript/PauseManager.gd" type="Script" id=22]
+[ext_resource path="res://Scene/Esc.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scene/PeopleInfoUI.tscn" type="PackedScene" id=24]
 [ext_resource path="res://GDScript/PeopleUIControl.gd" type="Script" id=25]
 [ext_resource path="res://Scene/TextureDB.gd" type="Script" id=26]
@@ -1252,6 +1254,11 @@ __meta__ = {
 [node name="BuildingUIControl" type="Node" parent="UIControl"]
 
 [node name="BuildingInfoUI" parent="UIControl/BuildingUIControl" instance=ExtResource( 28 )]
+
+[node name="PauseManager" type="Node" parent="."]
+script = ExtResource( 22 )
+
+[node name="PauseScene" parent="PauseManager" instance=ExtResource( 23 )]
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
 [connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
