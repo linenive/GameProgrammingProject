@@ -1,4 +1,5 @@
 #include "BuildingType.h"
+#pragma execution_character_set("utf-8")
 
 BuildingData::BuildingData(eBuildingType type) {
     building_role = eBuildingRole::HOUSE;
@@ -7,7 +8,7 @@ BuildingData::BuildingData(eBuildingType type) {
     switch (type)
     {
     case eBuildingType::SMALL_HOUSE:
-        name = "small_house";
+        name = "작은 집";
         building_role = eBuildingRole::HOUSE;
         slot_num = 2;
         blocks = {
@@ -19,7 +20,7 @@ BuildingData::BuildingData(eBuildingType type) {
         };
         break;
     case eBuildingType::LARGE_HOUSE:
-        name = "large_house";
+        name = "커다란 집";
         building_role = eBuildingRole::HOUSE;
         slot_num = 4;
         blocks = {
@@ -33,7 +34,7 @@ BuildingData::BuildingData(eBuildingType type) {
         };
         break;
     case eBuildingType::NORMAL_SHOP:
-        name = "normal_shop";
+        name = "상점";
         building_role = eBuildingRole::WORK_SPACE;
         slot_num = 3;
         blocks = {

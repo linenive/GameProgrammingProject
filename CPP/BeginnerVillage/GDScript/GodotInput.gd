@@ -95,5 +95,4 @@ func _on_InputManager_click_structure(ID):
 func _on_InputManager_click_building(ID):
 	print("Building click: "+ String(ID))
 	# show_info_popup
-	pass
 
