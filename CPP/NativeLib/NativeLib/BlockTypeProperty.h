@@ -7,6 +7,7 @@ enum class eBlockType {
     WOOD_WALL,
     WOOD_DOOR,
     WOOD_FLOOR,
+    SHOP_SIGN,
     STRUCTURE_LOW_BLOCK,
     STRUCTURE_MID_BLOCK,
     STRUCTURE_HIGH_BLOCK
@@ -38,6 +39,10 @@ public:
         level[static_cast<int>(eBlockType::WOOD_FLOOR)] = 0;
         name[static_cast<int>(eBlockType::WOOD_FLOOR)] = "wood_floor";
         pass_speed[static_cast<int>(eBlockType::WOOD_FLOOR)] = 1.0;
+
+        level[static_cast<int>(eBlockType::SHOP_SIGN)] = 1;
+        name[static_cast<int>(eBlockType::SHOP_SIGN)] = "shop_sign";
+        pass_speed[static_cast<int>(eBlockType::SHOP_SIGN)] = 0.0;
 
         level[static_cast<int>(eBlockType::STRUCTURE_LOW_BLOCK)] = 1;
         name[static_cast<int>(eBlockType::STRUCTURE_LOW_BLOCK)] = "low_block";
