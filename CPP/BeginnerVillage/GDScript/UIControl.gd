@@ -41,7 +41,7 @@ func get_object_info(id, type):
 	if type == "Character":
 		info = get_character_info(id)
 	elif type == "Building":
-		info = get_building_info(node)
+		info = get_building_info(id)
 		
 	return info
 
@@ -60,7 +60,7 @@ func get_character_info(id):
 		character_info["item" + str(j+1)] = item_info_array
 	return character_info
 
-func get_building_info(node):
+func get_building_info(id):
 	pass
 
 func get_available_popup():
