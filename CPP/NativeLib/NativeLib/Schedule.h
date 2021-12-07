@@ -8,7 +8,8 @@ enum class ePurposeOfVisitType {
 	Recovery,
 	Cure,
 	Shopping,
-	BuyLiquidMedicine
+	BuyLiquidMedicine,
+	BuyFirewood,
 };
 
 class PurposeOfVisit {
@@ -24,15 +25,30 @@ public:
 	}
 	PurposeOfVisit(string _name, ePurposeOfVisitType _type)
 		: name(_name), type(_type) {}
+	string GetName() {
+		return name;
+	}
 };
 
 
 class Schedule {
+protected:
+	vector<PurposeOfVisit*> purpose_of_visits;
+public:
+	// 임시 함수
+	bool IsHavePurpose() {
+		return purpose_of_visits.size() != 0;
+	}
+
+	// 임시 함수
+	string GetFirstPurpose() {
+		return purpose_of_visits[0]->GetName();
+	}
 };
 
 class GuestSchedule : public Schedule {
 private:
-	vector<PurposeOfVisit*> purpose_of_visits;
+	
 	Coordinates village_arrival_point;
 	Coordinates village_departure_point;
 

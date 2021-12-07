@@ -133,10 +133,11 @@ func create_structure(structure_id):
 	$Structure.add_child(structure_instance)
 
 func _on_Main_create_character(ID):
-	var gender = world_manager.GetCharacterGender(ID)
-	if(gender == "Man"):
+	var character_data = world_manager.GetCharacterInfo(ID)
+	var gender = character_data[4]
+	if(gender == "남자"):
 		create_man_character(ID)
-	elif(gender == "Woman"):
+	elif(gender == "여자"):
 		create_woman_character(ID)
 	
 func _on_Main_delete_character(ID):

@@ -1,4 +1,5 @@
 #pragma once
+#pragma execution_character_set("utf-8")
 #include <time.h>
 #include "WorldObjectFactory.h"
 #include "Character.h"
@@ -9,8 +10,11 @@ class PurposeOfVisitFactory {
 public:
 	PurposeOfVisit* CreatePurposeOfVisit(ePurposeOfVisitType type) {
 		PurposeOfVisit* purpose;
-		if (type == ePurposeOfVisitType::Lodge) {
-			purpose = new PurposeOfVisit("Lodge", type);
+		if (type == ePurposeOfVisitType::BuyFirewood) {
+			purpose = new PurposeOfVisit("장작 구매", type);
+		}
+		else if (type == ePurposeOfVisitType::JustChilling) {
+			purpose = new PurposeOfVisit("그냥 휴식", type);
 		}
 		else {
 			purpose = new PurposeOfVisit("NoName", type);
@@ -28,12 +32,13 @@ private:
 
 	void SettingPurposeOfVisit(Character* character) {
 		// To-do: number of purpose를 random으로 정하도록 바꾼다.
-		int number_of_purpose = 2;
-		for (int i = 0; i < number_of_purpose; i++) {
-			GuestSchedule* schedule = (GuestSchedule*)character->GetSchedule();
-			// To-do: Probability가 포함된 pool에서 random type을 pick하도록 바꾼다.
-			// To-do: 한 번 picked 된 type은 delete in pool.
-			schedule->AddPurposeOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::Lodge));
+		int random_purpose = rand()%3;
+		GuestSchedule* schedule = (GuestSchedule*)character->GetSchedule();
+		if (random_purpose == 1) {
+			schedule->AddPurposeOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::JustChilling));
+		}
+		else if (random_purpose == 2) {
+			schedule->AddPurposeOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::BuyFirewood));
 		}
 	}
 
@@ -48,6 +53,7 @@ public:
 			transform, Vector2(TILE_WIDTH, TILE_HEIGHT)
 		);
 		new_character->SetSchedule(new_schedule);
+		SettingPurposeOfVisit(new_character);
 		new_character->AddSkill(start_skill);
 		return new_character;
 	}
