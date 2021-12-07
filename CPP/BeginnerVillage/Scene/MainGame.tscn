@@ -211,10 +211,12 @@ __meta__ = {
 
 [node name="StopTracingBtn" type="Button" parent="UIControl/HUD"]
 visible = false
-margin_left = 3.74237
-margin_top = 568.611
-margin_right = 105.742
-margin_bottom = 596.611
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 4.74237
+margin_top = -35.0
+margin_right = 93.7424
+margin_bottom = -5.0
 text = "Stop Tracing"
 __meta__ = {
 "_edit_use_anchors_": false
