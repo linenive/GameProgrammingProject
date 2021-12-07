@@ -2,7 +2,6 @@ extends Node2D
 
 var is_pressed
 func _ready():
-	print("title manager")
 	is_pressed = false
 
 func _on_NewGame_pressed():

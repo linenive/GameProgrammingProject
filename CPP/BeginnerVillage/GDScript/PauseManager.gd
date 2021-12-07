@@ -1,7 +1,6 @@
 extends Node
 
 func _ready():
-	print("pause manager called")
 	$PauseScene.SetPanelPause(false)
 
 func _input(event):
@@ -13,10 +12,8 @@ func _input(event):
 
 func restart_game():
 	$PauseScene.SetPanelPause(false)
-	#get_tree().paused = false
 	
 func pause_game():
-	#get_tree().paused = true
 	$PauseScene.SetPanelPause(true)
 
 	

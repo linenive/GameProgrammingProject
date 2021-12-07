@@ -6,6 +6,7 @@ var is_paused
 func _ready():
 	is_pressed = false
 
+#error, not used
 func _on_GoTitle_pressed():
 	if DetectButtonClicked():
 		SetPanelPause(false)
