@@ -1,5 +1,5 @@
 #pragma once
-#include "TileRepository.h"
+#include "TileService.h"
 #include "CoordinatesSystem.h"
 #include <unordered_map>
 #include <set>
@@ -21,7 +21,7 @@ struct CoordinatesHash {
 class PathFindService {
 
 private:
-	TileRepository* tile_map;
+	TileService* tile_service;
 
 	int dx[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 	int dy[8] = { 1, 1, 0, -1, -1, -1, 0, 1 };
@@ -37,9 +37,7 @@ private:
 	float GetTilePassSpeed(Coordinates next_tile);
 
 public:
-	PathFindService(TileRepository* tile){
-		tile_map = tile;
-	}
+	PathFindService(TileService* _tile_service): tile_service(_tile_service){}
 	queue<Vector2>* PathFinding(godot::Vector2 start_pos, godot::Vector2 target_pos);
 	queue<Vector2>* GetPathListByCoor(vector<Coordinates> ans, Vector2 target_pos);
 

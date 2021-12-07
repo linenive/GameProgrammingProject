@@ -6,18 +6,6 @@ private:
 	StaticUnitService* static_unit_service;
 	eStructureType scheduled_structure_type = eStructureType::SINGLE_BED;
 
-	void HighlightHoverdTile(Vector2 mouse_position) {
-		Coordinates hovered_tile_coord = GetTile(mouse_position);
-		if (hovered_tile_coord.x >= 0) {
-			Surface* hoverd_surface = tile_repo->GetSurface(hovered_tile_coord);
-			input.is_area_highlighted = true;
-			input.highlighted_area = hoverd_surface->GetPhysics()->GetRect();
-		}
-		else {
-			input.is_area_highlighted = false;
-		}
-	}
-
 	bool CanInstalling(Vector2 mouse_position) {
 		if (input.is_structure_blueprint_ready) {
 			return static_unit_service->IsStructurePlacablePosition((int)scheduled_structure_type, mouse_position);
@@ -30,8 +18,8 @@ private:
 		input.new_structure_ids.push(new_structure_id);
 	}
 public:
-	InstallState(TileRepository* t_repo, StaticUnitService* _static_unit_service)
-		: ControlState(t_repo), static_unit_service(_static_unit_service) {}
+	InstallState(TileService* _tile_service, StaticUnitService* _static_unit_service)
+		: ControlState(_tile_service), static_unit_service(_static_unit_service) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 		// HighlightHoverdTile(mouse_position);

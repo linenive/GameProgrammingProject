@@ -21,6 +21,9 @@ private:
 	void EmitStateSignalNormal();
 	void EmitBuildSignal(int building_id);
 	void EmitStructureSignal(int building_id);
+	void EmitClickCharacter(int character_id);
+	void EmitClickStructure(int block_id);
+	void EmitClickBuilding(int block_id);
 	void FetchInputQueue();
 
 public:

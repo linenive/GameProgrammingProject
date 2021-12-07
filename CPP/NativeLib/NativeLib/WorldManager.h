@@ -27,11 +27,12 @@ public:
 	void _process(float delta);
 
 	Vector2 GetTileCoordinate(Vector2 position) {
-		return tile_service->GetTileCoordinate(position);
+		Coordinates coord = tile_service->GetTileCoordinate(position);
+		return Vector2(coord.x, coord.y);
 	}
 
 	float GetTilePassSpeed(Vector2 coordinate) {
-		return tile_service->GetTilePassSpeed(coordinate.x, coordinate.y);
+		return tile_service->GetTilePassSpeed(Coordinates(coordinate.x, coordinate.y));
 	}
 	int GetTileSizeX() { return tile_service->GetTileSizeX(); }
 	int GetTileSizeY() { return tile_service->GetTileSizeY(); }

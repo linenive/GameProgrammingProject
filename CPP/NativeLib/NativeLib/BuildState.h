@@ -6,15 +6,6 @@ private:
 	StaticUnitService* static_unit_service;
 	eBuildingType scheduled_building_type = eBuildingType::SMALL_HOUSE;
 
-	void HighlightHoverdTile(Vector2 mouse_position) {
-		Coordinates hovered_tile_coord = GetTile(mouse_position);
-		if (hovered_tile_coord.x >= 0) {
-			Surface* hoverd_surface = tile_repo->GetSurface(hovered_tile_coord);
-		}
-		else {
-		}
-	}
-
 	bool CanBuiding(Vector2 mouse_position) {
 		if (input.is_building_blueprint_ready) {
 			return static_unit_service->IsPlacablePosition((int)scheduled_building_type, mouse_position);
@@ -28,8 +19,8 @@ private:
 	}
 
 public:
-	BuildState(TileRepository* t_repo, StaticUnitService* _static_unit_service)
-		: ControlState(t_repo), static_unit_service(_static_unit_service) {}
+	BuildState(TileService* _tile_service, StaticUnitService* _static_unit_service)
+		: ControlState(_tile_service), static_unit_service(_static_unit_service) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 		HighlightHoverdTile(mouse_position);

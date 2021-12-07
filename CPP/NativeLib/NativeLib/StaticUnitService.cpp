@@ -7,6 +7,26 @@ StaticUnitService::StaticUnitService(TileRepository* tile_repo, StructureReposit
 	BuildingRepository* building_repo, int start_unit_id)
 	: tile_repo(tile_repo), structure_rep(structure_rep), building_repo(building_repo), next_unit_id(start_unit_id) {}
 
+int StaticUnitService::GetBuildingId(Vector2 position){
+	map<int, Building*>* building_map = building_repo->GetBuildingMap();
+	for (auto& kv : *building_map) {
+		if (kv.second->ocupation_area.has_point(position)) {
+			return kv.first;
+		}
+	}
+	return -1;
+}
+
+int StaticUnitService::GetStructureId(Vector2 position){
+	map<int, Structure*>* structure_map = structure_rep->GetStructureMap();
+	for (auto& kv : *structure_map) {
+		if (kv.second->ocupation_area.has_point(position)) {
+			return kv.first;
+		}
+	}
+	return -1;
+}
+
 int StaticUnitService::CreateBuilding(int type, Vector2 top_left_tile_position) {
 	return CreateBuilding(static_cast<eBuildingType>(type), AbsolutePositionToCoordinates(top_left_tile_position));
 }

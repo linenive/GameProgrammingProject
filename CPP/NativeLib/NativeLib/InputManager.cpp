@@ -123,6 +123,18 @@ void InputManager::EmitStructureSignal(int building_id) {
 	emit_signal(String("install_structure"), building_id);
 }
 
+void InputManager::EmitClickCharacter(int character_id) {
+	emit_signal(String("click_character"), character_id);
+}
+
+void InputManager::EmitClickStructure(int structure_id) {
+	emit_signal(String("click_structure"), structure_id);
+}
+
+void InputManager::EmitClickBuilding(int building_id){
+	emit_signal(String("click_building"), building_id);
+}
+
 void InputManager::_register_methods() {
 	register_method("_init", &InputManager::_init);
 	register_method("_ready", &InputManager::_ready);
@@ -148,6 +160,9 @@ void InputManager::_register_methods() {
 	register_signal<InputManager>(String("change_to_normal_state"), Dictionary());
 	register_signal<InputManager>(String("build_building"), "ID", GODOT_VARIANT_TYPE_INT);
 	register_signal<InputManager>(String("install_structure"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<InputManager>(String("click_character"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<InputManager>(String("click_structure"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<InputManager>(String("click_building"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void InputManager::_init() {
@@ -190,6 +205,27 @@ void InputManager::FetchInputQueue() {
 		int new_id = new_structure_ids->front();
 		new_structure_ids->pop();
 		EmitStructureSignal(new_id);
+	}
+
+	queue<int>* clicked_character_ids = &(control_context_service->GetInputStatus()->clicked_character_ids);
+	if (!clicked_character_ids->empty()) {
+		int clicked_id = clicked_character_ids->front();
+		clicked_character_ids->pop();
+		EmitClickCharacter(clicked_id);
+	}
+
+	queue<int>* clicked_structure_ids = &(control_context_service->GetInputStatus()->clicked_structure_ids);
+	if (!clicked_structure_ids->empty()) {
+		int clicked_id = clicked_structure_ids->front();
+		clicked_structure_ids->pop();
+		EmitClickStructure(clicked_id);
+	}
+
+	queue<int>* clicked_building_ids = &(control_context_service->GetInputStatus()->clicked_building_ids);
+	if (!clicked_building_ids->empty()) {
+		int clicked_id = clicked_building_ids->front();
+		clicked_building_ids->pop();
+		EmitClickBuilding(clicked_id);
 	}
 	
 }

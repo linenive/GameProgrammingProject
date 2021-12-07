@@ -16,6 +16,16 @@ public:
 	ObjectService(ObjectRepository* _object_repo, SkillService* _skill_service)
 		: object_repo(_object_repo), skill_service(_skill_service) {}
 
+	int GetCharacterId(Vector2 position) {
+		map<int, Character*>* characters = object_repo->GetCharacters();
+		for (auto& kv : *characters) {
+			if (kv.second->GetPhysics()->GetRect().has_point(position)) {
+				return kv.first;
+			}
+		}
+		return -1;
+	}
+
 	Guest* CreateNewGuest() {
 		Coordinates arrival_point = Coordinates(0, 15);
 		Guest* new_guest = factory.CreateNormalGuest(
@@ -44,14 +54,6 @@ public:
 
 	map<int, Character*>* GetCharacters() {
 		return object_repo->GetCharacters();
-	}
-
-	map<int, Guest*>* GetGuests() {
-		return object_repo->GetGuests();
-	}
-
-	map<int, Resident*>* GetResidents() {
-		return object_repo->GetResidents();
 	}
 
 	void DeleteCharacter(int character_id) {

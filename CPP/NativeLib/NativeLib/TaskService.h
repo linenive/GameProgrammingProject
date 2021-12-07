@@ -5,16 +5,16 @@
 
 class TaskService {
 private:
-	TileRepository* tile_repo;
+	TileService* tile_service;
 	PathFindService* path_finder;
 	ResidentService* resident_service;
 	queue<Vector2>* CreatePath(Vector2 start_position, Vector2 target_position) {
 		return path_finder->PathFinding(start_position, target_position);
 	}
 public:
-	TaskService(TileRepository* _tile_repo, PathFindService* _path_finder,
+	TaskService(TileService* _tile_service, PathFindService* _path_finder,
 		ResidentService* _resident_service)
-		: tile_repo(_tile_repo), path_finder(_path_finder), resident_service(_resident_service){}
+		: tile_service(_tile_service), path_finder(_path_finder), resident_service(_resident_service){}
 
 	Task* CreateSeekTaskToHome(Character* character) {
 		Vector2 home_pos = resident_service->GetResidentHomePosition(character->GetId());
@@ -44,14 +44,14 @@ public:
 	}
 	Task* CreateWanderTask(Character* c) {
 		float max_x = TILE_WIDTH * DEFAULT_TILE_NUMBER_X, max_y = TILE_HEIGHT * DEFAULT_TILE_NUMBER_Y;
-		Coordinates now_coor = AbsolutePositionToCoordinates(c->GetPhysics()->GetPosition());
-		Coordinates wander_coor = Coordinates(GetRandomPoint(now_coor.x, max_x),GetRandomPoint(now_coor.y, max_y));
+		Coordinates now_coord = AbsolutePositionToCoordinates(c->GetPhysics()->GetPosition());
+		Coordinates wander_coord = Coordinates(GetRandomPoint(now_coord.x, max_x),GetRandomPoint(now_coord.y, max_y));
 
-		while (!tile_repo->IsPassableTile(wander_coor.x, wander_coor.y)) {
-			wander_coor = Coordinates(GetRandomPoint(now_coor.x, max_x), GetRandomPoint(now_coor.y, max_y));
+		while (!tile_service->IsPassableTile(wander_coord)) {
+			wander_coord = Coordinates(GetRandomPoint(now_coord.x, max_x), GetRandomPoint(now_coord.y, max_y));
 		}
 
-		Vector2 wander_point = CoordinatesToCenterVector(wander_coor);
+		Vector2 wander_point = CoordinatesToCenterVector(wander_coord);
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), wander_point);
 		return new WanderTask(paths);
 	}

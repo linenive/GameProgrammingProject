@@ -32,35 +32,32 @@ func show_info_popup(node, type):
 	
 	var instantiate_pos = get_instantiate_pos()
 	var popup = get_available_popup()
-	var info = get_object_info(node, type)
+	var info = get_object_info(node.get_id(), type)
 	popup.show_popup(node, type, info, instantiate_pos)
 
-func get_object_info(node, type):
+func get_object_info(id, type):
 	var info
 	
 	if type == "Character":
-		info = get_character_info(node)
+		info = get_character_info(id)
 	elif type == "Building":
 		info = get_building_info(node)
 		
 	return info
 
-func get_character_info(node):
+func get_character_info(id):
 	var inventory_size : int
 	var item_info_array : Array
-	
-	var character_id = node.get_id()
 	var character_info = {}
 	
-	character_info["first_name"] = world_manager.GetCharacterFirstName(character_id)
-	character_info["last_name"] = world_manager.GetCharacterLastName(character_id)
-	character_info["gender"] = world_manager.GetCharacterGender(character_id)
-	inventory_size = world_manager.GetCharacterInventorySize(character_id)
+	character_info["first_name"] = world_manager.GetCharacterFirstName(id)
+	character_info["last_name"] = world_manager.GetCharacterLastName(id)
+	character_info["gender"] = world_manager.GetCharacterGender(id)
+	inventory_size = world_manager.GetCharacterInventorySize(id)
 			
 	for j in inventory_size:
-		item_info_array = world_manager.GetCharacterItem(character_id, j);
+		item_info_array = world_manager.GetCharacterItem(id, j);
 		character_info["item" + str(j+1)] = item_info_array
-	
 	return character_info
 
 func get_building_info(node):

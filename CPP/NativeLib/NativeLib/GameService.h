@@ -54,7 +54,6 @@ public:
 
 	GameService() {
 		// 생성 시 repository만 필요한 서비스들
-		path_find_service = new PathFindService(&game_world.tile_repo);
 		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
 		static_unit_service = new StaticUnitService(
@@ -67,6 +66,7 @@ public:
 			&game_world.skill_repo
 		);
 		// 생성 시 다른 서비스를 받는 서비스들 (인자 바꿀 시 생성 순서에 유의)
+		path_find_service = new PathFindService(tile_service);
 		map_create_service = new MapCreateService(
 			static_unit_service, &game_world.tile_repo
 		);
@@ -79,10 +79,10 @@ public:
 			&game_world.object_repo, &game_world.building_repo
 		);
 		task_service = new TaskService(
-			&game_world.tile_repo, path_find_service, resident_service
+			tile_service, path_find_service, resident_service
 		);
 		control_context_service = new ControlContextService(
-			&game_world.tile_repo, static_unit_service
+			tile_service, object_service, static_unit_service
 		);
 		progress_service = new ProgressService(
 			object_service, &game_world.random_repo,
