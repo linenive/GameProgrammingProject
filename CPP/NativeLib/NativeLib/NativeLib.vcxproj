@@ -241,6 +241,8 @@
     <ClInclude Include="VillageRepository.h" />
     <ClInclude Include="ResidentService.h" />
     <ClInclude Include="VillageService.h" />
+    <ClInclude Include="WorkPriority.h" />
+    <ClInclude Include="WorkType.h" />
     <ClInclude Include="WorldManager.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="WorldObjectFactory.h" />

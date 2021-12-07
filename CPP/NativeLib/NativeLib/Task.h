@@ -1,9 +1,10 @@
 #pragma once
 #include "Action.h"
+#include "WorkPriority.h"
 #include <queue>
 
 enum class eTaskType {
-	NONE, SEEK, LEAVE_VILLAGE, WANDER
+	NONE, SEEK, LEAVE_VILLAGE, WANDER, WORK
 };
 
 class Task{
@@ -22,7 +23,6 @@ public:
 	bool IsTaskDone() { return is_task_done; }
 
 	void Execute(Character* performer) {
-		
 		if (current_action->IsEndAction(performer)) {
 			NextAction();
 			if (!HasAction()) { 
@@ -114,5 +114,29 @@ public:
 	}
 	virtual const eTaskType GetType() {
 		return eTaskType::WANDER;
+	}
+};
+
+class WorkTask : public Task {
+private:
+	eWorkType work_type;
+	unsigned int left_action;
+public:
+	WorkTask(eWorkType type, unsigned int action_num) : work_type(type), left_action(action_num) {
+		current_action = new WorkAction(type, 100); // takes 2 second
+	}
+
+	virtual void NextAction() {
+		left_action--;
+		if (left_action > 0) {
+			current_action = new WorkAction(work_type, 100);
+		}
+		else {
+			current_action = nullptr;
+		}
+	}
+
+	virtual const eTaskType GetType() {
+		return eTaskType::WORK;
 	}
 };

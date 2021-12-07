@@ -6,6 +6,7 @@
 #include "CharacterSkill.h"
 #include "Stat.h"
 #include "CharacterName.h"
+#include "ItemDictionary.h"
 #include <vector>
 
 enum eLevel {
@@ -35,6 +36,9 @@ protected:
 			}
 		}
 	}
+	void AddBaseItem() {
+		AddItem(*ItemDictionary::GetInstance()->GetItemByName("wood"));
+	}
 
 public:
 
@@ -52,7 +56,7 @@ public:
 		: id(_id), full_name(_name), gender(_gender),
 		WorldObject(_name.GetFullname(), transform, scale) {
 		inventory = new Inventory();
-		inventory->AddItem(MaterialItem("Wood"));
+		AddBaseItem();
 		SetBaseStat();
 	}
 	Schedule* GetSchedule() { return schedule; }
@@ -87,6 +91,14 @@ public:
 		skill_list.push_back(new_skill);
 	}
 
+	void AddItem(Item item) {
+		AddItem(item, 1);
+	}
+
+	void AddItem(Item item, int amount) {
+		inventory->AddItem(item, amount);
+	}
+
 	virtual bool IsGuest() = 0;
 };
 
@@ -96,7 +108,7 @@ public:
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
 		inventory = new Inventory();
-		inventory->AddItem(MaterialItem("Wood"));
+		AddBaseItem();
 	}
 
 	GuestSchedule* GetSchedule() { return (GuestSchedule*)schedule; }
@@ -110,7 +122,7 @@ public:
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
 		inventory = new Inventory();
-		inventory->AddItem(MaterialItem("Wood"));
+		AddBaseItem();
 	}
 	
 	ResidentSchedule* GetSchedule() { return (ResidentSchedule*)schedule; }

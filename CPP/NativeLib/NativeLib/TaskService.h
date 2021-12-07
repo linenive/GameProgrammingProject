@@ -1,6 +1,7 @@
 #pragma once
 #include "Task.h"
 #include "ResidentService.h"
+#include "WorkPriority.h"
 
 class TaskService {
 private:
@@ -53,5 +54,8 @@ public:
 		Vector2 wander_point = CoordinatesToCenterVector(wander_coord);
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), wander_point);
 		return new WanderTask(paths);
+	}
+	Task* CreateWorkTask(eWorkType work_type) {
+		return new WorkTask(work_type, 10);
 	}
 };

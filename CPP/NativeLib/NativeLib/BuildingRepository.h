@@ -45,7 +45,18 @@ public:
         else {
             printf("ERROR: [BuildingRepository]trying to get not exist building. ");
             printf("id = %d\n", id);
+            return nullptr;
         }
+    }
+
+    Building* GetBuildingByArea(Rect2 area) {
+        for (auto e : building_map) {
+            Building* buliding = e.second;
+            if (buliding->ocupation_area.intersects(area)) {
+                return buliding;
+            }
+        }
+        return nullptr;
     }
 
     int GetAssignableHouseId() {

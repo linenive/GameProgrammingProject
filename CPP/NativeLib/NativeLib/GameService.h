@@ -48,6 +48,8 @@ public:
 		delete resident_service;
 		delete skill_service;
 		delete map_create_service;
+
+		delete(ItemDictionary::GetInstance());
 	}
 
 	GameService() {
@@ -87,7 +89,7 @@ public:
 			&game_world.time_repo, &game_world.event_log_repo
 		);
 		ai_service = new AIService(
-			object_service, task_service
+			object_service, task_service, static_unit_service, resident_service
 		);
 	};
 
