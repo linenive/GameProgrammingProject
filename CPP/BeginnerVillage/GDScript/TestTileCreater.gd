@@ -92,7 +92,7 @@ func _process(delta):
 			continue
 		c.transform = transform3
 
-func _on_InputManager_build_building(ID):
+func _on_InputManager_build_building(ID):	
 	create_building_nodes(ID)
 
 func _on_InputManager_install_structure(ID):

@@ -3,7 +3,7 @@ extends Node
 var texture_db
 
 var building_data_array : Array
-var BUILDING_COUNT = 2
+var BUILDING_COUNT = 3
 
 var furniture_data_array : Array
 var FURNITURE_COUNT = 8

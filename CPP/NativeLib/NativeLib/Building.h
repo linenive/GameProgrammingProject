@@ -8,6 +8,9 @@
 using namespace std;
 
 class Building : public StaticUnit {
+private:
+    int number_of_guests_per_month = 0;
+    int cumulative_number_of_guests = 0;
 public:
     int character_slot_num;
     vector<CharacterSlot*> character_slots;
@@ -64,6 +67,9 @@ public:
 
     virtual Array Serialize() { //id, name, character_slot_num, char1_id, char2_id, ...
         Array serialized_data = StaticUnit::Serialize();
+        serialized_data.append(static_cast<int>(building_role));
+        serialized_data.append(number_of_guests_per_month);
+        serialized_data.append(cumulative_number_of_guests);
         serialized_data.append(character_slot_num);
         for (int i = 0; i < character_slot_num; i++) {
             if (i < character_slots.size()) {
@@ -73,7 +79,6 @@ public:
                 serialized_data.append(-1);
             }
         }
-        
         return serialized_data;
     }
 };
