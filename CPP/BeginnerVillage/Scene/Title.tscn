@@ -15,10 +15,26 @@ script = ExtResource( 4 )
 
 [node name="TitleCanvas" type="CanvasLayer" parent="."]
 
-[node name="TitlePanel" type="Node2D" parent="TitleCanvas"]
-position = Vector2( 300, 119.883 )
+[node name="TitlePanel" type="HBoxContainer" parent="TitleCanvas"]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.2
+margin_left = -194.033
+margin_top = -0.327404
+margin_right = 234.967
+margin_bottom = 144.673
+grow_horizontal = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="TitleCanvas/TitlePanel"]
+margin_top = 30.0
+margin_right = 332.0
+margin_bottom = 175.0
 custom_fonts/font = SubResource( 1 )
 text = "초보자마을
 시뮬레이터"
@@ -27,36 +43,47 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="TitleCanvas/TitlePanel"]
-position = Vector2( 391.617, 67.8376 )
-scale = Vector2( 1.28967, 1.28659 )
+position = Vector2( 385.536, 93.234 )
 texture = ExtResource( 1 )
 
 [node name="ButtonCanvas" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="ButtonCanvas"]
-margin_left = 438.585
-margin_top = 310.769
-margin_right = 438.585
-margin_bottom = 310.769
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+margin_left = -87.985
+margin_top = -104.816
+margin_right = -87.985
+margin_bottom = -104.816
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NewGame" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="ContinueGame" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
 margin_top = 55.0
 margin_bottom = 110.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text_btn = "이어 하기"
 
 [node name="Exit" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 110.0
-margin_bottom = 165.0
+margin_top = 109.0
+margin_bottom = 164.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text_btn = "종료"
 
 [node name="Settings" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 165.0
-margin_bottom = 220.0
+margin_top = 164.0
+margin_bottom = 219.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text_btn = "설정"
 
 [connection signal="pressed" from="ButtonCanvas/Control/NewGame" to="." method="_on_NewGame_pressed"]

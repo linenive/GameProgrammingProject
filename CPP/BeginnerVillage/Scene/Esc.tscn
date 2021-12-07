@@ -9,18 +9,33 @@
 size = 70
 font_data = ExtResource( 2 )
 
-[node name="PauseScene" type="Node2D"]
+[node name="PauseScene" type="CanvasLayer"]
 pause_mode = 2
-visible = false
 script = ExtResource( 4 )
 
 [node name="TitleCanvas" type="CanvasLayer" parent="."]
 layer = 12
 
-[node name="TitlePanel" type="Node2D" parent="TitleCanvas"]
-position = Vector2( 300, 69.4292 )
+[node name="TitlePanel" type="HBoxContainer" parent="TitleCanvas"]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.2
+margin_left = -147.998
+margin_top = 1.25992
+margin_right = 281.002
+margin_bottom = 146.26
+size_flags_horizontal = 8
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="TitleCanvas/TitlePanel"]
+margin_top = 30.0
+margin_right = 332.0
+margin_bottom = 175.0
 custom_fonts/font = SubResource( 1 )
 text = "초보자마을
 시뮬레이터"
@@ -29,15 +44,19 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="TitleCanvas/TitlePanel"]
-position = Vector2( 391.617, 67.8376 )
-scale = Vector2( 1.28967, 1.28659 )
+position = Vector2( 385.536, 93.2342 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, 0.5 )
 
 [node name="ButtonCanvas" type="CanvasLayer" parent="."]
 pause_mode = 2
 layer = 12
 
 [node name="Control" type="Control" parent="ButtonCanvas"]
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
 margin_left = 438.585
 margin_top = 260.315
 margin_right = 438.585
@@ -47,23 +66,31 @@ __meta__ = {
 }
 
 [node name="Save" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 21.3642
-margin_bottom = 76.3642
+margin_left = -491.083
+margin_top = -388.993
+margin_right = -307.083
+margin_bottom = -333.993
 text_btn = "저장하기"
 
 [node name="Settings" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 76.3642
-margin_bottom = 131.364
+margin_left = -491.083
+margin_top = -333.993
+margin_right = -307.083
+margin_bottom = -278.993
 text_btn = "설정"
 
 [node name="Exit" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 131.364
-margin_bottom = 186.364
+margin_left = -491.083
+margin_top = -278.993
+margin_right = -307.083
+margin_bottom = -223.993
 text_btn = "종료"
 
 [node name="Close" parent="ButtonCanvas/Control" instance=ExtResource( 3 )]
-margin_top = 186.364
-margin_bottom = 241.364
+margin_left = -491.083
+margin_top = -223.993
+margin_right = -307.083
+margin_bottom = -168.993
 text_btn = "닫기"
 
 [connection signal="pressed" from="ButtonCanvas/Control/Exit" to="." method="_on_Exit_pressed"]
