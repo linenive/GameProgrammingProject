@@ -11,9 +11,7 @@ private:
 	unordered_map<int, Item*> id_item_list;
 	unordered_map<string, Item*> name_item_list;
 	static ItemDictionary* instance;
-	~ItemDictionary() {
-		delete instance;
-	}
+
 
 public:
 	static ItemDictionary* GetInstance();
