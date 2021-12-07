@@ -26,7 +26,7 @@ public:
 		type_list["Potion"] = 2;
 
 		for (auto elem : type_list) {
-			id_list.insert(make_pair(elem.second, -1));
+			id_list.insert(make_pair(elem.second, 1));
 		}
 	}
 	int SetNewID(string type) {

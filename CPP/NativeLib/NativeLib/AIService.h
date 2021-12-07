@@ -6,12 +6,15 @@
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
+#include "ItemDictionary.h"
 
 class AIService {
 
 private:
 	ObjectService* object_service;
 	TaskService* task_service;
+	StaticUnitService* static_unit_service;
+	ResidentService* resident_service;
 	AIExecuter ai_executer;
 
 	list<pair<int, Task*>> task_list; 
@@ -21,8 +24,64 @@ private:
 
 	void ReserveWorldObject(WorldObject target, TaskReserveInfo task_reserve_info);
 
+	bool HasEnoughItem(Resident* resident) {
+		return resident->GetInventory()->GetItemCount(Coordinates(0, 0)) >= 10;
+	}
+
+	bool HasSamePosition(Resident* resident, Vector2 target_pos) {
+		return AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition())
+			== AbsolutePositionToCoordinates(target_pos);
+	}
+
+	bool HasInventoryStructureInHome(Resident* resident) { //To-do home -> work_space
+		Building* home = static_unit_service->GetBuildingById(resident->home_id);
+		for (auto id : home->inside_structures_list) {
+			Structure* inside_structure = static_unit_service->GetStructureById(id);
+			if (inside_structure->HasInventory())
+				return true;
+		}
+		return false;
+	}
+
+	void MoveCharacterItemToOtherInventory(Resident* resident, Item item, Inventory* other_inventory) {
+		Inventory* char_inventory = resident->GetInventory();
+		int amount = char_inventory->GetItemCountByItemId(item.GetID());
+		char_inventory->PopItemById(item.GetID(), amount);
+		other_inventory->AddItem(item, amount);
+	}
+
 	Task* FindNewTaskToResident(Resident* resident) {
-		return task_service->CreateSeekTaskToHome(resident);
+		if (resident->GetGender() == WOMAN && HasInventoryStructureInHome(resident)) {
+			if (HasEnoughItem(resident)) {
+				if (HasSamePosition(resident, resident_service->GetResidentHomePosition(resident->GetId()))) {
+					MoveCharacterItemToOtherInventory(
+						resident,
+						*ItemDictionary::GetInstance()->GetItemByName("wood"),
+						static_unit_service->GetFirstInventoryInBuildingById(resident->home_id)
+					);
+					return task_service->CreateWanderTask(resident); //temp
+				}
+				else {
+					return task_service->CreateSeekTaskToHome(resident);
+				}
+			}
+			else {
+				Vector2 tree_pos = static_unit_service->GetNearestStructurePos(
+					AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition()),
+					eStructureType::TREE
+				);
+
+				if (HasSamePosition(resident, tree_pos)) {
+					return task_service->CreateWorkTask(eWorkType::COLLECT_WOOD);
+				}
+				else {
+					return task_service->CreateSeekTask(resident, tree_pos);
+				}
+			}
+		}
+		else {
+			return task_service->CreateSeekTaskToHome(resident);
+		}
 	}
 	// To-do: hard coding -> algorithm which use DB
 	Task* FindNewTaskToGuest(Guest* performer) {
@@ -84,8 +143,10 @@ public:
 	~AIService() {
 		delete task_service;
 	}
-	AIService(ObjectService* _object_service, TaskService* _task_service)
-		: object_service(_object_service), task_service(_task_service),
+	AIService(ObjectService* _object_service, TaskService* _task_service, 
+			StaticUnitService* _static_unit_service, ResidentService* _resident_service)
+		: object_service(_object_service), task_service(_task_service), 
+		static_unit_service(_static_unit_service), resident_service(_resident_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
 		map<int, Character*>* characters = object_service->GetCharacters();
 		for (auto &kv : *characters) {

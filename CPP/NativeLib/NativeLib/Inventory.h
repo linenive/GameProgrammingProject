@@ -107,10 +107,6 @@ private:
 		}
 	}
 public:
-	void AddItem(Item item) {
-		AddItem(item, 1);
-	}
-
 	void AddItem(Item item, int item_count) {
 		while (item_count > 0) {
 			Coordinates pos = GetItemPosToBeInserted(item.GetID());
@@ -165,8 +161,8 @@ public:
 	int GetItemCountByItemId(int id) {
 		Coordinates pos = GetItemPosByItemId(id);
 		if (IsValidPos(pos))
-			return 0;
-		return GetItemCount(pos);
+			return GetItemCount(pos);
+		return 0;
 	}
 
 	int GetSize() {

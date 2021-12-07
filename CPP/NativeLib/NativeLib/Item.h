@@ -33,5 +33,4 @@ public:
 		}
 		return -999;
 	}
-
 };

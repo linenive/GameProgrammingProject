@@ -26,7 +26,6 @@ int StaticUnitService::CreateBuilding(eBuildingType type, Coordinates top_left_c
 		data.slot_num,
 		data.building_role);
 	RegisterBlocksToWorld(x, y, data.blocks, new_building);
-
 	AddBuilding(new_building);
 	return new_building->id;
 }
@@ -58,9 +57,48 @@ int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left
 		data.name,
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
 
+	if (data.has_inventory)
+		new_structure->CreateInventory();
+
 	RegisterBlocksToWorld(x, y, data.blocks, new_structure);
 	AddStructure(new_structure);
+	AddStructureToBuilding(new_structure);
 	return new_structure->id;
+}
+
+void StaticUnitService::AddStructureToBuilding(Structure* structure) {
+	Building* owner_buliding = building_repo->GetBuildingByArea(structure->ocupation_area);
+	if (owner_buliding != nullptr) {
+		owner_buliding->AddStructureId(structure->id);
+	}
+}
+
+bool StaticUnitService::HasInventoryStructureInBuildingById(int id) {
+	Building* building = GetBuildingById(id);
+	return HasInventoryStructureInBuilding(building);
+}
+
+bool StaticUnitService::HasInventoryStructureInBuilding(Building* building) {
+	for (auto id : building->inside_structures_list) {
+		Structure* inside_structure = GetStructureById(id);
+		if (inside_structure->HasInventory())
+			return true;
+	}
+	return false;
+}
+
+Inventory* StaticUnitService::GetFirstInventoryInBuildingById(int id) {
+	Building* building = GetBuildingById(id);
+	return GetFirstInventoryInBuilding(building);
+}
+
+Inventory* StaticUnitService::GetFirstInventoryInBuilding(Building* building) {
+	for (auto id : building->inside_structures_list) {
+		Structure* inside_structure = GetStructureById(id);
+		if (inside_structure->HasInventory())
+			return inside_structure->GetInventory();
+	}
+	return nullptr;
 }
 
 Building* StaticUnitService::CreateBluePrintBuilding(int type) {
@@ -108,6 +146,64 @@ void StaticUnitService::RegisterBlueprintBlocks(vector< vector<eBlockType> >& bl
 		}
 	}
 }
+
+vector<int> StaticUnitService::GetBuildingInAreaList(Coordinates a, Coordinates b) {
+	int small_x = min(a.x, b.x);
+	int big_x = max(a.x, b.x);
+	int small_y = min(a.y, b.y);
+	int big_y = max(a.y, b.y);
+
+	set<int> building_id_set;
+
+	for (int i = small_x; i <= big_x; i++) {
+		for (int j = small_y; j <= big_y; j++) {
+			Tile* tile = GetTile(i, j);
+			for (int k = 0; k < MAX_TILE_LAYER; k++) {
+				if (!tile->IsEmptyLayer(k)) {
+					int id = tile->GetBlock(k)->owner_id;
+					if (IsBuilding(id)) {
+						building_id_set.insert(id);
+					}
+				}
+			}
+		}
+	}
+
+	vector<int> result;
+	for (auto id : building_id_set) {
+		result.push_back(id);
+	}
+	return result;
+}
+vector<int> StaticUnitService::GetStructureInAreaList(Coordinates a, Coordinates b) {
+	int small_x = min(a.x, b.x);
+	int big_x = max(a.x, b.x);
+	int small_y = min(a.y, b.y);
+	int big_y = max(a.y, b.y);
+
+	set<int> structure_id_set;
+
+	for (int i = small_x; i <= big_x; i++) {
+		for (int j = small_y; j <= big_y; j++) {
+			Tile* tile = GetTile(i, j);
+			for (int k = 0; k < MAX_TILE_LAYER; k++) {
+				if (!tile->IsEmptyLayer(k)) {
+					int id = tile->GetBlock(k)->owner_id;
+					if (IsStructue(id)) {
+						structure_id_set.insert(id);
+					}
+				}
+			}
+		}
+	}
+
+	vector<int> result;
+	for (auto id : structure_id_set) {
+		result.push_back(id);
+	}
+	return result;
+}
+
 
 bool StaticUnitService::IsPlacablePosition(int type, Vector2 top_left_tile_position) {
 	Coordinates left_top_coordinates = AbsolutePositionToCoordinates(top_left_tile_position);
@@ -181,6 +277,11 @@ vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) 
 		);
 	}
 	return result;
+}
+
+Vector2 StaticUnitService::GetNearestStructurePos(Coordinates cur_position, eStructureType type) {
+	//To-do
+	return structure_rep->GetStructureById(1)->GetCenterPosition();
 }
 
 Array StaticUnitService::GetBuildingInfo(int id) {

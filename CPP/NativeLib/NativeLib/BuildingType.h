@@ -10,7 +10,8 @@
 
 enum class eBuildingType {
     SMALL_HOUSE,
-    LARGE_HOUSE
+    LARGE_HOUSE,
+    NORMAL_SHOP,
 };
 
 class BuildingData {

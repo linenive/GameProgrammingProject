@@ -12,7 +12,8 @@ public:
     int character_slot_num;
     vector<CharacterSlot*> character_slots;
     eBuildingRole building_role;
-
+    list<int> inside_structures_list;
+    
     Building(int _id, string _name, Rect2 _ocupation_area, int _character_slot_num, eBuildingRole _building_role)
         : StaticUnit(_id, _name, _ocupation_area), 
         character_slot_num(_character_slot_num), building_role(_building_role) { }
@@ -47,6 +48,18 @@ public:
 
     bool IsAssignable() {
         return character_slots.size() < character_slot_num;
+    }
+
+    bool IsHouse() {
+        return building_role == eBuildingRole::HOUSE;
+    }
+
+    bool IsWorkSpace() {
+        return !IsHouse();
+    }
+
+    void AddStructureId(int id) {
+        inside_structures_list.push_back(id);
     }
 
     virtual Array Serialize() { //id, name, character_slot_num, char1_id, char2_id, ...

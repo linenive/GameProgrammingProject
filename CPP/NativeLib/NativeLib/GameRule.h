@@ -36,7 +36,7 @@ const float CHARACTER_MAX_VELOCITY = 2.0;
 // Inventory
 const int INVENTORY_X = 3;
 const int INVENTORY_Y = 3;
-const int MAX_ITEM_STACK = 10;
+const int MAX_ITEM_STACK = 20;
 
 // Camera Move
 const float CAMERA_MOVING_SPEED = 4.0;
