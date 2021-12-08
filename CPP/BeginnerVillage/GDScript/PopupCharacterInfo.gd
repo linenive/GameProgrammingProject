@@ -48,14 +48,14 @@ func window_setting_character_info(id, info):
 	$Container/character_texture.texture = (target_character_node as Sprite).texture
 	
 	#$title_inventory.text = "Inventory"
-	$Container/VBoxContainer/VBoxContainer2/PanelContainer/inventory_ui.init_inventory(9, info)
+	$Container/VBoxContainer/VBoxContainer2/PanelContainer/inventory_ui.init_inventory(10, info)
 	
 	#window_setting_guest_info()
 	
-	#if is_guest(info):
-	#	window_setting_guest_info()
-	#else:
-	#	window_setting_resident_info()
+	if is_guest(info):
+		window_setting_guest_info()
+	else:
+		window_setting_resident_info()
 
 func is_guest(info):
 	return info[9] == 0

@@ -20,10 +20,10 @@ __meta__ = {
 [node name="employee_texture" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 13.0
-margin_right = -16.0
-margin_bottom = -23.0
+margin_left = 22.0
+margin_top = 19.0
+margin_right = -22.0
+margin_bottom = -33.0
 rect_scale = Vector2( 0.75, 0.75 )
 rect_pivot_offset = Vector2( 24, 32 )
 texture = ExtResource( 2 )
