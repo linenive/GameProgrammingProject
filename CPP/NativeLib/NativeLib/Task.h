@@ -143,16 +143,34 @@ public:
 
 class ShoppingTask : public Task {
 private:
+	list<int> structure_list;
 public:
-	ShoppingTask() {
-		is_task_done = true;
+	Building* shop;
+	list<int>::iterator structure_iterator;
+	int wish_item_code;
+	ShoppingTask(Building* _shop, int _wish_item_code)
+		: shop(_shop), wish_item_code(_wish_item_code) {
+		structure_list = shop->inside_structures_list;
+		structure_iterator = structure_list.begin();
+		current_action = new PauseAction();
 	}
-
 	virtual void NextAction() {
 
 	}
 
 	virtual const eTaskType GetType() {
 		return eTaskType::SHOPPING;
+	}
+
+	bool IsShoppingEnd() {
+		return structure_iterator == structure_list.end();
+	}
+
+	void Done() {
+		is_task_done = true;
+	}
+
+	void GoToNextStructure(Vector2 position) {
+		current_action = new MoveAction(position);
 	}
 };

@@ -89,7 +89,8 @@ private:
 				if (HasSamePosition(performer, shop->GetCenterPosition())) {
 					shop->IncreaseOneVisits();
 					p->is_done = true;
-					return task_service->CreateShoppingTask();
+					return task_service->CreateShoppingTask(
+						shop, ItemDictionary::GetInstance()->GetIDByName("wood"));
 				}
 				else {
 					return task_service->CreateSeekTask(performer, shop->GetCenterPosition());
@@ -125,6 +126,34 @@ private:
 			++it;
 		}
 	}
+
+	// Task 구조 변경하기엔 시간이 없어서 여기에 알고리즘 넣어줌.
+	void ShoppingAlgorithm(Character* character, ShoppingTask* task) {
+		if (task->IsShoppingEnd()) {
+			task->Done();
+			return;
+		}
+
+		Structure* target_structure = static_unit_service->GetStructureById(*task->structure_iterator);
+		if (target_structure == nullptr) {
+			task->structure_iterator++;
+			return;
+		}
+
+		if (HasSamePosition(character, target_structure->GetCenterPosition())) {
+			task->structure_iterator++;
+			
+			//if(target_structure->GetInventory()->)
+			task->Done();
+			return;
+		}
+		else {
+			task->GoToNextStructure(target_structure->GetCenterPosition());
+			return;
+		}
+
+	}
+
 	void ExecuteCharactersTask(){
 		Character* performer;
 		auto it = task_list.begin();
@@ -134,6 +163,11 @@ private:
 				it = task_list.erase(it);
 				continue;
 			}
+
+			if (it->second->GetType() == eTaskType::SHOPPING) {
+				ShoppingAlgorithm(performer, (ShoppingTask*)it->second);
+			}
+
 			ai_executer.ExecuteCharacterTask(performer, it->second);
 			++it;
 		}
@@ -157,6 +191,7 @@ public:
 		: object_service(_object_service), task_service(_task_service), 
 		static_unit_service(_static_unit_service), resident_service(_resident_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
+
 		map<int, Character*>* characters = object_service->GetCharacters();
 		for (auto &kv : *characters) {
 			task_list.push_back({ kv.first, nullptr});

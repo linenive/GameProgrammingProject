@@ -37,6 +37,7 @@ public:
         }
         else {
             printf("[StructureRepository]ERROR: trying to get not exist structure.\n");
+            return nullptr;
         }
     }
     bool IsExistId(int id) {
