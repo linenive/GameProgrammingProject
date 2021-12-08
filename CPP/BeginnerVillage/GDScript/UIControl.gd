@@ -8,6 +8,7 @@ var clicked_position_label : Label
 var world_manager
 var input_manager
 var camera_manager
+var static_unit_manager
 
 var MAXIMUM_POPUP_COUNT = 10
 var screen_center_pos = Vector2(362, 100)
@@ -17,23 +18,23 @@ func _ready():
 	world_manager = get_node("/root/Main/WorldManager")
 	input_manager = get_node("/root/Main/InputManager")
 	camera_manager = get_node("/root/Main/CameraManager")
+	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
 	clicked_position_label = $HUD/CharacterMove/ClickPositionLabel
 	
 	for popup in get_node("ObjectInfoUI").get_children():
 		available_popups.append(popup)
 
-func show_info_popup(node, type):
-	var node_id = node.get_instance_id()
-	
-	if is_already_shown(node_id):
-		set_ui_top(get_popup_by_node_id(node_id))
+func show_info_popup(id, type):
+	if is_already_shown(id, type):
+		set_ui_top(get_popup(id, type))
 		return
 	
 	var instantiate_pos = get_instantiate_pos()
 	var popup = get_available_popup()
-	var info = get_object_info(node.get_id(), type)
-	popup.show_popup(node, type, info, instantiate_pos)
+	var info = get_object_info(id, type)
+	
+	popup.show_popup(id, type, info, instantiate_pos)
 
 func get_object_info(id, type):
 	var info
@@ -41,7 +42,7 @@ func get_object_info(id, type):
 	if type == "Character":
 		info = get_character_info(id)
 	elif type == "Building":
-		info = get_building_info(id)
+		info = static_unit_manager.GetBuildingInfo(id)
 		
 	return info
 
@@ -50,8 +51,7 @@ func get_character_info(id):
 	var item_info_array : Array
 	var character_info = {}
 	
-	character_info["first_name"] = world_manager.GetCharacterFirstName(id)
-	character_info["last_name"] = world_manager.GetCharacterLastName(id)
+	character_info["full_name"] = world_manager.GetCharacterFullName(id)
 	character_info["gender"] = world_manager.GetCharacterGender(id)
 	inventory_size = world_manager.GetCharacterInventorySize(id)
 			
@@ -59,9 +59,6 @@ func get_character_info(id):
 		item_info_array = world_manager.GetCharacterItem(id, j);
 		character_info["item" + str(j+1)] = item_info_array
 	return character_info
-
-func get_building_info(id):
-	pass
 
 func get_available_popup():
 	if available_popups.empty():
@@ -96,14 +93,15 @@ func set_ui_top(popup):
 	used_popups.push_back(popup)
 	popup.get_parent().move_child(popup, 9)
 
-func get_popup_by_node_id(node_id):
+func get_popup(id, type):
 	for popup in used_popups:
-		if popup.get_target_node_id() == node_id:
+		if popup.get_target_id() == id and popup.get_target_type() == type:
 			return popup
+	
 	return null
 
-func is_already_shown(object_id):
-	if get_popup_by_node_id(object_id) != null:
+func is_already_shown(id, type):
+	if get_popup(id, type) != null:
 		return true
 	
 	return false
@@ -129,23 +127,8 @@ func _on_StopTracingBtn_pressed():
 	#$HUD/StopTracingBtn.visible = false
 	camera_manager.StopTracing()
 
-"""
-func _on_Main_delete_character(ID):
-	var popup_target_node
-	
-	for popup in used_popups:
-		if popup..get_target_object_id() == ID:
-			popup_target_node = popup.get_target_node()
-			popup.hide()
-			close_info_popup(popup)
-			
-			if camera_manager.GetCurrentCameraStateInString() == "TRACE" and camera_manager.IsTargetNode(popup_target_node):
-				_on_StopTracingBtn_pressed()
-			break
-"""
 func _on_CameraManager_start_trace():
 	$HUD/StopTracingBtn.visible = true
 
 func _on_CameraManager_stop_trace():
 	$HUD/StopTracingBtn.visible = false
-

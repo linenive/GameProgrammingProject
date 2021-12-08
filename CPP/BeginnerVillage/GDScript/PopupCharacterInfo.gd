@@ -4,7 +4,8 @@ var ui_control
 var static_unit_manager
 var popup_ui
 
-var target_object_id
+var target_character_id
+var target_character_node
 
 var guest_info_ui_array : Array
 var resident_info_ui_array : Array
@@ -21,18 +22,26 @@ func _ready():
 	ui_control = get_node("/root/Main/UIControl")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 
-func get_target_object_id():
-	return target_object_id
-
-func window_setting_character_info(node_character, info):
-	target_object_id = node_character.get_id()
-	var character = node_character as Sprite
+func get_character_node(id):
+	var character_pool = get_node("/root/Main/JanTestGDScript/TestTileCreater/Character")
 	
-	$VBoxContainer/HBoxContainer/content_character_first_name.text = info["first_name"]
-	$VBoxContainer/HBoxContainer/content_character_last_name.text = info["last_name"]
+	for character in character_pool.get_children():
+		if character.get_id() == id:
+			return character
+	
+	return null
+
+func get_target_character_id():
+	return target_character_id
+
+func window_setting_character_info(id, info):
+	target_character_id = id
+	target_character_node = get_character_node(id)
+	
+	$VBoxContainer/HBoxContainer/content_character_name.text = info["full_name"]
 	$VBoxContainer/HBoxContainer4/content_character_gender.text = info["gender"]
-	$VBoxContainer/HBoxContainer3/content_character_position.text = position_to_string(node_character.get_position())
-	$character_texture.texture = character.texture
+	$VBoxContainer/HBoxContainer3/content_character_position.text = position_to_string(target_character_node.get_position())
+	$character_texture.texture = (target_character_node as Sprite).texture
 	
 	$title_inventory.text = "Inventory"
 	$InventorySlot/VBoxContainer/content_item_name.text = info["item1"][0]
@@ -73,9 +82,9 @@ func position_to_string(position):
 
 func _on_recruit_btn_pressed():
 	print("recruit")
-	if static_unit_manager.RecruitGuestAsResident(target_object_id):
+	if static_unit_manager.RecruitGuestAsResident(target_character_id):
 		popup_ui.close_button_pressed()
 		popup_ui.hide()
 
 func _on_track_btn_pressed():
-	ui_control.popup_ui_track_btn_pressed(popup_ui.target_node.get_path())
+	ui_control.popup_ui_track_btn_pressed(target_character_node.get_path())

@@ -10,6 +10,8 @@ void StaticUnitManager::_register_methods() {
 	register_method("GetStructureType", &StaticUnitManager::GetStructureType);
 	register_method("GetStructurePosition", &StaticUnitManager::GetStructurePosition);
 	register_method("GetStructuresInfo", &StaticUnitManager::GetStructuresInfo);
+
+	register_method("AssignResidentToWorkSpace", &StaticUnitManager::AssignResidentToWorkSpace);
 }
 
 void StaticUnitManager::_ready() {

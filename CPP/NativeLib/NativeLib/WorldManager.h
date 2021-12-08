@@ -80,6 +80,13 @@ public:
 		return String(object_service->GetCharacter(character_id)->GetLastName().c_str());
 	}
 
+	String GetCharacterFullName(int character_id) {
+		if (IsCharacterNotExistError(character_id)) {
+			return " ";
+		}
+		return String(object_service->GetCharacter(character_id)->GetFullName().GetFullname().c_str());
+	}
+
 	String GetCharacterGender(int character_id) {
 		if (IsCharacterNotExistError(character_id)) {
 			return " ";
@@ -124,5 +131,9 @@ public:
 
 	int GetMoney() {
 		return village_service->GetMoney();
+	}
+
+	Array GetRecruitableResidentArray() {
+		return resident_service->GetRecruitableResidentArray();
 	}
 };
