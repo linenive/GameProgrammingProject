@@ -14,7 +14,6 @@
 #include "SkillService.h"
 #include "ItemDictionary.h"
 #include "MapCreateService.h"
-
 class GameService{
 
 private:
@@ -48,7 +47,6 @@ public:
 		delete resident_service;
 		delete skill_service;
 		delete map_create_service;
-
 		delete(ItemDictionary::GetInstance());
 	}
 

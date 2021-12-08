@@ -18,6 +18,9 @@ var kzoom_in=0.5
 var kzoom_max = 10
 var kzoom_min = 0.5
 
+signal start_trace
+signal stop_trace
+
 func _ready():	
 	SetScreenLimit()
 	InitCameraSetting()
@@ -48,23 +51,16 @@ func DetectCameraMoveObj():
 	if g_nowcamerastate == eCameraState.DEFAULT:
 		MoveCameraDefault()
 	else:
-		if HasTraceNode():
-			$Camera2D.position = targetNode.position	
+		MoveCameraTrace()
 		
-func HasTraceNode():
-	if get_node_or_null(g_nowtarget_path) == null:
-		StopTracing()
-		return false
-	return true
-	
 func MoveCameraDefault():
-	DetectKeyPress()
+	DetectKeyPressDefault()
 	$CameraCPP.CameraMoveWithKey(g_velocity)
 	$CameraCPP.CameraMoveWithMouse(get_viewport().get_mouse_position())
 	
 	$Camera2D.position = $CameraCPP.GetCurrentCameraPosition()
 	
-func DetectKeyPress():
+func DetectKeyPressDefault():
 	g_velocity = Vector2(0,0)
 	if Input.is_action_pressed("ui_left"):
 		g_velocity.x -= 1
@@ -74,7 +70,23 @@ func DetectKeyPress():
 		g_velocity.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		g_velocity.y += 1
+		
+func MoveCameraTrace():
+	if HasTraceNode():
+		$Camera2D.position = targetNode.position
+		DetectKeyPressTrace()
 
+func DetectKeyPressTrace():
+	if (Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("ui_right") 
+	|| Input.is_action_just_pressed("ui_up") || Input.is_action_just_pressed("ui_down")):
+		StopTracing()
+
+func HasTraceNode():
+	if get_node_or_null(g_nowtarget_path) == null:
+		StopTracing()
+		return false
+	return true
+		
 func SetCameraSetting_Default():
 	g_nowcamerastate = eCameraState.DEFAULT
 	g_nowtarget_path = ""
@@ -85,11 +97,13 @@ func SetCameraSetting_Trace(newtracing_path):
 	g_nowcamerastate = eCameraState.TRACE
 	g_nowtarget_path =newtracing_path
 	targetNode = get_node(g_nowtarget_path)
+	emit_signal("start_trace")
 	#Zoom(kzoom_in)
 
 func StopTracing():
 	SetCameraPosition($Camera2D.position)
 	SetCameraSetting_Default()
+	emit_signal("stop_trace")
 	
 func DetectZoomScrollKey():
 	#if g_nowcamerastate == eCameraState.DEFAULT:
@@ -122,5 +136,5 @@ func IsTargetNode(node):
 
 # test와 연관된 부분, 그만 따라가기 버튼을 누르면 카메라가 줌아웃되고 다시 플레이어가 움직일 수 있게 되는 것
 func _on_StopFollowing_pressed():
-	SetCameraSetting_Default()
+	StopTracing()
 

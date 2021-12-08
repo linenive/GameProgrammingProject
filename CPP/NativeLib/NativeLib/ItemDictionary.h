@@ -12,6 +12,7 @@ private:
 	unordered_map<string, Item*> name_item_list;
 	static ItemDictionary* instance;
 
+
 public:
 	static ItemDictionary* GetInstance();
 	
