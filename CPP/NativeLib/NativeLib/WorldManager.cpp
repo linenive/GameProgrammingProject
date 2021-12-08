@@ -21,13 +21,13 @@ void WorldManager::_register_methods() {
 	register_method("GetCharacterScale", &WorldManager::GetCharacterScale);
 	register_method("GetCharacterInfo", &WorldManager::GetCharacterInfo);
 
-
-
 	register_method("GetWorldSize", &WorldManager::GetWorldSize);
 
 	register_method("GetVillageName", &WorldManager::GetVillageName);
 	register_method("SetVillageName", &WorldManager::SetVillageName);
 	register_method("GetMoney", &WorldManager::GetMoney);
+
+	register_method("GetRecruitableResidentArray", &WorldManager::GetRecruitableResidentArray);
 }
 
 void WorldManager::_init() {

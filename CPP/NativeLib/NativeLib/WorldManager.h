@@ -84,4 +84,8 @@ public:
 	int GetMoney() {
 		return village_service->GetMoney();
 	}
+
+	Array GetRecruitableResidentArray() {
+		return resident_service->GetRecruitableResidentArray();
+	}
 };

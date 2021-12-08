@@ -149,4 +149,25 @@ public:
 
 		return true;
 	}
+
+	Array GetRecruitableResidentArray() {
+		map<int, Resident*>* residents = object_repo->GetResidents();
+		Array result = Array();
+
+		for (auto iter = residents->begin(); iter != residents->end(); ++iter) {
+
+			if (iter->second->work_space_id != -1) {
+				continue;
+			}
+
+			Dictionary resident_info = Dictionary();
+
+			resident_info["character_id"] = iter->first;
+			resident_info["name"] = iter->second->GetFullName().GetFullname().c_str();
+			
+			result.append(resident_info);
+		}
+
+		return result;
+	}
 };

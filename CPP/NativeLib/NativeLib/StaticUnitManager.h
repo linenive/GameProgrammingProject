@@ -20,6 +20,10 @@ public:
 		return resident_service->RecruitGuestAsResident(char_id);
 	}
 
+	void AssignResidentToWorkSpace(int char_id, int building_id) {
+		return resident_service->AssignResidentToWorkSpace(char_id, building_id);
+	}
+
 	Array GetBuildingInfo(int id) {
 		return static_unit_service->GetBuildingInfo(id);
 	}

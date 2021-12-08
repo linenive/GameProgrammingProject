@@ -79,12 +79,11 @@ func update_tile_info(mouse_vector):
 	else:
 		tile_info_label.text = ""
 
-
 func _on_InputManager_click_character(ID):
 	var children = character_node_parent.get_children();
 	for child in children:
 		if child.get_id() == ID:
-			uicontrol.show_info_popup(child, "Character")
+			uicontrol.show_info_popup(ID, "Character")
 	#camera_manager.SetCameraSetting_Trace(character_path)
 
 func _on_InputManager_click_structure(ID):
@@ -94,5 +93,6 @@ func _on_InputManager_click_structure(ID):
 
 func _on_InputManager_click_building(ID):
 	print("Building click: "+ String(ID))
+	uicontrol.show_info_popup(ID, "Building")
 	# show_info_popup
 
