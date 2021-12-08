@@ -14,6 +14,7 @@ func _ready():
 
 func _process(delta):
 	show_time()
+	show_money()
 
 func show_village_name():
 	$VBoxContainer/HBoxContainer2/VillageName.text = world_manager.GetVillageName()

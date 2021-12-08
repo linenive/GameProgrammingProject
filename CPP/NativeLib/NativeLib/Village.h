@@ -11,7 +11,7 @@ private:
 public:
 	Village(string name) {
 		this->name = name;
-		money = 20211015;
+		money = 10000000;
 	}
 	string GetVillageName() { return name; }
 	void SetVillageName(string name) {this->name = name;}

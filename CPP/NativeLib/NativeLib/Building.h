@@ -17,8 +17,8 @@ public:
     eBuildingRole building_role;
     list<int> inside_structures_list;
     
-    Building(int _id, string _name, Rect2 _ocupation_area, int _character_slot_num, eBuildingRole _building_role)
-        : StaticUnit(_id, _name, _ocupation_area), 
+    Building(int _id, string _name, int build_cost, Rect2 _ocupation_area, int _character_slot_num, eBuildingRole _building_role)
+        : StaticUnit(_id, _name, build_cost, _ocupation_area),
         character_slot_num(_character_slot_num), building_role(_building_role) { }
 
     ~Building() {

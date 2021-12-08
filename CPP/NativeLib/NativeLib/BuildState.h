@@ -15,12 +15,15 @@ private:
 
 	void BuildBuilding(Vector2 mouse_position) {
 		int new_building_id = static_unit_service->CreateBuilding((int)scheduled_building_type, mouse_position);
+		village_service->DecreaseMoney(static_unit_service->GetBuildingById(new_building_id)->build_cost);
 		input.new_building_ids.push(new_building_id);
 	}
 
 public:
-	BuildState(TileService* _tile_service, StaticUnitService* _static_unit_service)
-		: ControlState(_tile_service), static_unit_service(_static_unit_service) {}
+	BuildState(VillageService* _village_service, TileService* _tile_service,
+		StaticUnitService* _static_unit_service)
+		: ControlState(_village_service, _tile_service),
+		static_unit_service(_static_unit_service) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 		HighlightHoverdTile(mouse_position);

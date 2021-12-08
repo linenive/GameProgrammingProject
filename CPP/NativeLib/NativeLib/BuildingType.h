@@ -19,6 +19,7 @@ class BuildingData {
 public:
     BuildingData(eBuildingType type);
     string name;
+    int build_cost;
     int width;
     int height;
     int slot_num;

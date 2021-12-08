@@ -20,4 +20,14 @@ public:
 	int GetMoney() {
 		return village_repo->GetVillage()->GetMoney();
 	}
+
+	void IncreaseMoney(int value) {
+		Village* vllage = village_repo->GetVillage();
+		return vllage->SetMoney(vllage->GetMoney() + value);
+	}
+
+	void DecreaseMoney(int value) {
+		Village* vllage = village_repo->GetVillage();
+		return vllage->SetMoney(vllage->GetMoney() - value);
+	}
 };
