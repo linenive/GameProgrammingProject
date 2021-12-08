@@ -17,15 +17,28 @@ private:
 			}
 		}
 
-		for (i = 227; i < 232; i++) {
-			tile_repo->UpdateTileType(Coordinates(i / DEFAULT_TILE_NUMBER_X, i % DEFAULT_TILE_NUMBER_X), SurfaceType(SURFACE_RIVER));
+		for (j = 16; j < 20; j++) {
+			for (i = 50; i < 100; i++) {
+				tile_repo->UpdateTileType(Coordinates(i, j), SurfaceType(SURFACE_RIVER));
+			}
 		}
 
-		tile_repo->UpdateTileType(Coordinates(10, 10), SurfaceType(SURFACE_RIVER));
-		tile_repo->UpdateTileType(Coordinates(20, 30), SurfaceType(SURFACE_RIVER));
+		for (j = 18; j < 22; j++) {
+			for (i = 95; i < 120; i++) {
+				tile_repo->UpdateTileType(Coordinates(i, j), SurfaceType(SURFACE_RIVER));
+			}
+		}
 
-		for (i = 900; i < 1004; i++) {
-			tile_repo->UpdateTileType(Coordinates(i / DEFAULT_TILE_NUMBER_X, i % DEFAULT_TILE_NUMBER_X), SurfaceType(SURFACE_OCEAN));
+		for (j = 30; j < 35; j++) {
+			for (i = 20; i < 25; i++) {
+				tile_repo->UpdateTileType(Coordinates(i, j), SurfaceType(SURFACE_RIVER));
+			}
+		}
+
+		for (j = 88; j < 96; j++) {
+			for (i = 32; i < 40; i++) {
+				tile_repo->UpdateTileType(Coordinates(i, j), SurfaceType(SURFACE_RIVER));
+			}
 		}
 	}
 
