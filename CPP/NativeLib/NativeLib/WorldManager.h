@@ -66,50 +66,9 @@ public:
 		}
 		return object_service->GetCharacter(character_id)->GetPhysics()->GetScale();
 	}
-	String GetCharacterFirstName(int character_id) {
-		if (IsCharacterNotExistError(character_id)) {
-			return " ";
-		}
-		return String(object_service->GetCharacter(character_id)->GetFirstName().c_str());
-	}
 
-	String GetCharacterLastName(int character_id) {
-		if (IsCharacterNotExistError(character_id)) {
-			return " ";
-		}
-		return String(object_service->GetCharacter(character_id)->GetLastName().c_str());
-	}
-
-	String GetCharacterGender(int character_id) {
-		if (IsCharacterNotExistError(character_id)) {
-			return " ";
-		}
-
-		switch (object_service->GetCharacter(character_id)->GetGender())
-		{
-			case eGender::MAN:
-				return String("Man");
-			case eGender::WOMAN:
-				return String("Woman");
-		}
-	}
-
-	String GetCharacterSkillName(int character_id) {
-		if (IsCharacterNotExistError(character_id)) {
-			return " ";
-		}
-
-		return String(
-			object_service->GetCharacter(character_id)
-			->skill_list[0]
-			->GetSkillName().c_str()
-		);
-	}
-
-	Array GetCharacterItem(int character_id, int item_id);
-
-	int GetCharacterInventorySize(int character_id) {
-		return object_service->GetCharacter(character_id)->GetInventory()->GetSize();
+	Array GetCharacterInfo(int character_id) {
+		return object_service->GetCharacter(character_id)->Serialize();
 	}
 
 	Vector2 GetWorldSize();

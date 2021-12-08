@@ -33,8 +33,8 @@ private:
 			== AbsolutePositionToCoordinates(target_pos);
 	}
 
-	bool HasInventoryStructureInHome(Resident* resident) { //To-do home -> work_space
-		Building* home = static_unit_service->GetBuildingById(resident->home_id);
+	bool HasInventoryStructureInWorkSpace(Resident* resident) { //To-do home -> work_space
+		Building* home = static_unit_service->GetBuildingById(resident->work_space_id);
 		for (auto id : home->inside_structures_list) {
 			Structure* inside_structure = static_unit_service->GetStructureById(id);
 			if (inside_structure->HasInventory())
@@ -51,18 +51,18 @@ private:
 	}
 
 	Task* FindNewTaskToResident(Resident* resident) {
-		if (resident->GetGender() == WOMAN && HasInventoryStructureInHome(resident)) {
+		if (resident->work_space_id != -1 && HasInventoryStructureInWorkSpace(resident)) {
 			if (HasEnoughItem(resident)) {
-				if (HasSamePosition(resident, resident_service->GetResidentHomePosition(resident->GetId()))) {
+				if (HasSamePosition(resident, resident_service->GetResidentWorkSpacePosition(resident->GetId()))) {
 					MoveCharacterItemToOtherInventory(
 						resident,
 						*ItemDictionary::GetInstance()->GetItemByName("wood"),
-						static_unit_service->GetFirstInventoryInBuildingById(resident->home_id)
+						static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id)
 					);
 					return task_service->CreateWanderTask(resident); //temp
 				}
 				else {
-					return task_service->CreateSeekTaskToHome(resident);
+					return task_service->CreateSeekTaskToWorkSpace(resident);
 				}
 			}
 			else {

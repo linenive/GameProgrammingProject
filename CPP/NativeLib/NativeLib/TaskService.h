@@ -16,8 +16,12 @@ public:
 		ResidentService* _resident_service)
 		: tile_service(_tile_service), path_finder(_path_finder), resident_service(_resident_service){}
 
-	Task* CreateSeekTaskToHome(Character* character) {
+	Task* CreateSeekTaskToHome(Resident* character) {
 		Vector2 home_pos = resident_service->GetResidentHomePosition(character->GetId());
+		return CreateSeekTask(character, home_pos);
+	}
+	Task* CreateSeekTaskToWorkSpace(Resident* character) {
+		Vector2 home_pos = resident_service->GetResidentWorkSpacePosition(character->GetId());
 		return CreateSeekTask(character, home_pos);
 	}
 	Task* CreateSeekTask(Character* c, Vector2 seek_target) {
