@@ -107,8 +107,8 @@ private:
 		while (it != task_list.end()) {
 			performer = object_service->GetCharacter(it->first);
 			if (performer == nullptr) {
-				
-				task_list.erase(it);
+				delete(it->second);
+				it = task_list.erase(it);
 				
 				continue;
 			}
@@ -160,6 +160,7 @@ private:
 		while (it != task_list.end()) {
 			performer = object_service->GetCharacter(it->first);
 			if (performer == nullptr) {
+				delete(it->second);
 				it = task_list.erase(it);
 				continue;
 			}
