@@ -58,9 +58,9 @@ public:
 		steering = Truncate(steering, CHARACTER_MAX_FORCE);
 		steering = steering / mass;
 
-		velocity = Truncate(velocity + steering, CHARACTER_MAX_VELOCITY);
+		velocity = Truncate(velocity * 0.1f + steering, CHARACTER_MAX_VELOCITY);
 		velocity *= speed_factor;
-		velocity /= 100;
+		velocity /= 10;
 	}
 
 	void UpdatePosition() {
