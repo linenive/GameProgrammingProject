@@ -50,8 +50,6 @@ func window_setting_character_info(id, info):
 	#$title_inventory.text = "Inventory"
 	$Container/VBoxContainer/VBoxContainer2/PanelContainer/inventory_ui.init_inventory(10, info)
 	
-	#window_setting_guest_info()
-	
 	if is_guest(info):
 		window_setting_guest_info()
 	else:

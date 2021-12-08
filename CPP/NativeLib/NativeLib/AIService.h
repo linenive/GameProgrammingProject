@@ -210,6 +210,7 @@ public:
 	~AIService() {
 		delete task_service;
 	}
+
 	AIService(ObjectService* _object_service, TaskService* _task_service,
 			StaticUnitService* _static_unit_service, ResidentService* _resident_service,
 			VillageService* _village_service, UIService* _ui_service)
