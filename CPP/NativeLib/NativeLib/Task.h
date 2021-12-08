@@ -121,15 +121,19 @@ class WorkTask : public Task {
 private:
 	eWorkType work_type;
 	unsigned int left_action;
+	Inventory* target_inventory;
+	unsigned int action_time;
 public:
-	WorkTask(eWorkType type, unsigned int action_num) : work_type(type), left_action(action_num) {
-		current_action = new WorkAction(type, 100); // takes 2 second
+	WorkTask(eWorkType type, Inventory* target_inventory, unsigned int action_num, unsigned int action_time)
+		: work_type(type), target_inventory(target_inventory), 
+		left_action(action_num), action_time(action_time) {
+		current_action = new WorkAction(type, target_inventory, action_time);
 	}
 
 	virtual void NextAction() {
 		left_action--;
 		if (left_action > 0) {
-			current_action = new WorkAction(work_type, 100);
+			current_action = new WorkAction(work_type, target_inventory, action_time);
 		}
 		else {
 			current_action = nullptr;

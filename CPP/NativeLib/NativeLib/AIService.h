@@ -53,20 +53,32 @@ private:
 						*ItemDictionary::GetInstance()->GetItemByName("wood"),
 						static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id)
 					);
-					return task_service->CreateWanderTask(resident); //temp
+					return task_service->CreateSeekTaskToWorkSpace(resident); //temp
 				}
 				else {
 					return task_service->CreateSeekTaskToWorkSpace(resident);
 				}
 			}
 			else {
+				Inventory* target_inventory = 
+					static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id);
+				if (target_inventory->GetItemCountByItemId(
+					ItemDictionary::GetInstance()->GetIDByName("wood")) >= 5) {
+					if (HasSamePosition(resident, resident_service->GetResidentWorkSpacePosition(resident->GetId()))) {
+						return task_service->CreateWorkTask(eWorkType::CREATE_ITEM, target_inventory, 1);
+					}
+					return task_service->CreateSeekTaskToWorkSpace(resident);
+				}
+
 				Vector2 tree_pos = static_unit_service->GetNearestStructurePos(
 					AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition()),
 					eStructureType::TREE
 				);
 
 				if (HasSamePosition(resident, tree_pos)) {
-					return task_service->CreateWorkTask(eWorkType::COLLECT_WOOD);
+					return task_service->CreateWorkTask(
+						eWorkType::COLLECT_WOOD, resident->GetInventory(), 10
+					);
 				}
 				else {
 					return task_service->CreateSeekTask(resident, tree_pos);

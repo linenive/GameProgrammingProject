@@ -48,6 +48,9 @@ public:
         case eWorkType::COLLECT_STONE:
             return "stone";
             break;
+        case eWorkType::CREATE_ITEM:
+            return "wooden_bow";
+            break;
         default:
             printf("WARNING [eStatFieldType::ToStatFieldType] Uncontrolled case.\n");
             return "Dummy";

@@ -46,13 +46,14 @@ class WorkAction : public Action {
 private:
 	float left_time;
 	eWorkType work_type;
+	Inventory* target_inventory;
 
 	bool IsEndAction() {
 		return left_time <= 0;
 	}
 public:
-	WorkAction(eWorkType _work_type, float time_to_finish)
-		: left_time(time_to_finish), work_type(_work_type) {
+	WorkAction(eWorkType _work_type, Inventory* target_inventory, float time_to_finish)
+		: left_time(time_to_finish), target_inventory(target_inventory), work_type(_work_type) {
 	}
 	virtual void ExecuteAction(Character* performer) {
 		if (IsEndAction()) {
@@ -66,11 +67,15 @@ public:
 			Item item = *ItemDictionary::GetInstance()->GetItemByName(
 				WorkType::ItemNameOf(work_type)
 			);
-			performer->AddItem(
+			target_inventory->AddItem(
 				*ItemDictionary::GetInstance()->GetItemByName(
 					WorkType::ItemNameOf(work_type)
-				)
+				),
+				1
 			);
+			if (work_type == eWorkType::CREATE_ITEM) {
+				target_inventory->PopItemById(1, 5); //sorry for hardcoding T.T
+			}
 		}
 	}
 
