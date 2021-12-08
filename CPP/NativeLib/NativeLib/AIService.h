@@ -8,10 +8,12 @@
 #include "Timer.h"
 #include "GameRule.h"
 #include "ItemDictionary.h"
+#include "UIService.h"
 
 class AIService {
 
 private:
+	UIService* ui_service;
 	ObjectService* object_service;
 	TaskService* task_service;
 	StaticUnitService* static_unit_service;
@@ -50,11 +52,13 @@ private:
 		if (resident->work_space_id != -1 && HasInventoryStructureInWorkSpace(resident)) {
 			if (HasEnoughItem(resident)) {
 				if (HasSamePosition(resident, resident_service->GetResidentWorkSpacePosition(resident->GetId()))) {
+					int add_item_structure_id = static_unit_service->GetFirstStructureHasInventoryInBuildingById(resident->work_space_id)->id;
 					MoveCharacterItemToOtherInventory(
 						resident,
 						*ItemDictionary::GetInstance()->GetItemByName("wood"),
 						static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id)
 					);
+					ui_service->ui_update_needed_structure_ids.push(add_item_structure_id);
 					return task_service->CreateSeekTaskToWorkSpace(resident); //temp
 				}
 				else {
@@ -206,14 +210,13 @@ public:
 	~AIService() {
 		delete task_service;
 	}
-	AIService(ObjectService* _object_service, TaskService* _task_service, 
+	AIService(ObjectService* _object_service, TaskService* _task_service,
 			StaticUnitService* _static_unit_service, ResidentService* _resident_service,
-			VillageService* _village_service)
+			VillageService* _village_service, UIService* _ui_service)
 		: object_service(_object_service), task_service(_task_service), 
 		static_unit_service(_static_unit_service), resident_service(_resident_service),
-		village_service(_village_service),
+		village_service(_village_service), ui_service(_ui_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
-
 		map<int, Character*>* characters = object_service->GetCharacters();
 		for (auto &kv : *characters) {
 			task_list.push_back({ kv.first, nullptr});

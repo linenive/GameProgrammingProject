@@ -1,6 +1,7 @@
 #pragma once
 #include "Task.h"
 #include "ResidentService.h"
+#include "UIService.h"
 #include "WorkPriority.h"
 
 class TaskService {
@@ -14,7 +15,7 @@ private:
 public:
 	TaskService(TileService* _tile_service, PathFindService* _path_finder,
 		ResidentService* _resident_service)
-		: tile_service(_tile_service), path_finder(_path_finder), resident_service(_resident_service){}
+		: tile_service(_tile_service), path_finder(_path_finder), resident_service(_resident_service) {}
 
 	Task* CreateSeekTaskToHome(Resident* character) {
 		Vector2 home_pos = resident_service->GetResidentHomePosition(character->GetId());
@@ -43,7 +44,6 @@ public:
 		if (new_point > bound_max) {
 			new_point = bound_max;
 		}
-		//printf("[TaskService]new point: %f, rand_var : %f, now point : %f\n", new_point, rand_var, now_point);
 		return new_point;
 	}
 	Task* CreateWanderTask(Character* c) {

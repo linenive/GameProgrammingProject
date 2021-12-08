@@ -12,11 +12,11 @@ var resident_info_ui_array : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	guest_info_ui_array.append($GuestInfo)
-	guest_info_ui_array.append($HBoxContainer/GuestInfo)
+	guest_info_ui_array.append($Container/GuestInfo)
+	guest_info_ui_array.append($Container/HBoxContainer/GuestInfo)
 	
-	resident_info_ui_array.append($ResidentInfo)
-	resident_info_ui_array.append($HBoxContainer/ResidentInfo)
+	resident_info_ui_array.append($Container/ResidentInfo)
+	resident_info_ui_array.append($Container/HBoxContainer/ResidentInfo)
 	
 	popup_ui = get_parent()
 	ui_control = get_node("/root/Main/UIControl")
@@ -38,25 +38,31 @@ func window_setting_character_info(id, info):
 	target_character_id = id
 	target_character_node = get_character_node(id)
 	
-	$VBoxContainer/HBoxContainer/content_character_name.text = info["full_name"]
-	$VBoxContainer/HBoxContainer4/content_character_gender.text = info["gender"]
-	$VBoxContainer/HBoxContainer3/content_character_position.text = position_to_string(target_character_node.get_position())
-	$character_texture.texture = (target_character_node as Sprite).texture
+	print("roky")
+	$Container/VBoxContainer/VBoxContainer3/HBoxContainer/content_character_name.text = info[0]
+	$Container/VBoxContainer/VBoxContainer3/HBoxContainer4/content_character_gender.text = info[4]
+	$Container/VBoxContainer/VBoxContainer3/HBoxContainer2/content_character_class.text = info[5]
+	$Container/VBoxContainer/VBoxContainer3/HBoxContainer3/content_character_position.text = position_to_string(info[6])
+	$Container/VBoxContainer/VBoxContainer3/HBoxContainer5/content_character_task.text = info[7]
+	$Container/VBoxContainer/VBoxContainer3/HBoxContainer6/content_character_skill.text = info[8]
+	$Container/character_texture.texture = (target_character_node as Sprite).texture
 	
-	$title_inventory.text = "Inventory"
-	$InventorySlot/VBoxContainer/content_item_name.text = info["item1"][0]
-	$InventorySlot/VBoxContainer/content_item_type.text = info["item1"][1]
+	#$title_inventory.text = "Inventory"
+	$Container/VBoxContainer/VBoxContainer2/PanelContainer/inventory_ui.init_inventory(9, info)
 	
-	window_setting_guest_info()
+	#window_setting_guest_info()
 	
-	#if "guest 인지":
+	#if is_guest(info):
 	#	window_setting_guest_info()
 	#else:
 	#	window_setting_resident_info()
 
+func is_guest(info):
+	return info[9] == 0
+
 func window_setting_guest_info():
 	get_parent().set_title("Guest Info")	
-	$title_character_info.text = "Guest Info"
+	$Container/VBoxContainer/title_character_info.text = "손님 정보"
 	
 	for ui in guest_info_ui_array:
 		ui.visible = true
@@ -66,7 +72,7 @@ func window_setting_guest_info():
 
 func window_setting_resident_info():
 	get_parent().set_title("Resident Info")	
-	$title_character_info.text = "Resident Info"
+	$Container/VBoxContainer/title_character_info.text = "주민 정보"
 	
 	for ui in guest_info_ui_array:
 		ui.visible = false
@@ -81,7 +87,6 @@ func position_to_string(position):
 	return "(" + str(x) + ", " + str(y) + ")"
 
 func _on_recruit_btn_pressed():
-	print("recruit")
 	if static_unit_manager.RecruitGuestAsResident(target_character_id):
 		popup_ui.close_button_pressed()
 		popup_ui.hide()

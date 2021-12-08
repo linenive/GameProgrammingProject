@@ -1,12 +1,13 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://GDScript/PopupUI.gd" type="Script" id=1]
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scene/EmployeeInfoButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Image/tile_earth.png" type="Texture" id=4]
-[ext_resource path="res://Image/furniture_1.png" type="Texture" id=5]
+[ext_resource path="res://GDScript/InventoryUI.gd" type="Script" id=4]
+[ext_resource path="res://GDScript/PopupStructureInfo.gd" type="Script" id=5]
 [ext_resource path="res://GDScript/PopupCharacterInfo.gd" type="Script" id=6]
 [ext_resource path="res://GDScript/PopupBuildingInfo.gd" type="Script" id=7]
+[ext_resource path="res://Image/DefaultCharacter1.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -20,49 +21,32 @@ size = 15
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 20
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 8
+size = 25
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 14
-font_data = ExtResource( 2 )
-
-[sub_resource type="StreamTexture" id=8]
-load_path = "res://.import/DefaultCharacter1.png-657e95268068303032b481773b34e376.stex"
-
-[sub_resource type="DynamicFont" id=9]
-size = 30
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=10]
-size = 20
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=11]
 size = 23
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=12]
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=7]
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=8]
+size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
 font_data = ExtResource( 2 )
 
 [node name="PopupUI" type="WindowDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -78,55 +62,66 @@ __meta__ = {
 }
 
 [node name="CharacterInfo" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title_character_info" type="Label" parent="CharacterInfo"]
-margin_right = 196.0
+[node name="Container" type="Container" parent="CharacterInfo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterInfo/Container"]
+margin_right = 281.0
+margin_bottom = 306.0
+custom_constants/separation = 15
+
+[node name="title_character_info" type="Label" parent="CharacterInfo/Container/VBoxContainer"]
+margin_right = 281.0
 margin_bottom = 26.0
 custom_fonts/font = SubResource( 1 )
-text = "Character Info"
+text = "캐릭터 정보"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterInfo"]
-margin_left = 5.0
-margin_top = 37.0
-margin_right = 117.0
-margin_bottom = 73.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="CharacterInfo/Container/VBoxContainer"]
+margin_top = 41.0
+margin_right = 281.0
+margin_bottom = 137.0
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
-margin_right = 132.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3"]
+margin_right = 281.0
 margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title_character_name" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer"]
-margin_right = 56.0
+[node name="title_character_name" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer"]
+margin_right = 44.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
-text = "Name : "
+text = "이름 : "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="content_character_name" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer"]
-margin_left = 60.0
-margin_right = 116.0
+[node name="content_character_name" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer"]
+margin_left = 48.0
+margin_right = 104.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 3 )
 text = "noname"
@@ -134,26 +129,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3"]
 margin_top = 20.0
-margin_right = 132.0
+margin_right = 281.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title_character_gender" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer4"]
-margin_right = 72.0
+[node name="title_character_gender" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer4"]
+margin_right = 42.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
-text = "Gender : "
+text = "성별 : "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="content_character_gender" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer4"]
-margin_left = 76.0
-margin_right = 132.0
+[node name="content_character_gender" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer4"]
+margin_left = 46.0
+margin_right = 102.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 3 )
 text = "noname"
@@ -161,26 +156,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3"]
 margin_top = 40.0
-margin_right = 132.0
+margin_right = 281.0
 margin_bottom = 56.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title_character_class" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer2"]
-margin_right = 56.0
+[node name="title_character_class" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer2"]
+margin_right = 42.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
-text = "Class : "
+text = "직업 : "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="content_character_class" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer2"]
-margin_left = 60.0
-margin_right = 117.0
+[node name="content_character_class" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer2"]
+margin_left = 46.0
+margin_right = 103.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 3 )
 text = "warrior"
@@ -188,15 +183,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CharacterInfo/VBoxContainer"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3"]
 margin_top = 60.0
-margin_right = 132.0
+margin_right = 281.0
 margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title_character_position" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer3"]
+[node name="title_character_skill" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer6"]
+margin_right = 44.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "스킬 : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_character_skill" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer6"]
+margin_left = 48.0
+margin_right = 105.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "warrior"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3"]
+visible = false
+margin_top = 80.0
+margin_right = 281.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_character_position" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer3"]
 margin_right = 80.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
@@ -205,7 +228,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="content_character_position" type="Label" parent="CharacterInfo/VBoxContainer/HBoxContainer3"]
+[node name="content_character_position" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer3"]
 margin_left = 84.0
 margin_right = 124.0
 margin_bottom = 16.0
@@ -215,104 +238,71 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="character_texture" type="TextureRect" parent="CharacterInfo"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -40.9194
-margin_top = 38.1629
-margin_right = -0.919434
-margin_bottom = 78.1629
+[node name="HBoxContainer5" type="HBoxContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3"]
+margin_top = 80.0
+margin_right = 281.0
+margin_bottom = 96.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title_inventory" type="Label" parent="CharacterInfo"]
-margin_top = 128.176
-margin_right = 108.0
-margin_bottom = 148.176
+[node name="title_character_task" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer5"]
+margin_right = 79.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "방문 목적 : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content_character_task" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer5"]
+margin_left = 83.0
+margin_right = 117.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "task"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CharacterInfo/Container/VBoxContainer"]
+margin_top = 152.0
+margin_right = 281.0
+margin_bottom = 172.0
+
+[node name="inventory_title_label" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer2"]
+margin_right = 281.0
+margin_bottom = 16.0
 custom_fonts/font = SubResource( 4 )
-text = "Inventory"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "[인벤토리]"
 
-[node name="InventorySlot" type="HBoxContainer" parent="CharacterInfo"]
-margin_top = 159.676
-margin_right = 131.0
-margin_bottom = 199.676
-custom_constants/separation = 10
-alignment = 1
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+[node name="PanelContainer" type="CenterContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer2"]
+margin_top = 20.0
+margin_right = 281.0
+margin_bottom = 20.0
 
-[node name="Panel" type="Panel" parent="CharacterInfo/InventorySlot"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="inventory_ui" type="GridContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer2/PanelContainer"]
+margin_left = 140.0
+margin_right = 140.0
+columns = 3
+script = ExtResource( 4 )
 
-[node name="sprite_inventory_item" type="Sprite" parent="CharacterInfo/InventorySlot/Panel"]
-position = Vector2( 20, 20 )
-texture = ExtResource( 4 )
-
-[node name="content_item_count" type="Label" parent="CharacterInfo/InventorySlot/Panel"]
-margin_left = 31.0
-margin_top = 32.0
-margin_right = 39.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 5 )
-text = "10"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterInfo/InventorySlot"]
-margin_left = 50.0
-margin_right = 131.0
-margin_bottom = 40.0
-alignment = 1
-
-[node name="content_item_name" type="Label" parent="CharacterInfo/InventorySlot/VBoxContainer"]
-margin_top = 2.0
-margin_right = 81.0
-margin_bottom = 18.0
-custom_fonts/font = SubResource( 6 )
-text = "item name"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="content_item_type" type="Label" parent="CharacterInfo/InventorySlot/VBoxContainer"]
-margin_top = 22.0
-margin_right = 81.0
-margin_bottom = 37.0
-custom_fonts/font = SubResource( 7 )
-text = "item type"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -115.131
-margin_top = -24.0271
-margin_right = 6.86896
-margin_bottom = 5.9729
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterInfo/Container"]
+anchor_left = 0.967857
+anchor_top = 0.976684
+anchor_right = 0.967857
+anchor_bottom = 0.976684
+margin_left = -105.131
+margin_top = -20.0271
+margin_right = 16.869
+margin_bottom = 9.9729
 alignment = 2
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="track_btn" type="Button" parent="CharacterInfo/HBoxContainer"]
+[node name="track_btn" type="Button" parent="CharacterInfo/Container/HBoxContainer"]
 margin_right = 57.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 57, 30 )
@@ -321,13 +311,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GuestInfo" type="Control" parent="CharacterInfo/HBoxContainer"]
+[node name="GuestInfo" type="Control" parent="CharacterInfo/Container/HBoxContainer"]
 margin_left = 61.0
 margin_right = 118.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 57, 30 )
 
-[node name="recruit_btn" type="Button" parent="CharacterInfo/HBoxContainer/GuestInfo"]
+[node name="recruit_btn" type="Button" parent="CharacterInfo/Container/HBoxContainer/GuestInfo"]
 margin_right = 57.0
 margin_bottom = 30.0
 text = "Recruit"
@@ -335,7 +325,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResidentInfo" type="Control" parent="CharacterInfo/HBoxContainer"]
+[node name="ResidentInfo" type="Control" parent="CharacterInfo/Container/HBoxContainer"]
 margin_left = 122.0
 margin_right = 122.0
 margin_bottom = 30.0
@@ -343,100 +333,98 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GuestInfo" type="Control" parent="CharacterInfo"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="character_texture" type="TextureRect" parent="CharacterInfo/Container"]
+anchor_left = 0.917857
+anchor_top = 0.0362694
+anchor_right = 0.917857
+anchor_bottom = 0.0362694
+margin_left = -30.9194
+margin_top = 28.1629
+margin_right = 9.08054
+margin_bottom = 68.1629
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ResidentInfo" type="Control" parent="CharacterInfo"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="GuestInfo" type="Control" parent="CharacterInfo/Container"]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 30.0
+margin_bottom = 30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ItemInfo" type="Control" parent="."]
+[node name="ResidentInfo" type="Control" parent="CharacterInfo/Container"]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 30.0
+margin_bottom = 30.0
+
+[node name="StructureInfo" type="Control" parent="."]
 visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="Container" parent="StructureInfo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = -10.0
+margin_bottom = -4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title_item_info" type="Label" parent="ItemInfo"]
-margin_right = 196.0
+[node name="VBoxContainer" type="VBoxContainer" parent="StructureInfo/Container"]
+margin_right = 281.0
+margin_bottom = 306.0
+custom_constants/separation = 15
+
+[node name="structure_name_label" type="Label" parent="StructureInfo/Container/VBoxContainer"]
+margin_right = 281.0
 margin_bottom = 26.0
-custom_fonts/font = SubResource( 1 )
-text = "Item Info"
+custom_fonts/font = SubResource( 5 )
+text = "Structure_Name"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ItemInfo"]
-margin_left = 5.0
-margin_top = 37.0
-margin_right = 117.0
-margin_bottom = 73.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+[node name="structure_type_label" type="Label" parent="StructureInfo/Container/VBoxContainer"]
+visible = false
+margin_top = 41.0
+margin_right = 281.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 6 )
+text = "상점"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ItemInfo/VBoxContainer"]
-margin_right = 135.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="StructureInfo/Container/VBoxContainer"]
+margin_top = 41.0
+margin_right = 281.0
+margin_bottom = 61.0
+
+[node name="inventory_title_label" type="Label" parent="StructureInfo/Container/VBoxContainer/VBoxContainer2"]
+margin_right = 281.0
 margin_bottom = 16.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_fonts/font = SubResource( 4 )
+text = "[인벤토리]"
 
-[node name="title_item_name" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer"]
-margin_right = 56.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 2 )
-text = "Name : "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="content_item_name" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer"]
-margin_left = 60.0
-margin_right = 135.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 3 )
-text = "item name"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="ItemInfo/VBoxContainer"]
+[node name="PanelContainer" type="CenterContainer" parent="StructureInfo/Container/VBoxContainer/VBoxContainer2"]
 margin_top = 20.0
-margin_right = 135.0
-margin_bottom = 36.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_right = 281.0
+margin_bottom = 20.0
 
-[node name="title_item_type" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer2"]
-margin_right = 52.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 2 )
-text = "Type : "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="content_item_type" type="Label" parent="ItemInfo/VBoxContainer/HBoxContainer2"]
-margin_left = 56.0
-margin_right = 118.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 3 )
-text = "Material"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="item_sprite" type="Sprite" parent="ItemInfo"]
-position = Vector2( 258.904, 56.8637 )
-scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 5 )
+[node name="inventory_ui" type="GridContainer" parent="StructureInfo/Container/VBoxContainer/VBoxContainer2/PanelContainer"]
+margin_left = 140.0
+margin_right = 140.0
+columns = 3
+script = ExtResource( 4 )
 
 [node name="BuildingInfo" type="Control" parent="."]
 visible = false
@@ -446,7 +434,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-test_character_sprite = SubResource( 8 )
+test_character_sprite = ExtResource( 8 )
 
 [node name="Container" type="Container" parent="BuildingInfo"]
 anchor_right = 1.0
@@ -478,10 +466,10 @@ split_offset = 450
 dragger_visibility = 1
 
 [node name="building_name_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer"]
-margin_top = 2.0
+margin_top = 5.0
 margin_right = 218.0
-margin_bottom = 33.0
-custom_fonts/font = SubResource( 9 )
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 5 )
 text = "Building_Name"
 valign = 1
 __meta__ = {
@@ -491,7 +479,7 @@ __meta__ = {
 [node name="building_name_text_edit" type="TextEdit" parent="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_label"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -510,10 +498,11 @@ __meta__ = {
 margin_top = 65.0
 margin_right = 281.0
 margin_bottom = 89.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 6 )
 text = "상점"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BuildingInfo/Container/VBoxContainer"]
+visible = false
 margin_top = 104.0
 margin_right = 281.0
 margin_bottom = 140.0
@@ -525,14 +514,14 @@ margin_bottom = 16.0
 [node name="monthly_guest_count_title_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 164.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 4 )
 text = "이번 달 다녀간 손님 수 : "
 
 [node name="monthly_guest_count_value_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 168.0
 margin_right = 208.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 4 )
 text = "100명"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer"]
@@ -543,21 +532,20 @@ margin_bottom = 36.0
 [node name="total_guest_count_title_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 100.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 4 )
 text = "누적 손님 수 : "
 
 [node name="total_guest_count_value_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 104.0
 margin_right = 144.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 4 )
 text = "201명"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="BuildingInfo/Container/VBoxContainer"]
-visible = false
-margin_top = 155.0
+margin_top = 104.0
 margin_right = 281.0
-margin_bottom = 306.0
+margin_bottom = 255.0
 
 [node name="HSplitContainer" type="HSplitContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2"]
 margin_right = 281.0
@@ -568,7 +556,7 @@ split_offset = 400
 margin_top = 1.0
 margin_right = 197.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 8 )
 text = "[직원]"
 valign = 1
 
@@ -576,7 +564,7 @@ valign = 1
 margin_left = 209.0
 margin_right = 281.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 9 )
 toggle_mode = true
 text = "고용하기"
 
@@ -628,31 +616,31 @@ margin_right = 424.0
 margin_left = 430.0
 margin_right = 510.0
 
-[node name="available_resident_list_panel" type="PanelContainer" parent="BuildingInfo"]
+[node name="available_resident_list_panel" type="PanelContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel"]
 visible = false
-margin_left = 217.082
-margin_top = 188.798
-margin_right = 322.082
-margin_bottom = 237.798
+margin_left = 207.082
+margin_top = -3.202
+margin_right = 312.082
+margin_bottom = 45.798
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="available_resident_list" type="VBoxContainer" parent="BuildingInfo/available_resident_list_panel"]
+[node name="available_resident_list" type="VBoxContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/available_resident_list_panel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 98.0
 margin_bottom = 42.0
 
-[node name="no_available_resident_label" type="Label" parent="BuildingInfo/available_resident_list_panel/available_resident_list"]
+[node name="no_available_resident_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/available_resident_list_panel/available_resident_list"]
 margin_right = 91.0
 margin_bottom = 35.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 10 )
 text = "고용가능한
 주민 없음"
 align = 1
 
-[connection signal="pressed" from="CharacterInfo/HBoxContainer/track_btn" to="CharacterInfo" method="_on_track_btn_pressed"]
-[connection signal="pressed" from="CharacterInfo/HBoxContainer/GuestInfo/recruit_btn" to="CharacterInfo" method="_on_recruit_btn_pressed"]
+[connection signal="pressed" from="CharacterInfo/Container/HBoxContainer/track_btn" to="CharacterInfo" method="_on_track_btn_pressed"]
+[connection signal="pressed" from="CharacterInfo/Container/HBoxContainer/GuestInfo/recruit_btn" to="CharacterInfo" method="_on_recruit_btn_pressed"]
 [connection signal="pressed" from="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_edit_button" to="BuildingInfo" method="_on_building_name_edit_button_pressed"]
 [connection signal="toggled" from="BuildingInfo/Container/VBoxContainer/VBoxContainer2/HSplitContainer/recruit_button" to="BuildingInfo" method="_on_recruit_button_toggled"]

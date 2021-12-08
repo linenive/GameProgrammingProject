@@ -12,6 +12,10 @@ void UIManager::_register_methods() {
 	register_method("GetMinute", &UIManager::GetMinute);
 	register_method("GetEventLogs", &UIManager::GetEventLogs);
 	register_method("TestFunc", &UIManager::TestFunc);
+
+	register_signal<UIManager>(String("character_info_update_needed"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<UIManager>(String("structure_info_update_needed"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<UIManager>(String("building_info_update_needed"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void UIManager::_init(){
@@ -23,7 +27,7 @@ void UIManager::_ready() {
 }
 
 void UIManager::_process(float delta) {
-	
+	FetchQueueAndSignal();
 }
 
 void UIManager::LoadGameService() {
