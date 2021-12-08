@@ -127,15 +127,18 @@ private:
 				continue;
 			}
 			// To-do: 우선순위 비교하여 변동 없을 시 무시하기.
-			
-			if (performer->IsGuest()) {
-				if(it->second == nullptr || it->second->IsTaskDone())
-					it->second = FindNewTaskToGuest((Guest*)performer);
-			}
-			else {
+			if (it->second != nullptr && it->second->IsTaskDone()) {
 				delete it->second;
 				it->second = nullptr;
-				it->second = FindNewTaskToResident((Resident*)performer);
+			}
+				
+			if (it->second == nullptr) {
+				if (performer->IsGuest()) {
+					it->second = FindNewTaskToGuest((Guest*)performer);
+				}
+				else {
+					it->second = FindNewTaskToResident((Resident*)performer);
+				}
 			}
 			++it;
 		}
