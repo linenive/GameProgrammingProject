@@ -3,6 +3,7 @@
 #include "TaskReserveInfo.h"
 #include "AIExecuter.h"
 #include "TaskService.h"
+#include "VillageService.h"
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
@@ -15,6 +16,7 @@ private:
 	TaskService* task_service;
 	StaticUnitService* static_unit_service;
 	ResidentService* resident_service;
+	VillageService* village_service;
 	AIExecuter ai_executer;
 
 	list<pair<int, Task*>> task_list; 
@@ -156,6 +158,8 @@ private:
 			task->structure_iterator++;
 			
 			//if(target_structure->GetInventory()->)
+			Item* item = ItemDictionary::GetInstance()->GetItemByID(task->wish_item_code);
+			village_service->IncreaseMoney(item->GetParameter("price"));
 			task->Done();
 			return;
 		}
@@ -200,9 +204,11 @@ public:
 		delete task_service;
 	}
 	AIService(ObjectService* _object_service, TaskService* _task_service, 
-			StaticUnitService* _static_unit_service, ResidentService* _resident_service)
+			StaticUnitService* _static_unit_service, ResidentService* _resident_service,
+			VillageService* _village_service)
 		: object_service(_object_service), task_service(_task_service), 
 		static_unit_service(_static_unit_service), resident_service(_resident_service),
+		village_service(_village_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
 
 		map<int, Character*>* characters = object_service->GetCharacters();

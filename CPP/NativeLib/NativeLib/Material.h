@@ -9,7 +9,8 @@ private:
 	int item_count_max = MAX_ITEM_STACK;
 
 public:
-	MaterialItem(string name) : Item(name, "Material") {
+	MaterialItem(string name, unordered_map<string, int> param_list)
+		: Item(name, "Material", param_list) {
 		item_count_now = 1;
 	}
 

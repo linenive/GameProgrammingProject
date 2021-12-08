@@ -32,6 +32,6 @@ public:
 	unordered_map<string, int> ParameterParsing(vector<string> sub_line_list);
 
 	int GetIDByName(string name);
-	Item* GetItemByID(string name);
+	Item* GetItemByID(int id);
 	Item* GetItemByName(string name);
 };
