@@ -156,6 +156,7 @@
     <ClCompile Include="ItemDictionary.cpp" />
     <ClCompile Include="PathFindService.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="SkillRepository.cpp" />
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="StatField.cpp" />
     <ClCompile Include="StaticUnitManager.cpp" />

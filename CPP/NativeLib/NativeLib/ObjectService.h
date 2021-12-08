@@ -27,10 +27,8 @@ public:
 	}
 
 	Guest* CreateNewGuest() {
-		Coordinates arrival_point = Coordinates(0, 15);
 		Guest* new_guest = factory.CreateNormalGuest(
 			next_character_id,
-			Transform2D(0, CoordinatesToCenterVector(arrival_point)),
 			skill_service->PickRandomSkill()
 		);
 		object_repo->AddGuest(new_guest);

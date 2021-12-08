@@ -4,6 +4,7 @@
 #include "WorldObjectFactory.h"
 #include "Character.h"
 #include "NameGenerator.h"
+#include "Random.h"
 
 // Todo: hard coding -> load DB
 class PurposeOfVisitFactory {
@@ -44,10 +45,23 @@ private:
 
 public:
 
-	Guest* CreateNormalGuest(int character_id, Transform2D transform, CharacterSkill *start_skill) {
-		Schedule* new_schedule = new GuestSchedule(Coordinates(0, 15), Coordinates(DEFAULT_TILE_NUMBER_X - 1, 30));
+	Guest* CreateNormalGuest(int character_id, CharacterSkill *start_skill) {
+		Coordinates arrival_point = Coordinates(0, RandomNumberBetween(0, DEFAULT_TILE_NUMBER_X-1));
+		Coordinates leave_point = Coordinates(DEFAULT_TILE_NUMBER_X - 1, RandomNumberBetween(0, DEFAULT_TILE_NUMBER_X-1));
+		if (RandomNumberBetween(0,1)) {
+			swap(arrival_point.x, leave_point.x);
+			swap(arrival_point.y, leave_point.y);
+		}
+			
+		if (RandomNumberBetween(0, 1)) {
+			swap(arrival_point.x, arrival_point.y);
+			swap(leave_point.x, leave_point.y);
+		}
+			
+		Schedule* new_schedule = new GuestSchedule(arrival_point, leave_point);
+		Transform2D transform = Transform2D(0, CoordinatesToCenterVector(arrival_point));
 		srand((unsigned int)time(NULL));
-		eGender gender = static_cast<eGender>(rand() % 2);
+		eGender gender = static_cast<eGender>(RandomNumberBetween(0, 1));
 		Guest* new_character = new Guest(
 			character_id, name_generator.MakeFullName(static_cast<eNameType>(gender)), gender,
 			transform, Vector2(TILE_WIDTH, TILE_HEIGHT)
