@@ -299,6 +299,16 @@ vector<Coordinates> StaticUnitService::GetBuildingBlocksCoordinatesById(int id) 
 	return result;
 }
 
+Building* StaticUnitService::GetFirstShop() {
+	map<int, Building*>* buildings = building_repo->GetBuildingMap();
+	for (auto& kv : *buildings) {
+		if (kv.second->IsWorkSpace() && HasInventoryStructureInBuildingById(kv.first)) {
+			return kv.second;
+		}
+	}
+	return nullptr;
+}
+
 Vector2 StaticUnitService::GetNearestStructurePos(Coordinates cur_position, eStructureType type) {
 	//To-do
 	return structure_rep->GetStructureById(1)->GetCenterPosition();

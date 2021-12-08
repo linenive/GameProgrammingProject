@@ -4,7 +4,7 @@
 #include <queue>
 
 enum class eTaskType {
-	NONE, SEEK, LEAVE_VILLAGE, WANDER, WORK
+	NONE, SEEK, LEAVE_VILLAGE, WANDER, WORK, SHOPPING,
 };
 
 class Task{
@@ -138,5 +138,21 @@ public:
 
 	virtual const eTaskType GetType() {
 		return eTaskType::WORK;
+	}
+};
+
+class ShoppingTask : public Task {
+private:
+public:
+	ShoppingTask() {
+		is_task_done = true;
+	}
+
+	virtual void NextAction() {
+
+	}
+
+	virtual const eTaskType GetType() {
+		return eTaskType::SHOPPING;
 	}
 };

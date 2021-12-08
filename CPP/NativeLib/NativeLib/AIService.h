@@ -28,19 +28,13 @@ private:
 		return resident->GetInventory()->GetItemCount(Coordinates(0, 0)) >= 10;
 	}
 
-	bool HasSamePosition(Resident* resident, Vector2 target_pos) {
-		return AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition())
+	bool HasSamePosition(Character* character, Vector2 target_pos) {
+		return AbsolutePositionToCoordinates(character->GetPhysics()->GetPosition())
 			== AbsolutePositionToCoordinates(target_pos);
 	}
 
 	bool HasInventoryStructureInWorkSpace(Resident* resident) { //To-do home -> work_space
-		Building* home = static_unit_service->GetBuildingById(resident->work_space_id);
-		for (auto id : home->inside_structures_list) {
-			Structure* inside_structure = static_unit_service->GetStructureById(id);
-			if (inside_structure->HasInventory())
-				return true;
-		}
-		return false;
+		return static_unit_service->HasInventoryStructureInBuildingById(resident->work_space_id);
 	}
 
 	void MoveCharacterItemToOtherInventory(Resident* resident, Item item, Inventory* other_inventory) {
@@ -87,10 +81,21 @@ private:
 	Task* FindNewTaskToGuest(Guest* performer) {
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(performer->GetSchedule()))->GetPurposOfVisit();
 		for (PurposeOfVisit* p : purposes) {
-			if (p->CanExecute()) {
-				// To-do: 
-				return task_service->CreateWanderTask(performer);
+			if (p->GetType() == ePurposeOfVisitType::BuyFirewood && !p->is_done) {
+				Building* shop = static_unit_service->GetFirstShop();
+				if (shop == nullptr) {
+					continue;
+				}
+				if (HasSamePosition(performer, shop->GetCenterPosition())) {
+					shop->IncreaseOneVisits();
+					p->is_done = true;
+					return task_service->CreateShoppingTask();
+				}
+				else {
+					return task_service->CreateSeekTask(performer, shop->GetCenterPosition());
+				}
 			}
+			// return task_service->CreateWanderTask(performer);
 		}
 		return task_service->CreateLeaveVillageTask(performer);
 	}
@@ -107,12 +112,16 @@ private:
 				continue;
 			}
 			// To-do: 우선순위 비교하여 변동 없을 시 무시하기.
-			delete it->second;
-			it->second = nullptr;
-			if (performer->IsGuest())
-				it->second = FindNewTaskToGuest((Guest*)performer);
-			else
+			
+			if (performer->IsGuest()) {
+				if(it->second == nullptr || it->second->IsTaskDone())
+					it->second = FindNewTaskToGuest((Guest*)performer);
+			}
+			else {
+				delete it->second;
+				it->second = nullptr;
 				it->second = FindNewTaskToResident((Resident*)performer);
+			}
 			++it;
 		}
 	}

@@ -36,6 +36,10 @@ public:
         }
     }
 
+    void IncreaseOneVisits() {
+        number_of_guests_per_month++;
+        cumulative_number_of_guests++;
+    }
     void FreeResident(int resident_id) {
         for (int i = 0; i < character_slots.size(); i++) {
             CharacterSlot* slot = character_slots[i];
