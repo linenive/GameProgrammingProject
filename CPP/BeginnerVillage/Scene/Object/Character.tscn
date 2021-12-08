@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scene/Character.gd" type="Script" id=1]
-[ext_resource path="res://Image/DefaultCharacter1.png" type="Texture" id=2]
+[ext_resource path="res://Image/character_1.png" type="Texture" id=2]
 
 [node name="Character" type="Sprite"]
 texture = ExtResource( 2 )
-offset = Vector2( 0, -20 )
+offset = Vector2( 0, -16 )
 script = ExtResource( 1 )
