@@ -10,7 +10,7 @@ BuildingData::BuildingData(eBuildingType type) {
     case eBuildingType::SMALL_HOUSE:
         name = "작은 집";
         building_role = eBuildingRole::HOUSE;
-        slot_num = 2;
+        slot_num = 1;
         blocks = {
             {ww, ww, ww, ww, ww},
             {ww, wf, wf, wf, ww},
@@ -22,7 +22,7 @@ BuildingData::BuildingData(eBuildingType type) {
     case eBuildingType::LARGE_HOUSE:
         name = "커다란 집";
         building_role = eBuildingRole::HOUSE;
-        slot_num = 4;
+        slot_num = 2;
         blocks = {
             {ww, ww, ww, ww, ww, ww, ww},
             {ww, wf, wf, wf, wf, wf, ww},

@@ -55,6 +55,8 @@ public:
 	void DeleteUnitById(int id);
 	vector<Coordinates> GetBuildingBlocksCoordinatesById(int id);
 
+	Building* GetFirstShop();
+
 	int CreateStructure(eStructureType type, Coordinates top_left_coordinates);
 	int CreateStructure(int type, Vector2 top_left_tile_position);
 	vector<int> GetBuildingInAreaList(Coordinates position1, Coordinates position2);

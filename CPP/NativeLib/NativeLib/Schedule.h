@@ -16,18 +16,17 @@ class PurposeOfVisit {
 private:
 	ePurposeOfVisitType type;
 	string name;
-	bool is_done = false;
 
 public:
-	// To-do: 목적 수행이 가능한 지 확인
-	bool CanExecute() {
-		return false && is_done;
-	}
 	PurposeOfVisit(string _name, ePurposeOfVisitType _type)
 		: name(_name), type(_type) {}
 	string GetName() {
 		return name;
 	}
+	ePurposeOfVisitType GetType() {
+		return type;
+	}
+	bool is_done = false;
 };
 
 

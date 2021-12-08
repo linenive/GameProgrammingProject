@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://test/hobo.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Image/DefaultCharacter2.png" type="Texture" id=2]
+[ext_resource path="res://Image/character_3.png" type="Texture" id=2]
 [ext_resource path="res://GDScript/EmployeeInfoButton.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]

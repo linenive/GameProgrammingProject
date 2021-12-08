@@ -104,7 +104,6 @@ public:
 
 	virtual Array Serialize() {
 		Array serialized_data = WorldObject::Serialize();
-		int i;
 		serialized_data.append(id);
 		serialized_data.append(full_name.GetLastname().c_str());
 		serialized_data.append(full_name.GetName().value.c_str());
@@ -124,17 +123,6 @@ public:
 			serialized_data.append("NONE");
 		serialized_data.append(skill_list[0]->GetSkillName().c_str());
 
-		int inventory_size = inventory->GetSize();
-		for (i = 0; i < inventory_size; i++) {
-			Array item_data = Array();
-			if (inventory->GetItemCountByIndex(i) > 0) {
-				item_data.append(inventory->GetItemByIndex(i).GetName().c_str());
-				item_data.append(inventory->GetItemByIndex(i).GetType().c_str());
-				item_data.append(inventory->GetItemByIndex(i).GetID());
-				item_data.append(inventory->GetItemCountByIndex(i));
-			}
-			serialized_data.append(item_data);
-		}
 		return serialized_data;
 	}
 
@@ -152,6 +140,27 @@ public:
 	GuestSchedule* GetSchedule() { return (GuestSchedule*)schedule; }
 
 	virtual bool IsGuest() { return true; }
+
+	virtual Array Serialize() {
+		Array serialized_data = Character::Serialize();
+		int i;
+
+		serialized_data.append(0);
+
+		int inventory_size = inventory->GetSize();
+		for (i = 0; i < inventory_size; i++) {
+			Array item_data = Array();
+			if (inventory->GetItemCountByIndex(i) > 0) {
+				item_data.append(inventory->GetItemByIndex(i).GetName().c_str());
+				item_data.append(inventory->GetItemByIndex(i).GetType().c_str());
+				item_data.append(inventory->GetItemByIndex(i).GetID());
+				item_data.append(inventory->GetItemCountByIndex(i));
+			}
+			serialized_data.append(item_data);
+		}
+
+		return serialized_data;
+	}
 };
 
 class Resident : public Character {
@@ -166,4 +175,25 @@ public:
 	ResidentSchedule* GetSchedule() { return (ResidentSchedule*)schedule; }
 
 	virtual bool IsGuest() { return false; }
+
+	virtual Array Serialize() {
+		Array serialized_data = Character::Serialize();
+		int i;
+
+		serialized_data.append(1);
+
+		int inventory_size = inventory->GetSize();
+		for (i = 0; i < inventory_size; i++) {
+			Array item_data = Array();
+			if (inventory->GetItemCountByIndex(i) > 0) {
+				item_data.append(inventory->GetItemByIndex(i).GetName().c_str());
+				item_data.append(inventory->GetItemByIndex(i).GetType().c_str());
+				item_data.append(inventory->GetItemByIndex(i).GetID());
+				item_data.append(inventory->GetItemCountByIndex(i));
+			}
+			serialized_data.append(item_data);
+		}
+
+		return serialized_data;
+	}
 };

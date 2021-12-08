@@ -28,19 +28,13 @@ private:
 		return resident->GetInventory()->GetItemCount(Coordinates(0, 0)) >= 10;
 	}
 
-	bool HasSamePosition(Resident* resident, Vector2 target_pos) {
-		return AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition())
+	bool HasSamePosition(Character* character, Vector2 target_pos) {
+		return AbsolutePositionToCoordinates(character->GetPhysics()->GetPosition())
 			== AbsolutePositionToCoordinates(target_pos);
 	}
 
 	bool HasInventoryStructureInWorkSpace(Resident* resident) { //To-do home -> work_space
-		Building* home = static_unit_service->GetBuildingById(resident->work_space_id);
-		for (auto id : home->inside_structures_list) {
-			Structure* inside_structure = static_unit_service->GetStructureById(id);
-			if (inside_structure->HasInventory())
-				return true;
-		}
-		return false;
+		return static_unit_service->HasInventoryStructureInBuildingById(resident->work_space_id);
 	}
 
 	void MoveCharacterItemToOtherInventory(Resident* resident, Item item, Inventory* other_inventory) {
@@ -87,10 +81,22 @@ private:
 	Task* FindNewTaskToGuest(Guest* performer) {
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(performer->GetSchedule()))->GetPurposOfVisit();
 		for (PurposeOfVisit* p : purposes) {
-			if (p->CanExecute()) {
-				// To-do: 
-				return task_service->CreateWanderTask(performer);
+			if (p->GetType() == ePurposeOfVisitType::BuyFirewood && !p->is_done) {
+				Building* shop = static_unit_service->GetFirstShop();
+				if (shop == nullptr) {
+					continue;
+				}
+				if (HasSamePosition(performer, shop->GetCenterPosition())) {
+					shop->IncreaseOneVisits();
+					p->is_done = true;
+					return task_service->CreateShoppingTask(
+						shop, ItemDictionary::GetInstance()->GetIDByName("wood"));
+				}
+				else {
+					return task_service->CreateSeekTask(performer, shop->GetCenterPosition());
+				}
 			}
+			// return task_service->CreateWanderTask(performer);
 		}
 		return task_service->CreateLeaveVillageTask(performer);
 	}
@@ -101,30 +107,68 @@ private:
 		while (it != task_list.end()) {
 			performer = object_service->GetCharacter(it->first);
 			if (performer == nullptr) {
-				
-				task_list.erase(it);
+				delete(it->second);
+				it = task_list.erase(it);
 				
 				continue;
 			}
 			// To-do: 우선순위 비교하여 변동 없을 시 무시하기.
-			delete it->second;
-			it->second = nullptr;
-			if (performer->IsGuest())
-				it->second = FindNewTaskToGuest((Guest*)performer);
-			else
+			
+			if (performer->IsGuest()) {
+				if(it->second == nullptr || it->second->IsTaskDone())
+					it->second = FindNewTaskToGuest((Guest*)performer);
+			}
+			else {
+				delete it->second;
+				it->second = nullptr;
 				it->second = FindNewTaskToResident((Resident*)performer);
+			}
 			++it;
 		}
 	}
+
+	// Task 구조 변경하기엔 시간이 없어서 여기에 알고리즘 넣어줌.
+	void ShoppingAlgorithm(Character* character, ShoppingTask* task) {
+		if (task->IsShoppingEnd()) {
+			task->Done();
+			return;
+		}
+
+		Structure* target_structure = static_unit_service->GetStructureById(*task->structure_iterator);
+		if (target_structure == nullptr) {
+			task->structure_iterator++;
+			return;
+		}
+
+		if (HasSamePosition(character, target_structure->GetCenterPosition())) {
+			task->structure_iterator++;
+			
+			//if(target_structure->GetInventory()->)
+			task->Done();
+			return;
+		}
+		else {
+			task->GoToNextStructure(target_structure->GetCenterPosition());
+			return;
+		}
+
+	}
+
 	void ExecuteCharactersTask(){
 		Character* performer;
 		auto it = task_list.begin();
 		while (it != task_list.end()) {
 			performer = object_service->GetCharacter(it->first);
 			if (performer == nullptr) {
+				delete(it->second);
 				it = task_list.erase(it);
 				continue;
 			}
+
+			if (it->second->GetType() == eTaskType::SHOPPING) {
+				ShoppingAlgorithm(performer, (ShoppingTask*)it->second);
+			}
+
 			ai_executer.ExecuteCharacterTask(performer, it->second);
 			++it;
 		}
@@ -148,6 +192,7 @@ public:
 		: object_service(_object_service), task_service(_task_service), 
 		static_unit_service(_static_unit_service), resident_service(_resident_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
+
 		map<int, Character*>* characters = object_service->GetCharacters();
 		for (auto &kv : *characters) {
 			task_list.push_back({ kv.first, nullptr});

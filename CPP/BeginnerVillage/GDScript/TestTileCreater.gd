@@ -60,20 +60,11 @@ func tile_image_changer(tile_type_id):
 		texture = load("res://Image/tile_default.png")
 	return texture;
 
-func create_man_character(id):
+func create_character(id, texture_index):
 	var character_instance = character_scene.instance()
 	var transform2 = world_manager.GetCharacterTransform(id)
 	character_instance.transform = transform2
-	character_instance.texture = texture_db.character_texture[0]
-	$Character.add_child(character_instance)
-	
-	character_instance.init_character(id)
-
-func create_woman_character(id):
-	var character_instance = character_scene.instance()
-	var transform2 = world_manager.GetCharacterTransform(id)
-	character_instance.transform = transform2
-	character_instance.texture = texture_db.character_texture[1]
+	character_instance.texture = texture_db.character_texture[texture_index]
 	$Character.add_child(character_instance)
 	
 	character_instance.init_character(id)
@@ -135,10 +126,17 @@ func create_structure(structure_id):
 func _on_Main_create_character(ID):
 	var character_data = world_manager.GetCharacterInfo(ID)
 	var gender = character_data[4]
-	if(gender == "남자"):
-		create_man_character(ID)
-	elif(gender == "여자"):
-		create_woman_character(ID)
+	var is_resident = character_data[9]
+	if gender == "남자":
+		if is_resident:
+			create_character(ID, 3)
+		else:
+			create_character(ID, 0)
+	elif gender == "여자":
+		if is_resident:
+			create_character(ID, 2)
+		else:
+			create_character(ID, 1)
 	
 func _on_Main_delete_character(ID):
 	delete_character(ID)

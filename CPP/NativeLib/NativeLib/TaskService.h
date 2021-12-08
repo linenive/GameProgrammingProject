@@ -62,4 +62,7 @@ public:
 	Task* CreateWorkTask(eWorkType work_type) {
 		return new WorkTask(work_type, 10);
 	}
+	Task* CreateShoppingTask(Building* shop, int wish_item_code) {
+		return new ShoppingTask(shop, wish_item_code);
+	}
 };

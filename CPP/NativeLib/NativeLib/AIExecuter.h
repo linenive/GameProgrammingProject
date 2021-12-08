@@ -14,11 +14,13 @@ public:
 	queue<int> village_leavers;
 
 	void ExecuteCharacterTask(Character* character, Task* task) {
+		
+
 		if (task==nullptr) { return; }
 		else if (!task->IsTaskDone() && task->HasAction()) {
 			task->Execute(character);
 		}
-		else {
+		else {			
 			EndTask(character, task);
 		}
 	}

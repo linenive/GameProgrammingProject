@@ -6,8 +6,10 @@ var structure_texture = []
 
 # To-do: load db. not hard coding.
 func load_db():
-	character_texture.append(load("res://Image/DefaultCharacter1.png"))
-	character_texture.append(load("res://Image/DefaultCharacter2.png"))
+	character_texture.append(load("res://Image/character_1.png"))
+	character_texture.append(load("res://Image/character_2.png"))
+	character_texture.append(load("res://Image/character_3.png"))
+	character_texture.append(load("res://Image/character_4.png"))
 	
 	block_texture.append(load("res://Image/block_door.png"))
 	block_texture.append(load("res://Image/block_wall.png"))
