@@ -47,16 +47,18 @@ func get_object_info(id, type):
 	return info
 
 func get_character_info(id):
+	var character_data = world_manager.GetCharacterInfo(id)
 	var inventory_size : int
 	var item_info_array : Array
 	var character_info = {}
 	
-	character_info["full_name"] = world_manager.GetCharacterFullName(id)
-	character_info["gender"] = world_manager.GetCharacterGender(id)
-	inventory_size = world_manager.GetCharacterInventorySize(id)
+	character_info["first_name"] = character_data[3]
+	character_info["last_name"] = character_data[2]
+	character_info["gender"] = character_data[4]
+	inventory_size = 9
 			
 	for j in inventory_size:
-		item_info_array = world_manager.GetCharacterItem(id, j);
+		item_info_array = character_data[9+j]
 		character_info["item" + str(j+1)] = item_info_array
 	return character_info
 

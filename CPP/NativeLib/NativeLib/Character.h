@@ -1,4 +1,5 @@
 #pragma once
+#pragma execution_character_set("utf-8")
 #include "WorldObject.h"
 #include "Inventory.h"
 #include "Material.h"
@@ -100,6 +101,43 @@ public:
 	}
 
 	virtual bool IsGuest() = 0;
+
+	virtual Array Serialize() {
+		Array serialized_data = WorldObject::Serialize();
+		int i;
+		serialized_data.append(id);
+		serialized_data.append(full_name.GetLastname().c_str());
+		serialized_data.append(full_name.GetName().value.c_str());
+		switch (gender) {
+		case eGender::MAN:
+			serialized_data.append("남자");
+			break;
+		case eGender::WOMAN:
+			serialized_data.append("여자");
+			break;
+		}
+		serialized_data.append("마을 사람");
+		serialized_data.append(physics->GetPosition());
+		if (schedule->IsHavePurpose())
+			serialized_data.append(schedule->GetFirstPurpose().c_str());
+		else
+			serialized_data.append("NONE");
+		serialized_data.append(skill_list[0]->GetSkillName().c_str());
+
+		int inventory_size = inventory->GetSize();
+		for (i = 0; i < inventory_size; i++) {
+			Array item_data = Array();
+			if (inventory->GetItemCountByIndex(i) > 0) {
+				item_data.append(inventory->GetItemByIndex(i).GetName().c_str());
+				item_data.append(inventory->GetItemByIndex(i).GetType().c_str());
+				item_data.append(inventory->GetItemByIndex(i).GetID());
+				item_data.append(inventory->GetItemCountByIndex(i));
+			}
+			serialized_data.append(item_data);
+		}
+		return serialized_data;
+	}
+
 };
 
 class Guest : public Character {

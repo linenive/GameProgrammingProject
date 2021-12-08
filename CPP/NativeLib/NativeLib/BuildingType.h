@@ -7,6 +7,7 @@
 #define ww eBlockType::WOOD_WALL
 #define wd eBlockType::WOOD_DOOR
 #define wf eBlockType::WOOD_FLOOR
+#define ws eBlockType::SHOP_SIGN
 
 enum class eBuildingType {
     SMALL_HOUSE,

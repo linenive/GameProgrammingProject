@@ -45,7 +45,7 @@ BuildingData::BuildingData(eBuildingType type) {
             {ww, wf, wf, wf, wf, wf, wf, ww},
             {ww, wf, wf, wf, wf, wf, wf, ww},
             {ww, wf, wf, wf, wf, wf, wf, ww},
-            {ww, ww, ww, wd, wd, ww, ww, ww},
+            {ww, ww, ws, wd, wd, ws, ww, ww},
         };
         break;
     default:

@@ -19,13 +19,7 @@ void WorldManager::_register_methods() {
 	register_method("GetCharacterNumber", &WorldManager::GetCharacterNumber);
 	register_method("GetCharacterTransform", &WorldManager::GetCharacterTransform);
 	register_method("GetCharacterScale", &WorldManager::GetCharacterScale);
-	register_method("GetCharacterFirstName", &WorldManager::GetCharacterFirstName);
-	register_method("GetCharacterLastName", &WorldManager::GetCharacterLastName);
-	register_method("GetCharacterFullName", &WorldManager::GetCharacterFullName);
-	register_method("GetCharacterGender", &WorldManager::GetCharacterGender);
-	register_method("GetCharacterItem", &WorldManager::GetCharacterItem);
-	register_method("GetCharacterInventorySize", &WorldManager::GetCharacterInventorySize);
-	register_method("GetCharacterSkillName", &WorldManager::GetCharacterSkillName);
+	register_method("GetCharacterInfo", &WorldManager::GetCharacterInfo);
 
 	register_method("GetWorldSize", &WorldManager::GetWorldSize);
 
@@ -76,17 +70,4 @@ void WorldManager::LoadGameWorld() {
 	tile_service = child->GetGameService()->tile_service;
 	village_service = child->GetGameService()->village_service;
 	resident_service = child->GetGameService()->resident_service;
-}
-
-Array WorldManager::GetCharacterItem(int character_id, int item_id) {
-	if (IsCharacterNotExistError(character_id)) {
-		return Array();
-	}
-	Array result = Array();
-	Item item = object_service->GetCharacter(character_id)->GetInventory()->GetItemByIndex(item_id);
-
-	result.push_back(item.GetName().c_str());
-	result.push_back(item.GetType().c_str());
-
-	return result;
 }

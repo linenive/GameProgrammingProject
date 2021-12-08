@@ -165,8 +165,14 @@ public:
 		return 0;
 	}
 
+	int GetItemCountByIndex(int index) {
+		Coordinates pos = IndexToPos(index);
+		if (IsValidPos(pos))
+			return GetItemCount(pos);
+		return 0;
+	}
+
 	int GetSize() {
-		return 1;
-		//return INVENTORY_Y * INVENTORY_X;
+		return INVENTORY_Y * INVENTORY_X;
 	}
 };

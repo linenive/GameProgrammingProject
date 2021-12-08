@@ -13,6 +13,7 @@ func load_db():
 	block_texture.append(load("res://Image/block_wall.png"))
 	block_texture.append(load("res://Image/block_door.png"))
 	block_texture.append(load("res://Image/block_floor.png"))
+	block_texture.append(load("res://Image/block_shopsign.png"))
 	
 	structure_texture.append(load("res://Image/furniture_1.png"))
 	structure_texture.append(load("res://Image/furniture_2.png"))
