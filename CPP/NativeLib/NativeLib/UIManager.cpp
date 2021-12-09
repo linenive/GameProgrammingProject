@@ -16,6 +16,7 @@ void UIManager::_register_methods() {
 	register_signal<UIManager>(String("character_info_update_needed"), "ID", GODOT_VARIANT_TYPE_INT);
 	register_signal<UIManager>(String("structure_info_update_needed"), "ID", GODOT_VARIANT_TYPE_INT);
 	register_signal<UIManager>(String("building_info_update_needed"), "ID", GODOT_VARIANT_TYPE_INT);
+	register_signal<UIManager>(String("money_alert_effect"), "variation", GODOT_VARIANT_TYPE_INT, "position", GODOT_VARIANT_TYPE_VECTOR2);
 }
 
 void UIManager::_init(){

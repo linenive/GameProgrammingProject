@@ -4,10 +4,11 @@
 
 class VillageService {
 private:
+	UIService* ui_service;
 	VillageRepository* village_repo;
 
 public:
-	VillageService(VillageRepository* _village_repo) : village_repo(_village_repo) {}
+	VillageService(UIService* _ui_service, VillageRepository* _village_repo) : ui_service(_ui_service), village_repo(_village_repo) {}
 
 	String GetVillageName() {
 		return village_repo->GetVillage()->GetVillageName().c_str();
@@ -21,12 +22,14 @@ public:
 		return village_repo->GetVillage()->GetMoney();
 	}
 
-	void IncreaseMoney(int value) {
+	void IncreaseMoney(int value, Vector2 occur_position) {
+		ui_service->money_alert_effects.push(make_pair(value, occur_position));
 		Village* vllage = village_repo->GetVillage();
 		return vllage->SetMoney(vllage->GetMoney() + value);
 	}
 
-	void DecreaseMoney(int value) {
+	void DecreaseMoney(int value, Vector2 position) {
+		ui_service->money_alert_effects.push(make_pair(-value, position));
 		Village* vllage = village_repo->GetVillage();
 		return vllage->SetMoney(vllage->GetMoney() - value);
 	}

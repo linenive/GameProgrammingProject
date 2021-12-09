@@ -15,7 +15,7 @@ private:
 
 	void BuildBuilding(Vector2 mouse_position) {
 		int new_building_id = static_unit_service->CreateBuilding((int)scheduled_building_type, mouse_position);
-		village_service->DecreaseMoney(static_unit_service->GetBuildingById(new_building_id)->build_cost);
+		village_service->DecreaseMoney(static_unit_service->GetBuildingById(new_building_id)->build_cost, mouse_position);
 		input.new_building_ids.push(new_building_id);
 	}
 

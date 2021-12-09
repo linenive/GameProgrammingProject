@@ -34,6 +34,7 @@ public:
 		queue<int>* ui_update_needed_character_ids = &(ui_service->ui_update_needed_character_ids);
 		queue<int>* ui_update_needed_structure_ids = &(ui_service->ui_update_needed_structure_ids);
 		queue<int>* ui_update_needed_building_ids = &(ui_service->ui_update_needed_building_ids);
+		queue<pair<int, Vector2>>* money_alert_effects = &(ui_service->money_alert_effects);
 	
 		while (!ui_update_needed_character_ids->empty()) {
 			int update_needed_character_id = ui_update_needed_character_ids->front();
@@ -52,6 +53,12 @@ public:
 			ui_update_needed_building_ids->pop();
 			EmitBuildingInfoUpdateNeeded(update_needed_building_id);
 		}
+
+		while (!money_alert_effects->empty()) {
+			pair<int, Vector2> data = money_alert_effects->front();
+			money_alert_effects->pop();
+			EmitMoneyAlertEffect(data.first, data.second);
+		}
 	}
 
 	void EmitCharacterInfoUpdateNeeded(int character_id) {
@@ -64,5 +71,9 @@ public:
 
 	void EmitBuildingInfoUpdateNeeded(int building_id) {
 		emit_signal(String("building_info_update_needed"), building_id);
+	}
+
+	void EmitMoneyAlertEffect(int money_variation, Vector2 effect_position) {
+		emit_signal(String("money_alert_effect"), money_variation, effect_position);
 	}
 };
