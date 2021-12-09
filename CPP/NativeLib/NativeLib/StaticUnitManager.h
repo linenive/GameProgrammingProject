@@ -15,6 +15,7 @@ public:
 	static void _register_methods();
 	void _ready();
 	void _init();
+	void _process();
 
 	bool RecruitGuestAsResident(int char_id) {
 		return resident_service->RecruitGuestAsResident(char_id);
@@ -29,6 +30,9 @@ public:
 	}
 
 	int GetStructureType(int id) {
+		Structure* structure = static_unit_service->GetStructureById(id);
+		if (structure == nullptr)
+			return -1;
 		return static_cast<int>(static_unit_service->GetStructureById(id)->type);
 	}
 

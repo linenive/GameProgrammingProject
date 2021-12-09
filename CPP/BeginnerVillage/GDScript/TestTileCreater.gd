@@ -76,8 +76,10 @@ func delete_character(id):
 			return
 
 func delete_structure(id):
+	print("[TestTileCreater]delete_structure "+String(id))
 	for structure in $Structure.get_children():
 		if structure.get_id() == id: 
+			print("[TestTileCreater]remove")
 			$Structure.remove_child(structure)
 			return
 
@@ -155,4 +157,4 @@ func _on_Button_pressed():
 
 
 func _on_StaticUnitManager_delete_structrue(ID):
-	pass # Replace with function body.
+	delete_structure(ID)
