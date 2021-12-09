@@ -324,9 +324,24 @@ Building* StaticUnitService::GetFirstShop() {
 	return nullptr;
 }
 
-Vector2 StaticUnitService::GetNearestStructurePos(Coordinates cur_position, eStructureType type) {
+Vector2 StaticUnitService::GetNearestStructurePos(Vector2 cur_position, eStructureType type) {
 	//To-do
-	return structure_rep->GetStructureById(1)->GetCenterPosition();
+	float nearest_distance = FLT_MAX;
+	Structure* nearest_structure = nullptr;
+	map<int, Structure*>* structure_map = structure_rep->GetStructureMap();
+	for (auto& kv : *structure_map) {
+		if (kv.second->type != type)
+			continue;
+		real_t new_distance = cur_position.distance_to(kv.second->GetCenterPosition());
+		if (nearest_distance > new_distance) {
+			nearest_distance = new_distance;
+			nearest_structure = kv.second;
+		}
+	}
+	if (nearest_structure != nullptr)
+		return nearest_structure->GetCenterPosition();
+	else
+		return Vector2(-1.0, -1.0);
 }
 
 Array StaticUnitService::GetBuildingInfo(int id) {

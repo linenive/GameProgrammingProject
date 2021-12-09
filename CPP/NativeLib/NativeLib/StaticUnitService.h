@@ -61,7 +61,7 @@ public:
 	int CreateStructure(int type, Vector2 top_left_tile_position);
 	vector<int> GetBuildingInAreaList(Coordinates position1, Coordinates position2);
 	vector<int> GetStructureInAreaList(Coordinates position1, Coordinates position2);
-	Vector2 GetNearestStructurePos(Coordinates cur_position, eStructureType type);
+	Vector2 GetNearestStructurePos(Vector2 cur_position, eStructureType type);
 	bool HasInventoryStructureInBuildingById(int id);
 	bool HasInventoryStructureInBuilding(Building* building);
 	Inventory* GetFirstInventoryInBuildingById(int id);

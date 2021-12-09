@@ -79,11 +79,11 @@ private:
 				}
 
 				Vector2 tree_pos = static_unit_service->GetNearestStructurePos(
-					AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition()),
+					resident->GetPhysics()->GetPosition(),
 					eStructureType::TREE
 				);
 
-				if (HasSamePosition(resident, tree_pos)) {
+				if (tree_pos.x != -1.0, HasSamePosition(resident, tree_pos)) {
 					return task_service->CreateWorkTask(
 						eWorkType::COLLECT_WOOD, resident->GetInventory(), 12
 					);
