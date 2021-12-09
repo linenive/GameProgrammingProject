@@ -88,6 +88,7 @@ func _on_InputManager_click_character(ID):
 
 func _on_InputManager_click_structure(ID):
 	print("Structrue click: "+ String(ID))
+	uicontrol.show_info_popup(ID, "Structure")
 	# show_info_popup
 	pass
 

@@ -123,6 +123,17 @@ Inventory* StaticUnitService::GetFirstInventoryInBuilding(Building* building) {
 	return nullptr;
 }
 
+Structure* StaticUnitService::GetFirstStructureHasInventoryInBuildingById(int id) {
+	Building* building = GetBuildingById(id);
+	
+	for (auto id : building->inside_structures_list) {
+		Structure* inside_structure = GetStructureById(id);
+		if (inside_structure->HasInventory())
+			return inside_structure;
+	}
+	return nullptr;
+}
+
 Building* StaticUnitService::CreateBluePrintBuilding(int type) {
 	BuildingData data = BuildingData((eBuildingType)type);
 

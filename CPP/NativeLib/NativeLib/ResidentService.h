@@ -2,9 +2,11 @@
 
 #include "ObjectRepository.h"
 #include "BuildingRepository.h"
+#include "UIService.h"
 
 class ResidentService {
 private:
+	UIService* ui_service;
 	ObjectService* object_service;
 	ObjectRepository* object_repo;
 	BuildingRepository* building_repo;
@@ -59,8 +61,8 @@ private:
 	}
 
 public:
-	ResidentService(ObjectService* object_service, ObjectRepository* object_repo, BuildingRepository* building_repo)
-		: object_service(object_service), object_repo(object_repo), building_repo(building_repo) {}
+	ResidentService(ObjectService* object_service, UIService* ui_service, ObjectRepository* object_repo, BuildingRepository* building_repo)
+		: object_service(object_service), ui_service(ui_service), object_repo(object_repo), building_repo(building_repo) {}
 	
 	bool AssignResidentToHome(int resident_id, int home_id) {
 		if (IsInvalidRequest(resident_id))
@@ -85,6 +87,8 @@ public:
 
 		resident->work_space_id = work_space_id;
 		AssignCharacterToBuilding(resident, work_space_id);
+
+		ui_service->ui_update_needed_building_ids.push(work_space_id);
 	}
 
 

@@ -66,6 +66,7 @@ public:
 	bool HasInventoryStructureInBuilding(Building* building);
 	Inventory* GetFirstInventoryInBuildingById(int id);
 	Inventory* GetFirstInventoryInBuilding(Building* building);
+	Structure* GetFirstStructureHasInventoryInBuildingById(int id);
 	Array GetBuildingInfo(int buliding_id);
 	Array GetStructureInfo(int structure_id);
 	Array GetStructuresInfo();

@@ -22,6 +22,7 @@ var total_guest_count : Label
 var employee_info_panel : VBoxContainer
 
 var employee_button_hbox : HBoxContainer
+var available_resident_panel : PanelContainer
 var available_resident_list : VBoxContainer
 
 var no_available_resident_label : Label
@@ -39,8 +40,9 @@ func _ready():
 	total_guest_count = $Container/VBoxContainer/VBoxContainer/HBoxContainer2/total_guest_count_value_label
 	employee_info_panel = $Container/VBoxContainer/VBoxContainer2
 	employee_button_hbox = $Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer
-	available_resident_list = $available_resident_list_panel/available_resident_list
-	no_available_resident_label = $available_resident_list_panel/available_resident_list/no_available_resident_label
+	available_resident_panel = $Container/VBoxContainer/VBoxContainer2/employee_info_panel/available_resident_list_panel
+	available_resident_list = $Container/VBoxContainer/VBoxContainer2/employee_info_panel/available_resident_list_panel/available_resident_list
+	no_available_resident_label = $Container/VBoxContainer/VBoxContainer2/employee_info_panel/available_resident_list_panel/available_resident_list/no_available_resident_label
 	
 	employee_info_button_scene = load("res://Scene/EmployeeInfoButton.tscn")
 	resident_button_scene = load("res://Scene/ResidentButton.tscn")
@@ -92,7 +94,6 @@ func is_editing_building_name():
 func get_character_node_by_character_id(character_id):
 	var result = null
 	for character in character_pool.get_children():
-		print(character.get_id())
 		if character.get_id() == character_id:
 			result = character
 	
@@ -165,14 +166,12 @@ func init_available_resident_list(resident_list : Array):
 		resident_button_instance.connect("pressed", self, "recruit_resident_to_employee", [resident_info["character_id"]])
 		available_resident_list.add_child(resident_button_instance)
 	
-	$available_resident_list_panel.rect_size.y = 0
+	available_resident_panel.rect_size.y = 0
 
 func recruit_resident_to_employee(character_id):
 	static_unit_manager.AssignResidentToWorkSpace(character_id, target_building_id)
 	$Container/VBoxContainer/VBoxContainer2/HSplitContainer/recruit_button.pressed = false
 	_on_recruit_button_toggled(false)
-	
-	init_employee_list(make_employee_list(static_unit_manager.GetBuildingInfo(target_building_id)))
 
 func _on_building_name_edit_button_pressed():
 	if is_editing_building_name():
@@ -183,6 +182,6 @@ func _on_building_name_edit_button_pressed():
 func _on_recruit_button_toggled(button_pressed):
 	if button_pressed:
 		init_available_resident_list(make_available_resident_list())
-		$available_resident_list_panel.visible = true
+		available_resident_panel.visible = true
 	else:
-		$available_resident_list_panel.visible = false
+		available_resident_panel.visible = false

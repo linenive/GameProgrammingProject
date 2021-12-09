@@ -39,4 +39,8 @@ public:
 	Array GetStructuresInfo() {
 		return static_unit_service->GetStructuresInfo();
 	}
+
+	Array GetStructureInfo(int id) {
+		return static_unit_service->GetStructureInfo(id);
+	}
 };

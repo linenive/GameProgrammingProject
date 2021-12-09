@@ -10,6 +10,8 @@ var target_type
 func _ready():
 	uicontrol = get_node("/root/Main/UIControl")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
+	
+	get_close_button().connect("pressed", self, "close_button_pressed")
 
 func show_popup(id, type, info, window_position:Vector2):
 	if target_id == 0:
@@ -18,7 +20,6 @@ func show_popup(id, type, info, window_position:Vector2):
 	set_position(window_position)	
 	
 	var btn = get_close_button()
-	btn.connect("pressed", self, "close_button_pressed")
 	
 	show_info_by_type(id, info)
 	
@@ -26,11 +27,8 @@ func show_popup(id, type, info, window_position:Vector2):
 
 func show_info_by_type(id, info):
 	$CharacterInfo.visible = false
-	$ItemInfo.visible = false
+	$StructureInfo.visible = false
 	$BuildingInfo.visible = false
-	
-	#$BuildingInfo.visible = true
-	#$BuildingInfo.window_setting_building_info(target_node, info)
 	
 	if(target_type == "Character"):
 		$CharacterInfo.visible = true
@@ -38,13 +36,9 @@ func show_info_by_type(id, info):
 	elif(target_type == "Building"):
 		$BuildingInfo.visible = true
 		$BuildingInfo.window_setting_building_info(id, info)
-
-func _process(delta):
-	if uicontrol.is_used_popup(self):
-		if target_type == "Character":
-			show_info_by_type(target_id, uicontrol.get_character_info(target_id))
-		#elif target_type == "Building":
-			#show_info_by_type(target_id, static_unit_manager.GetBuildingInfo(target_id))
+	elif(target_type == "Structure"):
+		$StructureInfo.visible = true
+		$StructureInfo.window_setting_structure_info(id, info)
 
 func init_popup():
 	target_id = 0

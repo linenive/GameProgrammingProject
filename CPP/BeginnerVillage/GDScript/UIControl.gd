@@ -40,9 +40,11 @@ func get_object_info(id, type):
 	var info
 	
 	if type == "Character":
-		info = get_character_info(id)
+		info = world_manager.GetCharacterInfo(id)
 	elif type == "Building":
 		info = static_unit_manager.GetBuildingInfo(id)
+	elif type == "Structure":
+		info = static_unit_manager.GetStructureInfo(id)
 		
 	return info
 
@@ -133,3 +135,27 @@ func _on_CameraManager_start_trace():
 
 func _on_CameraManager_stop_trace():
 	$HUD/StopTracingBtn.visible = false
+
+func _on_Main_delete_character(ID):
+	for popup in used_popups:
+		if popup.get_target_id() == ID:
+			popup.hide()
+			close_info_popup(popup)
+
+func update_used_popup(id, type):
+	for popup in used_popups:
+		if popup.get_target_id() == id and popup.get_target_type() == type:
+			var new_info = get_object_info(id, type)
+			popup.show_info_by_type(id, new_info)
+
+func _on_UIManager_character_info_update_needed(ID):
+	print("update needed character id " + str(ID))
+	update_used_popup(ID, "Character")
+
+func _on_UIManager_building_info_update_needed(ID):
+	print("update needed building id " + str(ID))
+	update_used_popup(ID, "Building")
+
+func _on_UIManager_structure_info_update_needed(ID):
+	print("update needed structure id " + str(ID))
+	update_used_popup(ID, "Structure")

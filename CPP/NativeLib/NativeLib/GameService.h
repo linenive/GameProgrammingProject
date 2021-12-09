@@ -74,6 +74,7 @@ public:
 		);
 		resident_service = new ResidentService(
 			object_service,
+			ui_service,
 			&game_world.object_repo, &game_world.building_repo
 		);
 		task_service = new TaskService(
@@ -88,7 +89,7 @@ public:
 		);
 		ai_service = new AIService(
 			object_service, task_service, static_unit_service, resident_service,
-			village_service
+			village_service, ui_service
 		);
 	};
 

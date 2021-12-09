@@ -41,12 +41,10 @@ func show_choice_buttons(choice_state, array):
 
 func get_result_from_choice_button(choice_result):
 	self.choice_result = choice_result
-	print(self.choice_result)
 	
 	if choice_state == "Construction":
 		input_manager.ChangeStateToBuild(choice_result[2])
 	elif choice_state == "Install":
-		print("heyyy")
 		input_manager.ChangeStateToInstall(choice_result[2])
 		pass
 
