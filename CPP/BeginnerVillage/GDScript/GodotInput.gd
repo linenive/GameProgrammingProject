@@ -19,7 +19,8 @@ func _ready():
 	character_node_parent = get_node("/root/Main/JanTestGDScript/TestTileCreater/Character")
 
 func ui_entered():
-	is_ui_clicked = true
+	if !input_manager.IsDragging():
+		is_ui_clicked = true
 	
 func _input(event):
 	input_process_for_ui(event)
