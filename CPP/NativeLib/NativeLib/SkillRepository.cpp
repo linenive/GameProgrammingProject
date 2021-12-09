@@ -33,4 +33,8 @@ SkillRepository::SkillRepository() {
 	NewSkill(Name("도끼 숙련자")
 		.Add(eStatFieldType::LOGGING_WORK_SPEED, 40)
 		.Add(eStatFieldType::BASE_COMBAT_LEVEL, 20));
+	NewSkill(Name("제작 기술자")
+		.Add(eStatFieldType::ITEM_CREATE_SPEED, 20));
+	NewSkill(Name("제작 숙련자")
+		.Add(eStatFieldType::ITEM_CREATE_SPEED, 40));
 }

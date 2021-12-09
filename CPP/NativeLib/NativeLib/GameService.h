@@ -80,14 +80,15 @@ public:
 			tile_service, path_find_service, resident_service
 		);
 		control_context_service = new ControlContextService(
-			tile_service, object_service, static_unit_service
+			tile_service, object_service, static_unit_service, village_service
 		);
 		progress_service = new ProgressService(
 			object_service, &game_world.random_repo,
 			&game_world.time_repo, &game_world.event_log_repo
 		);
 		ai_service = new AIService(
-			object_service, task_service, static_unit_service, resident_service
+			object_service, task_service, static_unit_service, resident_service,
+			village_service
 		);
 	};
 

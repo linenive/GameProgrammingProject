@@ -3,6 +3,7 @@
 #include "TaskReserveInfo.h"
 #include "AIExecuter.h"
 #include "TaskService.h"
+#include "VillageService.h"
 #include "CoordinatesSystem.h"
 #include "Timer.h"
 #include "GameRule.h"
@@ -15,6 +16,7 @@ private:
 	TaskService* task_service;
 	StaticUnitService* static_unit_service;
 	ResidentService* resident_service;
+	VillageService* village_service;
 	AIExecuter ai_executer;
 
 	list<pair<int, Task*>> task_list; 
@@ -53,20 +55,32 @@ private:
 						*ItemDictionary::GetInstance()->GetItemByName("wood"),
 						static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id)
 					);
-					return task_service->CreateWanderTask(resident); //temp
+					return task_service->CreateSeekTaskToWorkSpace(resident); //temp
 				}
 				else {
 					return task_service->CreateSeekTaskToWorkSpace(resident);
 				}
 			}
 			else {
+				Inventory* target_inventory = 
+					static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id);
+				if (target_inventory->GetItemCountByItemId(
+					ItemDictionary::GetInstance()->GetIDByName("wood")) >= 5) {
+					if (HasSamePosition(resident, resident_service->GetResidentWorkSpacePosition(resident->GetId()))) {
+						return task_service->CreateWorkTask(eWorkType::CREATE_ITEM, target_inventory, 1);
+					}
+					return task_service->CreateSeekTaskToWorkSpace(resident);
+				}
+
 				Vector2 tree_pos = static_unit_service->GetNearestStructurePos(
 					AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition()),
 					eStructureType::TREE
 				);
 
 				if (HasSamePosition(resident, tree_pos)) {
-					return task_service->CreateWorkTask(eWorkType::COLLECT_WOOD);
+					return task_service->CreateWorkTask(
+						eWorkType::COLLECT_WOOD, resident->GetInventory(), 10
+					);
 				}
 				else {
 					return task_service->CreateSeekTask(resident, tree_pos);
@@ -113,15 +127,18 @@ private:
 				continue;
 			}
 			// To-do: 우선순위 비교하여 변동 없을 시 무시하기.
-			
-			if (performer->IsGuest()) {
-				if(it->second == nullptr || it->second->IsTaskDone())
-					it->second = FindNewTaskToGuest((Guest*)performer);
-			}
-			else {
+			if (it->second != nullptr && it->second->IsTaskDone()) {
 				delete it->second;
 				it->second = nullptr;
-				it->second = FindNewTaskToResident((Resident*)performer);
+			}
+				
+			if (it->second == nullptr) {
+				if (performer->IsGuest()) {
+					it->second = FindNewTaskToGuest((Guest*)performer);
+				}
+				else {
+					it->second = FindNewTaskToResident((Resident*)performer);
+				}
 			}
 			++it;
 		}
@@ -144,6 +161,8 @@ private:
 			task->structure_iterator++;
 			
 			//if(target_structure->GetInventory()->)
+			Item* item = ItemDictionary::GetInstance()->GetItemByID(task->wish_item_code);
+			village_service->IncreaseMoney(item->GetParameter("price"));
 			task->Done();
 			return;
 		}
@@ -188,9 +207,11 @@ public:
 		delete task_service;
 	}
 	AIService(ObjectService* _object_service, TaskService* _task_service, 
-			StaticUnitService* _static_unit_service, ResidentService* _resident_service)
+			StaticUnitService* _static_unit_service, ResidentService* _resident_service,
+			VillageService* _village_service)
 		: object_service(_object_service), task_service(_task_service), 
 		static_unit_service(_static_unit_service), resident_service(_resident_service),
+		village_service(_village_service),
 		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
 
 		map<int, Character*>* characters = object_service->GetCharacters();

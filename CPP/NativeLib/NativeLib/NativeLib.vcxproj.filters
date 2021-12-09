@@ -221,6 +221,9 @@
     <ClCompile Include="Structure.h">
       <Filter>소스 파일\Domain\StaticUnit\Structure</Filter>
     </ClCompile>
+    <ClCompile Include="SkillRepository.cpp">
+      <Filter>소스 파일\Repository\SkillRepository</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTime.h">
@@ -251,9 +254,6 @@
       <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
     <ClInclude Include="RepeatitionRandomOcccurrence.h">
-      <Filter>소스 파일\Domain\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
       <Filter>소스 파일\Domain\Event</Filter>
     </ClInclude>
     <ClInclude Include="Surface.h">
@@ -463,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="StructureType.h">
       <Filter>소스 파일\Domain\StaticUnit\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>소스 파일\Library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

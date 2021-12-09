@@ -9,10 +9,11 @@ class StaticUnit : SerializableClass {
 public:
 	int id;
 	string name;
+	int build_cost;
 	Rect2 ocupation_area;
 	vector<Block*> blocks;
 
-	StaticUnit(int id, string _name, Rect2 _ocupation_area) : id(id), name(_name), ocupation_area(_ocupation_area) {}
+	StaticUnit(int id, string _name, int _build_cost, Rect2 _ocupation_area) : id(id), name(_name), build_cost(_build_cost), ocupation_area(_ocupation_area) {}
 
 	void RegisterBlock(Block* block)
 	{

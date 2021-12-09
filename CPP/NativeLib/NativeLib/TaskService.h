@@ -59,8 +59,9 @@ public:
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), wander_point);
 		return new WanderTask(paths);
 	}
-	Task* CreateWorkTask(eWorkType work_type) {
-		return new WorkTask(work_type, 10);
+	Task* CreateWorkTask(eWorkType work_type, Inventory* target_inventory, int work_count) {
+		return new WorkTask(work_type, target_inventory, work_count, 
+			work_type == eWorkType::COLLECT_WOOD ? 50 : 300); //hardcoding... T.T
 	}
 	Task* CreateShoppingTask(Building* shop, int wish_item_code) {
 		return new ShoppingTask(shop, wish_item_code);

@@ -19,6 +19,7 @@ class StructureData {
 public:
     StructureData(eStructureType type);
     string name;
+    int build_cost;
     int width;
     int height;
     vector< vector<eBlockType> > blocks;

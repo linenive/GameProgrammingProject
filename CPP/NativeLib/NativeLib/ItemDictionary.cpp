@@ -62,7 +62,7 @@ Item* ItemDictionary::MakeItem(string type, vector<string> sub_line_list){
 
 	switch (HashCode(type.c_str())) {
 		case HashCode("Material"):
-			return new MaterialItem(sub_line_list[1]);
+			return new MaterialItem(sub_line_list[1], ParameterParsing(sub_line_list));
 		case HashCode("Furniture"):
 		case HashCode("Bed"):
 		case HashCode("DisplayStand"):
@@ -98,9 +98,9 @@ int ItemDictionary::GetIDByName(string name){
 	}
 	return -1;
 }
-Item* ItemDictionary::GetItemByID(string name){
-	auto find_item = name_item_list.find(name);
-	if (find_item != name_item_list.end()) {
+Item* ItemDictionary::GetItemByID(int id){
+	auto find_item = id_item_list.find(id);
+	if (find_item != id_item_list.end()) {
 		return find_item->second;
 	}
 	return nullptr;

@@ -2,6 +2,7 @@
 
 #include <queue>
 #include "StaticUnitService.h"
+#include "VillageService.h"
 #include "CoordinatesSystem.h"
 #include "TileRepository.h"
 
@@ -36,6 +37,7 @@ public:
 class ControlState {
 protected:
 	InputStatus input;
+	VillageService* village_service;
 	TileService* tile_service;
 
 	void HighlightHoverdTile(Vector2 mouse_position) {
@@ -64,7 +66,8 @@ protected:
 	}
 
 public:
-	ControlState(TileService* _tile_service) : tile_service(_tile_service) {}
+	ControlState(VillageService* _village_service, TileService* _tile_service)
+		: village_service(_village_service), tile_service(_tile_service) {}
 	virtual void MouseHover(Vector2 position) = 0;
 	virtual void MouseClick(Vector2 position) = 0;
 	virtual void MouseRelease(Vector2 position) = 0;
@@ -97,8 +100,9 @@ private:
 	}
 
 public:
-	NormalState(TileService* tile_service, ObjectService* _object_service,
-		StaticUnitService* _static_unit_service) : ControlState(tile_service),
+	NormalState(VillageService* _village_service, TileService* tile_service, ObjectService* _object_service,
+		StaticUnitService* _static_unit_service)
+		: ControlState(_village_service, tile_service),
 		object_service(_object_service), static_unit_service(_static_unit_service){}
 
 	void MouseHover(Vector2 mouse_position) override {

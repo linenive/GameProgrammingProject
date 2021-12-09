@@ -15,11 +15,14 @@ private:
 
 	void InstallStructure(Vector2 mouse_position) {
 		int new_structure_id = static_unit_service->CreateStructure((int)scheduled_structure_type, mouse_position);
+		village_service->DecreaseMoney(static_unit_service->GetStructureById(new_structure_id)->build_cost);
 		input.new_structure_ids.push(new_structure_id);
 	}
 public:
-	InstallState(TileService* _tile_service, StaticUnitService* _static_unit_service)
-		: ControlState(_tile_service), static_unit_service(_static_unit_service) {}
+	InstallState(VillageService* _village_service, TileService* _tile_service,
+		StaticUnitService* _static_unit_service)
+		: ControlState(_village_service, _tile_service),
+		static_unit_service(_static_unit_service) {}
 
 	void MouseHover(Vector2 mouse_position) override {
 		// HighlightHoverdTile(mouse_position);

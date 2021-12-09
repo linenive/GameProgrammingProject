@@ -42,6 +42,7 @@ int StaticUnitService::CreateBuilding(eBuildingType type, Coordinates top_left_c
 	Building* new_building = new Building(
 		next_unit_id++,
 		data.name,
+		data.build_cost,
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height),
 		data.slot_num,
 		data.building_role);
@@ -75,6 +76,7 @@ int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left
 		next_unit_id++,
 		type,
 		data.name,
+		data.build_cost,
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
 
 	if (data.has_inventory)
@@ -127,6 +129,7 @@ Building* StaticUnitService::CreateBluePrintBuilding(int type) {
 	Building* new_building = new Building(
 		-1,
 		data.name,
+		data.build_cost,
 		Rect2(0, 0, data.width, data.height),
 		data.slot_num,
 		data.building_role);
@@ -143,6 +146,7 @@ Structure* StaticUnitService::CreateBluePrintStructure(int type) {
 		-1,
 		(eStructureType)type,
 		data.name,
+		data.build_cost,
 		Rect2(0, 0, data.width, data.height)
 	);
 
