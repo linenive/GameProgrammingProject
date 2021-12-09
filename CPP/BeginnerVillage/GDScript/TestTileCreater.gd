@@ -75,6 +75,12 @@ func delete_character(id):
 			$Character.remove_child(c)
 			return
 
+func delete_structure(id):
+	for structure in $Structure.get_children():
+		if structure.get_id() == id: 
+			$Structure.remove_child(structure)
+			return
+
 func _process(delta):
 	for c in $Character.get_children():
 		var transform3 = world_manager.GetCharacterTransform(c.character_id)
@@ -116,6 +122,7 @@ func create_structure(structure_id):
 	var structure_type = static_unit_manager.GetStructureType(structure_id)
 	if structure_type == tree_type:
 		structure_instance = tree_scene.instance()
+		structure_instance.init_id(structure_id)
 	else:
 		structure_instance = structure_scene.instance()
 	var position = static_unit_manager.GetStructurePosition(structure_id)
@@ -145,3 +152,7 @@ func _on_Button_pressed():
 	var character_id = get_node("/root/Main/UIControl/HUD/x").get_line(0)
 	#var building_id = get_node("/root/Main/UIControl/HUD/y").get_line(0)
 	static_unit_manager.RecruitGuestAsResident(character_id)
+
+
+func _on_StaticUnitManager_delete_structrue(ID):
+	pass # Replace with function body.

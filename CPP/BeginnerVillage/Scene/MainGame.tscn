@@ -1171,5 +1171,6 @@ script = ExtResource( 32 )
 [connection signal="install_structure" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_install_structure"]
 [connection signal="start_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_start_trace"]
 [connection signal="stop_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_stop_trace"]
+[connection signal="delete_structrue" from="StaticUnitManager" to="JanTestGDScript/TestTileCreater" method="_on_StaticUnitManager_delete_structrue"]
 [connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_create_instance_ui"]
 [connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_delete_instance_ui"]

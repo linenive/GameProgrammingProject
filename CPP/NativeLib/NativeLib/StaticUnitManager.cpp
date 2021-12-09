@@ -13,6 +13,8 @@ void StaticUnitManager::_register_methods() {
 	register_method("GetStructureInfo", &StaticUnitManager::GetStructureInfo);
 
 	register_method("AssignResidentToWorkSpace", &StaticUnitManager::AssignResidentToWorkSpace);
+
+	register_signal<StaticUnitManager>(String("delete_structrue"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void StaticUnitManager::_ready() {
