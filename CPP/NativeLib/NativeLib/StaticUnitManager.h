@@ -15,6 +15,7 @@ public:
 	static void _register_methods();
 	void _ready();
 	void _init();
+	void _process();
 
 	bool RecruitGuestAsResident(int char_id) {
 		return resident_service->RecruitGuestAsResident(char_id);
@@ -29,6 +30,9 @@ public:
 	}
 
 	int GetStructureType(int id) {
+		Structure* structure = static_unit_service->GetStructureById(id);
+		if (structure == nullptr)
+			return -1;
 		return static_cast<int>(static_unit_service->GetStructureById(id)->type);
 	}
 
@@ -42,5 +46,18 @@ public:
 
 	Array GetStructureInfo(int id) {
 		return static_unit_service->GetStructureInfo(id);
+	}
+
+	void EmitDeleteStructure(int id) {
+		emit_signal(String("delete_structrue"), id);
+	}
+
+	void FetchQueueAndSignal() {
+		queue<int>* deleted_structure_ids = &(static_unit_service->deleted_structure_ids);
+		while (!deleted_structure_ids->empty()) {
+			int deleted_id = deleted_structure_ids->front();
+			deleted_structure_ids->pop();
+			EmitDeleteStructure(deleted_id);
+		}
 	}
 };

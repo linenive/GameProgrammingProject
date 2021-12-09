@@ -66,7 +66,7 @@ public:
 		return new WorkTask(work_type, target_inventory, work_count, 
 			work_type == eWorkType::COLLECT_WOOD ? 50 : 300); //hardcoding...
 	}
-	Task* CreateWorkTaskToStructureInventory(
+	Task* CreateWorkTask(
 		eWorkType work_type, Inventory* target_inventory, int work_count, int structure_id
 	) {
 		return new WorkTask(work_type, target_inventory, work_count,

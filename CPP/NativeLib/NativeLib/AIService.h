@@ -71,21 +71,22 @@ private:
 				if (target_inventory->GetItemCountByItemId(
 					ItemDictionary::GetInstance()->GetIDByName("wood")) >= 5) {
 					if (HasSamePosition(resident, resident_service->GetResidentWorkSpacePosition(resident->GetId()))) {
-						return task_service->CreateWorkTaskToStructureInventory(
+						return task_service->CreateWorkTask(
 							eWorkType::CREATE_ITEM, target_inventory, 1, structure->id
 						);
 					}
 					return task_service->CreateSeekTaskToWorkSpace(resident);
 				}
 
-				Vector2 tree_pos = static_unit_service->GetNearestStructurePos(
-					AbsolutePositionToCoordinates(resident->GetPhysics()->GetPosition()),
+				Structure* tree = static_unit_service->GetNearestStructure(
+					resident->GetPhysics()->GetPosition(),
 					eStructureType::TREE
 				);
+				Vector2 tree_pos = tree->GetCenterPosition();
 
-				if (HasSamePosition(resident, tree_pos)) {
+				if (tree_pos.x != -1.0, HasSamePosition(resident, tree_pos)) {
 					return task_service->CreateWorkTask(
-						eWorkType::COLLECT_WOOD, resident->GetInventory(), 12
+						eWorkType::COLLECT_WOOD, resident->GetInventory(), 12, tree->id
 					);
 				}
 				else {
@@ -204,6 +205,16 @@ private:
 			ai_executer.ExecuteCharacterTask(performer, it->second);
 			if (it->second != nullptr && it->second->GetType() == eTaskType::WORK) {
 				WorkTask* task = (WorkTask*)it->second;
+
+				//WorkTask가 끝난 경우, Tree 베는 중이었던 경우 Tree를 제거해준다.
+				if (!task->HasAction() && task->target_structure_id != -1) {
+					Structure* structure = static_unit_service->GetStructureById(task->target_structure_id);
+					if (structure != nullptr && structure->type == eStructureType::TREE) {
+						static_unit_service->DeleteUnitById(task->target_structure_id);
+					}
+				}
+
+				// WorkTask인경우 그냥 캐릭터 ui를 계속 업데이트해준다.
 				ui_service->ui_update_needed_character_ids.push(performer->GetId());
 				if (task->target_structure_id != -1)
 					ui_service->ui_update_needed_structure_ids.push(task->target_structure_id);

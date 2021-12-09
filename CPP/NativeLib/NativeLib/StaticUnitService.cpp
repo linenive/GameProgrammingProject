@@ -297,6 +297,7 @@ void StaticUnitService::DeleteUnitById(int id) {
 	}
 	else if (structure_rep->IsExistId(id)) {
 		DeleteStructureFromWorld(id);
+		deleted_structure_ids.push(id);
 	}
 	else {
 		printf("[StaticUnitService]ERROR: trying to delete not exsit unit.\n");
@@ -324,9 +325,24 @@ Building* StaticUnitService::GetFirstShop() {
 	return nullptr;
 }
 
-Vector2 StaticUnitService::GetNearestStructurePos(Coordinates cur_position, eStructureType type) {
+Structure* StaticUnitService::GetNearestStructure(Vector2 cur_position, eStructureType type) {
 	//To-do
-	return structure_rep->GetStructureById(1)->GetCenterPosition();
+	float nearest_distance = FLT_MAX;
+	Structure* nearest_structure = nullptr;
+	map<int, Structure*>* structure_map = structure_rep->GetStructureMap();
+	for (auto& kv : *structure_map) {
+		if (kv.second->type != type)
+			continue;
+		real_t new_distance = cur_position.distance_to(kv.second->GetCenterPosition());
+		if (nearest_distance > new_distance) {
+			nearest_distance = new_distance;
+			nearest_structure = kv.second;
+		}
+	}
+	if (nearest_structure != nullptr)
+		return nearest_structure;
+	else
+		return nullptr;
 }
 
 Array StaticUnitService::GetBuildingInfo(int id) {
@@ -336,6 +352,8 @@ Array StaticUnitService::GetBuildingInfo(int id) {
 
 Array StaticUnitService::GetStructureInfo(int id) {
 	Structure* structure = GetStructureById(id);
+	if (structure == nullptr)
+		return Array();
 	return structure->Serialize();
 }
 

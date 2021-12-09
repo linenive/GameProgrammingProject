@@ -6,6 +6,7 @@ void StaticUnitManager::_register_methods() {
 	register_method("GetBuildingInfo", &StaticUnitManager::GetBuildingInfo);
 	register_method("_ready", &StaticUnitManager::_ready);
 	register_method("_init", &StaticUnitManager::_init);
+	register_method("_process", &StaticUnitManager::_process);
 
 	register_method("GetStructureType", &StaticUnitManager::GetStructureType);
 	register_method("GetStructurePosition", &StaticUnitManager::GetStructurePosition);
@@ -13,6 +14,8 @@ void StaticUnitManager::_register_methods() {
 	register_method("GetStructureInfo", &StaticUnitManager::GetStructureInfo);
 
 	register_method("AssignResidentToWorkSpace", &StaticUnitManager::AssignResidentToWorkSpace);
+
+	register_signal<StaticUnitManager>(String("delete_structrue"), "ID", GODOT_VARIANT_TYPE_INT);
 }
 
 void StaticUnitManager::_ready() {
@@ -22,6 +25,10 @@ void StaticUnitManager::_ready() {
 
 void StaticUnitManager::_init() {
 
+}
+
+void StaticUnitManager::_process() {
+	FetchQueueAndSignal();
 }
 
 void StaticUnitManager::LoadGameWorld() {

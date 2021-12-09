@@ -1,5 +1,6 @@
 #pragma once
 
+#include <queue>
 #include "Common.h"
 #include "Base.h"
 #include "BuildingType.h"
@@ -42,6 +43,7 @@ private:
 	Rect2 ConvertToOccupationArea(Coordinates top_left_coordinates, int width, int height);
 
 public:
+	queue<int> deleted_structure_ids;
 	int GetBuildingId(Vector2 position);
 	int GetStructureId(Vector2 position);
 	int CreateBuilding(int type, Vector2 top_left_tile_position);
@@ -61,7 +63,7 @@ public:
 	int CreateStructure(int type, Vector2 top_left_tile_position);
 	vector<int> GetBuildingInAreaList(Coordinates position1, Coordinates position2);
 	vector<int> GetStructureInAreaList(Coordinates position1, Coordinates position2);
-	Vector2 GetNearestStructurePos(Coordinates cur_position, eStructureType type);
+	Structure* GetNearestStructure(Vector2 cur_position, eStructureType type);
 	bool HasInventoryStructureInBuildingById(int id);
 	bool HasInventoryStructureInBuilding(Building* building);
 	Inventory* GetFirstInventoryInBuildingById(int id);
