@@ -20,7 +20,5 @@ func GetEventLogExample():
 			String(single_log[4])+"일 "+ String(single_log[5])+":"+\
 			String(single_log[6]))
 
-
-
 func _on_UIManager_money_alert_effect(variation, position):
 	print("돈 얻는 이펙트 발생... 값: " + String(variation) + " 위치: "+String(position))

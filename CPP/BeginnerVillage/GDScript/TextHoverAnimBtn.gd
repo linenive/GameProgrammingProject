@@ -13,7 +13,7 @@ var hover_tail
 func _ready():
 	default_head='[center]'
 	default_tail = '[/center]'
-	hover_head = '[wave amp=20freq=25]'
+	hover_head = '[wave amp=20 freq=10]'
 	hover_tail = '[/wave]'
 	
 	set_default_text()
