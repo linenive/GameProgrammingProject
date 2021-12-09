@@ -12,7 +12,10 @@
 enum class eBuildingType {
     SMALL_HOUSE,
     LARGE_HOUSE,
+    THREE_ROOM_HOUSE,
     NORMAL_SHOP,
+    TWO_ROOM_TWO_DOOR_SHOP,
+    TWO_ROOM_THREE_DOOR_SHOP
 };
 
 class BuildingData {

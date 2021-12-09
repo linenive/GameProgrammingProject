@@ -36,11 +36,27 @@ BuildingData::BuildingData(eBuildingType type) {
             {ww, ww, ww, wd, ww, ww, ww},
         };
         break;
+    case eBuildingType::THREE_ROOM_HOUSE:
+        name = "æ≤∏Æ∑Î ¡˝";
+        build_cost = 750000;
+        building_role = eBuildingRole::HOUSE;
+        slot_num = 3;
+        blocks = {
+            {ww, ww, ww, ww, ww, ww, ww, ww, ww},
+            {ww, wf, wf, wf, ww, wf, wf, wf, ww},
+            {wd, wf, wf, wf, wd, wf, wf, wf, ww},
+            {ww, wf, wf, wf, ww, wf, wf, wf, ww},
+            {ww, ww, wd, ww, ww, ww, ww, ww, ww},
+            {ww, wf, wf, wf, wf, wf, wf, wf, ww},
+            {ww, wf, wf, wf, wf, wf, wf, wf, ww},
+            {ww, ww, ww, ww, ww, ww, ww, ww, ww},
+        };
+        break;
     case eBuildingType::NORMAL_SHOP:
         name = "ªÛ¡°";
         build_cost = 1000000;
         building_role = eBuildingRole::WORK_SPACE;
-        slot_num = 3;
+        slot_num = 4;
         blocks = {
             {ww, ww, ww, ww, ww, ww, ww, ww},
             {ww, wf, wf, wf, wf, wf, wf, ww},
@@ -50,6 +66,38 @@ BuildingData::BuildingData(eBuildingType type) {
             {ww, wf, wf, wf, wf, wf, wf, ww},
             {ww, wf, wf, wf, wf, wf, wf, ww},
             {ww, ww, ws, wd, wd, ws, ww, ww},
+        };
+        break;
+    case eBuildingType::TWO_ROOM_TWO_DOOR_SHOP:
+        name = "≈ı∑Î ªÛ¡°1";
+        build_cost = 1250000;
+        building_role = eBuildingRole::WORK_SPACE;
+        slot_num = 5;
+        blocks = {
+            {ww, ww, ww, ww, ww, ww, ww, ww},
+            {ww, wf, wf, wf, ww, wf, wf, ww},
+            {ww, wf, wf, wf, wd, wf, wf, ww},
+            {ww, wf, wf, wf, ww, wf, wf, ww},
+            {ww, ww, wd, ww, ww, wf, wf, ww},
+            {ww, wf, wf, wf, wf, wf, wf, ww},
+            {ww, wf, wf, wf, wf, wf, wf, ww},
+            {ww, ww, ws, wd, wd, ws, ww, ww},
+        };
+        break;
+    case eBuildingType::TWO_ROOM_THREE_DOOR_SHOP:
+        name = "≈ı∑Î ªÛ¡°2";
+        build_cost = 1500000;
+        building_role = eBuildingRole::WORK_SPACE;
+        slot_num = 6;
+        blocks = {
+            {ww, ww, ww, ww, ww, ww, ww, ww, ww},
+            {ww, wf, wf, wf, ww, wf, wf, wf, ww},
+            {ws, wf, wf, wf, ww, wf, wf, wf, ww},
+            {wd, wf, wf, wf, wd, wf, wf, wf, ww},
+            {wd, wf, wf, wf, wd, wf, wf, wf, ww},
+            {ws, wf, wf, wf, ww, wf, wf, wf, ww},
+            {ww, wf, wf, wf, ww, wf, wf, wf, ww},
+            {ww, ww, ww, ww, ww, ww, ww, ww, ww},
         };
         break;
     default:
