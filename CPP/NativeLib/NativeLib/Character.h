@@ -55,7 +55,7 @@ public:
 		Transform2D transform, Vector2 scale)
 		: id(_id), full_name(_name), gender(_gender),
 		WorldObject(_name.GetFullname(), transform, scale) {
-		inventory = new Inventory();
+		inventory = new Inventory(2, 2);
 		AddBaseItem();
 		SetBaseStat();
 	}

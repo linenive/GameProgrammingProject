@@ -169,6 +169,8 @@ private:
 				target_structure->GetInventory()->PopItemById(task->wish_item_code, 1);
 				ui_service->ui_update_needed_structure_ids.push(target_structure->id);
 				village_service->IncreaseMoney(item->GetParameter("price"));
+				character->GetInventory()->AddItem(*item, 1);
+				ui_service->ui_update_needed_character_ids.push(character->GetId());
 				task->Done();
 			}
 			return;

@@ -56,7 +56,7 @@ func get_character_info(id):
 	
 	character_info["full_name"] = character_data[0]
 	character_info["gender"] = character_data[4]
-	inventory_size = 9
+	inventory_size = 4
 			
 	for j in inventory_size:
 		item_info_array = character_data[10+j]
