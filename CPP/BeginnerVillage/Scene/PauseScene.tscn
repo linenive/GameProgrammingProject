@@ -11,7 +11,16 @@ font_data = ExtResource( 2 )
 
 [node name="PauseScene" type="CanvasLayer"]
 pause_mode = 2
+layer = 2
 script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 3000.0
+margin_bottom = 3000.0
+color = Color( 0, 0, 0, 0.678431 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TitleCanvas" type="CanvasLayer" parent="."]
 layer = 12
