@@ -1229,8 +1229,8 @@ script = ExtResource( 31 )
 script = ExtResource( 32 )
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
-[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
+[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="building_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_building_info_update_needed"]
 [connection signal="character_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_character_info_update_needed"]
 [connection signal="money_alert_effect" from="UIManager" to="JanTestGDScript" method="_on_UIManager_money_alert_effect"]
@@ -1239,6 +1239,9 @@ script = ExtResource( 32 )
 [connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
 [connection signal="change_to_install_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_install_state"]
 [connection signal="change_to_normal_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_normal_state"]
+[connection signal="click_building" from="InputManager" to="GodotInput" method="_on_InputManager_click_building"]
+[connection signal="click_character" from="InputManager" to="GodotInput" method="_on_InputManager_click_character"]
+[connection signal="click_structure" from="InputManager" to="GodotInput" method="_on_InputManager_click_structure"]
 [connection signal="install_structure" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_install_structure"]
 [connection signal="start_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_start_trace"]
 [connection signal="stop_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_stop_trace"]
