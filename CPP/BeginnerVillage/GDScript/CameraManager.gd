@@ -20,9 +20,6 @@ var kzoom_in=0.5
 var kzoom_max = 10
 var kzoom_min = 0.5
 
-signal start_trace
-signal stop_trace
-
 func _ready():	
 	SetScreenLimit()
 	InitCameraSetting()
@@ -105,13 +102,11 @@ func SetCameraSetting_Trace(newtracing_path):
 	g_nowcamerastate = eCameraState.TRACE
 	g_nowtarget_path =newtracing_path
 	targetNode = get_node(g_nowtarget_path)
-	emit_signal("start_trace")
 	#Zoom(kzoom_in)
 
 func StopTracing():
 	SetCameraPosition($Camera2D.position)
 	SetCameraSetting_Default()
-	emit_signal("stop_trace")
 	
 func DetectZoomScrollKey():
 	#if g_nowcamerastate == eCameraState.DEFAULT:
@@ -139,10 +134,12 @@ func GetCurrentCameraStateInString():
 func IsTargetNode(node):
 	if targetNode == node:
 		return true
-	
 	return false
 
 # test와 연관된 부분, 그만 따라가기 버튼을 누르면 카메라가 줌아웃되고 다시 플레이어가 움직일 수 있게 되는 것
 func _on_StopFollowing_pressed():
 	StopTracing()
+	
+func GetCurrentZoom():
+	return $CameraCPP.GetCurrentZoom()
 

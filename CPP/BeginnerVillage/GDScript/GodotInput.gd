@@ -51,6 +51,11 @@ func convert_position_by_camera(position):
 	
 	return new_pos
 
+func convert_relative_position_by_camera(position):
+	var ratio = Vector2(1024,600) - get_viewport_rect().size
+	ratio = ratio/2
+	return position + Vector2(ratio.x,0)
+	
 func left_mouse_button_pressed(position):
 	input_manager.MouseClick(position)
 

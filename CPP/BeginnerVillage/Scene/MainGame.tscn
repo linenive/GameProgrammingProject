@@ -29,7 +29,7 @@
 [ext_resource path="res://Scene/InputEffect.gd" type="Script" id=27]
 [ext_resource path="res://Scene/BuildingInfoUI.tscn" type="PackedScene" id=28]
 [ext_resource path="res://CPPNative/StaticUnitManager.gdns" type="Script" id=29]
-[ext_resource path="res://GDScript/InstanceUICreator.gd" type="Script" id=31]
+[ext_resource path="res://GDScript/InstanceUICreater.gd" type="Script" id=31]
 [ext_resource path="res://CPPNative/InstanceUIManager.gdns" type="Script" id=32]
 [ext_resource path="res://GDScript/ChoiceButtonDataMaker.gd" type="Script" id=36]
 
@@ -1148,18 +1148,18 @@ script = ExtResource( 22 )
 
 [node name="PauseScene" parent="PauseManager" instance=ExtResource( 23 )]
 
-[node name="InstanceUICreator" type="Node" parent="."]
+[node name="InstanceUICreater" type="Node" parent="."]
 script = ExtResource( 31 )
 
 [node name="InstanceUIManager" type="Node" parent="."]
 script = ExtResource( 32 )
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
-[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
+[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="building_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_building_info_update_needed"]
 [connection signal="character_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_character_info_update_needed"]
-[connection signal="money_alert_effect" from="UIManager" to="JanTestGDScript" method="_on_UIManager_money_alert_effect"]
+[connection signal="money_alert_effect" from="UIManager" to="InstanceUICreater" method="_on_UIManager_money_alert_effect"]
 [connection signal="structure_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_structure_info_update_needed"]
 [connection signal="build_building" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_build_building"]
 [connection signal="change_to_building_state" from="InputManager" to="GodotInput/InputEffect" method="_on_InputManager_change_to_building_state"]
@@ -1169,8 +1169,6 @@ script = ExtResource( 32 )
 [connection signal="click_character" from="InputManager" to="GodotInput" method="_on_InputManager_click_character"]
 [connection signal="click_structure" from="InputManager" to="GodotInput" method="_on_InputManager_click_structure"]
 [connection signal="install_structure" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_install_structure"]
-[connection signal="start_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_start_trace"]
-[connection signal="stop_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_stop_trace"]
 [connection signal="delete_structrue" from="StaticUnitManager" to="JanTestGDScript/TestTileCreater" method="_on_StaticUnitManager_delete_structrue"]
-[connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_create_instance_ui"]
-[connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_delete_instance_ui"]
+[connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_create_instance_ui"]
+[connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_delete_instance_ui"]

@@ -3,13 +3,17 @@ extends Node
 var progress_bar
 var text_label
 var world_manager
+var godot_input
+
 var instance_ui_manager
 var character_node_parent
 
 func _ready():
 	progress_bar = load("res://Scene/Object/ProgressBar.tscn")
-	text_label = load("res://Scene/ProgressBar.tscn")
+	text_label = load("res://Scene/TextEffect.tscn")
 	world_manager = get_node("/root/Main/WorldManager")
+	godot_input = get_node("/root/Main/GodotInput")
+	
 	instance_ui_manager = get_node("/root/Main/InstanceUIManager")
 	character_node_parent = get_node("/root/Main/JanTestGDScript/TestTileCreater/Character")
 	
@@ -41,22 +45,28 @@ func DeleteProgressBar(id):
 					child.remove_child(n)
 					n.queue_free()
 
-func CreateTextUI(id, pos):
+func CreateTextUI(money_variation, pos):
 	var text_inst = text_label.instance()
-	#text_inst.Set 크기, 색, 
+	add_child(text_inst)
+	text_inst.rect_position = pos
+	text_inst.add_to_group("text_effect")	
+
+	var font_color
+	var effect_type
+	if money_variation>=0:
+		font_color = Color.green
+		effect_type = 'wave'
+	else:
+		font_color = Color.red
+		effect_type = 'shake'
 	
-	var target_transform = world_manager.GetCharacterTransform(id)
-	text_inst.transform = target_transform
-	text_inst.position = pos
-	text_inst.add_to_group("text_ui")
-	
-func DeleteTextUI(id):
-	var target_transform = world_manager.GetCharacterTransform(id)
-	if target_transform.has_node("TextUI"):
-		target_transform.remove_child("TextUI")
+	text_inst.TextSetting(str(money_variation),effect_type, 20, font_color, 1.2)
 
 func _on_InstanceUIManager_create_instance_ui(ID, max_var):
 	CreateProgressBar(ID,max_var)
 	
 func _on_InstanceUIManager_delete_instance_ui(ID):
 	DeleteProgressBar(ID)
+
+func _on_UIManager_money_alert_effect(variation, position):
+	CreateTextUI(variation, godot_input.convert_relative_position_by_camera(position))
