@@ -149,13 +149,13 @@ func update_used_popup(id, type):
 			popup.show_info_by_type(id, new_info)
 
 func _on_UIManager_character_info_update_needed(ID):
-	print("update needed character id " + str(ID))
+	#print("update needed character id " + str(ID))
 	update_used_popup(ID, "Character")
 
 func _on_UIManager_building_info_update_needed(ID):
-	print("update needed building id " + str(ID))
+	#print("update needed building id " + str(ID))
 	update_used_popup(ID, "Building")
 
 func _on_UIManager_structure_info_update_needed(ID):
-	print("update needed structure id " + str(ID))
+	#print("update needed structure id " + str(ID))
 	update_used_popup(ID, "Structure")

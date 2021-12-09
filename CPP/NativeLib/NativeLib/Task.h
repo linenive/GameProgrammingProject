@@ -124,9 +124,16 @@ private:
 	Inventory* target_inventory;
 	unsigned int action_time;
 public:
+	int target_structure_id = -1;
 	WorkTask(eWorkType type, Inventory* target_inventory, unsigned int action_num, unsigned int action_time)
 		: work_type(type), target_inventory(target_inventory), 
 		left_action(action_num), action_time(action_time) {
+		current_action = new WorkAction(type, target_inventory, action_time);
+	}
+	WorkTask(eWorkType type, Inventory* target_inventory, unsigned int action_num, unsigned int action_time,
+		int target_structure_id)
+		: work_type(type), target_inventory(target_inventory),
+		left_action(action_num), action_time(action_time), target_structure_id(target_structure_id){
 		current_action = new WorkAction(type, target_inventory, action_time);
 	}
 

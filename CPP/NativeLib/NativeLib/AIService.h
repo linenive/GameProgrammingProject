@@ -66,12 +66,14 @@ private:
 				}
 			}
 			else {
-				Inventory* target_inventory =
-					static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id);
+				Structure* structure = static_unit_service->GetFirstStructureHasInventoryInBuildingById(resident->work_space_id);
+				Inventory* target_inventory = structure->GetInventory();
 				if (target_inventory->GetItemCountByItemId(
 					ItemDictionary::GetInstance()->GetIDByName("wood")) >= 5) {
 					if (HasSamePosition(resident, resident_service->GetResidentWorkSpacePosition(resident->GetId()))) {
-						return task_service->CreateWorkTask(eWorkType::CREATE_ITEM, target_inventory, 1);
+						return task_service->CreateWorkTaskToStructureInventory(
+							eWorkType::CREATE_ITEM, target_inventory, 1, structure->id
+						);
 					}
 					return task_service->CreateSeekTaskToWorkSpace(resident);
 				}
@@ -106,6 +108,7 @@ private:
 				}
 				if (HasSamePosition(performer, shop->GetCenterPosition())) {
 					shop->IncreaseOneVisits();
+					ui_service->ui_update_needed_building_ids.push(shop->id);
 					p->is_done = true;
 					return task_service->CreateShoppingTask(
 						shop, ItemDictionary::GetInstance()->GetIDByName("wood"));
@@ -199,7 +202,14 @@ private:
 			}
 
 			ai_executer.ExecuteCharacterTask(performer, it->second);
-			++it;
+			if (it->second != nullptr && it->second->GetType() == eTaskType::WORK) {
+				WorkTask* task = (WorkTask*)it->second;
+				ui_service->ui_update_needed_character_ids.push(performer->GetId());
+				if (task->target_structure_id != -1)
+					ui_service->ui_update_needed_structure_ids.push(task->target_structure_id);
+			}
+
+			++it;			
 		}
 	}
 

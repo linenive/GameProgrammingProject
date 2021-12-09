@@ -64,7 +64,13 @@ public:
 	}
 	Task* CreateWorkTask(eWorkType work_type, Inventory* target_inventory, int work_count) {
 		return new WorkTask(work_type, target_inventory, work_count, 
-			work_type == eWorkType::COLLECT_WOOD ? 50 : 300); //hardcoding... T.T
+			work_type == eWorkType::COLLECT_WOOD ? 50 : 300); //hardcoding...
+	}
+	Task* CreateWorkTaskToStructureInventory(
+		eWorkType work_type, Inventory* target_inventory, int work_count, int structure_id
+	) {
+		return new WorkTask(work_type, target_inventory, work_count,
+			work_type == eWorkType::COLLECT_WOOD ? 50 : 300, structure_id);
 	}
 	Task* CreateShoppingTask(Building* shop, int wish_item_code) {
 		return new ShoppingTask(shop, wish_item_code);
