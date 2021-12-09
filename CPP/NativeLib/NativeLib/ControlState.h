@@ -111,10 +111,10 @@ public:
 	void MouseClick(Vector2 mouse_position) override {
 		ClickWorldObject(mouse_position);
 
-		StartDrag(mouse_position);
+		// StartDrag(mouse_position);
 	}
 
 	void MouseRelease(Vector2 mouse_position) override {
-		EndDrag(mouse_position);
+		// EndDrag(mouse_position);
 	}
 };
