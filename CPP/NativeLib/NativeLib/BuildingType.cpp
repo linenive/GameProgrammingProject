@@ -49,6 +49,9 @@ BuildingData::BuildingData(eBuildingType type) {
             {ww, ww, wd, ww, ww, ww, ww, ww, ww},
             {ww, wf, wf, wf, wf, wf, wf, wf, ww},
             {ww, wf, wf, wf, wf, wf, wf, wf, ww},
+            {ww, wf, wf, wf, wf, wf, wf, wf, ww},
+            {ww, wf, wf, wf, wf, wf, wf, wf, ww},
+            {ww, wf, wf, wf, wf, wf, wf, wf, ww},
             {ww, ww, ww, ww, ww, ww, ww, ww, ww},
         };
         break;
@@ -75,10 +78,11 @@ BuildingData::BuildingData(eBuildingType type) {
         slot_num = 5;
         blocks = {
             {ww, ww, ww, ww, ww, ww, ww, ww},
-            {ww, wf, wf, wf, ww, wf, wf, ww},
-            {ww, wf, wf, wf, wd, wf, wf, ww},
-            {ww, wf, wf, wf, ww, wf, wf, ww},
-            {ww, ww, wd, ww, ww, wf, wf, ww},
+            {ww, wf, wf, wf, wf, ww, wf, ww},
+            {ww, wf, wf, wf, wf, ww, wf, ww},
+            {ww, wf, wf, wf, wf, wd, wf, ww},
+            {ww, wf, wf, wf, wf, ww, wf, ww},
+            {ww, ww, wd, ww, ww, ww, wf, ww},
             {ww, wf, wf, wf, wf, wf, wf, ww},
             {ww, wf, wf, wf, wf, wf, wf, ww},
             {ww, ww, ws, wd, wd, ws, ww, ww},
@@ -91,12 +95,12 @@ BuildingData::BuildingData(eBuildingType type) {
         slot_num = 6;
         blocks = {
             {ww, ww, ww, ww, ww, ww, ww, ww, ww},
-            {ww, wf, wf, wf, ww, wf, wf, wf, ww},
-            {ws, wf, wf, wf, ww, wf, wf, wf, ww},
-            {wd, wf, wf, wf, wd, wf, wf, wf, ww},
-            {wd, wf, wf, wf, wd, wf, wf, wf, ww},
-            {ws, wf, wf, wf, ww, wf, wf, wf, ww},
-            {ww, wf, wf, wf, ww, wf, wf, wf, ww},
+            {ww, wf, wf, wf, wf, ww, wf, wf, ww},
+            {ws, wf, wf, wf, wf, ww, wf, wf, ww},
+            {wd, wf, wf, wf, wf, wd, wf, wf, ww},
+            {wd, wf, wf, wf, wf, wd, wf, wf, ww},
+            {ws, wf, wf, wf, wf, ww, wf, wf, ww},
+            {ww, wf, wf, wf, wf, ww, wf, wf, ww},
             {ww, ww, ww, ww, ww, ww, ww, ww, ww},
         };
         break;
