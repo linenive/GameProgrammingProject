@@ -177,7 +177,8 @@ private:
 			return;
 		}
 		else {
-			task->GoToNextStructure(target_structure->GetCenterPosition());
+			task_service->SetTaskPathTempFunc(task, character, target_structure->GetCenterPosition());
+			task->NextAction();
 			return;
 		}
 

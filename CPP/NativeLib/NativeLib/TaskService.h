@@ -34,6 +34,9 @@ public:
 		queue<Vector2>* paths = CreatePath(c->GetPhysics()->GetPosition(), leave_point);
 		return new LeaveVillageTask(paths);
 	}
+	void SetTaskPathTempFunc(ShoppingTask* task, Character* c, Vector2 seek_target) {
+		task->SetPath(CreatePath(c->GetPhysics()->GetPosition(), seek_target));
+	}
 	float GetRandomPoint(float now_point, float bound_max) {
 		float new_point;
 		float rand_var = rand() % 20 - 10;

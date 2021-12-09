@@ -148,6 +148,7 @@ public:
 class ShoppingTask : public Task {
 private:
 	list<int> structure_list;
+	queue<Vector2>* paths;
 public:
 	Building* shop;
 	list<int>::iterator structure_iterator;
@@ -158,8 +159,19 @@ public:
 		structure_iterator = structure_list.begin();
 		current_action = new PauseAction();
 	}
+	~ShoppingTask() {
+		delete paths;
+	}
 	virtual void NextAction() {
-
+		delete current_action;
+		current_action = nullptr;
+		if (!paths->empty()) {
+			current_action = new MoveAction(paths->front());
+			paths->pop();
+		}
+		else {
+			current_action = new PauseAction();
+		}
 	}
 
 	virtual const eTaskType GetType() {
@@ -174,7 +186,7 @@ public:
 		is_task_done = true;
 	}
 
-	void GoToNextStructure(Vector2 position) {
-		current_action = new MoveAction(position);
+	void SetPath(queue<Vector2>* _paths) {
+		paths = _paths;
 	}
 };
