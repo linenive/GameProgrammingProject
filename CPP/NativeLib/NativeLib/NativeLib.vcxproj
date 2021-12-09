@@ -151,6 +151,8 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InstanceUIMaker.cpp" />
+    <ClCompile Include="InstanceUIManager.cpp" />
     <ClCompile Include="NameGenerator.cpp" />
     <ClCompile Include="NameList.cpp" />
     <ClCompile Include="ItemDictionary.cpp" />
@@ -176,6 +178,9 @@
     <ClInclude Include="CharacterSlot.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="ControlContextService.h" />
+    <ClInclude Include="InstanceUI.h" />
+    <ClInclude Include="InstanceUIManager.h" />
+    <ClInclude Include="InstanceUIMaker.h" />
     <ClInclude Include="StatItem.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="InstallState.h" />

@@ -61,9 +61,10 @@ public:
 			return;
 		}
 		int work_speed = performer->GetStatValue(WorkType::ToStatFieldType(work_type));
-		left_time -= work_speed / 100; //To-do not 100 always maybe
+		left_time -= work_speed / 100;//To-do not 100 always maybe
+
 		if (IsEndAction()) {
-			printf("Got Item\n");
+			//printf("Got Item\n");
 			Item item = *ItemDictionary::GetInstance()->GetItemByName(
 				WorkType::ItemNameOf(work_type)
 			);

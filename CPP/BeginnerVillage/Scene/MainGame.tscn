@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -22,13 +22,15 @@
 [ext_resource path="res://Scene/ChoiceButtonUI.tscn" type="PackedScene" id=20]
 [ext_resource path="res://GDScript/ChoiceButtonControl.gd" type="Script" id=21]
 [ext_resource path="res://GDScript/PauseManager.gd" type="Script" id=22]
-[ext_resource path="res://Scene/Esc.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scene/PauseScene.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scene/PeopleInfoUI.tscn" type="PackedScene" id=24]
 [ext_resource path="res://GDScript/PeopleUIControl.gd" type="Script" id=25]
 [ext_resource path="res://Scene/TextureDB.gd" type="Script" id=26]
 [ext_resource path="res://Scene/InputEffect.gd" type="Script" id=27]
 [ext_resource path="res://Scene/BuildingInfoUI.tscn" type="PackedScene" id=28]
 [ext_resource path="res://CPPNative/StaticUnitManager.gdns" type="Script" id=29]
+[ext_resource path="res://GDScript/InstanceUICreator.gd" type="Script" id=31]
+[ext_resource path="res://CPPNative/InstanceUIManager.gdns" type="Script" id=32]
 [ext_resource path="res://GDScript/ChoiceButtonDataMaker.gd" type="Script" id=36]
 
 [sub_resource type="DynamicFont" id=1]
@@ -1049,9 +1051,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -495.0
-margin_top = -245.0
+margin_top = -247.04
 margin_right = 495.0
-margin_bottom = -5.0
+margin_bottom = -7.03998
 rect_min_size = Vector2( 990, 0 )
 mouse_filter = 2
 custom_constants/separation = 10
@@ -1220,6 +1222,12 @@ script = ExtResource( 22 )
 
 [node name="PauseScene" parent="PauseManager" instance=ExtResource( 23 )]
 
+[node name="InstanceUICreator" type="Node" parent="."]
+script = ExtResource( 31 )
+
+[node name="InstanceUIManager" type="Node" parent="."]
+script = ExtResource( 32 )
+
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
 [connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
 [connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
@@ -1240,3 +1248,5 @@ script = ExtResource( 22 )
 [connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
 [connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]
 [connection signal="pressed" from="UIControl/HUD/StopTracingBtn" to="UIControl" method="_on_StopTracingBtn_pressed"]
+[connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_create_instance_ui"]
+[connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_delete_instance_ui"]

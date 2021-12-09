@@ -139,7 +139,11 @@ public:
 			current_action = nullptr;
 		}
 	}
-
+	float GetLeftTime() {
+		if (current_action != nullptr) {
+			return ((WorkAction*)current_action)->GetLeftTime();
+		}
+	}
 	virtual const eTaskType GetType() {
 		return eTaskType::WORK;
 	}
