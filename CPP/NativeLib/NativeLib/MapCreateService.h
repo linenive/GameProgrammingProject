@@ -51,6 +51,16 @@ private:
 				);
 			}
 		}
+
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(86, 36));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(100, 88));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(70, 84));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(23, 64));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(55, 31));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(16, 50));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(97, 7));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(83, 4));
+		static_unit_service->CreateStructure(eStructureType::TREE, Coordinates(5, 17));
 	}
 public:
 	MapCreateService(StaticUnitService* _static_unit_service, TileRepository* _tile_repo)
