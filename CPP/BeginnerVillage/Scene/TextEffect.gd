@@ -8,14 +8,22 @@ var shake_parameter=''
 
 var default_head
 var default_tail
+var fade_head
+var fade_tail
+var fade_parameter
 var hover_head
 var hover_tail
 
+var text_length = 10
+var current_fade = 10
 var left_time=10.0
 
 func _ready():
 	default_head='[center]'
 	default_tail = '[/center]'
+	fade_parameter = ' start='+str(current_fade)+' length=' + str(text_length)+' ]'
+	fade_head = '[fade'+fade_parameter
+	fade_tail = '[/fade]'
 	hover_head = '['+effect_type + wave_parameter
 	hover_tail = '[/'+effect_type+']'
 	
@@ -27,6 +35,11 @@ func _ready():
 func _process(_delta):
 	if left_time <= 0:
 		queue_free()
+	elif left_time<=0.5:
+		$Text.rect_position += Vector2(0.1, -0.1)
+		left_time -= _delta
+		current_fade -= _delta * text_length * 3
+		FadeTextUpdate()
 	else:
 		left_time -= _delta
 		
@@ -38,6 +51,7 @@ func TextSetting(new_text,new_effect_type,font_size, font_color, life_time):
 	$Text.set("custom_colors/default_color",font_color)
 	
 	current_text = new_text
+	text_length = len(new_text)
 	set_effect_text()
 
 func set_effect_text():
@@ -47,6 +61,13 @@ func set_effect_text():
 		hover_head = '['+effect_type + shake_parameter
 		
 	hover_tail = '[/'+effect_type+']'
-	
-	full_text = default_head + hover_head + current_text + hover_tail + default_tail
+	current_fade = text_length
+	FadeTextUpdate()
+	print(current_fade)
+
+func FadeTextUpdate():
+	print(current_fade)
+	fade_parameter = ' start='+str(current_fade)+' length=' + str(text_length)+' ]'
+	fade_head = '[fade'+fade_parameter
+	full_text = default_head +fade_head+ hover_head + current_text + hover_tail +fade_tail+ default_tail
 	$Text.bbcode_text = full_text
