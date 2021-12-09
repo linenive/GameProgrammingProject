@@ -7,6 +7,8 @@ var uicontrol
 
 var character_node_parent
 
+var is_ui_clicked = false
+
 func _ready():
 	input_manager = get_node("/root/Main/InputManager")
 	world_manager = get_node("/root/Main/WorldManager")
@@ -16,9 +18,16 @@ func _ready():
 	
 	character_node_parent = get_node("/root/Main/JanTestGDScript/TestTileCreater/Character")
 
+func ui_entered():
+	is_ui_clicked = true
+	
 func _input(event):
 	input_process_for_ui(event)
-	input_process_for_game_world(event)
+	
+	if !is_ui_clicked:
+		input_process_for_game_world(event)
+	
+	is_ui_clicked = false	
 
 func input_process_for_ui(event):
 	# To-do: ui 입력 처리

@@ -27,7 +27,6 @@
 [ext_resource path="res://GDScript/PeopleUIControl.gd" type="Script" id=25]
 [ext_resource path="res://Scene/TextureDB.gd" type="Script" id=26]
 [ext_resource path="res://Scene/InputEffect.gd" type="Script" id=27]
-[ext_resource path="res://Scene/BuildingInfoUI.tscn" type="PackedScene" id=28]
 [ext_resource path="res://CPPNative/StaticUnitManager.gdns" type="Script" id=29]
 [ext_resource path="res://GDScript/InstanceUICreater.gd" type="Script" id=31]
 [ext_resource path="res://CPPNative/InstanceUIManager.gdns" type="Script" id=32]
@@ -1138,10 +1137,6 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIControl/PeopleUIControl/ManagePeopleUI/TabContainer/Guest"]
 
-[node name="BuildingUIControl" type="Node" parent="UIControl"]
-
-[node name="BuildingInfoUI" parent="UIControl/BuildingUIControl" instance=ExtResource( 28 )]
-
 [node name="PauseManager" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 22 )
@@ -1172,3 +1167,7 @@ script = ExtResource( 32 )
 [connection signal="delete_structrue" from="StaticUnitManager" to="JanTestGDScript/TestTileCreater" method="_on_StaticUnitManager_delete_structrue"]
 [connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_create_instance_ui"]
 [connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_delete_instance_ui"]
+[connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/PeopleBtn" to="UIControl/MenuUIControl" method="_on_PeopleBtn_gui_input"]
+[connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn" to="UIControl/MenuUIControl" method="_on_ArchitectureBtn_gui_input"]
+[connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn/Node/ConstructionBtn" to="UIControl/MenuUIControl" method="_on_ConstructionBtn_gui_input"]
+[connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn/Node/InstallBtn" to="UIControl/MenuUIControl" method="_on_InstallBtn_gui_input"]
