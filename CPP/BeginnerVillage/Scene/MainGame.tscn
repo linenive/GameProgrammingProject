@@ -1221,8 +1221,8 @@ script = ExtResource( 22 )
 [node name="PauseScene" parent="PauseManager" instance=ExtResource( 23 )]
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
-[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
+[connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
 [connection signal="building_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_building_info_update_needed"]
 [connection signal="character_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_character_info_update_needed"]
 [connection signal="structure_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_structure_info_update_needed"]

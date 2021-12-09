@@ -42,7 +42,7 @@ func window_setting_character_info(id, info):
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer4/content_character_gender.text = info[4]
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer2/content_character_class.text = info[5]
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer3/content_character_position.text = position_to_string(info[6])
-	$Container/VBoxContainer/VBoxContainer3/HBoxContainer5/content_character_task.text = info[7]
+	$Container/VBoxContainer/VBoxContainer3/HBoxContainer5/content_character_task.text = "없음" if info[7] == "NONE" else info[7]
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer6/content_character_skill.text = info[8]
 	$Container/character_texture.texture = (target_character_node as Sprite).texture
 	

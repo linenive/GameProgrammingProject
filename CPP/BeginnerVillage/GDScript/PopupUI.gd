@@ -10,6 +10,8 @@ var target_type
 func _ready():
 	uicontrol = get_node("/root/Main/UIControl")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
+	
+	get_close_button().connect("pressed", self, "close_button_pressed")
 
 func show_popup(id, type, info, window_position:Vector2):
 	if target_id == 0:
@@ -18,7 +20,6 @@ func show_popup(id, type, info, window_position:Vector2):
 	set_position(window_position)	
 	
 	var btn = get_close_button()
-	btn.connect("pressed", self, "close_button_pressed")
 	
 	show_info_by_type(id, info)
 	
