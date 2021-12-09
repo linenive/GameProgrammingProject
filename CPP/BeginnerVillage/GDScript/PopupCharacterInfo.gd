@@ -38,7 +38,6 @@ func window_setting_character_info(id, info):
 	target_character_id = id
 	target_character_node = get_character_node(id)
 	
-	print("roky")
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer/content_character_name.text = info[0]
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer4/content_character_gender.text = info[4]
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer2/content_character_class.text = info[5]
@@ -47,7 +46,6 @@ func window_setting_character_info(id, info):
 	$Container/VBoxContainer/VBoxContainer3/HBoxContainer6/content_character_skill.text = info[8]
 	$Container/character_texture.texture = (target_character_node as Sprite).texture
 	
-	#$title_inventory.text = "Inventory"
 	$Container/VBoxContainer/VBoxContainer2/PanelContainer/inventory_ui.init_inventory(10, info)
 	
 	if is_guest(info):
