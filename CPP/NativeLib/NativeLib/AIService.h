@@ -102,7 +102,8 @@ private:
 	Task* FindNewTaskToGuest(Guest* performer) {
 		vector<PurposeOfVisit*> purposes = ((GuestSchedule*)(performer->GetSchedule()))->GetPurposOfVisit();
 		for (PurposeOfVisit* p : purposes) {
-			if (p->GetType() == ePurposeOfVisitType::BuyFirewood && !p->is_done) {
+			ePurposeOfVisitType type = p->GetType();
+			if ((type == ePurposeOfVisitType::BuyFirewood || type == ePurposeOfVisitType::BuyWoodenBow) && !p->is_done) {
 				Building* shop = static_unit_service->GetFirstShop();
 				if (shop == nullptr) {
 					continue;
@@ -111,8 +112,15 @@ private:
 					shop->IncreaseOneVisits();
 					ui_service->ui_update_needed_building_ids.push(shop->id);
 					p->is_done = true;
-					return task_service->CreateShoppingTask(
-						shop, ItemDictionary::GetInstance()->GetIDByName("wood"));
+					if (type == ePurposeOfVisitType::BuyFirewood) {
+						return task_service->CreateShoppingTask(
+							shop, ItemDictionary::GetInstance()->GetIDByName("wood"));
+					}
+					else {
+						return task_service->CreateShoppingTask(
+							shop, ItemDictionary::GetInstance()->GetIDByName("wooden_bow"));
+					}
+					
 				}
 				else {
 					return task_service->CreateSeekTask(performer, shop->GetCenterPosition());

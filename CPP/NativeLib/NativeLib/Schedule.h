@@ -10,6 +10,7 @@ enum class ePurposeOfVisitType {
 	Shopping,
 	BuyLiquidMedicine,
 	BuyFirewood,
+	BuyWoodenBow,
 };
 
 class PurposeOfVisit {

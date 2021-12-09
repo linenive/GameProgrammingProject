@@ -17,6 +17,9 @@ public:
 		else if (type == ePurposeOfVisitType::JustChilling) {
 			purpose = new PurposeOfVisit("그냥 휴식", type);
 		}
+		else if (type == ePurposeOfVisitType::BuyWoodenBow) {
+			purpose = new PurposeOfVisit("나무 활 구매", type);
+		}
 		else {
 			purpose = new PurposeOfVisit("NoName", type);
 		}
@@ -33,13 +36,16 @@ private:
 
 	void SettingPurposeOfVisit(Character* character) {
 		// To-do: number of purpose를 random으로 정하도록 바꾼다.
-		int random_purpose = rand()%3;
+		int random_purpose = rand()%4;
 		GuestSchedule* schedule = (GuestSchedule*)character->GetSchedule();
 		if (random_purpose == 1) {
 			schedule->AddPurposeOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::JustChilling));
 		}
 		else if (random_purpose == 2) {
 			schedule->AddPurposeOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::BuyFirewood));
+		}
+		else if (random_purpose == 3) {
+			schedule->AddPurposeOfVisit(purpose_factory.CreatePurposeOfVisit(ePurposeOfVisitType::BuyWoodenBow));
 		}
 	}
 
