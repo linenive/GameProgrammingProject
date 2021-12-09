@@ -6,7 +6,7 @@ var building_name_arrray = ["작은 집", "커다란 집", "쓰리룸 집", "상
 var building_data_array : Array
 var BUILDING_COUNT = 6
 
-var furniture_name_arrray = ["싱글 베드", "더블 베드", "작은 상자", "싱크대", "화병", "카운터", "테이블", "의자"]
+var furniture_name_arrray = ["싱글 베드", "더블 베드", "작은 상자", "싱크대", "화병", "테이블", "카운터", "의자"]
 var furniture_data_array : Array
 var FURNITURE_COUNT = 8
 
