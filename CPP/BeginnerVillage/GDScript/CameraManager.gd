@@ -20,9 +20,6 @@ var kzoom_in=0.5
 var kzoom_max = 10
 var kzoom_min = 0.5
 
-signal start_trace
-signal stop_trace
-
 func _ready():	
 	SetScreenLimit()
 	InitCameraSetting()
@@ -105,13 +102,11 @@ func SetCameraSetting_Trace(newtracing_path):
 	g_nowcamerastate = eCameraState.TRACE
 	g_nowtarget_path =newtracing_path
 	targetNode = get_node(g_nowtarget_path)
-	emit_signal("start_trace")
 	#Zoom(kzoom_in)
 
 func StopTracing():
 	SetCameraPosition($Camera2D.position)
 	SetCameraSetting_Default()
-	emit_signal("stop_trace")
 	
 func DetectZoomScrollKey():
 	#if g_nowcamerastate == eCameraState.DEFAULT:

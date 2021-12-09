@@ -130,12 +130,6 @@ func _on_StopTracingBtn_pressed():
 	#$HUD/StopTracingBtn.visible = false
 	camera_manager.StopTracing()
 
-func _on_CameraManager_start_trace():
-	$HUD/StopTracingBtn.visible = true
-
-func _on_CameraManager_stop_trace():
-	$HUD/StopTracingBtn.visible = false
-
 func _on_Main_delete_character(ID):
 	for popup in used_popups:
 		if popup.get_target_id() == ID:
