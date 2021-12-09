@@ -3,6 +3,7 @@ extends Node
 var character_texture = []
 var block_texture = []
 var structure_texture = []
+var building_blueprint_texture = []
 
 # To-do: load db. not hard coding.
 func load_db():
@@ -26,6 +27,13 @@ func load_db():
 	structure_texture.append(load("res://Image/furniture_7.png"))
 	structure_texture.append(load("res://Image/furniture_8.png"))
 	structure_texture.append(load("res://Image/tree_1.png"))
+	
+	building_blueprint_texture.append(load("res://Image/building_blueprint/small_house.png"))
+	building_blueprint_texture.append(load("res://Image/building_blueprint/large_house.png"))
+	building_blueprint_texture.append(load("res://Image/building_blueprint/three_room_house.png"))
+	building_blueprint_texture.append(load("res://Image/building_blueprint/shop.png"))
+	building_blueprint_texture.append(load("res://Image/building_blueprint/two_room_shop_1.png"))
+	building_blueprint_texture.append(load("res://Image/building_blueprint/two_room_shop_2.png"))
 
 func _ready():
 	load_db()

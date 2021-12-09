@@ -120,9 +120,9 @@ func make_employee_list(info):
 			continue
 		
 		temp_dictionary = {}
-		temp_character_info = ui_control.get_character_info(info[6+i])
+		temp_character_info =  ui_control.get_object_info(info[6+i], "Character")
 		
-		temp_dictionary["name"] = temp_character_info["full_name"]
+		temp_dictionary["name"] = temp_character_info[0]
 		temp_dictionary["character_id"] = info[6+i]
 		temp_dictionary["image"] = (get_character_node_by_character_id(info[6+i]) as Sprite).texture
 		
