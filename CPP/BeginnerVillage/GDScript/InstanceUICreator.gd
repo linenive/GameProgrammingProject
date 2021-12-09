@@ -29,7 +29,7 @@ func CreateProgressBar(id, max_value):
 	for child in children:
 		if child.get_id() == id:
 			child.add_child(progress_inst)
-			progress_inst.rect_position = Vector2(-30,-50)
+			progress_inst.rect_position = Vector2(-30,15)
 			progress_inst.add_to_group("progress_bar")	
 	
 func DeleteProgressBar(id):
