@@ -2,6 +2,7 @@
 #include "Item.h"
 #include "GameRule.h"
 #include "CoordinatesSystem.h"
+#include <map>
 
 class InventorySlot {
 public:
@@ -91,20 +92,29 @@ private:
 	}
 
 	void Sort() {
-		vector <InventorySlot> flat_slot;
+		map<Item, int> item_count_map;
 		Coordinates cur_pos = BasePos();
 
 		while (IsValidPos(cur_pos)) {
-			flat_slot.push_back(*SlotAt(cur_pos));
+			if (SlotAt(cur_pos)->item_count > 0) {
+				item_count_map[SlotAt(cur_pos)->item] += SlotAt(cur_pos)->item_count;
+			}
+			
 			cur_pos = NextPos(cur_pos);
 		}
-		sort(flat_slot.begin(), flat_slot.end());
 
 		cur_pos = BasePos();
-		int i = 0;
+
+		for (auto e : item_count_map) {
+			while (e.second > 0) {
+				SlotAt(cur_pos)->item = e.first;
+				SlotAt(cur_pos)->item_count = min(e.second, MAX_ITEM_STACK);
+				e.second -= SlotAt(cur_pos)->item_count;
+				cur_pos = NextPos(cur_pos);
+			}
+		}
 		while (IsValidPos(cur_pos)) {
-			*SlotAt(cur_pos) = flat_slot[i];
-			i++;
+			SlotAt(cur_pos)->item_count = 0;
 			cur_pos = NextPos(cur_pos);
 		}
 	}
@@ -145,6 +155,7 @@ public:
 				return;
 			}
 		}
+		Sort();
 	}
 
 	void PopItemById(int id, int item_count) {
