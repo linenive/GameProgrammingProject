@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -37,9 +37,6 @@
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
 
 [node name="Main" type="Node"]
@@ -98,89 +95,18 @@ rect_min_size = Vector2( 300, 105 )
 [node name="HUD" parent="UIControl" instance=ExtResource( 1 )]
 script = null
 
-[node name="Button" type="Button" parent="UIControl/HUD"]
-margin_left = 5.78651
-margin_top = 109.276
-margin_right = 121.787
-margin_bottom = 152.275
-custom_fonts/font = SubResource( 1 )
-text = "캐릭터 영입"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="x" type="TextEdit" parent="UIControl/HUD"]
-margin_left = 7.013
-margin_top = 162.0
-margin_right = 166.013
-margin_bottom = 196.0
-rect_pivot_offset = Vector2( 79.5, 34 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="y" type="TextEdit" parent="UIControl/HUD"]
-margin_left = 169.034
-margin_top = 162.0
-margin_right = 328.034
-margin_bottom = 196.0
-rect_pivot_offset = Vector2( 79.5, 34 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="VillageInfoUI" parent="UIControl/HUD" instance=ExtResource( 13 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_bottom = -56.2
 
 [node name="TileInfoTest" type="Label" parent="UIControl/HUD"]
-anchor_left = 0.712
-anchor_top = 0.709
-anchor_right = 0.807
-anchor_bottom = 0.752
-margin_left = -166.088
-margin_top = 97.6
-margin_right = 176.632
-margin_bottom = 87.8
-custom_fonts/font = SubResource( 2 )
-text = "test"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CharacterMove" type="Button" parent="UIControl/HUD"]
-margin_left = 145.827
-margin_top = 105.273
-margin_right = 187.827
-margin_bottom = 127.273
-custom_fonts/font = SubResource( 3 )
-text = "이동"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ClickPositionLabel" type="Label" parent="UIControl/HUD/CharacterMove"]
-margin_left = 3.0
-margin_top = 35.0
-margin_right = 150.0
-margin_bottom = 73.0
-custom_fonts/font = SubResource( 3 )
-text = "x, y"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StopTracingBtn" type="Button" parent="UIControl/HUD"]
-visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 4.74237
-margin_top = -35.0
-margin_right = 93.7424
-margin_bottom = -5.0
-text = "Stop Tracing"
+margin_top = -16.0
+margin_right = 440.0
+custom_fonts/font = SubResource( 1 )
+text = "test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -870,7 +796,7 @@ __meta__ = {
 margin_right = 80.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "주민"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/PeopleBtn"]
@@ -884,7 +810,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "영입"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -895,7 +821,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "관리"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -906,7 +832,7 @@ margin_left = 90.0
 margin_right = 170.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "건축"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn"]
@@ -920,7 +846,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "건설"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -931,7 +857,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "설치"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -942,7 +868,7 @@ margin_top = -132.0
 margin_right = 80.0
 margin_bottom = -97.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "철거"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -953,7 +879,7 @@ margin_left = 180.0
 margin_right = 260.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "연구"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/ResearchBtn"]
@@ -967,7 +893,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "종족"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -978,7 +904,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "클래스"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -989,7 +915,7 @@ margin_top = -132.0
 margin_right = 80.0
 margin_bottom = -97.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "무기"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1000,7 +926,7 @@ margin_left = 270.0
 margin_right = 350.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "메뉴"
 
 [node name="Node" type="Control" parent="UIControl/MenuUIControl/HBoxContainer/MenuBtn"]
@@ -1014,7 +940,7 @@ margin_top = -44.0
 margin_right = 80.0
 margin_bottom = -9.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "종료"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1025,7 +951,7 @@ margin_top = -88.0
 margin_right = 80.0
 margin_bottom = -53.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "설정"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1036,7 +962,7 @@ margin_top = -132.0
 margin_right = 80.0
 margin_bottom = -97.0
 rect_min_size = Vector2( 80, 35 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "저장"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1229,8 +1155,8 @@ script = ExtResource( 31 )
 script = ExtResource( 32 )
 
 [connection signal="create_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_create_character"]
-[connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
 [connection signal="delete_character" from="." to="JanTestGDScript/TestTileCreater" method="_on_Main_delete_character"]
+[connection signal="delete_character" from="." to="UIControl" method="_on_Main_delete_character"]
 [connection signal="building_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_building_info_update_needed"]
 [connection signal="character_info_update_needed" from="UIManager" to="UIControl" method="_on_UIManager_character_info_update_needed"]
 [connection signal="money_alert_effect" from="UIManager" to="JanTestGDScript" method="_on_UIManager_money_alert_effect"]
@@ -1245,8 +1171,5 @@ script = ExtResource( 32 )
 [connection signal="install_structure" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_install_structure"]
 [connection signal="start_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_start_trace"]
 [connection signal="stop_trace" from="CameraManager" to="UIControl" method="_on_CameraManager_stop_trace"]
-[connection signal="pressed" from="UIControl/HUD/Button" to="JanTestGDScript/TestTileCreater" method="_on_Button_pressed"]
-[connection signal="pressed" from="UIControl/HUD/CharacterMove" to="UIControl" method="_on_CharacterMove_pressed"]
-[connection signal="pressed" from="UIControl/HUD/StopTracingBtn" to="UIControl" method="_on_StopTracingBtn_pressed"]
 [connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_create_instance_ui"]
 [connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreator" method="_on_InstanceUIManager_delete_instance_ui"]
