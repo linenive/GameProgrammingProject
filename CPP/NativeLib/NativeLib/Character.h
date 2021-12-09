@@ -132,7 +132,7 @@ public:
 	Guest(int _id, CharacterFullName _name, eGender _gender,
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
-		inventory = new Inventory();
+		inventory = new Inventory(2, 2);
 		AddBaseItem();
 	}
 
@@ -167,7 +167,7 @@ public:
 	Resident(int _id, CharacterFullName _name, eGender _gender,
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
-		inventory = new Inventory();
+		inventory = new Inventory(2, 2);
 		AddBaseItem();
 	}
 	
