@@ -16,6 +16,8 @@ var building_name_text_edit : TextEdit
 
 var building_type_label : Label
 
+
+var guest_count_vbox : VBoxContainer
 var monthly_guest_count : Label
 var total_guest_count : Label
 
@@ -36,6 +38,7 @@ func _ready():
 	building_name_label = $Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_label
 	building_name_text_edit = $Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_label/building_name_text_edit
 	building_type_label = $Container/VBoxContainer/building_type_label
+	guest_count_vbox = $Container/VBoxContainer/VBoxContainer
 	monthly_guest_count = $Container/VBoxContainer/VBoxContainer/HBoxContainer/monthly_guest_count_value_label
 	total_guest_count = $Container/VBoxContainer/VBoxContainer/HBoxContainer2/total_guest_count_value_label
 	employee_info_panel = $Container/VBoxContainer/VBoxContainer2
@@ -60,14 +63,29 @@ func window_setting_building_info(id, info):
 	
 	building_type_label.text = building_type_int_to_string(info[2])
 	
+	if is_work_space(info[2]):
+		window_setting_work_space_info(info)
+	else:
+		window_setting_house_info()
+
+func window_setting_work_space_info(info):
+	guest_count_vbox.visible = true
+	
 	monthly_guest_count.text = str(info[3]) + "명"
 	total_guest_count.text = str(info[4]) + "명"
+		
+	employee_info_panel.visible = true
+	init_employee_list(make_employee_list(info))
+
+func window_setting_house_info():
+	guest_count_vbox.visible = false	
+	employee_info_panel.visible = false	
+
+func is_work_space(building_type_int):
+	if building_type_int == 1:
+		return true
 	
-	if info[2] == 1:
-		employee_info_panel.visible = true
-		init_employee_list(make_employee_list(info))
-	else:
-		employee_info_panel.visible = false		
+	return false
 
 func building_type_int_to_string(building_type_int):
 	if building_type_int == 0:
