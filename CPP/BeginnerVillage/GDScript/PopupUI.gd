@@ -6,12 +6,16 @@ var static_unit_manager
 var target_id = 0
 var target_type
 
+signal ui_click_signal
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	uicontrol = get_node("/root/Main/UIControl")
 	static_unit_manager = get_node("/root/Main/StaticUnitManager")
 	
 	get_close_button().connect("pressed", self, "close_button_pressed")
+	
+	self.connect("ui_click_signal", get_node("/root/Main/GodotInput"), "ui_entered")
 
 func show_popup(id, type, info, window_position:Vector2):
 	if target_id == 0:
@@ -55,6 +59,8 @@ func close_button_pressed():
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		uicontrol.set_ui_top(self)
+	
+	emit_signal("ui_click_signal")
 
 func get_target_id():
 	return target_id

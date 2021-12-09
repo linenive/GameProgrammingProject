@@ -2,8 +2,10 @@ extends Button
 
 var current_target
 
+signal ui_click_signal
+
 func _ready():
-	pass # Replace with function body.
+	self.connect("ui_click_signal", get_node("/root/Main/GodotInput"), "ui_entered")
 
 # array = [object_name, obejct_image ,signal]
 func init_choice_button(array, target_node):
@@ -23,17 +25,12 @@ func set_visible(value):
 	visible = value
 
 func set_image_strech_type_by_texture_size(texture):
-	print(texture.get_size().x)
-	print(texture.get_size().y)
-	
-	print(self.rect_size.x)
-	print(self.rect_size.y)
-	
 	if texture.get_size().x > self.rect_size.x or texture.get_size().y > self.rect_size.y:
-		print("la dolce vita")
 		$object_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		$object_image.rect_size = Vector2(75, 75)		
 	else:
-		print("senorita")
 		$object_image.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 		#$object_image.rect_size = Vector2(75, 75)
+
+func _gui_input(event):
+	emit_signal("ui_click_signal")

@@ -9,15 +9,15 @@ var duration_fade_out = 5.0
 
 var tempint = 0
 
+signal ui_click_signal
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	camera_manager = get_node("/root/Main/CameraManager")
 	log_ui_control = get_node("/root/Main/UIControl/LogUIControl")
 	tween = $Tween;
 	
-	#set_visible(true)
-	#tween_fade_out()
-	#tween_fade_in()	
+	self.connect("ui_click_signal", get_node("/root/Main/GodotInput"), "ui_entered")
 
 func set_camera_position(position):
 	if camera_manager.GetCurrentCameraStateInString() == "TRACE":
@@ -42,6 +42,8 @@ func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		if !log_ui_control.is_event_log_panel_visible() and is_visible():
 			log_ui_control.show_event_log()
+	
+	emit_signal("ui_click_signal")
 
 func set_visible(value):
 	if value == true:

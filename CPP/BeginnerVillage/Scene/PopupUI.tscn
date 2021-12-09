@@ -46,7 +46,6 @@ font_data = ExtResource( 2 )
 font_data = ExtResource( 2 )
 
 [node name="PopupUI" type="WindowDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -55,7 +54,6 @@ margin_left = -150.0
 margin_top = -200.0
 margin_right = 150.0
 margin_bottom = 200.0
-mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -65,6 +63,7 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -77,6 +76,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -4.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -89,6 +89,7 @@ custom_constants/separation = 15
 [node name="title_character_info" type="Label" parent="CharacterInfo/Container/VBoxContainer"]
 margin_right = 281.0
 margin_bottom = 26.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
 text = "캐릭터 정보"
 __meta__ = {
@@ -113,6 +114,7 @@ __meta__ = {
 [node name="title_character_name" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_right = 39.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "이름 :"
 __meta__ = {
@@ -123,6 +125,7 @@ __meta__ = {
 margin_left = 43.0
 margin_right = 99.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 3 )
 text = "noname"
 __meta__ = {
@@ -140,6 +143,7 @@ __meta__ = {
 [node name="title_character_gender" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer4"]
 margin_right = 37.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "성별 :"
 __meta__ = {
@@ -150,6 +154,7 @@ __meta__ = {
 margin_left = 41.0
 margin_right = 97.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 3 )
 text = "noname"
 __meta__ = {
@@ -167,6 +172,7 @@ __meta__ = {
 [node name="title_character_class" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer2"]
 margin_right = 37.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "직업 :"
 __meta__ = {
@@ -177,6 +183,7 @@ __meta__ = {
 margin_left = 41.0
 margin_right = 98.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 3 )
 text = "warrior"
 __meta__ = {
@@ -194,6 +201,7 @@ __meta__ = {
 [node name="title_character_skill" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer6"]
 margin_right = 39.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "스킬 :"
 __meta__ = {
@@ -204,6 +212,7 @@ __meta__ = {
 margin_left = 43.0
 margin_right = 100.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 3 )
 text = "warrior"
 __meta__ = {
@@ -222,6 +231,7 @@ __meta__ = {
 [node name="title_character_position" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer3"]
 margin_right = 80.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Position : "
 __meta__ = {
@@ -232,6 +242,7 @@ __meta__ = {
 margin_left = 84.0
 margin_right = 124.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 3 )
 text = "(x, y)"
 __meta__ = {
@@ -249,6 +260,7 @@ __meta__ = {
 [node name="title_character_task" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer3/HBoxContainer5"]
 margin_right = 74.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "방문 목적 :"
 __meta__ = {
@@ -259,6 +271,7 @@ __meta__ = {
 margin_left = 78.0
 margin_right = 112.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 3 )
 text = "task"
 __meta__ = {
@@ -273,6 +286,7 @@ margin_bottom = 172.0
 [node name="inventory_title_label" type="Label" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer2"]
 margin_right = 281.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 4 )
 text = "[인벤토리]"
 
@@ -280,6 +294,7 @@ text = "[인벤토리]"
 margin_top = 20.0
 margin_right = 281.0
 margin_bottom = 20.0
+mouse_filter = 1
 
 [node name="inventory_ui" type="GridContainer" parent="CharacterInfo/Container/VBoxContainer/VBoxContainer2/PanelContainer"]
 margin_left = 140.0
@@ -306,6 +321,7 @@ __meta__ = {
 margin_right = 57.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 57, 30 )
+mouse_filter = 1
 text = "Track"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -316,10 +332,12 @@ margin_left = 61.0
 margin_right = 118.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 57, 30 )
+mouse_filter = 1
 
 [node name="recruit_btn" type="Button" parent="CharacterInfo/Container/HBoxContainer/GuestInfo"]
 margin_right = 57.0
 margin_bottom = 30.0
+mouse_filter = 1
 text = "Recruit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -329,6 +347,7 @@ __meta__ = {
 margin_left = 122.0
 margin_right = 122.0
 margin_bottom = 30.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -351,6 +370,7 @@ margin_left = -10.0
 margin_top = -10.0
 margin_right = 30.0
 margin_bottom = 30.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -360,11 +380,13 @@ margin_left = -10.0
 margin_top = -10.0
 margin_right = 30.0
 margin_bottom = 30.0
+mouse_filter = 1
 
 [node name="StructureInfo" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -377,6 +399,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -4.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -389,6 +412,7 @@ custom_constants/separation = 15
 [node name="structure_name_label" type="Label" parent="StructureInfo/Container/VBoxContainer"]
 margin_right = 281.0
 margin_bottom = 26.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 5 )
 text = "Structure_Name"
 valign = 1
@@ -401,6 +425,7 @@ visible = false
 margin_top = 41.0
 margin_right = 281.0
 margin_bottom = 65.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 6 )
 text = "상점"
 
@@ -412,6 +437,7 @@ margin_bottom = 61.0
 [node name="inventory_title_label" type="Label" parent="StructureInfo/Container/VBoxContainer/VBoxContainer2"]
 margin_right = 281.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 4 )
 text = "[인벤토리]"
 
@@ -419,6 +445,7 @@ text = "[인벤토리]"
 margin_top = 20.0
 margin_right = 281.0
 margin_bottom = 20.0
+mouse_filter = 1
 
 [node name="inventory_ui" type="GridContainer" parent="StructureInfo/Container/VBoxContainer/VBoxContainer2/PanelContainer"]
 margin_left = 140.0
@@ -427,8 +454,10 @@ columns = 3
 script = ExtResource( 4 )
 
 [node name="BuildingInfo" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -442,6 +471,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -4.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -455,12 +485,14 @@ custom_constants/separation = 15
 margin_right = 281.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
+mouse_filter = 1
 
 [node name="HSplitContainer" type="HSplitContainer" parent="BuildingInfo/Container/VBoxContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 274.0
 margin_bottom = 43.0
+mouse_filter = 1
 split_offset = 450
 dragger_visibility = 1
 
@@ -468,6 +500,7 @@ dragger_visibility = 1
 margin_top = 5.0
 margin_right = 218.0
 margin_bottom = 31.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 5 )
 text = "Building_Name"
 valign = 1
@@ -478,6 +511,7 @@ __meta__ = {
 [node name="building_name_text_edit" type="TextEdit" parent="BuildingInfo/Container/VBoxContainer/PanelContainer/HSplitContainer/building_name_label"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -488,6 +522,7 @@ margin_left = 230.0
 margin_right = 267.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 30, 30 )
+mouse_filter = 1
 text = "edit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -497,6 +532,7 @@ __meta__ = {
 margin_top = 65.0
 margin_right = 281.0
 margin_bottom = 89.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 6 )
 text = "상점"
 
@@ -512,6 +548,7 @@ margin_bottom = 16.0
 [node name="monthly_guest_count_title_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 164.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 4 )
 text = "이번 달 다녀간 손님 수 : "
 
@@ -519,6 +556,7 @@ text = "이번 달 다녀간 손님 수 : "
 margin_left = 168.0
 margin_right = 208.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 4 )
 text = "100명"
 
@@ -530,6 +568,7 @@ margin_bottom = 36.0
 [node name="total_guest_count_title_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 100.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 4 )
 text = "누적 손님 수 : "
 
@@ -537,6 +576,7 @@ text = "누적 손님 수 : "
 margin_left = 104.0
 margin_right = 144.0
 margin_bottom = 16.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 4 )
 text = "201명"
 
@@ -548,12 +588,14 @@ margin_bottom = 306.0
 [node name="HSplitContainer" type="HSplitContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2"]
 margin_right = 281.0
 margin_bottom = 22.0
+mouse_filter = 1
 split_offset = 400
 
 [node name="employee_info_title_lable" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/HSplitContainer"]
 margin_top = 1.0
 margin_right = 197.0
 margin_bottom = 21.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 8 )
 text = "[직원]"
 valign = 1
@@ -562,6 +604,7 @@ valign = 1
 margin_left = 209.0
 margin_right = 281.0
 margin_bottom = 22.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 9 )
 toggle_mode = true
 text = "고용하기"
@@ -571,6 +614,7 @@ margin_top = 26.0
 margin_right = 281.0
 margin_bottom = 151.0
 rect_min_size = Vector2( 0, 125 )
+mouse_filter = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel"]
 anchor_right = 1.0
@@ -579,6 +623,7 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = -5.0
 margin_bottom = -4.0
+mouse_filter = 1
 scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -593,26 +638,32 @@ __meta__ = {
 }
 
 [node name="employee_info_ui_button8" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
+mouse_filter = 1
 
 [node name="employee_info_ui_button9" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 86.0
 margin_right = 166.0
+mouse_filter = 1
 
 [node name="employee_info_ui_button10" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 172.0
 margin_right = 252.0
+mouse_filter = 1
 
 [node name="employee_info_ui_button11" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 258.0
 margin_right = 338.0
+mouse_filter = 1
 
 [node name="employee_info_ui_button12" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 344.0
 margin_right = 424.0
+mouse_filter = 1
 
 [node name="employee_info_ui_button13" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 430.0
 margin_right = 510.0
+mouse_filter = 1
 
 [node name="available_resident_list_panel" type="PanelContainer" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel"]
 visible = false
@@ -620,6 +671,7 @@ margin_left = 207.082
 margin_top = -3.202
 margin_right = 312.082
 margin_bottom = 45.798
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -633,6 +685,7 @@ margin_bottom = 42.0
 [node name="no_available_resident_label" type="Label" parent="BuildingInfo/Container/VBoxContainer/VBoxContainer2/employee_info_panel/available_resident_list_panel/available_resident_list"]
 margin_right = 91.0
 margin_bottom = 35.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 10 )
 text = "고용가능한
 주민 없음"
