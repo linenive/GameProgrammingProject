@@ -52,7 +52,6 @@ public:
 
 	GameService() {
 		// 생성 시 repository만 필요한 서비스들
-		village_service = new VillageService(&game_world.village_repo);
 		tile_service = new TileService(&game_world.tile_repo);
 		static_unit_service = new StaticUnitService(
 			&game_world.tile_repo, &game_world.structure_repo, &game_world.building_repo
@@ -64,6 +63,7 @@ public:
 			&game_world.skill_repo
 		);
 		// 생성 시 다른 서비스를 받는 서비스들 (인자 바꿀 시 생성 순서에 유의)
+		village_service = new VillageService(ui_service, &game_world.village_repo);
 		path_find_service = new PathFindService(tile_service);
 		map_create_service = new MapCreateService(
 			static_unit_service, &game_world.tile_repo

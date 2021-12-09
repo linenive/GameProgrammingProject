@@ -38,7 +38,6 @@ protected:
 		}
 	}
 	void AddBaseItem() {
-		AddItem(*ItemDictionary::GetInstance()->GetItemByName("wood"));
 	}
 
 public:
@@ -56,7 +55,7 @@ public:
 		Transform2D transform, Vector2 scale)
 		: id(_id), full_name(_name), gender(_gender),
 		WorldObject(_name.GetFullname(), transform, scale) {
-		inventory = new Inventory();
+		inventory = new Inventory(2, 2);
 		AddBaseItem();
 		SetBaseStat();
 	}
@@ -133,7 +132,7 @@ public:
 	Guest(int _id, CharacterFullName _name, eGender _gender,
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
-		inventory = new Inventory();
+		inventory = new Inventory(2, 2);
 		AddBaseItem();
 	}
 
@@ -168,7 +167,7 @@ public:
 	Resident(int _id, CharacterFullName _name, eGender _gender,
 		Transform2D _transform, Vector2 _scale)
 		: Character(_id, _name, _gender, _transform, _scale) {
-		inventory = new Inventory();
+		inventory = new Inventory(2, 2);
 		AddBaseItem();
 	}
 	

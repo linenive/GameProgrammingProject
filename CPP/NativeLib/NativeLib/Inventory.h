@@ -19,7 +19,9 @@ public:
 
 class Inventory {
 private:
-	InventorySlot slots[INVENTORY_Y][INVENTORY_X];
+	int inventory_x;
+	int inventory_y;
+	InventorySlot **slots;
 	int slot_size;
 
 	InventorySlot* SlotAt(Coordinates pos) {
@@ -36,22 +38,22 @@ private:
 
 	Coordinates NextPos(Coordinates pos) {
 		pos.x++;
-		if (pos.x >= INVENTORY_X) {
+		if (pos.x >= inventory_x) {
 			pos.y++;
 			pos.x = 0;
 		}
-		if (pos.y >= INVENTORY_Y) {
+		if (pos.y >= inventory_y) {
 			return InvalidPos();
 		}
 		return pos;
 	}
 
 	Coordinates IndexToPos(int index) {
-		return Coordinates(index % INVENTORY_X, index / INVENTORY_X);
+		return Coordinates(index % inventory_x, index / inventory_x);
 	}
 
 	bool IsValidPos(Coordinates pos) {
-		return pos.x >= 0 && pos.y >= 0 && pos.x < INVENTORY_X&& pos.y < INVENTORY_Y;
+		return pos.x >= 0 && pos.y >= 0 && pos.x < inventory_x&& pos.y < inventory_y;
 	}
 
 	Coordinates GetItemPosByItemId(int id) {
@@ -107,6 +109,26 @@ private:
 		}
 	}
 public:
+	Inventory(): inventory_x(INVENTORY_X), inventory_y(INVENTORY_Y) {
+		slots = new InventorySlot * [inventory_y];
+		for (int j = 0; j < inventory_y; ++j) {
+			slots[j] = new InventorySlot[inventory_x];
+		}
+	}
+	Inventory(int size_x, int size_y):inventory_x(size_x), inventory_y(size_y) {
+		slots = new InventorySlot * [inventory_y];
+		for (int j = 0; j < inventory_y; ++j) {
+			slots[j] = new InventorySlot[inventory_x];
+		}
+	}
+
+	~Inventory() {
+		for (int i = 0; i < inventory_y; ++i) {
+			delete[] slots[i];
+		}
+		delete[] slots;
+	}
+
 	void AddItem(Item item, int item_count) {
 		while (item_count > 0) {
 			Coordinates pos = GetItemPosToBeInserted(item.GetID());
@@ -173,6 +195,6 @@ public:
 	}
 
 	int GetSize() {
-		return INVENTORY_Y * INVENTORY_X;
+		return inventory_y * inventory_x;
 	}
 };
