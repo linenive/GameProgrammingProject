@@ -37,7 +37,7 @@ BuildingData::BuildingData(eBuildingType type) {
         };
         break;
     case eBuildingType::THREE_ROOM_HOUSE:
-        name = "방이 세 개인 집";
+        name = "쓰리룸 집";
         build_cost = 750000;
         building_role = eBuildingRole::HOUSE;
         slot_num = 3;
@@ -69,7 +69,7 @@ BuildingData::BuildingData(eBuildingType type) {
         };
         break;
     case eBuildingType::TWO_ROOM_TWO_DOOR_SHOP:
-        name = "방이 두 개인 상점1";
+        name = "투룸 상점1";
         build_cost = 1250000;
         building_role = eBuildingRole::WORK_SPACE;
         slot_num = 5;
@@ -85,7 +85,7 @@ BuildingData::BuildingData(eBuildingType type) {
         };
         break;
     case eBuildingType::TWO_ROOM_THREE_DOOR_SHOP:
-        name = "방이 두 개인 상점2";
+        name = "투룸 상점2";
         build_cost = 1500000;
         building_role = eBuildingRole::WORK_SPACE;
         slot_num = 6;
