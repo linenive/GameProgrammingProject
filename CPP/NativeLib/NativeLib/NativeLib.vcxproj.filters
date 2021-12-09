@@ -223,6 +223,11 @@
     </ClCompile>
     <ClCompile Include="SkillRepository.cpp">
       <Filter>소스 파일\Repository\SkillRepository</Filter>
+    <ClCompile Include="InstanceUIMaker.cpp">
+      <Filter>소스 파일\Service\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="InstanceUIManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -466,6 +471,14 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>소스 파일\Library</Filter>
+    <ClInclude Include="InstanceUI.h">
+      <Filter>소스 파일\Domain\WorldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="InstanceUIManager.h">
+      <Filter>소스 파일\Manager\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InstanceUIMaker.h">
+      <Filter>소스 파일\Service\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

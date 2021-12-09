@@ -9,6 +9,8 @@
 #include "GameRule.h"
 #include "ItemDictionary.h"
 #include "UIService.h"
+#include "ObjectService.h"
+#include "StaticUnitService.h"
 
 class AIService {
 
@@ -130,7 +132,7 @@ private:
 				
 				continue;
 			}
-			// To-do: ¿ì¼±¼øÀ§ ºñ±³ÇÏ¿© º¯µ¿ ¾øÀ» ½Ã ¹«½ÃÇÏ±â.
+			// To-do: ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½.
 			if (it->second != nullptr && it->second->IsTaskDone()) {
 				delete it->second;
 				it->second = nullptr;
@@ -148,7 +150,7 @@ private:
 		}
 	}
 
-	// Task ±¸Á¶ º¯°æÇÏ±â¿£ ½Ã°£ÀÌ ¾ø¾î¼­ ¿©±â¿¡ ¾Ë°í¸®Áò ³Ö¾îÁÜ.
+	// Task ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±â¿£ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½â¿¡ ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½.
 	void ShoppingAlgorithm(Character* character, ShoppingTask* task) {
 		if (task->IsShoppingEnd()) {
 			task->Done();
@@ -254,5 +256,20 @@ public:
 		}
 		
 		DeleteLeavers();
+	}
+	vector<int> GetTaskIDList() {
+		vector<int> task_id_list;
+		for (auto it : task_list) {
+			task_id_list.push_back(it.first);
+		}
+		return task_id_list;
+	}
+	bool HasTaskByID(int id) {
+		for (auto it : task_list) {
+			if (it.first == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 };

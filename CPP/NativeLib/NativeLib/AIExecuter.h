@@ -1,4 +1,6 @@
 #pragma once
+#include "Character.h"
+#include "Task.h"
 #include <queue>
 
 class AIExecuter {
