@@ -24,12 +24,14 @@ public:
 
 		for (auto it : task_id_list) {
 			if (current_instance_uis.find(it) == current_instance_uis.end()) {
+				printf("add instance ui %d\n", it);
 				new_instance_uis.push(it);
 			}
 		}
 
 		for (auto it : current_instance_uis) {
 			if (ai_service->HasTaskByID(it.first) == false) {
+				printf("delete instance ui %d\n", it);
 				deleted_instance_uis.push(it.first);
 			}
 		}

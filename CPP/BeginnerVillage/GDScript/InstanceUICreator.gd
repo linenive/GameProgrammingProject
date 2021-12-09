@@ -26,6 +26,7 @@ func _process(delta):
 		pb._on_progress_updated(cur_var)
 	
 func CreateProgressBar(id, max_value):
+	print("create progress bar called")
 	var progress_inst = progress_bar.instance()
 	progress_inst.SetProgressBar(id, max_value)
 	progress_inst.progress_bar_color = Color.gray
@@ -54,5 +55,8 @@ func DeleteTextUI(id):
 	if target_transform.has_node("TextUI"):
 		target_transform.remove_child("TextUI")
 
-func _on_InstanceUIManager_create_instance_ui(ID):
-	CreateProgressBar(ID,100)
+func _on_InstanceUIManager_create_instance_ui(ID, max_var):
+	CreateProgressBar(ID,max_var)
+	
+func _on_InstanceUIManager_delete_instance_ui(ID, Max):
+	DeleteProgressBar(ID)

@@ -13,9 +13,11 @@ private:
 	InstanceUIService* instance_ui_service;
 
 	void EmitNewUI(int new_id) {
+		printf("emit new ui %d\n", new_id);
 		emit_signal(String("create_instance_ui"), new_id);
 	}
 	void EmitDeleteUI(int new_id) {
+		printf("emit delete ui %d\n", new_id);
 		emit_signal(String("delete_instance_ui"), new_id);
 	}
 	void FetchQueueAndSignal() {
@@ -40,8 +42,8 @@ public:
 		register_method("_progress", &InstanceUIManager::_progress);
 		register_method("GetInstanceValueByID", &InstanceUIManager::GetInstanceValueByID);
 
-		register_signal<InstanceUIManager>(String("create_instance_ui"), "ID", GODOT_VARIANT_TYPE_INT,"Max",100);
-		register_signal<InstanceUIManager>(String("delete_instance_ui"), "ID", GODOT_VARIANT_TYPE_INT, "Max", 100);
+		register_signal<InstanceUIManager>(String("create_instance_ui"), "ID", GODOT_VARIANT_TYPE_INT,"Max", GODOT_VARIANT_TYPE_REAL);
+		register_signal<InstanceUIManager>(String("delete_instance_ui"), "ID", GODOT_VARIANT_TYPE_INT, "Max", GODOT_VARIANT_TYPE_REAL);
 	}
 
 	void _init() {}
@@ -55,6 +57,7 @@ public:
 		printf("now %d", instance_ui_service->test);
 	}
 	void _progress(float delta) {
+		instance_ui_service->UpdateCurrentInstaneUIs();
 		FetchQueueAndSignal();
 	}
 	float GetInstanceValueByID(int id) {
