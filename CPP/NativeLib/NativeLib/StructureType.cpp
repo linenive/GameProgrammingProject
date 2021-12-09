@@ -30,6 +30,8 @@ StructureData::StructureData(eStructureType type) {
             {lb}
         };
         has_inventory = true;
+        inventory_size_x = 3;
+        inventory_size_y = 1;
         break;
     case eStructureType::COOKING_TABLE:
         name = "cooking_table";
@@ -38,6 +40,8 @@ StructureData::StructureData(eStructureType type) {
             {mb, mb, mb}
         };
         has_inventory = true;
+        inventory_size_x = 3;
+        inventory_size_y = 2;
         break;
     case eStructureType::POT:
         name = "pot";
@@ -45,7 +49,6 @@ StructureData::StructureData(eStructureType type) {
         blocks = {
             {lb}
         };
-        has_inventory = true;
         break;
     case eStructureType::TABLE:
         name = "table";
@@ -54,6 +57,8 @@ StructureData::StructureData(eStructureType type) {
             {mb, mb}
         };
         has_inventory = true;
+        inventory_size_x = 2;
+        inventory_size_y = 2;
         break;
     case eStructureType::COUNTER:
         name = "counter";
@@ -62,6 +67,8 @@ StructureData::StructureData(eStructureType type) {
             {mb}
         };
         has_inventory = true;
+        inventory_size_x = 2;
+        inventory_size_y = 1;
         break;
     case eStructureType::CHAIR:
         name = "chair";

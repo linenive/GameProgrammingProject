@@ -24,4 +24,6 @@ public:
     int height;
     vector< vector<eBlockType> > blocks;
     bool has_inventory = false;
+    int inventory_size_x = -1;
+    int inventory_size_y = -1;
 };

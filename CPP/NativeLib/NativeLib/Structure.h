@@ -15,8 +15,8 @@ public:
 	bool HasInventory() {
 		return inventory != nullptr;
 	}
-	void CreateInventory() {
-		inventory = new Inventory();
+	void CreateInventory(int size_x, int size_y) {
+		inventory = new Inventory(size_x, size_y);
 	}
 	Inventory* GetInventory() {
 		return inventory;

@@ -80,7 +80,7 @@ int StaticUnitService::CreateStructure(eStructureType type, Coordinates top_left
 		ConvertToOccupationArea(top_left_coordinates, data.width, data.height));
 
 	if (data.has_inventory)
-		new_structure->CreateInventory();
+		new_structure->CreateInventory(data.inventory_size_x, data.inventory_size_y);
 
 	RegisterBlocksToWorld(x, y, data.blocks, new_structure);
 	AddStructure(new_structure);
