@@ -8,12 +8,12 @@ class InstanceUIService {
 private:
 	AIService* ai_service;
 
-	unordered_map<int, InstanceUI*> current_instance_uis;
-	bool HasInstanceUIByID(int id) {
-		return current_instance_uis.find(id) != current_instance_uis.end();
-	}
+	vector<int> current_instance_uis;
+	bool HasTaskByID(int id) {
+		return find(current_instance_uis.begin(), current_instance_uis.end(), id) != current_instance_uis.end();
+	}	
 public:
-	queue<int> new_instance_uis;
+	queue<pair<int,float>> new_instance_uis;
 	queue<int> deleted_instance_uis;
 	int test = 10;
 
@@ -23,34 +23,39 @@ public:
 		vector<int> task_id_list = ai_service->GetTaskIDList();
 
 		for (auto it : task_id_list) {
-			if (current_instance_uis.find(it) == current_instance_uis.end()) {
-				printf("add instance ui %d\n", it);
-				new_instance_uis.push(it);
+			if (HasTaskByID(it)==false) {
+				Task* new_task = ai_service->GetTask(it);
+				if (new_task->GetType() == eTaskType::WORK &&
+					new_task->IsTaskDone()==false) {
+					WorkTask* task = (WorkTask*)(ai_service->GetTask(it));
+					new_instance_uis.push(make_pair(it, task->GetLeftTime()));
+				}
 			}
 		}
 
 		for (auto it : current_instance_uis) {
-			if (ai_service->HasTaskByID(it.first) == false) {
-				printf("delete instance ui %d\n", it);
-				deleted_instance_uis.push(it.first);
+			Task* new_task = ai_service->GetTask(it);
+			if (new_task == nullptr || new_task->IsTaskDone()) {
+				deleted_instance_uis.push(it);
 			}
 		}
 	}
-
-	void AddInstanceUI(InstanceUI* new_ui) {
-		current_instance_uis.insert(make_pair(new_ui->GetCharacterID(), new_ui));
-	}
-
-	void DeleteInstanceUI(InstanceUI* ui) {
-		DeleteInstanceUI(ui->GetCharacterID());
+	void AddInstanceUI(int id) {
+		current_instance_uis.push_back(id);
 	}
 	void DeleteInstanceUI(int id) {
-		if (HasInstanceUIByID(id))
-			current_instance_uis.erase(id);
+		auto it = find(current_instance_uis.begin(), current_instance_uis.end(), id);
+		if (it != current_instance_uis.end()){
+			current_instance_uis.erase(it);
+		}
 	}
 	float GetInstanceValue(int id) {
-		if (HasInstanceUIByID(id))
-			current_instance_uis[id]->GetCurrentValue();
+		if (HasTaskByID(id)){
+			if (ai_service->GetTask(id)->GetType() == eTaskType::WORK) {
+				WorkTask* task = (WorkTask*)(ai_service->GetTask(id));
+				return task->GetLeftTime();
+			}
+		}
 		else
 			return -1;
 	}

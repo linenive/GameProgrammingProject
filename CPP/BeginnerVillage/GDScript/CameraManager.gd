@@ -10,6 +10,8 @@ var g_world_size
 var g_screen_size
 var g_velocity
 
+var camera_move_lock
+
 var kcamera_speed=10
 var kmouse_moving_interval=10
 
@@ -28,9 +30,12 @@ func _ready():
 	$CameraCPP.SetCurrentCameraPosition(Vector2(g_world_size.x/2, g_world_size.y/2))
 	$CameraCPP.g_zoom_scroll_factor = 1.6
 	
+	camera_move_lock = false
+	
 func _process(_delta):
 	DetectCameraMoveObj()
 	DetectZoomScrollKey()
+	DetectCameraMoveLock()
 	
 func SetScreenLimit():
 	g_world_size = get_node("/root/Main/WorldManager").GetWorldSize()
@@ -46,7 +51,9 @@ func InitCameraSetting():
 
 func SetCameraPosition(new_position):
 	$CameraCPP.SetCurrentCameraPosition(new_position)
-	
+func DetectCameraMoveLock():
+	if Input.is_action_just_pressed("camera_move_lock"):
+		camera_move_lock = !camera_move_lock
 func DetectCameraMoveObj():
 	if g_nowcamerastate == eCameraState.DEFAULT:
 		MoveCameraDefault()
@@ -56,7 +63,8 @@ func DetectCameraMoveObj():
 func MoveCameraDefault():
 	DetectKeyPressDefault()
 	$CameraCPP.CameraMoveWithKey(g_velocity)
-	$CameraCPP.CameraMoveWithMouse(get_viewport().get_mouse_position())
+	if camera_move_lock == false:
+		$CameraCPP.CameraMoveWithMouse(get_viewport().get_mouse_position())
 	
 	$Camera2D.position = $CameraCPP.GetCurrentCameraPosition()
 	

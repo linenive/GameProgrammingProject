@@ -9,8 +9,6 @@
 #include "GameRule.h"
 #include "ItemDictionary.h"
 #include "UIService.h"
-#include "ObjectService.h"
-#include "StaticUnitService.h"
 
 class AIService {
 
@@ -23,7 +21,7 @@ private:
 	VillageService* village_service;
 	AIExecuter ai_executer;
 
-	list<pair<int, Task*>> task_list; 
+	list<pair<int, Task*>> task_list;
 
 	Timer task_assign_timer;
 	Timer task_execute_timer;
@@ -68,7 +66,7 @@ private:
 				}
 			}
 			else {
-				Inventory* target_inventory = 
+				Inventory* target_inventory =
 					static_unit_service->GetFirstInventoryInBuildingById(resident->work_space_id);
 				if (target_inventory->GetItemCountByItemId(
 					ItemDictionary::GetInstance()->GetIDByName("wood")) >= 5) {
@@ -129,15 +127,15 @@ private:
 			if (performer == nullptr) {
 				delete(it->second);
 				it = task_list.erase(it);
-				
+
 				continue;
 			}
-			// To-do: �켱���� ���Ͽ� ���� ���� �� �����ϱ�.
+			// To-do: 우선순위 비교하여 변동 없을 시 무시하기.
 			if (it->second != nullptr && it->second->IsTaskDone()) {
 				delete it->second;
 				it->second = nullptr;
 			}
-				
+
 			if (it->second == nullptr) {
 				if (performer->IsGuest()) {
 					it->second = FindNewTaskToGuest((Guest*)performer);
@@ -150,7 +148,7 @@ private:
 		}
 	}
 
-	// Task ���� �����ϱ⿣ �ð��� ��� ���⿡ �˰����� �־���.
+	// Task 구조 변경하기엔 시간이 없어서 여기에 알고리즘 넣어줌.
 	void ShoppingAlgorithm(Character* character, ShoppingTask* task) {
 		if (task->IsShoppingEnd()) {
 			task->Done();
@@ -164,8 +162,7 @@ private:
 		}
 
 		if (HasSamePosition(character, target_structure->GetCenterPosition())) {
-			task->structure_iterator++;
-			
+			task->structure_iterator++;		
 			if (target_structure->HasInventory() && target_structure->GetInventory()->GetItemCountByItemId(task->wish_item_code) > 0) {
 				Item* item = ItemDictionary::GetInstance()->GetItemByID(task->wish_item_code);
 				target_structure->GetInventory()->PopItemById(task->wish_item_code, 1);
@@ -186,7 +183,7 @@ private:
 
 	}
 
-	void ExecuteCharactersTask(){
+	void ExecuteCharactersTask() {
 		Character* performer;
 		auto it = task_list.begin();
 		while (it != task_list.end()) {
@@ -221,24 +218,24 @@ public:
 	}
 
 	AIService(ObjectService* _object_service, TaskService* _task_service,
-			StaticUnitService* _static_unit_service, ResidentService* _resident_service,
-			VillageService* _village_service, UIService* _ui_service)
-		: object_service(_object_service), task_service(_task_service), 
+		StaticUnitService* _static_unit_service, ResidentService* _resident_service,
+		VillageService* _village_service, UIService* _ui_service)
+		: object_service(_object_service), task_service(_task_service),
 		static_unit_service(_static_unit_service), resident_service(_resident_service),
 		village_service(_village_service), ui_service(_ui_service),
-		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)){
+		task_assign_timer(Timer(ASSIGN_TASK_INTERVAL_TIME)), task_execute_timer(Timer(EXECUTE_TASK_INTERVAL_TIME)) {
 		map<int, Character*>* characters = object_service->GetCharacters();
-		for (auto &kv : *characters) {
-			task_list.push_back({ kv.first, nullptr});
+		for (auto& kv : *characters) {
+			task_list.push_back({ kv.first, nullptr });
 		}
 	}
 
 	void AddNewCharacter(int id) {
 		Character* new_character = object_service->GetCharacter(id);
-		if(new_character->IsGuest())
-			task_list.push_back({ id, FindNewTaskToGuest((Guest*)new_character)});
+		if (new_character->IsGuest())
+			task_list.push_back({ id, FindNewTaskToGuest((Guest*)new_character) });
 		else
-			task_list.push_back({ id, FindNewTaskToResident((Resident*)new_character)});
+			task_list.push_back({ id, FindNewTaskToResident((Resident*)new_character) });
 	}
 
 	void Update(float delta) {
@@ -254,7 +251,7 @@ public:
 			ExecuteCharactersTask();
 			task_execute_number--;
 		}
-		
+
 		DeleteLeavers();
 	}
 	vector<int> GetTaskIDList() {
@@ -264,12 +261,12 @@ public:
 		}
 		return task_id_list;
 	}
-	bool HasTaskByID(int id) {
+	Task* GetTask(int id) {
 		for (auto it : task_list) {
 			if (it.first == id) {
-				return true;
+				return it.second;
 			}
 		}
-		return false;
+		return nullptr;
 	}
 };

@@ -1,19 +1,20 @@
 extends Control
 
 onready var progress_bar = $Progress
-onready var update_tween = $UpdateTween
+#onready var update_tween = $UpdateTween
+onready var styleBox = $Progress.get("custom_styles/fg")
 
-export (Color) var progress_bar_color = Color.gray
-var character_id
+var character_id = -1
 	
-func SetProgressBar(id, max_value):
+func SetProgressBar(id, max_value, color):
 	character_id = id
 	$Progress.max_value = max_value
 	$Progress.value = max_value
+	$Progress.tint_progress = color
+	print("set progress "+str(character_id))
 
 func _on_progress_updated(new_value):
-	$UpdateTween.interpolate_property($Progress,"value", $Progress.value,
-	0.4,Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	$UpdateTween.start()
+	$Progress.value = new_value
+	
 
 	
