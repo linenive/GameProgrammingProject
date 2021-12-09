@@ -37,6 +37,7 @@ func DetectButtonClicked():
 func SetPanelPause(active):
 	$TitleCanvas/TitlePanel.visible = active
 	$ButtonCanvas/Control.visible = active
+	$ColorRect.visible = active
 	get_tree().paused = active
 	is_paused = active
 
