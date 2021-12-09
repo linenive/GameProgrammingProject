@@ -83,7 +83,7 @@ private:
 
 				if (HasSamePosition(resident, tree_pos)) {
 					return task_service->CreateWorkTask(
-						eWorkType::COLLECT_WOOD, resident->GetInventory(), 10
+						eWorkType::COLLECT_WOOD, resident->GetInventory(), 12
 					);
 				}
 				else {
@@ -164,10 +164,13 @@ private:
 		if (HasSamePosition(character, target_structure->GetCenterPosition())) {
 			task->structure_iterator++;
 			
-			//if(target_structure->GetInventory()->)
-			Item* item = ItemDictionary::GetInstance()->GetItemByID(task->wish_item_code);
-			village_service->IncreaseMoney(item->GetParameter("price"));
-			task->Done();
+			if (target_structure->HasInventory() && target_structure->GetInventory()->GetItemCountByItemId(task->wish_item_code) > 0) {
+				Item* item = ItemDictionary::GetInstance()->GetItemByID(task->wish_item_code);
+				target_structure->GetInventory()->PopItemById(task->wish_item_code, 1);
+				ui_service->ui_update_needed_structure_ids.push(target_structure->id);
+				village_service->IncreaseMoney(item->GetParameter("price"));
+				task->Done();
+			}
 			return;
 		}
 		else {

@@ -38,7 +38,6 @@ protected:
 		}
 	}
 	void AddBaseItem() {
-		AddItem(*ItemDictionary::GetInstance()->GetItemByName("wood"));
 	}
 
 public:
