@@ -8,10 +8,14 @@ class Item  {
 private:
 	string name;
 	string type;
-	int id;
 protected:
 	unordered_map<string, int> param_list;
-public:
+public:	
+	int id;
+	bool operator <(const Item& other) const {
+		return id < other.id;
+	}
+
 	string GetName() { return name; }
 	void SetName(string name) { this->name = name; }
 
