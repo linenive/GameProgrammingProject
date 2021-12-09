@@ -4,19 +4,20 @@ var inventory_panel
 var inventory_ui
 
 var target_structure_id
+var choice_button_data_maker
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	inventory_panel = $Container/VBoxContainer/VBoxContainer2
 	inventory_ui = $Container/VBoxContainer/VBoxContainer2/PanelContainer/inventory_ui
+	choice_button_data_maker = get_node("/root/Main/UIControl/ChoiceButtonControl/ChoiceButtonDataMaker")
 
 func window_setting_structure_info(id, info):
 	get_parent().set_title("Structure Info")
 	
 	target_structure_id = id
 	
-	$Container/VBoxContainer/structure_name_label.text = info[1]
-	#$Container/VBoxContainer/structure_type_label.text = structure_type_int_to_string(info[2])
+	$Container/VBoxContainer/structure_name_label.text = structure_type_int_to_string(info[2])
 	
 	#inventory
 	if has_inventory(info):
@@ -26,24 +27,10 @@ func window_setting_structure_info(id, info):
 		inventory_panel.visible = false
 
 func structure_type_int_to_string(structure_type_int):
-	if structure_type_int == 0:
-		return "Single bed"
-	elif structure_type_int == 1:
-		return "Double bed"
-	elif structure_type_int == 2:
-		return "Box"
-	elif structure_type_int == 3:
-		return "Cooking table"
-	elif structure_type_int == 4:
-		return "Pot"
-	elif structure_type_int == 5:
-		return "Table"
-	elif structure_type_int == 6:
-		return "Counter"
-	elif structure_type_int == 7:
-		return "Chair"
+	if structure_type_int < 8:
+		return choice_button_data_maker.furniture_name_arrray[structure_type_int]
 	elif structure_type_int == 8:
-		return "Tree"
+		return "나무"
 	
 	return null
 
