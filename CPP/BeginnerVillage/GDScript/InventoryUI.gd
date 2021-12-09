@@ -19,7 +19,8 @@ func init_inventory(inventory_info_start_index, info : Array):
 		self.add_child(inventory_slot_instance)
 		inventory_size += 1
 	
-	self.columns = pow(inventory_size, 0.5)
+	var pow_inventory_size = pow(inventory_size, 0.5)
+	self.columns = pow_inventory_size if str(pow_inventory_size).length() == 1 else 3
 
 func delete_all_inventory_slot():
 	for slot in self.get_children():
