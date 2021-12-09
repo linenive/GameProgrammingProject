@@ -1,4 +1,5 @@
 #pragma once
+#pragma execution_character_set("utf-8")
 #include "EventGenerator.h"
 #include "Common.h"
 #include "RepeatitionRandomOcccurrence.h"
@@ -20,7 +21,7 @@ private:
 	void VisitNewGuest() {
 		Character* new_character =  object_service->CreateNewGuest();
 		event_log_repo->AddLog(EventLog(
-			"Guest Visit", "Visit Guest " + to_string(new_character->GetId()), time_repo->CaptureGameTime(),
+			"¼Õ´Ô ¹æ¹®", "¼Õ´Ô " + to_string(new_character->GetId()) + " ¹æ¹®ÇÔ", time_repo->CaptureGameTime(),
 			new_character->GetPhysics()->GetPosition()
 		));
 	}
