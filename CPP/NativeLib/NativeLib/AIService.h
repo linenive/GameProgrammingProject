@@ -95,7 +95,7 @@ private:
 			}
 		}
 		else {
-			return task_service->CreateSeekTaskToHome(resident);
+			return task_service->CreateWanderTask(resident);
 		}
 	}
 	// To-do: hard coding -> algorithm which use DB
@@ -256,7 +256,7 @@ public:
 		if (new_character->IsGuest())
 			task_list.push_back({ id, FindNewTaskToGuest((Guest*)new_character) });
 		else
-			task_list.push_back({ id, FindNewTaskToResident((Resident*)new_character) });
+			task_list.push_back({ id, task_service->CreateSeekTaskToHome((Resident*)new_character) });
 	}
 
 	void Update(float delta) {
