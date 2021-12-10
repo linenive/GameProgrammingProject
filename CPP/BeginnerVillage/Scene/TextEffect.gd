@@ -36,7 +36,7 @@ func _process(_delta):
 	if left_time <= 0:
 		queue_free()
 	elif left_time<=0.5:
-		$Text.rect_position += Vector2(0.1, -0.1)
+		$Text.rect_position += Vector2(1, -1)*_delta * 20
 		left_time -= _delta
 		current_fade -= _delta * text_length * 3
 		FadeTextUpdate()
