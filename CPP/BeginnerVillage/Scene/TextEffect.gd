@@ -63,10 +63,8 @@ func set_effect_text():
 	hover_tail = '[/'+effect_type+']'
 	current_fade = text_length
 	FadeTextUpdate()
-	print(current_fade)
 
 func FadeTextUpdate():
-	print(current_fade)
 	fade_parameter = ' start='+str(current_fade)+' length=' + str(text_length)+' ]'
 	fade_head = '[fade'+fade_parameter
 	full_text = default_head +fade_head+ hover_head + current_text + hover_tail +fade_tail+ default_tail
