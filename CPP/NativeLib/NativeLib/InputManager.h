@@ -42,6 +42,7 @@ public:
 	bool IsDragging();
 	bool IsBuilding();
 	bool IsInstalling();
+	bool IsBuildAble();
 	Array GetBuildingBluePrint();
 	Array GetStructureBluePrint();
 	void ChangeStateToBuild(int building_type);

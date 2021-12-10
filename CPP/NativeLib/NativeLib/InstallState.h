@@ -31,6 +31,13 @@ public:
 			input.scheduled_structure->SetBluePrintPosition(
 				ClingToCloseCoordinate(mouse_position)
 			);
+
+			if (CanInstalling(mouse_position)) {
+				input.is_build_able = true;
+			}
+			else {
+				input.is_build_able = false;
+			}
 		}
 	}
 

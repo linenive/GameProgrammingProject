@@ -30,6 +30,10 @@ bool InputManager::IsInstalling() {
 	return control_context_service->GetInputStatus()->is_structure_blueprint_ready;
 }
 
+bool InputManager::IsBuildAble() {
+	return control_context_service->GetInputStatus()->is_build_able;
+}
+
 Array InputManager::GetBuildingBluePrint() {
 	Array block_array = Array();
 	Building* scheduled_building = control_context_service->GetInputStatus()->scheduled_building;
@@ -146,6 +150,7 @@ void InputManager::_register_methods() {
 	register_method("GetDragRect", &InputManager::GetDragRect);
 	register_method("IsBuilding", &InputManager::IsBuilding);
 	register_method("IsInstalling", &InputManager::IsInstalling);
+	register_method("IsBuildAble", &InputManager::IsBuildAble);
 	register_method("GetBuildingBluePrint", &InputManager::GetBuildingBluePrint);
 	register_method("GetStructureBluePrint", &InputManager::GetStructureBluePrint);
 	

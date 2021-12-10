@@ -20,6 +20,7 @@ public:
 	Rect2 highlighted_area;
 	bool is_building_blueprint_ready = false;
 	bool is_structure_blueprint_ready = false;
+	bool is_build_able = false;
 
 	queue<int> clicked_character_ids;
 	queue<int> clicked_structure_ids;

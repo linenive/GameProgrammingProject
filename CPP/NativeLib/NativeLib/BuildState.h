@@ -6,7 +6,7 @@ private:
 	StaticUnitService* static_unit_service;
 	eBuildingType scheduled_building_type = eBuildingType::SMALL_HOUSE;
 
-	bool CanBuiding(Vector2 mouse_position) {
+	bool CanBuilding(Vector2 mouse_position) {
 		if (input.is_building_blueprint_ready) {
 			return static_unit_service->IsPlacablePosition((int)scheduled_building_type, mouse_position);
 		}
@@ -32,11 +32,17 @@ public:
 			input.scheduled_building->SetBluePrintPosition(
 				ClingToCloseCoordinate(mouse_position)
 			);
+			if (CanBuilding(mouse_position)) {
+				input.is_build_able = true;
+			}
+			else {
+				input.is_build_able = false;
+			}
 		}
 	}
 
 	void MouseClick(Vector2 mouse_position) override {
-		if (CanBuiding(mouse_position)) {
+		if (CanBuilding(mouse_position)) {
 			BuildBuilding(mouse_position);
 		}
 	}

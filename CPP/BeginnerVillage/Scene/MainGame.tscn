@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CPPNative/UIManager.gdns" type="Script" id=2]
@@ -1165,9 +1165,9 @@ script = ExtResource( 32 )
 [connection signal="click_structure" from="InputManager" to="GodotInput" method="_on_InputManager_click_structure"]
 [connection signal="install_structure" from="InputManager" to="JanTestGDScript/TestTileCreater" method="_on_InputManager_install_structure"]
 [connection signal="delete_structrue" from="StaticUnitManager" to="JanTestGDScript/TestTileCreater" method="_on_StaticUnitManager_delete_structrue"]
-[connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_create_instance_ui"]
-[connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_delete_instance_ui"]
 [connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/PeopleBtn" to="UIControl/MenuUIControl" method="_on_PeopleBtn_gui_input"]
 [connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn" to="UIControl/MenuUIControl" method="_on_ArchitectureBtn_gui_input"]
 [connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn/Node/ConstructionBtn" to="UIControl/MenuUIControl" method="_on_ConstructionBtn_gui_input"]
 [connection signal="gui_input" from="UIControl/MenuUIControl/HBoxContainer/ArchitectureBtn/Node/InstallBtn" to="UIControl/MenuUIControl" method="_on_InstallBtn_gui_input"]
+[connection signal="create_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_create_instance_ui"]
+[connection signal="delete_instance_ui" from="InstanceUIManager" to="InstanceUICreater" method="_on_InstanceUIManager_delete_instance_ui"]

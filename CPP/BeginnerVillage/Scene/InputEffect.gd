@@ -33,15 +33,27 @@ func draw_highlight_box(rect):
 
 func draw_building_blueprint():
 	var blocks = input_manager.GetBuildingBluePrint()
+	var is_build_able = input_manager.IsBuildAble()
 	var i = 0
 	for c in $Blueprint.get_children():
 		c.transform.origin = blocks[i][1]
 		i = i + 1
+		
+		if is_build_able:
+			c.modulate = Color(1, 1, 1, 0.5)
+		else:
+			c.modulate = Color(1, 0.5, 0.5, 0.5)
 
 func draw_structure_blueprint():
 	var blueprint_data = input_manager.GetStructureBluePrint()
+	var is_build_able = input_manager.IsBuildAble()
 	if $Blueprint.get_child_count() > 0:
 		$Blueprint.get_child(0).transform.origin = blueprint_data[1]
+		
+		if is_build_able:
+			$Blueprint.get_child(0).modulate = Color(1, 1, 1, 0.5)
+		else:
+			$Blueprint.get_child(0).modulate = Color(1, 0.5, 0.5, 0.5)
 
 func create_building_blueprint():
 	var blocks = input_manager.GetBuildingBluePrint()
