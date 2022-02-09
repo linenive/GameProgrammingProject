@@ -24,7 +24,8 @@ scons platform=windows
 
 게임 시스템은 Manager, Service, Repository의 세 가지 계층 구조로 디자인
 
-<img width="898" alt="기본 구조2" src="https://user-images.githubusercontent.com/12760801/153191202-f4e7ea09-eb09-4030-b264-90dc2c559e90.PNG">
+<img width="880" alt="기본 구조2" src="https://user-images.githubusercontent.com/12760801/153192476-01110252-46d9-4ce5-b918-1866f46a858e.PNG">
+
 
 #### 건설
 건축 미리보기
